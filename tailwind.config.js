@@ -9,6 +9,9 @@ export default {
       screens: {
         xs: '400',
       },
+      height: {
+        header: '6rem',
+      },
       colors: {
         primary: {
           900: '#073135',
@@ -61,6 +64,7 @@ export default {
           600: '#4C4C4C',
         },
         gray: '#737278',
+        light: '#f5f5f5f5',
       },
     },
   },
