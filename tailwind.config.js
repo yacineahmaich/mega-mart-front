@@ -67,6 +67,9 @@ export default {
         gray: '#e5e5e5',
         light: '#f5f5f5f5',
       },
+      gridTemplateColumns: {
+        products: '20% minmax(80%, 1fr)',
+      },
     },
   },
   plugins: [require('@tailwindcss/forms')],

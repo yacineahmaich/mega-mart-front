@@ -5,9 +5,9 @@ const DefaultLayout = () => {
   return (
     <>
       <Header />
-      <div className="container mx-auto">
+      <main>
         <Outlet />
-      </div>
+      </main>
     </>
   )
 }
