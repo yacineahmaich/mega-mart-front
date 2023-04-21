@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { ShoppingCartIcon, HeartIcon } from '@heroicons/react/24/outline'
+import Product from './Product'
 
 const products = [
   {
@@ -79,44 +79,14 @@ const ListProducts: FC = () => {
   return (
     <section className="grid w-full grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-4">
       {products.map(product => (
-        <article className="overflow-hidden border bg-light rounded-xl border-gray">
-          <div className="relative group">
-            <a href="#">
-              <img src={product.image} alt={product.name} />
-            </a>
-            <button className="absolute right-0 p-1 pr-3 transition-transform duration-200 translate-x-full rounded-l-lg outline-none text-light group-hover:translate-x-0 top-2 bg-primary-600">
-              <HeartIcon className="w-5 h-5" />
-            </button>
-          </div>
-          <div className="p-3 space-y-6">
-            <h3 className="font-medium line-clamp-2 text-dark-700">
-              <a href="#">{product.name}</a>
-            </h3>
-
-            <div className="flex items-center justify-between">
-              <div className="flex gap-2">
-                <div>
-                  <span className="font-bold text-md">${product.price}</span>
-                  {product.hasDiscount && (
-                    <span className="block text-sm font-medium text-dark-500">
-                      <s>${product.price}</s>
-                    </span>
-                  )}
-                </div>
-                {product.hasDiscount && (
-                  <span className="px-4 py-0.5 text-xs rounded-lg bg-pink-400 self-end font-medium text-light">
-                    -16%
-                  </span>
-                )}
-              </div>
-              <div className="space-x-2">
-                <button className="p-2 text-white transition-colors rounded-lg bg-primary-600 hover:bg-primary-700">
-                  <ShoppingCartIcon className="w-5" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </article>
+        <Product
+          key={product.id}
+          id={product.id}
+          name={product.name}
+          price={product.price}
+          image={product.image}
+          hasDiscount={product.hasDiscount ?? false}
+        />
       ))}
     </section>
   )
