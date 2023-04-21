@@ -30,7 +30,7 @@ const Select: FC<Props> = ({ options, selectedOption, onChange }) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="absolute left-0 mt-2 overflow-hidden rounded-lg top-full">
+          <Listbox.Options className="absolute left-0 z-10 mt-2 overflow-hidden rounded-lg top-full">
             {options.map((op, idx) => (
               <Listbox.Option
                 key={idx}

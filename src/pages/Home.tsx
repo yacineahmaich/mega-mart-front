@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { ChevronDoubleRightIcon } from '@heroicons/react/24/solid'
 import MainFilter from '../components/home/MainFilter'
 import SecondaryFilter from '../components/home/SecondaryFilter'
+import ListProducts from '../components/home/ListProducts'
 
 const Home: FC = () => {
   return (
@@ -14,7 +15,7 @@ const Home: FC = () => {
       <section className="grid gap-4 grid-cols-products">
         <MainFilter />
         <SecondaryFilter />
-        <div className="bg-orange-500">zszszs</div>
+        <ListProducts />
       </section>
     </div>
   )
