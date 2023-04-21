@@ -1,5 +1,9 @@
 import { ShoppingBagIcon } from '@heroicons/react/24/solid'
-import { HeartIcon, UserCircleIcon } from '@heroicons/react/24/outline'
+import {
+  HeartIcon,
+  UserCircleIcon,
+  MagnifyingGlassIcon,
+} from '@heroicons/react/24/outline'
 import Navigation from './Navigation'
 
 const Header = () => {
@@ -26,12 +30,13 @@ const Header = () => {
             </h1>
           </div>
 
-          <form className="order-3 w-full mt-4 lg:mt-0 lg:w-1/2 lg:order-2">
+          <form className="relative order-3 w-full mt-4 lg:mt-0 lg:w-1/2 lg:order-2">
             <input
               type="text"
               placeholder="Search your Jersy within thousands ..."
               className="w-full border-none rounded-lg outline-none focus:ring focus:outline-offset-2 focus:ring-primary-600 placeholder:font-medium placeholder:text-dark-600 "
             />
+            <MagnifyingGlassIcon className="absolute z-50 w-6 -translate-y-1/2 right-3 top-1/2 text-dark-500" />
           </form>
 
           <div className="flex items-center order-2 space-x-6 lg:order-3">
