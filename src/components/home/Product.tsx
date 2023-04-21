@@ -14,7 +14,7 @@ const Product: FC<Props> = ({ id, name, image, price, hasDiscount }) => {
     <article className="overflow-hidden border bg-light rounded-xl border-gray">
       <div className="relative group">
         <a href="#">
-          <img src={image} alt={name} />
+          <img src={image} alt={name} title={name} />
         </a>
         <button className="absolute right-0 p-1 pr-3 transition-transform duration-200 translate-x-full rounded-l-lg outline-none text-light group-hover:translate-x-0 top-2 bg-primary-600">
           <HeartIcon className="w-5 h-5" />

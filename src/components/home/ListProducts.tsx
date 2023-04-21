@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import Product from './Product'
+import Pagination from './Pagination'
 
 const products = [
   {
@@ -77,17 +78,20 @@ const products = [
 
 const ListProducts: FC = () => {
   return (
-    <section className="grid w-full grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-4">
-      {products.map(product => (
-        <Product
-          key={product.id}
-          id={product.id}
-          name={product.name}
-          price={product.price}
-          image={product.image}
-          hasDiscount={product.hasDiscount ?? false}
-        />
-      ))}
+    <section className="w-full space-y-8">
+      <div className="grid w-full grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-4">
+        {products.map(product => (
+          <Product
+            key={product.id}
+            id={product.id}
+            name={product.name}
+            price={product.price}
+            image={product.image}
+            hasDiscount={product.hasDiscount ?? false}
+          />
+        ))}
+      </div>
+      <Pagination />
     </section>
   )
 }

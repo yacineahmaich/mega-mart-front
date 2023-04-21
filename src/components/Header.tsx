@@ -7,8 +7,8 @@ const Header = () => {
     <>
       <section className="w-full bg-primary-900">
         <div className="container flex justify-between py-2 mx-auto text-sm font-medium text-light">
-          <span>+212667313710</span>
-          <span>jersy.shoop@gmail.com</span>
+          <a href="tel:+212667313710">+212667313710</a>
+          <a href="mailto:jersy.shoop@gmail.com">jersy.shoop@gmail.com</a>
           {/* <ul>
             <li></li>
             <li></li>
