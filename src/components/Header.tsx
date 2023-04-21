@@ -1,5 +1,6 @@
 import { ShoppingBagIcon } from '@heroicons/react/24/solid'
 import { HeartIcon, UserCircleIcon } from '@heroicons/react/24/outline'
+import Navigation from './Navigation'
 
 const Header = () => {
   return (
@@ -20,18 +21,20 @@ const Header = () => {
       <header className="w-full px-2 bg-primary-800 sm:px-0">
         <div className="container flex flex-wrap items-center justify-between py-4 mx-auto min-h-header">
           <div>
-            <h1 className="text-xl font-bold text-white">Logo</h1>
+            <h1 className="text-xl font-bold text-white">
+              <a href="#">Jersy Hub</a>
+            </h1>
           </div>
 
           <form className="order-3 w-full mt-4 lg:mt-0 lg:w-1/2 lg:order-2">
             <input
               type="text"
               placeholder="Search your Jersy within thousands ..."
-              className="w-full border-none rounded-lg outline-none focus:ring focus:outline-offset-2 focus:ring-primary-600 placeholder:font-medium placeholder:text-gray "
+              className="w-full border-none rounded-lg outline-none focus:ring focus:outline-offset-2 focus:ring-primary-600 placeholder:font-medium placeholder:text-dark-600 "
             />
           </form>
 
-          <nav className="flex items-center order-2 space-x-6 lg:order-3">
+          <div className="flex items-center order-2 space-x-6 lg:order-3">
             <div className="flex flex-col items-center text-sm font-medium text-white cursor-pointer hover:text-slate-200">
               <HeartIcon className="w-6 mr-1" />
               Favorite
@@ -45,9 +48,10 @@ const Header = () => {
               <ShoppingBagIcon className="w-6 mr-1" />
               Cart
             </div>
-          </nav>
+          </div>
         </div>
       </header>
+      <Navigation />
     </>
   )
 }
