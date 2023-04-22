@@ -3,8 +3,8 @@ import { FC } from 'react'
 const Footer: FC = () => {
   return (
     <footer className="w-full p-8 mt-0 space-y-12 bg-primary-900">
-      <div className="flex justify-between">
-        <div className="space-y-2 text-gray">
+      <div className="grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-4">
+        <div className="col-span-1 space-y-2 text-gray">
           <span className="font-bold">Links</span>
           <ul className="pl-3 text-sm">
             <li className="hover:underline">
@@ -21,7 +21,7 @@ const Footer: FC = () => {
             </li>
           </ul>
         </div>
-        <div className="space-y-2 text-gray">
+        <div className="col-span-1 space-y-2 text-gray">
           <span className="font-bold">Follow Us</span>
           <div className="pl-3">
             <p>follow us in our social media accounts</p>
@@ -29,24 +29,24 @@ const Footer: FC = () => {
             <a href="#">instagram</a>
           </div>
         </div>
-        <div className="space-y-2 text-gray">
+        <div className="col-span-2 space-y-2 text-gray lg:col-span-1">
           <span className="font-bold">Email updated</span>
           <div className="pl-3 space-y-2">
             <p>Be the first to hear about our offers and announcements.</p>
-            <form className="flex gap-2">
+            <form className="flex flex-wrap gap-2">
               <input
                 type="email"
-                className="w-64 rounded focus:ring-2 focus:ring-primary-100"
+                className="rounded focus:ring-2 focus:ring-primary-100"
                 placeholder="example@gmail.com"
                 required
               />
-              <button className="px-3 text-sm transition-colors rounded text-gray bg-primary-700 hover:bg-primary-800 focus:ring-2 focus:ring-primary-100">
+              <button className="px-3 py-3 text-sm transition-colors rounded text-gray bg-primary-700 hover:bg-primary-800 focus:ring-2 focus:ring-primary-100">
                 Subscribe
               </button>
             </form>
           </div>
         </div>
-        <div className="space-y-2 text-gray">
+        <div className="col-span-2 space-y-2 text-gray lg:col-span-1">
           <span className="font-bold">Contact Us</span>
           <p>Questions? We've got answers. Try us.</p>
           <a

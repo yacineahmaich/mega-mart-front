@@ -12,13 +12,13 @@ type Props = {
 const Product: FC<Props> = ({ id, name, image, price, hasDiscount }) => {
   return (
     <article className="overflow-hidden border bg-light rounded-xl border-gray">
-      <div className="relative bg-light h-60 group">
+      <div className="relative bg-light h-44 sm:h-60 group">
         <a href="#">
           <img
             src={image}
             alt={name}
             title={name}
-            className="object-cover h-full"
+            className="object-cover w-full h-full"
           />
         </a>
         <button className="absolute right-0 p-1 pr-3 transition-transform duration-200 translate-x-full rounded-l-lg outline-none text-light group-hover:translate-x-0 top-2 bg-primary-600">
@@ -26,14 +26,14 @@ const Product: FC<Props> = ({ id, name, image, price, hasDiscount }) => {
         </button>
       </div>
       <div className="p-3 space-y-6">
-        <h3 className="font-medium line-clamp-2 text-dark-700">
+        <h3 className="text-sm font-medium sm:text-lg line-clamp-2 text-dark-700">
           <a href="#">{name}</a>
         </h3>
 
         <div className="flex items-center justify-between">
           <div className="flex gap-2">
             <div>
-              <span className="font-bold text-md">${price}</span>
+              <span className="text-sm font-bold sm:text-md">${price}</span>
               {hasDiscount && (
                 <span className="block text-sm font-medium text-dark-500">
                   <s>${price}</s>
@@ -48,7 +48,7 @@ const Product: FC<Props> = ({ id, name, image, price, hasDiscount }) => {
           </div>
           <div className="space-x-2">
             <button className="p-2 text-white transition-colors rounded-lg bg-primary-600 hover:bg-primary-700">
-              <ShoppingCartIcon className="w-5" />
+              <ShoppingCartIcon className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>
         </div>

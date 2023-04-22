@@ -68,7 +68,7 @@ export default {
         light: '#f5f5f5f5',
       },
       gridTemplateColumns: {
-        products: '20% minmax(80%, 1fr)',
+        products: 'minmax(17%, 1fr) auto',
       },
     },
   },

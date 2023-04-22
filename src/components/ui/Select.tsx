@@ -17,7 +17,7 @@ const Select: FC<Props> = ({ options, selectedOption, onChange }) => {
   return (
     <Listbox value={selectedOption} onChange={onChange}>
       <div className="relative">
-        <Listbox.Button className="flex items-center justify-between px-4 py-3 text-xs rounded-lg w-52 text-dark-600 bg-light">
+        <Listbox.Button className="flex items-center justify-between w-auto px-4 py-3 text-xs rounded-lg sm:w-52 text-dark-600 bg-light">
           <span>{selectedOption.label}</span>
           <ChevronDownIcon className="w-4" />
         </Listbox.Button>
@@ -30,7 +30,7 @@ const Select: FC<Props> = ({ options, selectedOption, onChange }) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="absolute left-0 z-10 mt-2 overflow-hidden rounded-lg top-full">
+          <Listbox.Options className="absolute right-0 z-10 mt-2 overflow-hidden rounded-lg top-full">
             {options.map((op, idx) => (
               <Listbox.Option
                 key={idx}

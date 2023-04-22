@@ -7,15 +7,15 @@ import Subscribe from '../components/home/Subscribe'
 
 const Home: FC = () => {
   return (
-    <div className="space-y-12">
+    <div className="space-y-6 sm:space-y-8">
       <div className="container mx-auto">
-        <h2 className="text-lg font-semibold text-dark-700">
+        <h2 className="text-sm font-semibold sm:text-lg text-dark-700">
           <ChevronDoubleRightIcon className="inline w-4 mr-1 font-bold align-middle" />
           Thousands of products to meet all your desires
         </h2>
       </div>
 
-      <section className="container grid gap-4 mx-auto grid-cols-products">
+      <section className="container grid grid-cols-1 mx-auto gap-y-3 md:gap-4 md:grid-cols-products">
         <MainFilter />
         <SecondaryFilter />
         <ListProducts />

@@ -24,19 +24,17 @@ const MainFilter: FC = () => {
   )
 
   return (
-    <div className="flex justify-end col-span-2">
-      <div className="flex space-x-4">
-        <Select
-          options={productsPerPageOptions}
-          selectedOption={selectArctcilePerPage}
-          onChange={setSelectArctcilePerPage}
-        />
-        <Select
-          options={filterOptions}
-          selectedOption={selectedFilter}
-          onChange={setselectedFilter}
-        />
-      </div>
+    <div className="flex justify-end col-span-2 space-x-4">
+      <Select
+        options={productsPerPageOptions}
+        selectedOption={selectArctcilePerPage}
+        onChange={setSelectArctcilePerPage}
+      />
+      <Select
+        options={filterOptions}
+        selectedOption={selectedFilter}
+        onChange={setselectedFilter}
+      />
     </div>
   )
 }

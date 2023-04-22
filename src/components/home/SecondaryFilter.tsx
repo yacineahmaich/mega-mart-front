@@ -15,7 +15,7 @@ const categories = [
 
 const SecondaryFilter: FC = () => {
   return (
-    <div className="space-y-4">
+    <div className="hidden space-y-4 md:block">
       <DisclotureItem title="Category">
         <ul className="space-y-2">
           {categories.map(cat => (
