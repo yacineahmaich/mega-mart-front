@@ -41,16 +41,16 @@ const Header = () => {
 
           <div className="flex items-center order-2 space-x-6 lg:order-3">
             <div className="flex flex-col items-center text-sm font-medium text-white cursor-pointer hover:text-slate-200">
-              <HeartIcon className="w-6 mr-1" />
+              <HeartIcon className="w-5 h-5 mr-1 sm:h-5 sm:w-6" />
               Favorite
             </div>
             <div className="flex flex-col items-center space-x-4 text-sm font-medium text-white cursor-pointer hover:text-slate-200">
-              <UserCircleIcon className="w-6 mr-1" />
+              <UserCircleIcon className="w-5 h-5 mr-1 sm:h-5 sm:w-6" />
               My Account
             </div>
             <div className="w-[1px] h-8 bg-slate-400"></div>
             <div className="flex flex-col items-center space-x-4 text-sm font-medium cursor-pointer text-primary-600 hover:text-primary-500">
-              <ShoppingBagIcon className="w-6 mr-1" />
+              <ShoppingBagIcon className="w-5 h-5 mr-1 sm:h-5 sm:w-6" />
               Cart
             </div>
           </div>
