@@ -9,6 +9,9 @@ export default {
       screens: {
         xs: '400',
       },
+      width: {
+        minicart: '450px',
+      },
       height: {
         header: '6rem',
       },
@@ -72,5 +75,9 @@ export default {
       },
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [
+    require('@tailwindcss/forms')({
+      strategy: 'class',
+    }),
+  ],
 }
