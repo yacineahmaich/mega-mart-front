@@ -9,7 +9,7 @@ type Props = {
   hasDiscount: boolean
 }
 
-const Product: FC<Props> = ({ id, name, image, price, hasDiscount }) => {
+const Product: FC<Props> = ({ name, image, price, hasDiscount }) => {
   return (
     <article className="overflow-hidden border bg-light rounded-xl border-gray">
       <div className="relative bg-light h-44 sm:h-60 group">
