@@ -13,8 +13,8 @@ const DisclosureItem: FC<Props> = props => {
       {({ open }) => (
         <>
           <Disclosure.Button
-            className={`flex items-center justify-between w-full px-4 py-3 text-xs rounded-lg text-dark-600 bg-gray hover:bg-purple-200 outline-none ${
-              open ? 'rounded-b-none' : ''
+            className={`flex items-center justify-between w-full px-4 py-3 text-xs rounded-lg text-dark-600 bg-light border border-gray outline-none ${
+              open ? 'rounded-b-none border-b-0' : ''
             }`}
           >
             <span>{props.title}</span>

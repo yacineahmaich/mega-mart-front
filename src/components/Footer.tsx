@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 const Footer: FC = () => {
   return (
-    <footer className="w-full p-8 mt-0 space-y-12 bg-primary-900">
+    <footer className="w-full p-4 mt-0 space-y-6 md:space-y-12 md:p-8 bg-primary-900">
       <div className="grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-4">
         <div className="col-span-1 space-y-2 text-gray">
           <span className="font-bold">Links</span>

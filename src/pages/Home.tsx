@@ -7,7 +7,7 @@ import Subscribe from '../components/home/Subscribe'
 
 const Home: FC = () => {
   return (
-    <div className="space-y-6 sm:space-y-8">
+    <div className="px-2 space-y-6 sm:space-y-8 sm:px-0">
       <div className="container mx-auto">
         <h2 className="text-sm font-semibold sm:text-lg text-dark-700">
           <ChevronDoubleRightIcon className="inline w-4 mr-1 font-bold align-middle" />
