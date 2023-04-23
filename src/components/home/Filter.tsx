@@ -43,7 +43,7 @@ const Filter: FC = () => {
             <input
               type="text"
               placeholder="Min"
-              className="w-full py-1 rounded-lg focus:ring-0 focus:border-black placeholder:text-sm"
+              className="w-full py-1 rounded-lg focus:ring-0 focus:border-black placeholder:text-sm form-input"
             />
           </div>
           <div>-</div>
@@ -54,7 +54,7 @@ const Filter: FC = () => {
             <input
               type="text"
               placeholder="Max"
-              className="w-full py-1 rounded-lg focus:ring-0 focus:border-black placeholder:text-sm"
+              className="w-full py-1 rounded-lg focus:ring-0 focus:border-black placeholder:text-sm form-input"
             />
           </div>
         </div>

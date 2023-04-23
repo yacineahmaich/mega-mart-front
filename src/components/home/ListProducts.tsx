@@ -5,7 +5,7 @@ import Pagination from './Pagination'
 const products = [
   {
     id: 1,
-    name: 'Retro 98/99 AC Milan Home Jersey zeffffffffff zsazdazd azdazd azdazdzad azdazd azd',
+    name: 'Retro 98/99 AC',
     image: 'https://img2-cdn.halftime.pt/2023/04/08/a/d/ad2cc81e9610b037.jpeg',
     price: '99.89',
   },
@@ -79,7 +79,7 @@ const products = [
 const ListProducts: FC = () => {
   return (
     <section className="w-full space-y-8">
-      <div className="grid w-full grid-cols-2 gap-6 lg:gap-8 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid w-full grid-cols-2 gap-4 lg:gap-8 sm:grid-cols-3 md:grid-cols-3 xl:grid-cols-4">
         {products.map(product => (
           <Product
             key={product.id}

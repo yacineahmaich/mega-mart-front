@@ -71,7 +71,7 @@ export default {
         light: '#f5f5f5f5',
       },
       gridTemplateColumns: {
-        products: 'minmax(17%, 1fr) auto',
+        products: 'minmax(250px, 1fr) auto',
       },
     },
   },

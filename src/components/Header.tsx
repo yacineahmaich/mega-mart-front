@@ -9,14 +9,14 @@ const Header = () => {
   return (
     <>
       <section className="w-full px-3 md:px-6 bg-primary-900">
-        <div className="container flex justify-between py-2 mx-auto text-sm font-medium text-light">
+        <div className="flex justify-between py-2 text-sm font-medium text-light">
           <a href="tel:+212667313710">+212667313710</a>
           <a href="mailto:jersy.shoop@gmail.com">jersy.shoop@gmail.com</a>
         </div>
       </section>
 
       <header className="w-full px-3 bg-primary-800 md:px-6">
-        <div className="container flex flex-wrap items-center justify-between py-4 mx-auto min-h-header">
+        <div className="flex flex-wrap items-center justify-between py-4 min-h-header">
           <div>
             <h1 className="text-xl font-bold text-white">
               <a href="#">Jersy Hub</a>
@@ -34,13 +34,13 @@ const Header = () => {
           </form>
 
           <div className="flex items-center order-2 space-x-6 lg:order-3">
-            <div className="flex flex-col items-center text-sm font-medium text-white transition-colors cursor-pointer hover:text-slate-200">
-              <HeartIcon className="w-5 h-5 sm:h-6 sm:w-6" />
-              Favorite
+            <div className="flex flex-col items-center space-y-0.5 text-sm font-medium text-white transition-colors cursor-pointer hover:text-slate-200">
+              <HeartIcon className="w-6 h-6 sm:h-6 sm:w-6" />
+              <span className="hidden sm:block">Favorite</span>
             </div>
-            <div className="flex flex-col items-center space-x-4 text-sm font-medium text-white transition-colors cursor-pointer hover:text-slate-200">
-              <UserCircleIcon className="w-5 h-5 sm:h-6 sm:w-6" />
-              My Account
+            <div className="flex flex-col items-center space-y-0.5 text-sm font-medium text-white transition-colors cursor-pointer hover:text-slate-200">
+              <UserCircleIcon className="w-6 h-6 sm:h-6 sm:w-6" />
+              <span className="hidden sm:block">My Account</span>
             </div>
             <div className="w-[1px] h-8 bg-slate-400"></div>
             <MiniCartButton />

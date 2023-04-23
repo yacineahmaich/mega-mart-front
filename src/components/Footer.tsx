@@ -3,8 +3,8 @@ import { FC } from 'react'
 const Footer: FC = () => {
   return (
     <footer className="w-full p-4 mt-0 space-y-6 md:space-y-12 md:p-8 bg-primary-900">
-      <div className="grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-4">
-        <div className="col-span-1 space-y-2 text-gray">
+      <div className="grid divide-y divide-light md:gap-4 md:divide-y-0 md:grid-cols-2 xl:grid-flow-col">
+        <div className="py-2 space-y-2 md:py-0 text-gray">
           <span className="font-bold">Links</span>
           <ul className="pl-3 text-sm">
             <li className="hover:underline">
@@ -21,7 +21,7 @@ const Footer: FC = () => {
             </li>
           </ul>
         </div>
-        <div className="col-span-1 space-y-2 text-gray">
+        <div className="py-2 space-y-2 md:py-0 text-gray">
           <span className="font-bold">Follow Us</span>
           <div className="pl-3">
             <p>follow us in our social media accounts</p>
@@ -29,14 +29,14 @@ const Footer: FC = () => {
             <a href="#">instagram</a>
           </div>
         </div>
-        <div className="col-span-2 space-y-2 text-gray lg:col-span-1">
+        <div className="py-2 space-y-2 md:py-0 text-gray lg:col-span-1">
           <span className="font-bold">Email updated</span>
           <div className="pl-3 space-y-2">
             <p>Be the first to hear about our offers and announcements.</p>
             <form className="flex flex-wrap gap-2">
               <input
                 type="email"
-                className="rounded focus:ring-2 focus:ring-primary-100"
+                className="rounded focus:ring-2 form-input focus:ring-primary-100"
                 placeholder="example@gmail.com"
                 required
               />
@@ -46,7 +46,7 @@ const Footer: FC = () => {
             </form>
           </div>
         </div>
-        <div className="col-span-2 space-y-2 text-gray lg:col-span-1">
+        <div className="py-2 space-y-2 md:py-0 text-gray lg:col-span-1">
           <span className="font-bold">Contact Us</span>
           <p>Questions? We've got answers. Try us.</p>
           <a
