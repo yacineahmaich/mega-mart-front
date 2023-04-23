@@ -13,7 +13,7 @@ const categories = [
   },
 ]
 
-const SecondaryFilter: FC = () => {
+const Filter: FC = () => {
   return (
     <div className="hidden space-y-4 md:block">
       <DisclotureItem title="Category">
@@ -102,4 +102,4 @@ const SecondaryFilter: FC = () => {
   )
 }
 
-export default SecondaryFilter
+export default Filter
