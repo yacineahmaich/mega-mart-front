@@ -43,7 +43,7 @@ const FilterModal: FC<Props> = ({ isOpen, onClose }) => {
           leaveFrom="opacity-100 translate-x-0"
           leaveTo="opacity-0 translate-x-full"
         >
-          <Dialog.Panel className="fixed top-0 right-0 flex flex-col h-screen max-w-full overflow-hidden transition-all transform bg-white shadow-xl w-72">
+          <Dialog.Panel className="fixed top-0 right-0 flex flex-col h-screen max-h-[100dvh] max-w-full overflow-hidden transition-all transform bg-white shadow-xl w-72">
             <div className="flex items-center justify-between px-5 py-2 border-b border-gray text-dark-600">
               <Dialog.Title as="h3" className="text-lg font-medium">
                 Filter
@@ -112,7 +112,7 @@ const FilterModal: FC<Props> = ({ isOpen, onClose }) => {
                             USD
                           </span>
                           <input
-                            type="text"
+                            type="number"
                             placeholder="Min"
                             className="w-full py-1 rounded-lg focus:ring-0 focus:border-black placeholder:text-sm form-input"
                           />
@@ -123,7 +123,7 @@ const FilterModal: FC<Props> = ({ isOpen, onClose }) => {
                             USD
                           </span>
                           <input
-                            type="text"
+                            type="number"
                             placeholder="Max"
                             className="w-full py-1 rounded-lg focus:ring-0 focus:border-black placeholder:text-sm form-input"
                           />
