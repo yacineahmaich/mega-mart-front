@@ -11,9 +11,14 @@ export default {
       },
       width: {
         minicart: '450px',
+        swiper: '414px',
+        'swiper-min': '300px',
       },
       height: {
         header: '6rem',
+        minicart: '450px',
+        swiper: '414px',
+        'swiper-min': '300px',
       },
       colors: {
         primary: {
