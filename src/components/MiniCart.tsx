@@ -52,7 +52,7 @@ const Cart: FC<Props> = ({ isOpen, onClose }) => {
             <div className="flex-1 px-5 py-3 overflow-y-auto">
               <ul className="divide-y divide-slate-300">
                 {products.map(product => (
-                  <li className="py-3">
+                  <li className="py-3" key={product.id}>
                     <div className="flex gap-4">
                       <div className="h-32 overflow-hidden w-28 rounded-xl">
                         <img

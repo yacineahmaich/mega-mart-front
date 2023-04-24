@@ -1,9 +1,21 @@
-import ProductPreview from '../components/product/ProductPreview'
+import Checkout from '../components/product/Checkout'
+import GeneralInfos from '../components/product/GeneralInfos'
+import Infos from '../components/product/Infos'
+import Preview from '../components/product/Preview'
 
 const ProductDetails = () => {
   return (
-    <div className="px-3 sm:px-6">
-      <ProductPreview />
+    <div className="px-3 space-y-12 sm:px-6">
+      <section>
+        <div className="relative flex gap-6">
+          <Preview />
+          <Infos />
+          <Checkout />
+        </div>
+      </section>
+      <section>
+        <GeneralInfos />
+      </section>
     </div>
   )
 }
