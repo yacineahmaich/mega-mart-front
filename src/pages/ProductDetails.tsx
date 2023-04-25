@@ -7,7 +7,7 @@ const ProductDetails = () => {
   return (
     <div className="px-3 space-y-12 sm:px-6">
       <section>
-        <div className="relative flex gap-6">
+        <div className="relative grid grid-cols-[40%_60%] gap-6">
           <Preview />
           <Infos />
           <Checkout />
