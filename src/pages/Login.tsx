@@ -1,9 +1,10 @@
 import { UserIcon } from '@heroicons/react/24/outline'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
   return (
-    <div className="space-y-8">
-      <div className="flex items-center">
+    <div className="space-y-6">
+      <div className="flex items-center gap-4">
         <UserIcon className="w-16 h-16 text-primary-700" />
         <h4 className="text-xl font-bold text-dark-800">
           Login To your Account
@@ -18,7 +19,7 @@ const Login = () => {
             placeholder="Email Address Or Password"
           />
           <input
-            type="text"
+            type="password"
             className="block w-full rounded-sm focus:ring-2 focus:ring-primary-500 focus:border-transparent form-input"
             placeholder="Password"
           />
@@ -27,6 +28,13 @@ const Login = () => {
             Login
           </button>
         </form>
+      </div>
+
+      <div className="flex flex-wrap items-center justify-center">
+        <p>You don't have account yet?</p>
+        <Link to="/account/signup" className="font-semibold text-primary-600">
+          Signup
+        </Link>
       </div>
     </div>
   )
