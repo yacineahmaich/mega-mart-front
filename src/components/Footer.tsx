@@ -2,7 +2,10 @@ import { FC } from 'react'
 
 const Footer: FC = () => {
   return (
-    <footer className="w-full p-4 mt-0 space-y-6 md:space-y-12 md:p-8 bg-primary-900">
+    <footer
+      className="w-full p-4 mt-0 space-y-6 md:space-y-12 md:p-8 bg-primary-900"
+      id="footer"
+    >
       <div className="grid divide-y divide-light md:gap-4 md:divide-y-0 md:grid-cols-2 xl:grid-flow-col">
         <div className="py-2 space-y-2 md:py-0 text-gray">
           <span className="font-bold">Links</span>

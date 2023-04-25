@@ -4,6 +4,7 @@ import {
   MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline'
 import MiniCartButton from './MiniCartButton'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   return (
@@ -18,10 +19,12 @@ const Header = () => {
       <header className="w-full px-3 bg-primary-800 md:px-6">
         <div className="flex flex-wrap items-center justify-between py-4 min-h-header">
           <div>
-            <h1 className="text-xl font-bold text-white">
-              <a href="#">Jersy Hub</a>
-              <span className="sr-only">Jersy Hub</span>
-            </h1>
+            <Link to="/">
+              <h1 className="text-xl font-bold text-white">
+                Jersy Hub
+                <span className="sr-only">Jersy Hub</span>
+              </h1>
+            </Link>
           </div>
 
           <form className="relative z-0 order-3 w-full mt-4 lg:mt-0 lg:w-1/2 lg:order-2">

@@ -7,6 +7,7 @@ import {
 } from '@heroicons/react/24/solid'
 import { TrashIcon } from '@heroicons/react/24/outline'
 import { products } from '../utils/contants'
+import { useNavigate } from 'react-router-dom'
 
 type Props = {
   isOpen: boolean
@@ -14,6 +15,13 @@ type Props = {
 }
 
 const Cart: FC<Props> = ({ isOpen, onClose }) => {
+  const navigate = useNavigate()
+
+  const goToCart = () => {
+    navigate('/cart')
+    onClose()
+  }
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-30" onClose={onClose}>
@@ -121,6 +129,7 @@ const Cart: FC<Props> = ({ isOpen, onClose }) => {
                 <a
                   href="#"
                   className="w-full py-2 font-medium text-center text-white transition-colors duration-200 text-md bg-primary-600 hover:bg-primary-800"
+                  onClick={goToCart}
                 >
                   Go To Cart
                 </a>
