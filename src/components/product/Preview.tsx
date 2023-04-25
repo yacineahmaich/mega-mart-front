@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { Controller } from 'swiper'
+import { Controller, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
+import 'swiper/css/pagination'
 
 const productImages = [
   'https://img7-cdn.halftime.pt/p/2023/04/21/c/6/c6d03f3c86dc3c5d82e52548_thumb.jpg',
@@ -20,10 +21,10 @@ const Preview = () => {
   const [productSwiper, setProductSwiper] = useState(null)
 
   return (
-    <div className="flex gap-4">
-      <div>
+    <div className="flex md:gap-2 lg:gap-4">
+      <div className="hidden md:block">
         <Swiper
-          // spaceBetween={10}
+          spaceBetween={40}
           modules={[Controller]}
           slidesPerView={4}
           onSwiper={setSideSwiper as () => void}
@@ -32,13 +33,13 @@ const Preview = () => {
           slideToClickedSlide
           centeredSlides={true}
           grabCursor={true}
-          className="overflow-hidden h-swiper"
+          className="overflow-hidden w-14 md:w-16 lg:w-24 h-[300px] lg:h-swiper"
         >
           {productImages.map((image, idx) => (
             <SwiperSlide key={idx} className="p-1 select-none">
               {({ isActive }) => (
                 <div
-                  className={`w-20 h-20  overflow-hidden rounded-lg cursor-pointer  border border-gray bg-light ${
+                  className={`w-full overflow-hidden rounded-lg cursor-pointer  border border-gray bg-light ${
                     isActive ? 'ring-4 ring-primary-500' : ''
                   }`}
                 >
@@ -55,28 +56,30 @@ const Preview = () => {
       </div>
 
       <Swiper
-        modules={[Controller]}
+        modules={[Controller, Pagination]}
+        spaceBetween={10}
         slidesPerView={1}
         onSwiper={setProductSwiper as () => void}
         controller={{ control: sideSwiper }}
-        className=""
+        className="w-[90vw] md:border-r border-gray lg:w-auto  h-[350px] md:h-[300px] lg:h-swiper"
+        grabCursor={true}
+        pagination={{
+          clickable: true,
+        }}
       >
         {productImages.map(image => (
           <SwiperSlide>
-            <div className="flex items-center justify-center w-full h-full">
+            <div className="flex items-center justify-center w-full md:p-6">
               <div>
                 <img
                   src={image}
                   alt="zdzd"
-                  className="object-cover max-w-full max-h-full"
+                  className="object-cover max-w-full max-h-full select-none"
                 />
               </div>
             </div>
           </SwiperSlide>
         ))}
-        {/* <SwiperSlide className="bg-green-300 border">Slide 2</SwiperSlide>
-        <SwiperSlide className="bg-green-300 border">Slide 3</SwiperSlide>
-        <SwiperSlide className="bg-green-300 border">Slide 4</SwiperSlide> */}
       </Swiper>
     </div>
   )

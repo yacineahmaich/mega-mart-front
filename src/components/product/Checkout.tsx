@@ -12,8 +12,8 @@ const Checkout = () => {
 
   const checkoutRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
-    const headerEl = document.getElementById('header')
-    if (!headerEl) return
+    const navigationEl = document.getElementById('navigation')
+    if (!navigationEl) return
 
     const options = {
       root: null,
@@ -30,17 +30,17 @@ const Checkout = () => {
       }
     }, options)
 
-    headerObserver.observe(headerEl)
+    headerObserver.observe(navigationEl)
 
     return () => headerObserver.disconnect()
   }, [])
 
   return (
-    <div ref={checkoutRef} className="fixed w-64 right-6">
-      <article className="w-full p-4 bg-white border divide-y rounded-lg divide-gray border-gray">
-        <header className="pb-6 space-y-3">
+    <div ref={checkoutRef} className="fixed w-52 lg:w-64 right-6">
+      <article className="hidden w-full p-4 bg-white border divide-y rounded-lg md:block divide-gray border-gray">
+        <header className="pb-3 space-y-3 lg:pb-6">
           <div className="flex items-center justify-center gap-1 text-primary-600">
-            <p className="text-4xl font-bold ">{price}</p>
+            <p className="text-3xl font-bold lg:text-4xl ">{price}</p>
 
             <p className="text-sm font-bold leading-4">
               <span className="block">{priceDecimal}</span>
@@ -57,7 +57,7 @@ const Checkout = () => {
           </div>
         </header>
 
-        <div className="flex justify-center py-6">
+        <div className="flex justify-center py-3 lg:py-6">
           <button className="px-4 border rounded-l-md border-light text-primary-400">
             <PlusSmallIcon className="w-4 h-4" />
           </button>
@@ -71,7 +71,7 @@ const Checkout = () => {
           </button>
         </div>
 
-        <div className="flex flex-col justify-center gap-2 pt-6">
+        <div className="flex flex-col justify-center gap-2 pt-3 lg:pt-6">
           <button className="px-8 py-2 text-sm font-medium text-white border rounded-full bg-primary-700 border-primary-700 active:ring active:ring-primary-600 ring-offset-1">
             Add To Cart
           </button>

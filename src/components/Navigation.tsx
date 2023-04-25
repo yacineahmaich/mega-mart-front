@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 const Navigation: FC = () => {
   return (
-    <nav className="w-full px-6 py-2 mb-4 border-b border-gray">
+    <nav className="w-full px-6 py-2 mb-4 border-b border-gray" id="navigation">
       <ul className="flex space-x-4 text-sm font-medium ">
         <li>
           <a

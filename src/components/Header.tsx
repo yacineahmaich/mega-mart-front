@@ -15,7 +15,7 @@ const Header = () => {
         </div>
       </section>
 
-      <header className="w-full px-3 bg-primary-800 md:px-6" id="header">
+      <header className="w-full px-3 bg-primary-800 md:px-6">
         <div className="flex flex-wrap items-center justify-between py-4 min-h-header">
           <div>
             <h1 className="text-xl font-bold text-white">

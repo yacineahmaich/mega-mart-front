@@ -22,3 +22,18 @@ input[type='number'] {
 ::-webkit-scrollbar-thumb:hover {
   background: #b1b1b1;
 }
+
+/* Swiper */
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+}
+.swiper-pagination-bullet-active {
+  background-color: #13858f !important;
+}
+
+@media (min-width: 767px) {
+  .swiper-pagination {
+    display: none;
+  }
+}
