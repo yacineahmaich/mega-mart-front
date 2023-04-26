@@ -79,7 +79,7 @@ const products = [
 const ListProducts: FC = () => {
   return (
     <section className="w-full space-y-8">
-      <div className="grid w-full grid-cols-2 gap-4 lg:gap-8 sm:grid-cols-3 md:grid-cols-3 xl:grid-cols-4">
+      <div className="grid w-full grid-cols-2 gap-4 lg:gap-8 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {products.map(product => (
           <Product
             key={product.id}

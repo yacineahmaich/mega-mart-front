@@ -13,12 +13,18 @@ export default {
         minicart: '450px',
         swiper: '414px',
         'swiper-min': '300px',
+        'admin-sidebar': '200px',
       },
       height: {
         header: '6rem',
         minicart: '450px',
         swiper: '414px',
         'swiper-min': '300px',
+        'admin-navbar': '80px',
+      },
+      padding: {
+        'admin-sidebar': '200px',
+        'admin-navbar': '80px',
       },
       colors: {
         primary: {

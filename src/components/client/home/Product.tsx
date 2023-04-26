@@ -12,7 +12,7 @@ type Props = {
 
 const Product: FC<Props> = ({ id, name, image, price, hasDiscount }) => {
   return (
-    <article className="overflow-hidden border bg-light rounded-xl border-gray">
+    <article className="flex flex-col overflow-hidden bg-white border shadow-sm rounded-xl border-gray">
       <div className="relative bg-light group">
         <Link to={`/${id}`}>
           <img
@@ -26,11 +26,11 @@ const Product: FC<Props> = ({ id, name, image, price, hasDiscount }) => {
           <HeartIcon className="w-5 h-5" />
         </button>
       </div>
-      <div className="flex flex-col justify-between p-3 h-28 sm:h-32 md:h-28 lg:h-32">
+      <div className="flex flex-col justify-between flex-1 p-3 space-y-4">
         <Link to={`/${id}`}>
-          <h3 className="font-medium leading-5 md:text-md md:leading-5 line-clamp-2 text-dark-800">
+          <span className="font-medium leading-5 md:text-sm md:leading-4 line-clamp-3 text-dark-600">
             {name}
-          </h3>
+          </span>
         </Link>
 
         <div className="flex items-center justify-between mt-auto">
@@ -41,7 +41,7 @@ const Product: FC<Props> = ({ id, name, image, price, hasDiscount }) => {
                 <span className="absolute block -mb-1 text-sm font-medium bottom-full text-dark-500">
                   <s>${price}</s>
                 </span>
-                <span className="left-full bottom-0 ml-1 absolute px-4 py-0.5 text-xs rounded-lg bg-pink-400 self-end font-medium text-light pointer-events-none">
+                <span className="left-full bottom-0 ml-1 absolute px-3 py-0.5 text-xs rounded bg-pink-600 self-end font-medium text-light pointer-events-none">
                   -16%
                 </span>
               </>

@@ -63,7 +63,7 @@ const Preview = () => {
         slidesPerView={1}
         onSwiper={setProductSwiper as () => void}
         controller={{ control: sideSwiper }}
-        className="w-[90vw] md:border-r border-gray lg:w-auto  h-[350px] md:h-[300px] lg:h-swiper"
+        className="w-[90vw] lg:w-auto  h-[350px] md:h-[300px] lg:h-swiper"
         grabCursor={true}
         pagination={{
           clickable: true,

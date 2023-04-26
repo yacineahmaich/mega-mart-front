@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router'
-import Header from '../../components/customer/Header'
-import Footer from '../../components/customer/Footer'
-import Navigation from '../../components/customer/Navigation'
+import Header from '../../components/client/Header'
+import Footer from '../../components/client/Footer'
+import Navigation from '../../components/client/Navigation'
 
 const DefaultLayout = () => {
   return (
