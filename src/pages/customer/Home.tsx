@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import { ChevronDoubleRightIcon } from '@heroicons/react/24/solid'
-import Sort from '../components/home/Sort'
-import Filter from '../components/home/Filter'
-import ListProducts from '../components/home/ListProducts'
-import Subscribe from '../components/home/Subscribe'
+import Sort from '../../components/customer/home/Sort'
+import Filter from '../../components/customer/home/Filter'
+import ListProducts from '../../components/customer/home/ListProducts'
+import Subscribe from '../../components/customer/home/Subscribe'
 
 const Home: FC = () => {
   return (

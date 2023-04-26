@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import DisclotureItem from '../ui/DisclotureItem'
+import DisclotureItem from '../../ui/DisclotureItem'
 import { StarIcon } from '@heroicons/react/24/solid'
 
 const categories = [

@@ -1,11 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom'
-import DefaultLayout from './pages/DefaultLayout'
-import Home from './pages/Home'
-import ProductDetails from './pages/ProductDetails'
-import Cart from './pages/Cart'
-import Login from './pages/Login'
-import Signup from './pages/Signup'
-import AuthLayout from './pages/AuthLayout'
+import DefaultLayout from './pages/customer/DefaultLayout'
+import Home from './pages/customer/Home'
+import ProductDetails from './pages/customer/ProductDetails'
+import Cart from './pages/customer/Cart'
+import Login from './pages/guest/Login'
+import Signup from './pages/guest/Signup'
+import AuthLayout from './pages/guest/AuthLayout'
 
 const router = createBrowserRouter([
   {

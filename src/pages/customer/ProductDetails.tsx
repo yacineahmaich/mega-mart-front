@@ -1,8 +1,8 @@
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/solid'
-import Checkout from '../components/product/Checkout'
-import GeneralInfos from '../components/product/GeneralInfos'
-import Infos from '../components/product/Infos'
-import Preview from '../components/product/Preview'
+import Checkout from '../../components/customer/product/Checkout'
+import GeneralInfos from '../../components/customer/product/GeneralInfos'
+import Infos from '../../components/customer/product/Infos'
+import Preview from '../../components/customer/product/Preview'
 
 const ProductDetails = () => {
   return (

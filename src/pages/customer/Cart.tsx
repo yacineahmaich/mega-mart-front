@@ -1,5 +1,5 @@
-import Products from '../components/cart/Products'
-import Checkout from '../components/cart/Checkout'
+import Products from '../../components/customer/cart/Products'
+import Checkout from '../../components/customer/cart/Checkout'
 
 const Cart = () => {
   return (
