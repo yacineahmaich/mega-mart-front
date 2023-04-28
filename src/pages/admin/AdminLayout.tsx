@@ -4,10 +4,10 @@ import SideBar from '../../components/admin/SideBar'
 
 const AdminLayout = () => {
   return (
-    <div className="w-full h-screen pl-admin-sidebar pt-admin-navbar">
+    <div className="w-full h-screen pl-admin-sidebar">
       <SideBar />
       <Navbar />
-      <main className="w-full">
+      <main className="w-full p-6 bg-light">
         <Outlet />
       </main>
     </div>
