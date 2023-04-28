@@ -84,6 +84,15 @@ export default {
       gridTemplateColumns: {
         products: 'minmax(250px, 1fr) auto',
       },
+      animation: {
+        drop: 'drop .4s ease-out',
+      },
+      keyframes: {
+        drop: {
+          '0%': { transform: 'translateY(-4px)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+      },
     },
   },
   plugins: [

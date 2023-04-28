@@ -66,8 +66,8 @@ const SideBar = () => {
           </h3>
 
           <ul>
-            {sidebarNavigation.map(item => (
-              <li className="py-2">
+            {sidebarNavigation.map((item, idx) => (
+              <li className="py-2" key={idx}>
                 <NavLink
                   to={item.path}
                   className={({ isActive }) =>

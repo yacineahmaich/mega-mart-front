@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom'
+// Client
 import DefaultLayout from './pages/client/DefaultLayout'
 import Home from './pages/client/Home'
 import ProductDetails from './pages/client/ProductDetails'
@@ -6,12 +7,15 @@ import Cart from './pages/client/Cart'
 import Login from './pages/guest/Login'
 import Signup from './pages/guest/Signup'
 import AuthLayout from './pages/guest/AuthLayout'
+// Admin
 import AdminLayout from './pages/admin/AdminLayout'
 import Dashboard from './pages/admin/Dashboard'
-import Products from './pages/admin/Products'
-import Categories from './pages/admin/Categories'
-import Customers from './pages/admin/Customers'
-import Orders from './pages/admin/Orders'
+import Products from './pages/admin/product/Products'
+import Categories from './pages/admin/category/Categories'
+import Customers from './pages/admin/customer/Customers'
+import Orders from './pages/admin/order/Orders'
+import CreateProduct from './pages/admin/product/CreateProduct'
+import ProductsLayout from './pages/admin/product/ProductsLayout'
 
 const router = createBrowserRouter([
   // Client - Routes
@@ -58,7 +62,17 @@ const router = createBrowserRouter([
       },
       {
         path: 'products',
-        element: <Products />,
+        element: <ProductsLayout />,
+        children: [
+          {
+            index: true,
+            element: <Products />,
+          },
+          {
+            path: 'create',
+            element: <CreateProduct />,
+          },
+        ],
       },
       {
         path: 'categories',
