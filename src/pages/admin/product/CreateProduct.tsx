@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
 import { Formik, Form, Field, ErrorMessage, FormikValues } from 'formik'
-import { ProductValidation } from '../../../utils/validations/admin/product'
+import { productSchema } from '../../../utils/validations/admin/product'
 
 const CreateProduct = () => {
   const [images, setImages] = useState<string[]>([uuid()])
@@ -34,7 +34,7 @@ const CreateProduct = () => {
         <div className="max-w-2xl p-6 mx-auto bg-white rounded-lg text-dark-600">
           <Formik
             initialValues={initialValues}
-            // validationSchema={ProductValidation}
+            validationSchema={productSchema}
             onSubmit={handleSubmit}
           >
             {formik => (

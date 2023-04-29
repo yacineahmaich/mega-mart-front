@@ -46,7 +46,7 @@ const ProductsTable = () => {
                     edit
                   </Link>
                   <Link
-                    to="products"
+                    to={`${product.id}`}
                     className="text-sm font-medium hover:underline text-warning-900"
                   >
                     view

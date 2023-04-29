@@ -7,7 +7,7 @@ import { Formik, Form, Field, ErrorMessage, FormikValues } from 'formik'
 // @ts-ignore
 import { v4 as uuid } from 'uuid'
 import { products } from '../../../utils/contants'
-import { ProductValidation } from '../../../utils/validations/admin/product'
+import { productSchema } from '../../../utils/validations/admin/product'
 
 const EditProduct = () => {
   const product = products[0]
@@ -37,7 +37,7 @@ const EditProduct = () => {
         <div className="max-w-2xl p-6 mx-auto bg-white rounded-lg text-dark-600">
           <Formik
             initialValues={initialValues}
-            validationSchema={ProductValidation}
+            validationSchema={productSchema}
             onSubmit={handleSubmit}
           >
             {formik => (
