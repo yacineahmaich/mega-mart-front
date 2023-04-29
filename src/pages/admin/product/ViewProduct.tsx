@@ -1,5 +1,5 @@
 import { StarIcon } from '@heroicons/react/24/solid'
-import { products } from '../../../utils/contants'
+import { products } from '../../../lib/contants'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Link } from 'react-router-dom'
 

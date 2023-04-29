@@ -1,7 +1,27 @@
-import { products } from '../../../lib/contants'
 import { Link } from 'react-router-dom'
 
-const ProductsTable = () => {
+const categories = [
+  {
+    id: 1,
+    name: 'national teams',
+    description: 'national teams ....',
+    products: 20,
+  },
+  {
+    id: 2,
+    name: 'club teams',
+    description: 'club teams ....',
+    products: 11,
+  },
+  {
+    id: 3,
+    name: 'classic players',
+    description: 'classic players ....',
+    products: 23,
+  },
+]
+
+const CategoriesTable = () => {
   return (
     <section>
       <div className="relative overflow-hidden overflow-x-auto rounded-t-lg">
@@ -12,13 +32,10 @@ const ProductsTable = () => {
                 #
               </th>
               <th scope="col" className="px-6 py-3">
-                Product name
+                Category name
               </th>
               <th scope="col" className="px-6 py-3">
-                quantity
-              </th>
-              <th scope="col" className="px-6 py-3">
-                price
+                Products per category
               </th>
               <th scope="col" className="px-6 py-3 text-center">
                 actions
@@ -26,27 +43,26 @@ const ProductsTable = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map(product => (
+            {categories.map(categroy => (
               <tr className="bg-white border-b last:border-none text-dark-600 border-light">
-                <td className="px-6 py-3">{product.id}</td>
+                <td className="px-6 py-3">{categroy.id}</td>
                 <th
                   scope="row"
                   className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"
                 >
-                  {product.name.slice(0, 20)}
+                  {categroy.name.slice(0, 20)}
                 </th>
-                <td className="px-6 py-3">{product.quantity}</td>
-                <td className="px-6 py-3">{product.price}</td>
+                <td className="px-6 py-3">{categroy.products}</td>
 
                 <td className="space-x-3 text-center">
                   <Link
-                    to={`${product.id}/edit`}
+                    to={`${categroy.id}/edit`}
                     className="text-sm font-medium hover:underline text-info-300"
                   >
                     edit
                   </Link>
                   <Link
-                    to={`${product.id}`}
+                    to={`${categroy.id}`}
                     className="text-sm font-medium hover:underline text-warning-900"
                   >
                     view
@@ -159,4 +175,4 @@ const ProductsTable = () => {
   )
 }
 
-export default ProductsTable
+export default CategoriesTable

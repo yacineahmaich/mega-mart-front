@@ -15,9 +15,13 @@ import Categories from './pages/admin/category/Categories'
 import Customers from './pages/admin/customer/Customers'
 import Orders from './pages/admin/order/Orders'
 import CreateProduct from './pages/admin/product/CreateProduct'
-import ProductsLayout from './pages/admin/product/ProductsLayout'
+import ProductLayout from './pages/admin/product/ProductLayout'
 import EditProduct from './pages/admin/product/EditProduct'
 import ViewProduct from './pages/admin/product/ViewProduct'
+import CategoryLayout from './pages/admin/category/CategoryLayout'
+import CreateCategory from './pages/admin/category/CreateCategory'
+import EditCategory from './pages/admin/category/EditCategory'
+import ViewCategory from './pages/admin/category/ViewCategory'
 
 const router = createBrowserRouter([
   // Client - Routes
@@ -64,7 +68,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'products',
-        element: <ProductsLayout />,
+        element: <ProductLayout />,
         children: [
           {
             index: true,
@@ -86,7 +90,25 @@ const router = createBrowserRouter([
       },
       {
         path: 'categories',
-        element: <Categories />,
+        element: <CategoryLayout />,
+        children: [
+          {
+            index: true,
+            element: <Categories />,
+          },
+          {
+            path: 'create',
+            element: <CreateCategory />,
+          },
+          {
+            path: ':id',
+            element: <ViewCategory />,
+          },
+          {
+            path: ':id/edit',
+            element: <EditCategory />,
+          },
+        ],
       },
       {
         path: 'customers',

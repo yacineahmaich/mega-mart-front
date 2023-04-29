@@ -2,9 +2,9 @@ import {
   ArrowTrendingDownIcon,
   RectangleGroupIcon,
 } from '@heroicons/react/24/outline'
-import StatisticCard from './StatisticCard'
+import StatisticCard from '../StatisticCard'
 
-const Statistics = () => {
+const ProductsStatistics = () => {
   return (
     <div className="grid grid-cols-3 gap-6 px-10 bg-primary-600 py-14 mb-14">
       <StatisticCard
@@ -29,4 +29,4 @@ const Statistics = () => {
   )
 }
 
-export default Statistics
+export default ProductsStatistics

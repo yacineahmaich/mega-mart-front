@@ -6,8 +6,8 @@ import { Formik, Form, Field, ErrorMessage, FormikValues } from 'formik'
 // eslint-disable-next-line
 // @ts-ignore
 import { v4 as uuid } from 'uuid'
-import { products } from '../../../utils/contants'
-import { productSchema } from '../../../utils/validations/admin/product'
+import { products } from '../../../lib/contants'
+import { productSchema } from '../../../lib/validationSchemas/admin/product'
 
 const EditProduct = () => {
   const product = products[0]

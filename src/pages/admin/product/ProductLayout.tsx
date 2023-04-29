@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom'
-import Statistics from '../../../components/admin/products/Statistics'
+import Statistics from '../../../components/admin/products/ProductsStatistics'
 
-const ProductsLayout = () => {
+const ProductLayout = () => {
   return (
     <div>
       <main>
@@ -12,4 +12,4 @@ const ProductsLayout = () => {
   )
 }
 
-export default ProductsLayout
+export default ProductLayout
