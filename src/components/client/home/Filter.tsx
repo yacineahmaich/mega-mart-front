@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import DisclotureItem from '../../UI/DisclotureItem'
+import DisclosureItem from '../../UI/DisclosureItem'
 import { StarIcon } from '@heroicons/react/24/solid'
 
 const categories = [
@@ -16,7 +16,7 @@ const categories = [
 const Filter: FC = () => {
   return (
     <div className="hidden space-y-4 md:block">
-      <DisclotureItem title="Category">
+      <DisclosureItem title="Category">
         <ul className="space-y-2">
           {categories.map(cat => (
             <li>
@@ -33,8 +33,8 @@ const Filter: FC = () => {
             </li>
           ))}
         </ul>
-      </DisclotureItem>
-      <DisclotureItem title="Price">
+      </DisclosureItem>
+      <DisclosureItem title="Price">
         <div className="flex items-center gap-2">
           <div className="relative">
             <span className="absolute top-0 text-[10px] px-1 -translate-y-1/2 bg-white left-2">
@@ -58,8 +58,8 @@ const Filter: FC = () => {
             />
           </div>
         </div>
-      </DisclotureItem>
-      <DisclotureItem title="Assessment">
+      </DisclosureItem>
+      <DisclosureItem title="Assessment">
         <div className="space-y-2">
           <button className="flex">
             <StarIcon className="w-3 h-3 text-yellow-400" />
@@ -97,7 +97,7 @@ const Filter: FC = () => {
             <StarIcon className="w-3 h-3 text-yellow-400" />
           </button>
         </div>
-      </DisclotureItem>
+      </DisclosureItem>
     </div>
   )
 }
