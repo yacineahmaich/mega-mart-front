@@ -22,6 +22,8 @@ import CategoryLayout from './pages/admin/category/CategoryLayout'
 import CreateCategory from './pages/admin/category/CreateCategory'
 import EditCategory from './pages/admin/category/EditCategory'
 import ViewCategory from './pages/admin/category/ViewCategory'
+import CustomerLayout from './pages/admin/customer/CustomerLayout'
+import ViewCustomer from './pages/admin/customer/ViewCustomer'
 
 const router = createBrowserRouter([
   // Client - Routes
@@ -112,7 +114,17 @@ const router = createBrowserRouter([
       },
       {
         path: 'customers',
-        element: <Customers />,
+        element: <CustomerLayout />,
+        children: [
+          {
+            index: true,
+            element: <Customers />,
+          },
+          {
+            path: ':id',
+            element: <ViewCustomer />,
+          },
+        ],
       },
       {
         path: 'orders',

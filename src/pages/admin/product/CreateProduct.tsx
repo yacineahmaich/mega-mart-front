@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
 import { Formik, Form, Field, ErrorMessage, FormikValues } from 'formik'
-import { productSchema } from '../../../lib/validationSchemas/admin/product'
+import { productSchema } from '../../../lib/validation/product'
 
 const CreateProduct = () => {
   const [images, setImages] = useState<string[]>([uuid()])

@@ -1,13 +1,13 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { XMarkIcon } from '@heroicons/react/24/outline'
+// import { XMarkIcon } from '@heroicons/react/24/outline'
 import { Formik, Form, Field, ErrorMessage, FormikValues } from 'formik'
 
 // eslint-disable-next-line
 // @ts-ignore
-import { v4 as uuid } from 'uuid'
+// import { v4 as uuid } from 'uuid'
 import { products } from '../../../lib/contants'
-import { productSchema } from '../../../lib/validationSchemas/admin/product'
+import { productSchema } from '../../../lib/validation/product'
 
 const EditProduct = () => {
   const product = products[0]

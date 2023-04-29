@@ -1,41 +1,43 @@
 import { Link } from 'react-router-dom'
 
-const categories = [
+const customers = [
   {
     id: 1,
-    name: 'national teams',
-    description: 'national teams ....',
-    products: 20,
+    name: 'yacine Ahmaich',
+    email: 'yacine@gmail.com',
   },
   {
     id: 2,
-    name: 'club teams',
-    description: 'club teams ....',
-    products: 11,
+    name: 'hatim Khalid',
+    email: 'hatim@gmail.com',
   },
   {
     id: 3,
-    name: 'classic players',
-    description: 'classic players ....',
-    products: 23,
+    name: 'houssam Ajttit',
+    email: 'houssam@gmail.com',
+  },
+  {
+    id: 4,
+    name: 'ismail Koujlil',
+    email: 'ismail@gmail.com',
   },
 ]
 
-const CategoriesTable = () => {
+const CustomersTable = () => {
   return (
     <section>
       <div className="relative overflow-hidden overflow-x-auto rounded-t-lg">
         <table className="w-full text-sm text-left border text-dark-600 border-light ">
-          <thead className="text-xs text-white uppercase bg-warning-900">
+          <thead className="text-xs text-white uppercase bg-danger-600">
             <tr>
               <th scope="col" className="px-6 py-3">
                 #
               </th>
               <th scope="col" className="px-6 py-3">
-                Category name
+                Customer Name
               </th>
               <th scope="col" className="px-6 py-3">
-                Products per category
+                Customer Email
               </th>
               <th scope="col" className="px-6 py-3 text-center">
                 actions
@@ -43,26 +45,20 @@ const CategoriesTable = () => {
             </tr>
           </thead>
           <tbody>
-            {categories.map(categroy => (
+            {customers.map(customer => (
               <tr className="bg-white border-b last:border-none text-dark-600 border-light">
-                <td className="px-6 py-3">{categroy.id}</td>
+                <td className="px-6 py-3">{customer.id}</td>
                 <th
                   scope="row"
                   className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"
                 >
-                  {categroy.name.slice(0, 20)}
+                  {customer.name.slice(0, 20)}
                 </th>
-                <td className="px-6 py-3">{categroy.products}</td>
+                <td className="px-6 py-3">{customer.email}</td>
 
                 <td className="space-x-3 text-center">
                   <Link
-                    to={`${categroy.id}/edit`}
-                    className="text-sm font-medium hover:underline text-info-300"
-                  >
-                    edit
-                  </Link>
-                  <Link
-                    to={`${categroy.id}`}
+                    to={`${customer.id}`}
                     className="text-sm font-medium hover:underline text-warning-900"
                   >
                     view
@@ -89,7 +85,7 @@ const CategoriesTable = () => {
           <li>
             <a
               href="#"
-              className="block px-3 py-2 ml-0 leading-tight bg-white border rounded-l-lg text-dark-600 border-gray hover:bg-warning-900 hover:text-white -700 "
+              className="block px-3 py-2 ml-0 leading-tight bg-white border rounded-l-lg text-dark-600 border-gray hover:bg-danger-600 hover:text-white -700 "
             >
               <span className="sr-only">Previous</span>
               <svg
@@ -110,7 +106,7 @@ const CategoriesTable = () => {
           <li>
             <a
               href="#"
-              className="px-3 py-2 leading-tight bg-white border text-dark-600 border-gray hover:bg-warning-900 hover:text-white"
+              className="px-3 py-2 leading-tight bg-white border text-dark-600 border-gray hover:bg-danger-600 hover:text-white"
             >
               1
             </a>
@@ -118,7 +114,7 @@ const CategoriesTable = () => {
           <li>
             <a
               href="#"
-              className="px-3 py-2 leading-tight bg-white border text-dark-600 border-gray hover:bg-warning-900 hover:text-white"
+              className="px-3 py-2 leading-tight bg-white border text-dark-600 border-gray hover:bg-danger-600 hover:text-white"
             >
               2
             </a>
@@ -127,7 +123,7 @@ const CategoriesTable = () => {
             <a
               href="#"
               aria-current="page"
-              className="px-3 py-2 leading-tight bg-white border text-dark-600 border-gray hover:bg-warning-900 hover:text-white"
+              className="px-3 py-2 leading-tight bg-white border text-dark-600 border-gray hover:bg-danger-600 hover:text-white"
             >
               3
             </a>
@@ -135,7 +131,7 @@ const CategoriesTable = () => {
           <li>
             <a
               href="#"
-              className="px-3 py-2 leading-tight bg-white border text-dark-600 border-gray hover:bg-warning-900 hover:text-white"
+              className="px-3 py-2 leading-tight bg-white border text-dark-600 border-gray hover:bg-danger-600 hover:text-white"
             >
               ...
             </a>
@@ -143,7 +139,7 @@ const CategoriesTable = () => {
           <li>
             <a
               href="#"
-              className="px-3 py-2 leading-tight bg-white border text-dark-600 border-gray hover:bg-warning-900 hover:text-white "
+              className="px-3 py-2 leading-tight bg-white border text-dark-600 border-gray hover:bg-danger-600 hover:text-white "
             >
               100
             </a>
@@ -151,7 +147,7 @@ const CategoriesTable = () => {
           <li>
             <a
               href="#"
-              className="block px-3 py-2 leading-tight bg-white border rounded-r-lg text-dark-600 border-gray hover:bg-warning-900 hover:text-white "
+              className="block px-3 py-2 leading-tight bg-white border rounded-r-lg text-dark-600 border-gray hover:bg-danger-600 hover:text-white "
             >
               <span className="sr-only">Next</span>
               <svg
@@ -175,4 +171,4 @@ const CategoriesTable = () => {
   )
 }
 
-export default CategoriesTable
+export default CustomersTable
