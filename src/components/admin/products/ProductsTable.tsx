@@ -40,7 +40,7 @@ const ProductsTable = () => {
 
                 <td className="space-x-3 text-center">
                   <Link
-                    to="products"
+                    to={`${product.id}/edit`}
                     className="text-sm font-medium hover:underline text-info-300"
                   >
                     edit

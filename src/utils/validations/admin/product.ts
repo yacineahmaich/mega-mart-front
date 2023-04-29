@@ -1,6 +1,6 @@
 import * as Yup from 'yup'
 
-export const createProductValidation = Yup.object({
+export const ProductValidation = Yup.object({
   title: Yup.string().min(12).max(255).required(),
   price: Yup.number().min(0.1).required(),
   quantity: Yup.number().min(1).required(),

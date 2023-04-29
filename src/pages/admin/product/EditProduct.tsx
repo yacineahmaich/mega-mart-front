@@ -1,23 +1,26 @@
 import { useState } from 'react'
-import { XMarkIcon } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom'
+import { XMarkIcon } from '@heroicons/react/24/outline'
+import { Formik, Form, Field, ErrorMessage, FormikValues } from 'formik'
+
 // eslint-disable-next-line
 // @ts-ignore
 import { v4 as uuid } from 'uuid'
-
-import { Formik, Form, Field, ErrorMessage, FormikValues } from 'formik'
+import { products } from '../../../utils/contants'
 import { ProductValidation } from '../../../utils/validations/admin/product'
 
-const CreateProduct = () => {
-  const [images, setImages] = useState<string[]>([uuid()])
+const EditProduct = () => {
+  const product = products[0]
+
+  // const [images, setImages] = useState<string[]>([])
 
   const initialValues = {
-    title: '',
-    price: '0',
-    quantity: '0',
-    category: '',
-    description: '',
-    images: [],
+    title: product.name ?? '',
+    price: product.price ?? '',
+    quantity: product.quantity ?? 0,
+    category: 1,
+    description: 'some description',
+    // images: [],
   }
 
   const handleSubmit = (values: FormikValues & typeof initialValues) => {
@@ -27,14 +30,14 @@ const CreateProduct = () => {
   return (
     <div>
       <h2 className="mb-4 text-lg font-bold text-center text-dark-500">
-        Create Product
+        Edit Product
       </h2>
 
       <section>
         <div className="max-w-2xl p-6 mx-auto bg-white rounded-lg text-dark-600">
           <Formik
             initialValues={initialValues}
-            // validationSchema={ProductValidation}
+            validationSchema={ProductValidation}
             onSubmit={handleSubmit}
           >
             {formik => (
@@ -150,7 +153,7 @@ const CreateProduct = () => {
                     />
                   </div>
 
-                  <div className="col-span-2">
+                  {/* <div className="col-span-2">
                     <label className="block mb-2 text-sm font-medium">
                       images
                       <button
@@ -210,7 +213,7 @@ const CreateProduct = () => {
                         </div>
                       ))}
                     </div>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className="flex items-center justify-end gap-3 mt-6">
@@ -224,7 +227,7 @@ const CreateProduct = () => {
                     type="submit"
                     className="px-8 py-2 text-white rounded-lg bg-info-600"
                   >
-                    <span className="text-sm font-medium">Create Product</span>
+                    <span className="text-sm font-medium">Update Product</span>
                   </button>
                 </div>
               </Form>
@@ -236,4 +239,4 @@ const CreateProduct = () => {
   )
 }
 
-export default CreateProduct
+export default EditProduct

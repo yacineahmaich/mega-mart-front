@@ -16,6 +16,7 @@ import Customers from './pages/admin/customer/Customers'
 import Orders from './pages/admin/order/Orders'
 import CreateProduct from './pages/admin/product/CreateProduct'
 import ProductsLayout from './pages/admin/product/ProductsLayout'
+import EditProduct from './pages/admin/product/EditProduct'
 
 const router = createBrowserRouter([
   // Client - Routes
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
           {
             path: 'create',
             element: <CreateProduct />,
+          },
+          {
+            path: ':id/edit',
+            element: <EditProduct />,
           },
         ],
       },
