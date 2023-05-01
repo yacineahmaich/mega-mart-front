@@ -1,0 +1,420 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Retro 1970 Brazil Home Jersey 10#Pelé Commemorate The King Of Football",
+      "category": "national team",
+      "price": 38.99,
+      "quantity": "230",
+      "rating": "5",
+      "discount": {
+        "has": true,
+        "value": "16",
+        "price": "31.20"
+      },
+      "images": [
+        {
+          "id": "image-1",
+          "url": "https://img1-cdn.halftime.pt/2022/12/31/3/5/3593a3dcfd03c36e.jpeg"
+        },
+        {
+          "id": "image-2",
+          "url": "https://img1-cdn.halftime.pt/2022/12/31/6/f/6f60b04a1124ecd3.jpg"
+        },
+        {
+          "id": "image-3",
+          "url": "https://img9-cdn.halftime.pt/2022/12/31/a/1/a17b78233020219e.jpeg"
+        },
+        {
+          "id": "image-4",
+          "url": "https://img5-cdn.halftime.pt/2022/12/31/3/5/3593a3dcfd03c36e.jpeg"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "2 Stars Argentina Home Final Match Jersey With Full Patch",
+      "category": "national team",
+      "price": 36.99,
+      "quantity": "14",
+      "rating": "4",
+      "discount": {
+        "has": false,
+        "value": null,
+        "price": null
+      },
+      "images": [
+        {
+          "id": "image-5",
+          "url": "https://img9-cdn.halftime.pt/2022/12/19/3/a/3ac20c59660d0dde.jpg"
+        },
+        {
+          "id": "image-6",
+          "url": "https://img9-cdn.halftime.pt/2022/12/19/c/f/cf440f619f47efe9.jpg"
+        },
+        {
+          "id": "image-7",
+          "url": "https://img9-cdn.halftime.pt/2022/12/19/4/7/47d5ea8b1e00ae8d.jpg"
+        },
+        {
+          "id": "image-8",
+          "url": "https://img4-cdn.halftime.pt/2022/12/19/f/7/f7625ef19aacee69.jpg"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "22/23 PSG Training Jersey Black And Gold Line",
+      "category": "club team",
+      "price": 65,
+      "quantity": "0",
+      "rating": "5",
+      "discount": {
+        "has": false,
+        "value": null,
+        "price": null
+      },
+      "images": [
+        {
+          "id": "image-9",
+          "url": "https://img6-cdn.halftime.pt/2022/07/09/9/0/903047d090def19a.jpg"
+        },
+        {
+          "id": "image-10",
+          "url": "https://img9-cdn.halftime.pt/2022/07/09/1/9/193dc0e852ec0722.jpg"
+        },
+        {
+          "id": "image-11",
+          "url": "https://img7-cdn.halftime.pt/2022/07/09/9/3/931af950242fce5f.jpg"
+        },
+        {
+          "id": "image-12",
+          "url": "https://img9-cdn.halftime.pt/2022/07/09/3/3/33acb6ac8ba2fa2f.jpg"
+        },
+        {
+          "id": "image-13",
+          "url": "https://img5-cdn.halftime.pt/2022/07/09/6/b/6bd333725737965d.jpg"
+        },
+        {
+          "id": "image-14",
+          "url": "https://img2-cdn.halftime.pt/2022/07/09/e/6/e6836a93617c2865.jpg"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "22/23 Chelsea home Soccer Jersey",
+      "category": "club team",
+      "price": 23.45,
+      "quantity": "23",
+      "rating": "3",
+      "discount": {
+        "has": true,
+        "value": 40,
+        "price": 12.54
+      },
+      "images": [
+        {
+          "id": "image-15",
+          "url": "https://img7-cdn.halftime.pt/2022/04/21/6/1/61de1f1ef20ca10b.jpg"
+        },
+        {
+          "id": "image-16",
+          "url": "https://img6-cdn.halftime.pt/2022/04/21/9/7/97ccd1e26e95096f.jpg"
+        },
+        {
+          "id": "image-17",
+          "url": "https://img4-cdn.halftime.pt/2022/04/21/c/f/cf8811ee631c3b9d.jpg"
+        },
+        {
+          "id": "image-18",
+          "url": "https://img4-cdn.halftime.pt/2022/04/21/5/1/510a909978438266.jpg"
+        },
+        {
+          "id": "image-19",
+          "url": "https://img4-cdn.halftime.pt/2022/04/21/e/e/ee097016e14cdc5e.jpg"
+        },
+        {
+          "id": "image-20",
+          "url": "https://img9-cdn.halftime.pt/2022/04/21/c/f/cf8811ee631c3b9d.jpg"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "22/23 Arsenal Away Soccer Jersey",
+      "category": "club team",
+      "price": 52.44,
+      "quantity": "11",
+      "rating": "5",
+      "discount": {
+        "has": true,
+        "value": 15,
+        "price": 39.45
+      },
+      "images": [
+        {
+          "id": "image-21",
+          "url": "https://img6-cdn.halftime.pt/2022/05/04/2/8/28a26245444fed6e.jpg"
+        },
+        {
+          "id": "image-22",
+          "url": "https://img9-cdn.halftime.pt/2022/05/04/0/f/0f6d7c6998336279.jpg"
+        },
+        {
+          "id": "image-23",
+          "url": "https://img1-cdn.halftime.pt/2022/05/04/5/e/5ea5baf306bab18a.jpg"
+        },
+        {
+          "id": "image-24",
+          "url": "https://img7-cdn.halftime.pt/2022/05/04/8/9/89543bb431965816.jpg"
+        },
+        {
+          "id": "image-25",
+          "url": "https://img1-cdn.halftime.pt/2022/05/04/0/f/0f6d7c6998336279.jpg"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "2022 Portugal Away Soccer Jersey",
+      "category": "club team",
+      "price": 36.99,
+      "quantity": "44",
+      "rating": "4",
+      "discount": {
+        "has": false,
+        "value": null,
+        "price": null
+      },
+      "images": [
+        {
+          "id": "image-26",
+          "url": "https://img1-cdn.halftime.pt/2022/06/13/c/a/cadd304b5c244749.jpg"
+        },
+        {
+          "id": "image-27",
+          "url": "https://img7-cdn.halftime.pt/2022/06/13/f/e/fe1cbf2be533d428.jpg"
+        },
+        {
+          "id": "image-28",
+          "url": "https://img8-cdn.halftime.pt/2022/06/13/d/e/de530c68ccb2f7c3.jpg"
+        },
+        {
+          "id": "image-29",
+          "url": "https://img2-cdn.halftime.pt/2022/06/13/8/3/837b1a8180e330fd.jpg"
+        },
+        {
+          "id": "image-30",
+          "url": "https://img6-cdn.halftime.pt/2022/06/13/c/a/ca8c18cf9870987f.jpg"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "2022 Germany Home Jersey",
+      "category": "national team",
+      "price": 36.99,
+      "quantity": "33",
+      "rating": "5",
+      "discount": {
+        "has": false,
+        "value": null,
+        "price": null
+      },
+      "images": [
+        {
+          "id": "image-31",
+          "url": "https://img5-cdn.halftime.pt/2022/12/16/4/c/4c78e01dca675c67.jpg"
+        },
+        {
+          "id": "image-32",
+          "url": "https://img2-cdn.halftime.pt/2022/12/16/b/1/b1b75ce3e909cb92.jpg"
+        },
+        {
+          "id": "image-33",
+          "url": "https://img1-cdn.halftime.pt/2022/12/16/b/1/b1b75ce3e909cb92.jpg"
+        },
+        {
+          "id": "image-34",
+          "url": "https://img4-cdn.halftime.pt/2022/12/16/d/9/d9ce1d9d64d6569f.jpg"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Retro 73/74 Benfica Home Soccer Jersey",
+      "category": "club team",
+      "price": 38.99,
+      "quantity": "64",
+      "rating": "4",
+      "discount": {
+        "has": true,
+        "value": "23",
+        "price": "25.24"
+      },
+      "images": [
+        {
+          "id": "image-34",
+          "url": "https://img8-cdn.halftime.pt/2022/06/11/7/3/73d8a7996e623958.jpg"
+        },
+        {
+          "id": "image-35",
+          "url": "https://img8-cdn.halftime.pt/2022/06/11/2/1/21d09ab186e014c8.jpg"
+        },
+        {
+          "id": "image-36",
+          "url": "https://img7-cdn.halftime.pt/2022/06/11/2/5/2572e7b3513d3ce9.jpg"
+        },
+        {
+          "id": "image-37",
+          "url": "https://img4-cdn.halftime.pt/2022/06/11/4/4/44a1131099b41500.jpg"
+        },
+        {
+          "id": "image-38",
+          "url": "https://img4-cdn.halftime.pt/2022/06/11/a/8/a8c9f49052a74f0f.jpg"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "22/23 Porto Blue Special Edition Jersey",
+      "category": "club team",
+      "price": 36.99,
+      "quantity": "4",
+      "rating": "3",
+      "discount": {
+        "has": false,
+        "value": null,
+        "price": null
+      },
+      "images": [
+        {
+          "id": "image-39",
+          "url": "https://img6-cdn.halftime.pt/2022/08/03/f/5/f589c2fdf3262ad2.jpeg"
+        },
+        {
+          "id": "image-40",
+          "url": "https://img6-cdn.halftime.pt/2022/08/03/2/6/26b92037680d568a.jpeg"
+        },
+        {
+          "id": "image-41",
+          "url": "https://img7-cdn.halftime.pt/2022/08/03/b/e/be606ff478399659.jpeg"
+        },
+        {
+          "id": "image-42",
+          "url": "https://img8-cdn.halftime.pt/2022/08/03/1/2/121e1fa8ca946c24.jpeg"
+        },
+        {
+          "id": "image-43",
+          "url": "https://img1-cdn.halftime.pt/2022/08/03/a/8/a8b04580350085d3.jpeg"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "23-24 Manchester City Home Jersey",
+      "category": "club team",
+      "price": 52.23,
+      "quantity": "5",
+      "rating": "5",
+      "discount": {
+        "has": false,
+        "value": null,
+        "price": null
+      },
+      "images": [
+        {
+          "id": "image-44",
+          "url": "https://img8-cdn.halftime.pt/2023/04/17/7/7/77f7ba1311851507.jpeg"
+        },
+        {
+          "id": "image-45",
+          "url": "https://img2-cdn.halftime.pt/2023/04/17/1/4/1417a05aed1b3be4.jpeg"
+        },
+        {
+          "id": "image-46",
+          "url": "https://img8-cdn.halftime.pt/2023/04/17/4/e/4e39ab9903a8f524.jpeg"
+        },
+        {
+          "id": "image-47",
+          "url": "https://img7-cdn.halftime.pt/2023/04/17/e/1/e1257d0356d6cae1.jpeg"
+        },
+        {
+          "id": "image-48",
+          "url": "https://img9-cdn.halftime.pt/2023/04/17/e/1/e1257d0356d6cae1.jpeg"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "22/23 Kids Manchester United Away SIZE 16-28 Soccer Jersey",
+      "category": "club team",
+      "price": 30.23,
+      "quantity": "5",
+      "rating": "5",
+      "discount": {
+        "has": false,
+        "value": null,
+        "price": null
+      },
+      "images": [
+        {
+          "id": "image-49",
+          "url": "https://img2-cdn.halftime.pt/2022/08/22/2/c/2c6a6e7b1f5daa6d.jpg"
+        },
+        {
+          "id": "image-50",
+          "url": "https://img5-cdn.halftime.pt/2022/08/22/d/3/d3f3cc14422170c8.jpg"
+        },
+        {
+          "id": "image-51",
+          "url": "https://img1-cdn.halftime.pt/2022/08/22/3/3/3398ddddcb267d97.jpg"
+        },
+        {
+          "id": "image-52",
+          "url": "https://img7-cdn.halftime.pt/2022/08/22/5/f/5f0268161f15dc76.jpg"
+        },
+        {
+          "id": "image-53",
+          "url": "https://img1-cdn.halftime.pt/2022/08/22/9/2/92a0852f9f3ef00c.jpg"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Retro 01/02 Real Madrid Home Jersey League Version With Sponsor",
+      "category": "club team",
+      "price": 98.99,
+      "quantity": "34",
+      "rating": "5",
+      "discount": {
+        "has": true,
+        "value": 5,
+        "price": 86.1
+      },
+      "images": [
+        {
+          "id": "image-53",
+          "url": "https://img7-cdn.halftime.pt/2023/04/15/6/3/63b31f58401e2246.jpg"
+        },
+        {
+          "id": "image-54",
+          "url": "https://img2-cdn.halftime.pt/2023/04/15/7/e/7ebe08baf5ccc409.jpeg"
+        },
+        {
+          "id": "image-55",
+          "url": "https://img5-cdn.halftime.pt/2023/04/15/e/0/e0debf0ea041cbae.png"
+        },
+        {
+          "id": "image-56",
+          "url": "https://img6-cdn.halftime.pt/2023/04/15/d/4/d47a56a4fdebdc73.jpeg"
+        },
+        {
+          "id": "image-57",
+          "url": "https://img2-cdn.halftime.pt/2023/04/15/5/7/57c9b66c1602db3c.jpeg"
+        }
+      ]
+    }
+  ]
+}

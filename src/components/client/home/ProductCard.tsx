@@ -3,22 +3,18 @@ import { ShoppingCartIcon, HeartIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 
 type Props = {
-  id: number
-  name: string
-  image: string
-  price: string | number
-  hasDiscount: boolean
+  product: Product
 }
 
-const Product: FC<Props> = ({ id, name, image, price, hasDiscount }) => {
+const ProductCard: FC<Props> = ({ product }) => {
   return (
     <article className="flex flex-col overflow-hidden bg-white border shadow-sm rounded-xl border-gray">
-      <div className="relative bg-light group">
-        <Link to={`/${id}`}>
+      <div className="relative bg-light h-52 group">
+        <Link to={`/${product.id}`}>
           <img
-            src={image}
-            alt={name}
-            title={name}
+            src={product.images[0].url}
+            alt={product.name}
+            title={product.name}
             className="object-cover w-full h-full"
           />
         </Link>
@@ -27,22 +23,24 @@ const Product: FC<Props> = ({ id, name, image, price, hasDiscount }) => {
         </button>
       </div>
       <div className="flex flex-col justify-between flex-1 p-3 space-y-4">
-        <Link to={`/${id}`}>
+        <Link to={`/${product.id}`}>
           <span className="font-medium leading-5 md:text-sm md:leading-4 line-clamp-3 text-dark-600">
-            {name}
+            {product.name}
           </span>
         </Link>
 
         <div className="flex items-center justify-between mt-auto">
           <div className="relative">
-            <span className="text-sm font-bold sm:text-md">${price}</span>
-            {hasDiscount && (
+            <span className="text-sm font-bold sm:text-md">
+              ${product.price}
+            </span>
+            {product.discount.has && (
               <>
                 <span className="absolute block -mb-1 text-sm font-medium bottom-full text-dark-500">
-                  <s>${price}</s>
+                  <s>${product.discount.price}</s>
                 </span>
                 <span className="left-full bottom-0 ml-1 absolute px-3 py-0.5 text-xs rounded bg-pink-600 self-end font-medium text-light pointer-events-none">
-                  -16%
+                  -{product.discount.value}%
                 </span>
               </>
             )}
@@ -58,4 +56,4 @@ const Product: FC<Props> = ({ id, name, image, price, hasDiscount }) => {
   )
 }
 
-export default Product
+export default ProductCard

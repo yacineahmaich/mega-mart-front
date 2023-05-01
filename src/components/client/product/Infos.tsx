@@ -1,4 +1,4 @@
-import { products } from '../../../lib/contants'
+import { products } from '../../../utils/contants'
 import { StarIcon } from '@heroicons/react/24/solid'
 
 const Infos = () => {

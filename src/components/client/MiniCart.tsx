@@ -6,7 +6,7 @@ import {
   MinusSmallIcon,
 } from '@heroicons/react/24/solid'
 import { TrashIcon } from '@heroicons/react/24/outline'
-import { products } from '../../lib/contants'
+import { products } from '../../utils/contants'
 import { useNavigate } from 'react-router-dom'
 
 type Props = {

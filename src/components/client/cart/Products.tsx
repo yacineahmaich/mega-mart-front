@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { products } from '../../../lib/contants'
+import { products } from '../../../utils/contants'
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/solid'
 import { TrashIcon } from '@heroicons/react/24/outline'
 

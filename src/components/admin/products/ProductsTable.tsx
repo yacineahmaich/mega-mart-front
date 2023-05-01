@@ -1,4 +1,4 @@
-import { products } from '../../../lib/contants'
+import { products } from '../../../utils/contants'
 import { Link } from 'react-router-dom'
 
 const ProductsTable = () => {

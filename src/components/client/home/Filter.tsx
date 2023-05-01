@@ -19,7 +19,7 @@ const Filter: FC = () => {
       <DisclosureItem title="Category">
         <ul className="space-y-2">
           {categories.map(cat => (
-            <li>
+            <li key={cat.id}>
               <label htmlFor={cat.name} className="space-x-3 cursor-pointer">
                 <input
                   type="checkbox"

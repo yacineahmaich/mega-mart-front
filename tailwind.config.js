@@ -81,9 +81,6 @@ export default {
         gray: '#e5e5e5',
         light: '#f5f5f5f5',
       },
-      gridTemplateColumns: {
-        products: 'minmax(250px, 1fr) auto',
-      },
       animation: {
         drop: 'drop .4s ease-out',
       },
@@ -99,5 +96,6 @@ export default {
     require('@tailwindcss/forms')({
       strategy: 'class',
     }),
+    require('tailwindcss-animate'),
   ],
 }
