@@ -1,7 +1,7 @@
 import { ChangeEvent, FC } from 'react'
-import { useSearchParams } from 'react-router-dom'
-
 import FilterModalButton from './FilterModalButton'
+import useParams from '../../../hooks/useParams'
+
 const sortOptions = [
   { label: 'Sort By', value: '' },
   { label: 'Product Name', value: 'name' },
@@ -15,31 +15,19 @@ const productsPerPageOptions = [
   { label: '10 article per page', value: '' },
   { label: '15 article per page', value: '15' },
   { label: '20 article per page', value: '20' },
-  // { label: '12 article per page', value: '12' },
-  // { label: '14 article per page', value: '14' },
 ]
 
 const Sort: FC = () => {
-  const [_, setSearchParams] = useSearchParams()
+  const changeParams = useParams()
 
   // handle Sort change
   const handleFilterChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSearchParams(prev => {
-      if (!e.target.value) prev.delete('_sort')
-      else prev.set('_sort', e.target.value)
-
-      return prev
-    })
+    changeParams('_sort', e.target.value)
   }
 
   // handle Products per page change
   const handleProdutPerPageChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSearchParams(prev => {
-      if (!e.target.value) prev.delete('_limit')
-      else prev.set('_limit', e.target.value)
-
-      return prev
-    })
+    changeParams('_limit', e.target.value)
   }
 
   return (
