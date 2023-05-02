@@ -1,6 +1,6 @@
 import { ChangeEvent, FC } from 'react'
 import FilterModalButton from './FilterModalButton'
-import useParams from '../../../hooks/useParams'
+import { useSearchParams } from 'react-router-dom'
 
 const sortOptions = [
   { label: 'Sort By', value: '' },
@@ -10,7 +10,6 @@ const sortOptions = [
   { label: 'Newest', value: 'newest' },
   { label: 'Oldest', value: 'oldest' },
 ]
-
 const productsPerPageOptions = [
   { label: '10 article per page', value: '' },
   { label: '15 article per page', value: '15' },
@@ -18,16 +17,37 @@ const productsPerPageOptions = [
 ]
 
 const Sort: FC = () => {
-  const changeParams = useParams()
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  const currentSortOption = sortOptions.find(
+    op => op.value === searchParams.get('_sort')
+  )
+  const productPerPage = productsPerPageOptions.find(
+    op => op.value === searchParams.get('_limit')
+  )
 
   // handle Sort change
   const handleFilterChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    changeParams('_sort', e.target.value)
+    const query = e.target.value.trim()
+
+    setSearchParams(sp => {
+      if (query === '') sp.delete('_sort')
+      else sp.set('_sort', query)
+
+      return sp
+    })
   }
 
   // handle Products per page change
   const handleProdutPerPageChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    changeParams('_limit', e.target.value)
+    const query = e.target.value.trim()
+
+    setSearchParams(sp => {
+      if (query === '') sp.delete('_limit')
+      else sp.set('_limit', query)
+
+      return sp
+    })
   }
 
   return (
@@ -35,6 +55,7 @@ const Sort: FC = () => {
       <select
         className="items-center justify-between hidden w-auto py-3 text-xs border rounded-lg border-gray md:flex focus:ring-0 focus:border-dark-500 form-select bg-light sm:w-52 text-dark-600"
         onChange={handleProdutPerPageChange}
+        defaultValue={productPerPage?.value ?? 10}
       >
         {productsPerPageOptions.map((op, idx) => (
           <option key={idx} value={op.value}>
@@ -47,6 +68,7 @@ const Sort: FC = () => {
       <select
         className="flex items-center justify-between w-auto py-2 m-0 text-xs text-white border rounded-full md:py-3 md:rounded-lg focus:ring-0 focus:border-dark-500 form-select border-gray bg-primary-600 md:bg-light md:w-52 md:text-dark-600"
         onChange={handleFilterChange}
+        defaultValue={currentSortOption?.value ?? null}
       >
         {sortOptions.map((op, idx) => (
           <option key={idx} value={op.value}>

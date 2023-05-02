@@ -1,22 +1,28 @@
 import { FC, useEffect, useState } from 'react'
 import DisclosureItem from '../../../UI/DisclosureItem'
-import useParams from '../../../../hooks/useParams'
 import { useSearchParams } from 'react-router-dom'
 
 const PriceFilter: FC = () => {
-  const [searchParams] = useSearchParams()
-  const changeParams = useParams()
+  const [searchParams, setSearchParams] = useSearchParams()
+
   const [minPrice, setMinPrice] = useState<string | null>(
-    searchParams.get('min_price') ?? null
+    searchParams.get('min_price') ?? ''
   )
   const [maxPrice, setMaxPrice] = useState<string | null>(
-    searchParams.get('max_price') ?? null
+    searchParams.get('max_price') ?? ''
   )
 
   useEffect(() => {
-    changeParams('min_price', minPrice ?? '')
-    changeParams('max_price', maxPrice ?? '')
-  }, [minPrice, maxPrice, changeParams])
+    setSearchParams(sp => {
+      if (minPrice.trim() === '') sp.delete('min_price')
+      else sp.set('min_price', minPrice)
+
+      if (maxPrice.trim() === '') sp.delete('max_price')
+      else sp.set('max_price', maxPrice)
+
+      return sp
+    })
+  }, [minPrice, maxPrice, setSearchParams])
 
   return (
     <DisclosureItem title="Price">
