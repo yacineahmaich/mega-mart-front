@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { StarIcon } from '@heroicons/react/24/solid'
-import DisclosureItem from '../../../UI/DisclosureItem'
+import DisclosureItem from '../../../ui/DisclosureItem'
 import { useSearchParams } from 'react-router-dom'
 
 const RatingFilter: FC = () => {

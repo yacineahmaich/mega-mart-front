@@ -1,5 +1,5 @@
 import { FC, useState, ChangeEvent, useEffect } from 'react'
-import DisclosureItem from '../../../UI/DisclosureItem'
+import DisclosureItem from '../../../ui/DisclosureItem'
 import { useSearchParams } from 'react-router-dom'
 
 const categories = [
