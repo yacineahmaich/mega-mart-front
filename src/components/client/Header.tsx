@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import {
   HeartIcon,
   UserCircleIcon,
@@ -7,8 +8,14 @@ import MiniCartButton from './MiniCartButton'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../context/Auth'
 
-const Header = () => {
+type Props = {
+  isLoadingUser: boolean
+}
+
+const Header: FC<Props> = ({ isLoadingUser }) => {
   const { user } = useAuth()
+
+  console.log(isLoadingUser)
 
   return (
     <>
@@ -41,21 +48,38 @@ const Header = () => {
 
           <div className="flex items-center order-2 space-x-6 lg:order-3">
             <div className="flex flex-col items-center space-y-0.5 text-sm font-medium text-white transition-colors cursor-pointer hover:text-slate-200">
-              <HeartIcon className="w-6 h-6 sm:h-6 sm:w-6" />
+              <HeartIcon className="w-6 h-6 sm:h-8 sm:w-8" />
               <span className="hidden sm:block">Favorite</span>
             </div>
 
             {user ? (
               <Link to="/account/profile">
-                <div className="flex flex-col items-center space-y-0.5 text-sm font-medium text-white transition-colors cursor-pointer hover:text-slate-200">
-                  <UserCircleIcon className="w-6 h-6 sm:h-6 sm:w-6" />
-                  <span className="hidden sm:block">{user.name}</span>
+                <div
+                  className={`flex flex-col items-center space-y-0.5 text-sm font-medium text-white transition-colors cursor-pointer hover:text-slate-200 ${
+                    isLoadingUser ? 'animate-pulse' : ''
+                  }`}
+                >
+                  <UserCircleIcon className="w-6 h-6 sm:h-8 sm:w-8" />
+                  <span className="hidden mt-4 uppercase sm:block">
+                    {user.name}
+                  </span>
                 </div>
               </Link>
+            ) : isLoadingUser ? (
+              <span>
+                <div
+                  className={`flex flex-col items-center text-sm font-medium text-white transition-colors cursor-default hover:text-slate-200 ${
+                    isLoadingUser ? 'animate-pulse' : ''
+                  }`}
+                >
+                  <UserCircleIcon className="w-6 h-6 sm:h-8 sm:w-8" />
+                  <span className="hidden w-12 h-3 mt-2 bg-light/30 sm:block"></span>
+                </div>
+              </span>
             ) : (
               <Link to="/account/login">
                 <div className="flex flex-col items-center space-y-0.5 text-sm font-medium text-white transition-colors cursor-pointer hover:text-slate-200">
-                  <UserCircleIcon className="w-6 h-6 sm:h-6 sm:w-6" />
+                  <UserCircleIcon className="w-6 h-6 sm:h-8 sm:w-8" />
                   <span className="hidden sm:block">Account</span>
                 </div>
               </Link>
