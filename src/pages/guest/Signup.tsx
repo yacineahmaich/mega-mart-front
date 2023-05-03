@@ -2,8 +2,13 @@ import { Link } from 'react-router-dom'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { signupSchema } from '../../utils/validation/auth'
+import { useSignup } from '../../features/auth/useSignup'
+import { toast } from 'react-hot-toast'
+import { isError } from '@tanstack/react-query'
 
 const Signup = () => {
+  const { mutateAsync: signup, error } = useSignup()
+
   const initialValues = {
     name: '',
     email: '',
@@ -12,7 +17,11 @@ const Signup = () => {
   }
 
   const handleSubmit = (values: typeof initialValues) => {
-    console.log(values)
+    toast.promise(signup(values), {
+      loading: 'Signup ...',
+      success: 'Signed up successefully',
+      error: 'Failed to signup',
+    })
   }
 
   return (
@@ -22,6 +31,18 @@ const Signup = () => {
       </h4>
 
       <div>
+        {isError && error?.errors && (
+          <ul className="p-4 mb-4 border rounded-lg border-danger-700">
+            {Object.values(error.errors)
+              .flat()
+              .map((err: string, idx) => (
+                <li key={idx} className="text-sm font-semibold text-danger-300">
+                  <ExclamationTriangleIcon className="inline w-5 h-5" />
+                  &nbsp;<span>{err}</span>
+                </li>
+              ))}
+          </ul>
+        )}
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
@@ -114,7 +135,7 @@ const Signup = () => {
                 Confirm Password
               </label>
               <Field
-                type="text"
+                type="password"
                 name="passwordConfirmation"
                 id="passwordConfirmation"
                 className="block w-full rounded-md focus:ring-2 focus:ring-primary-500 border-slate-400 focus:border-transparent form-input"

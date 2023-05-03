@@ -6,8 +6,8 @@ type Props = {
 }
 
 const AuthProvider: FC<Props> = ({ children }) => {
-  const [user, setUser] = useState({})
-  const [token, setToken] = useState(null)
+  const [user, setUser] = useState(null)
+  const [token, setToken] = useState(localStorage.getItem('ACCESS_TOKEN'))
 
   useEffect(() => {
     if (token) {

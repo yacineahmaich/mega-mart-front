@@ -5,8 +5,11 @@ import {
 } from '@heroicons/react/24/outline'
 import MiniCartButton from './MiniCartButton'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../../context/Auth'
 
 const Header = () => {
+  const { user } = useAuth()
+
   return (
     <>
       <section className="w-full px-3 md:px-6 bg-primary-900">
@@ -42,12 +45,21 @@ const Header = () => {
               <span className="hidden sm:block">Favorite</span>
             </div>
 
-            <Link to="/account/login">
-              <div className="flex flex-col items-center space-y-0.5 text-sm font-medium text-white transition-colors cursor-pointer hover:text-slate-200">
-                <UserCircleIcon className="w-6 h-6 sm:h-6 sm:w-6" />
-                <span className="hidden sm:block">Account</span>
-              </div>
-            </Link>
+            {user ? (
+              <Link to="/account/profile">
+                <div className="flex flex-col items-center space-y-0.5 text-sm font-medium text-white transition-colors cursor-pointer hover:text-slate-200">
+                  <UserCircleIcon className="w-6 h-6 sm:h-6 sm:w-6" />
+                  <span className="hidden sm:block">{user.name}</span>
+                </div>
+              </Link>
+            ) : (
+              <Link to="/account/login">
+                <div className="flex flex-col items-center space-y-0.5 text-sm font-medium text-white transition-colors cursor-pointer hover:text-slate-200">
+                  <UserCircleIcon className="w-6 h-6 sm:h-6 sm:w-6" />
+                  <span className="hidden sm:block">Account</span>
+                </div>
+              </Link>
+            )}
 
             <div className="w-[1px] h-8 bg-slate-400"></div>
             <MiniCartButton />

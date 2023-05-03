@@ -8,7 +8,7 @@ const getProducts = async (searchParams: string): Promise<Product[]> => {
   return response.data
 }
 
-const useProducts = (
+export const useProducts = (
   params: object,
   onSuccess?: (data: Product[]) => void,
   onError?: (err) => void
@@ -21,5 +21,3 @@ const useProducts = (
     keepPreviousData: true,
   })
 }
-
-export default useProducts

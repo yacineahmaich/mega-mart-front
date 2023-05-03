@@ -2,15 +2,23 @@ import { Link } from 'react-router-dom'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { loginSchema } from '../../utils/validation/auth'
+import { useLogin } from '../../features/auth/useLogin'
+import { toast } from 'react-hot-toast'
 
 const Login = () => {
+  const { mutateAsync: login, isError, error } = useLogin()
+
   const initialValues = {
     email: '',
     password: '',
   }
 
   const handleSubmit = (values: typeof initialValues) => {
-    console.log(values)
+    toast.promise(login(values), {
+      loading: 'Login ...',
+      success: 'Logged in successefully',
+      error: 'Failed to login',
+    })
   }
 
   return (
@@ -20,6 +28,14 @@ const Login = () => {
       </h4>
 
       <div>
+        {isError && error?.message && (
+          <ul className="p-4 mb-4 border rounded-lg border-danger-700">
+            <li className="text-sm font-semibold text-danger-300">
+              <ExclamationTriangleIcon className="inline w-5 h-5" />
+              &nbsp;<span>{error.message}</span>
+            </li>
+          </ul>
+        )}
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
@@ -39,6 +55,7 @@ const Login = () => {
                 id="email"
                 className="block w-full rounded-md focus:ring-2 focus:ring-primary-500 border-slate-400 focus:border-transparent form-input"
                 placeholder="Username"
+                autocomplete="on"
               />
               <ErrorMessage
                 name="email"
@@ -64,6 +81,7 @@ const Login = () => {
                 id="password"
                 className="block w-full rounded-md focus:ring-2 focus:ring-primary-500 border-slate-400 focus:border-transparent form-input"
                 placeholder="******"
+                autocomplete="on"
               />
               <ErrorMessage
                 name="password"

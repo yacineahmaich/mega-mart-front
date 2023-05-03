@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import useProducts from '../../../features/products/queries'
+import { useProducts } from '../../../features/products/queries'
 import { useSearchParams } from 'react-router-dom'
 import queryString from 'query-string'
 import { toast } from 'react-hot-toast'

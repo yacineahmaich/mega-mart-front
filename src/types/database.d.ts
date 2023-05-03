@@ -11,3 +11,9 @@ interface Product {
   }
   images: { id: string; url: string }[]
 }
+
+interface User {
+  id: string
+  name: string
+  email: string
+}
