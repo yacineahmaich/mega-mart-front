@@ -15,7 +15,7 @@ const ListProducts: FC = () => {
   const params = queryString.parse(searchParams.toString(), {
     arrayFormat: 'comma',
   })
-  const productsPerPage = +searchParams.get('_limit') || 10
+  const productsPerPage = +searchParams.get('limit') || 10
 
   const {
     data: products,

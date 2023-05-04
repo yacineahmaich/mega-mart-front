@@ -9,12 +9,13 @@ const getUser = async () => {
 }
 
 export const useGetUser = () => {
-  const { setUser, setToken } = useAuth()
+  const { setUser, setToken, token } = useAuth()
 
   return useQuery({
     queryKey: ['user'],
     queryFn: getUser,
     retry: false,
+    enabled: !!token,
     onSuccess(user: User) {
       setUser(user)
     },

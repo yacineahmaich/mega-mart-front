@@ -34,7 +34,7 @@ const ProductCard: FC<Props> = ({ product }) => {
             <span className="text-sm font-bold sm:text-md">
               ${product.price}
             </span>
-            {product.discount.has && (
+            {/* {product.discount.has && (
               <>
                 <span className="absolute block -mb-1 text-sm font-medium bottom-full text-dark-500">
                   <s>${product.discount.price}</s>
@@ -43,7 +43,7 @@ const ProductCard: FC<Props> = ({ product }) => {
                   -{product.discount.value}%
                 </span>
               </>
-            )}
+            )} */}
           </div>
           <div>
             <button className="p-2 text-white transition-colors rounded-lg bg-primary-600 hover:bg-primary-700">

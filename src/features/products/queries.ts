@@ -5,7 +5,7 @@ import queryString from 'query-string'
 const getProducts = async (searchParams: string): Promise<Product[]> => {
   // await new Promise(resolve => setTimeout(resolve, 5000))
   const response = await api.get(`/products/?${searchParams}`)
-  return response.data
+  return response.data.data
 }
 
 export const useProducts = (

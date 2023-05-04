@@ -20,10 +20,10 @@ const Sort: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams()
 
   const currentSortOption = sortOptions.find(
-    op => op.value === searchParams.get('_sort')
+    op => op.value === searchParams.get('sort')
   )
   const productPerPage = productsPerPageOptions.find(
-    op => op.value === searchParams.get('_limit')
+    op => op.value === searchParams.get('limit')
   )
 
   // handle Sort change
@@ -31,8 +31,8 @@ const Sort: FC = () => {
     const query = e.target.value.trim()
 
     setSearchParams(sp => {
-      if (query === '') sp.delete('_sort')
-      else sp.set('_sort', query)
+      if (query === '') sp.delete('sort')
+      else sp.set('sort', query)
 
       return sp
     })
@@ -43,8 +43,8 @@ const Sort: FC = () => {
     const query = e.target.value.trim()
 
     setSearchParams(sp => {
-      if (query === '') sp.delete('_limit')
-      else sp.set('_limit', query)
+      if (query === '') sp.delete('limit')
+      else sp.set('limit', query)
 
       return sp
     })
