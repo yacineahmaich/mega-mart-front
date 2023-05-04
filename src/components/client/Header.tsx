@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import spinnerIcon from '../../assets/icons/spinner.svg'
 import {
   HeartIcon,
   UserCircleIcon,
@@ -54,11 +55,7 @@ const Header: FC<Props> = ({ isLoadingUser }) => {
 
             {user ? (
               <Link to="/account/profile">
-                <div
-                  className={`flex flex-col items-center space-y-0.5 text-sm font-medium text-white transition-colors cursor-pointer hover:text-slate-200 ${
-                    isLoadingUser ? 'animate-pulse' : ''
-                  }`}
-                >
+                <div className="flex flex-col items-center space-y-0.5 text-sm font-medium text-white transition-colors cursor-pointer hover:text-slate-200">
                   <UserCircleIcon className="w-6 h-6 sm:h-8 sm:w-8" />
                   <span className="hidden mt-4 uppercase sm:block">
                     {user.name}
@@ -73,7 +70,11 @@ const Header: FC<Props> = ({ isLoadingUser }) => {
                   }`}
                 >
                   <UserCircleIcon className="w-6 h-6 sm:h-8 sm:w-8" />
-                  <span className="hidden w-12 h-3 mt-2 bg-light/30 sm:block"></span>
+                  <img
+                    src={spinnerIcon}
+                    alt="spinner"
+                    className="w-5 h-5 duration-700 animate-spin"
+                  />
                 </div>
               </span>
             ) : (

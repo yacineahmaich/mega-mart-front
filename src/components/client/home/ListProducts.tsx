@@ -3,8 +3,9 @@ import { FC } from 'react'
 import { useProducts } from '../../../features/products/queries'
 import { useSearchParams } from 'react-router-dom'
 import queryString from 'query-string'
-import { toast } from 'react-hot-toast'
-
+// import { toast } from 'react-hot-toast'
+import { Transition } from '@headlessui/react'
+import spinnerIcon from '../../../assets/icons/spinner.svg'
 import ProductCard from './ProductCard'
 import Pagination from './Pagination'
 import ProductCardSkeleton from './ProductCardSekeleton'
@@ -17,25 +18,29 @@ const ListProducts: FC = () => {
   })
   const productsPerPage = +searchParams.get('limit') || 10
 
-  const {
-    data: products,
-    isLoading,
-    isError,
-    error,
-  } = useProducts(params, null, err => toast.error(err.message))
+  const { data, isLoading, isFetching, isError, error } = useProducts(params)
 
   return (
-    <section className="w-full min-h-screen space-y-8">
+    <section className="w-full min-h-screen">
+      {isFetching && (
+        <div className="mb-3 transition-all origin-top">
+          <img
+            src={spinnerIcon}
+            alt="spinner"
+            className="w-8 h-8 mx-auto duration-1000 animate-spin"
+          />
+        </div>
+      )}
       <div className="grid w-full grid-cols-2 gap-4 lg:gap-8 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {isLoading
           ? Array.from({ length: productsPerPage }, (_, i) => (
               <ProductCardSkeleton key={i} />
             ))
-          : products?.map(product => (
+          : data.data?.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
       </div>
-      {isLoading ? null : <Pagination />}
+      {isLoading || isFetching ? null : <Pagination />}
     </section>
   )
 }

@@ -3,7 +3,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
 
 const Pagination: FC = () => {
   return (
-    <section className="flex items-center justify-center gap-3 lg:gap-4">
+    <section className="flex items-center justify-center gap-3 my-10 md:my-16 lg:my-20 lg:gap-4">
       <button className="flex items-center gap-1 px-4 py-1.5 lg:py-2 text-white transition-colors rounded-full lg:px-6 bg-primary-600 active:ring active:ring-primary-500 active:ring-offset-1 hover:bg-primary-700">
         <ChevronLeftIcon className="w-4 h-4 md:w-5 md:h-5" />
         <span className="text-sm md:text-md">Prev</span>

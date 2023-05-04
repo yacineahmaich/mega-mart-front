@@ -5,11 +5,11 @@ import Navigation from '../../components/client/Navigation'
 import { useGetUser } from '../../features/auth/useGetUser'
 
 const DefaultLayout = () => {
-  const { isLoading } = useGetUser()
+  const { isInitialLoading } = useGetUser()
 
   return (
     <>
-      <Header isLoadingUser={isLoading} />
+      <Header isLoadingUser={isInitialLoading} />
       <Navigation />
       <main>
         <Outlet />
