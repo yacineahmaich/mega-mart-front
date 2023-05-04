@@ -1,36 +1,98 @@
 import { FC } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
+import { useSearchParams } from 'react-router-dom'
 
-const Pagination: FC = () => {
+type Props = {
+  meta: {
+    current_page: number
+    per_page: number
+    total: number
+  }
+}
+
+const maxPagItems = 5
+
+const Pagination: FC<Props> = ({ meta }) => {
+  const [_, setSearchParams] = useSearchParams()
+  const numPages = Math.ceil(meta.total / meta.per_page)
+  const activePage = meta.current_page
+
+  const goToPage = (page: number) => {
+    setSearchParams(sp => {
+      sp.set('page', page.toString())
+      return sp
+    })
+  }
+
+  const goToPrevPage = () => {
+    if (activePage === 1) return
+    setSearchParams(sp => {
+      sp.set('page', (activePage - 1).toString())
+      return sp
+    })
+  }
+  const goToNextPage = () => {
+    if (activePage === numPages) return
+    setSearchParams(sp => {
+      sp.set('page', (activePage + 1).toString())
+      return sp
+    })
+  }
+
   return (
     <section className="flex items-center justify-center gap-3 my-10 md:my-16 lg:my-20 lg:gap-4">
-      <button className="flex items-center gap-1 px-4 py-1.5 lg:py-2 text-white transition-colors rounded-full lg:px-6 bg-primary-600 active:ring active:ring-primary-500 active:ring-offset-1 hover:bg-primary-700">
-        <ChevronLeftIcon className="w-4 h-4 md:w-5 md:h-5" />
-        <span className="text-sm md:text-md">Prev</span>
-      </button>
+      {activePage > 1 && (
+        <button
+          className="flex items-center gap-1 px-4 py-1.5 lg:py-2 text-white transition-colors rounded-full lg:px-6 bg-primary-600 active:ring active:ring-primary-500 active:ring-offset-1 hover:bg-primary-700"
+          onClick={goToPrevPage}
+        >
+          <ChevronLeftIcon className="w-4 h-4 md:w-5 md:h-5" />
+          <span className="text-sm md:text-md">Prev</span>
+        </button>
+      )}
 
       <ul className="items-center hidden gap-2 text-dark-700 md:flex">
-        <li className="flex items-center justify-center w-8 h-8 text-sm font-semibold transition-colors border rounded-lg cursor-pointer lg:h-10 lg:w-10 hover:bg-primary-600 hover:text-white border-primary-600">
-          1
-        </li>
-        <li className="flex items-center justify-center w-8 h-8 text-sm font-semibold transition-colors border rounded-lg cursor-pointer lg:h-10 lg:w-10 hover:bg-primary-600 hover:text-white border-primary-600">
-          2
-        </li>
-        <li className="flex items-center justify-center w-8 h-8 text-sm font-semibold transition-colors border rounded-lg cursor-pointer lg:h-10 lg:w-10 hover:bg-primary-600 hover:text-white border-primary-600">
-          3
-        </li>
-        <li className="flex items-center justify-center w-8 h-8 text-sm font-semibold transition-colors border rounded-lg cursor-pointer lg:h-10 lg:w-10 hover:bg-primary-600 hover:text-white border-primary-600">
-          4
-        </li>
-        <li className="flex items-center justify-center w-8 h-8 text-sm font-semibold transition-colors border rounded-lg cursor-pointer lg:h-10 lg:w-10 hover:bg-primary-600 hover:text-white border-primary-600">
-          5
-        </li>
-        <li className="flex items-center justify-center w-8 h-8 text-sm font-semibold transition-colors border rounded-lg cursor-pointer lg:h-10 lg:w-10 hover:bg-primary-600 hover:text-white border-primary-600">
-          ...
-        </li>
-        <li className="flex items-center justify-center w-8 h-8 text-sm font-semibold transition-colors border rounded-lg cursor-pointer lg:h-10 lg:w-10 hover:bg-primary-600 hover:text-white border-primary-600">
-          23
-        </li>
+        {Array.from(
+          {
+            length: numPages > maxPagItems ? maxPagItems : numPages,
+          },
+          (_, i) => {
+            const page = i + 1
+
+            return (
+              <li
+                key={page}
+                className={`flex items-center justify-center w-8 h-8 text-sm font-semibold transition-colors border rounded-lg cursor-pointer lg:h-10 lg:w-10  border-primary-600 ${
+                  page === activePage
+                    ? 'bg-primary-600 text-white'
+                    : 'hover:bg-primary-600 hover:text-white'
+                }`}
+                onClick={() => goToPage(page)}
+              >
+                {page}
+              </li>
+            )
+          }
+        )}
+        {numPages > maxPagItems && (
+          <>
+            {maxPagItems + 1 < numPages && (
+              <li className="flex items-center justify-center w-8 h-8 text-sm font-semibold border rounded-lg pointer-events-none lg:h-10 lg:w-10 border-slate-400 text-slate-400">
+                ...
+              </li>
+            )}
+            <li
+              className={`flex items-center justify-center w-8 h-8 text-sm font-semibold transition-colors border rounded-lg cursor-pointer lg:h-10 lg:w-10  border-primary-600 ${
+                activePage === numPages
+                  ? 'bg-primary-600 text-white'
+                  : 'hover:bg-primary-600 hover:text-white'
+              }`}
+              onClick={() => goToPage(numPages)}
+            >
+              {numPages}
+            </li>
+          </>
+        )}
       </ul>
 
       <select className="block text-sm rounded focus:border-gray form-select focus:ring-0 md:hidden">
@@ -40,10 +102,15 @@ const Pagination: FC = () => {
         <option value="4">4</option>
       </select>
 
-      <button className="flex items-center gap-1 px-4 py-1.5 lg:py-2 text-white transition-colors rounded-full lg:px-6 bg-primary-600 active:ring active:ring-primary-500 active:ring-offset-1 hover:bg-primary-700">
-        <span className="text-sm md:text-md">Next</span>
-        <ChevronRightIcon className="w-4 h-4 md:w-5 md:h-5" />
-      </button>
+      {activePage < numPages && (
+        <button
+          className="flex items-center gap-1 px-4 py-1.5 lg:py-2 text-white transition-colors rounded-full lg:px-6 bg-primary-600 active:ring active:ring-primary-500 active:ring-offset-1 hover:bg-primary-700"
+          onClick={goToNextPage}
+        >
+          <span className="text-sm md:text-md">Next</span>
+          <ChevronRightIcon className="w-4 h-4 md:w-5 md:h-5" />
+        </button>
+      )}
     </section>
   )
 }

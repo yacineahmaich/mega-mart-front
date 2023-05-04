@@ -1,10 +1,9 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 
 import { useProducts } from '../../../features/products/queries'
 import { useSearchParams } from 'react-router-dom'
 import queryString from 'query-string'
 // import { toast } from 'react-hot-toast'
-import { Transition } from '@headlessui/react'
 import spinnerIcon from '../../../assets/icons/spinner.svg'
 import ProductCard from './ProductCard'
 import Pagination from './Pagination'
@@ -20,8 +19,14 @@ const ListProducts: FC = () => {
 
   const { data, isLoading, isFetching, isError, error } = useProducts(params)
 
+  useEffect(() => {
+    if (!isLoading && !isFetching) return
+
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [isLoading, isFetching])
+
   return (
-    <section className="w-full min-h-screen">
+    <section className="flex flex-col justify-between w-full min-h-screen">
       {isFetching && (
         <div className="mb-3 transition-all origin-top">
           <img
@@ -40,7 +45,7 @@ const ListProducts: FC = () => {
               <ProductCard key={product.id} product={product} />
             ))}
       </div>
-      {isLoading || isFetching ? null : <Pagination />}
+      {isLoading ? null : <Pagination meta={data.meta} />}
     </section>
   )
 }
