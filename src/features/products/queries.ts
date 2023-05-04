@@ -2,7 +2,7 @@ import api from '../../utils/api'
 import { useQuery } from '@tanstack/react-query'
 import queryString from 'query-string'
 
-const getProducts = async (searchParams: string): Promise<Product[]> => {
+const getProducts = async (searchParams: string) => {
   const response = await api.get(`/products/?${searchParams}`)
   return response.data
 }
@@ -21,7 +21,13 @@ export const useProducts = (
 ) => {
   return useQuery({
     queryKey: ['products', params],
-    queryFn: () => getProducts(queryString.stringify(params)),
+    queryFn: () =>
+      getProducts(
+        queryString.stringify(params, {
+          arrayFormat: 'comma',
+          arrayFormatSeparator: ',',
+        })
+      ),
     onSuccess,
     onError,
     keepPreviousData: true,

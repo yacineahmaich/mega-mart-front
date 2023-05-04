@@ -10,7 +10,7 @@ const ProductCard: FC<Props> = ({ product }) => {
   return (
     <article className="flex flex-col overflow-hidden bg-white border shadow-sm rounded-xl border-gray">
       <div className="relative bg-light h-52 group">
-        <Link to={`/${product.id}`}>
+        <Link to={`/${product.slug}`}>
           <img
             src={product.images[0].url}
             alt={product.name}
@@ -23,8 +23,8 @@ const ProductCard: FC<Props> = ({ product }) => {
         </button>
       </div>
       <div className="flex flex-col justify-between flex-1 p-3 space-y-4">
-        <Link to={`/${product.id}`}>
-          <span className="font-medium leading-5 md:text-sm md:leading-4 line-clamp-3 text-dark-600">
+        <Link to={`/${product.slug}`}>
+          <span className="font-medium leading-5 md:text-sm md:leading-4 line-clamp-3 text-dark-600 hover:underline hover:text-primary-400">
             {product.name}
           </span>
         </Link>
@@ -46,7 +46,7 @@ const ProductCard: FC<Props> = ({ product }) => {
             )} */}
           </div>
           <div>
-            <button className="p-2 text-white transition-colors rounded-lg bg-primary-600 hover:bg-primary-700">
+            <button className="p-2 text-white transition-colors rounded-full bg-primary-500 hover:bg-primary-600">
               <ShoppingCartIcon className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>

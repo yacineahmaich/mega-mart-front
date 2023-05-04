@@ -5,7 +5,7 @@ import { useAuth } from '../../context/Auth'
 
 const AdminLayout = () => {
   const { user } = useAuth()
-
+  console.log(user)
   if (!user) return <Navigate to="/" />
 
   return (

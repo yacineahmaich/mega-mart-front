@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { Link } from 'react-router-dom'
 
 const Footer: FC = () => {
   return (
@@ -6,11 +7,11 @@ const Footer: FC = () => {
       <div className="max-w-screen-xl mx-auto text-white">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
-            <a href="https://flowbite.com" className="flex items-center">
+            <a href="/" className="flex items-center">
               {/* <img
-                src="https://flowbite.com/docs/images/logo.svg"
+                src=""
                 className="h-8 mr-3"
-                alt="FlowBite Logo"
+                alt="JersyHub Logo"
               /> */}
               <span className="self-center text-2xl font-semibold whitespace-nowrap text-primary-700">
                 Jersy Hub
@@ -24,17 +25,14 @@ const Footer: FC = () => {
               </h2>
               <ul className="text-gray-600">
                 <li className="mb-4">
-                  <a href="https://flowbite.com" className="hover:underline">
+                  <Link to="/" className="hover:underline">
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="https://tailwindcss.com/"
-                    className="hover:underline"
-                  >
+                  <Link to="/cart/" className="hover:underline">
                     Cart
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -44,18 +42,12 @@ const Footer: FC = () => {
               </h2>
               <ul className="text-gray-600">
                 <li className="mb-4">
-                  <a
-                    href="https://github.com/themesberg/flowbite"
-                    className="hover:underline "
-                  >
+                  <a href="#" className="hover:underline ">
                     Github
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="https://discord.gg/4eeurUVvTy"
-                    className="hover:underline"
-                  >
+                  <a href="#" className="hover:underline">
                     Discord
                   </a>
                 </li>
@@ -84,8 +76,8 @@ const Footer: FC = () => {
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-gray-500 sm:text-center ">
             © 2022{' '}
-            <a href="https://flowbite.com" className="hover:underline">
-              Flowbite™
+            <a href="#" className="hover:underline">
+              JersyHub™
             </a>
             . All Rights Reserved.
           </span>

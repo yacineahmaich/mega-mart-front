@@ -16,8 +16,6 @@ type Props = {
 const Header: FC<Props> = ({ isLoadingUser }) => {
   const { user } = useAuth()
 
-  console.log(isLoadingUser)
-
   return (
     <>
       <section className="w-full px-3 md:px-6 bg-primary-900">
