@@ -8,19 +8,25 @@ const getUser = async () => {
 }
 
 export const useGetUser = () => {
-  const { setUser, setToken, token } = useAuth()
+  const { setUser, setToken, token, user, setIsLoading } = useAuth()
 
   return useQuery({
     queryKey: ['user'],
-    queryFn: getUser,
+    queryFn: () => {
+      setIsLoading(true)
+      return getUser()
+    },
     retry: false,
-    enabled: !!token,
+    enabled: !!token && !user,
     onSuccess(user: User) {
       setUser(user)
     },
     onError() {
       setToken(null)
       setUser(null)
+    },
+    onSettled() {
+      setIsLoading(false)
     },
   })
 }

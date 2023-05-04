@@ -7,6 +7,7 @@ type Props = {
 
 const AuthProvider: FC<Props> = ({ children }) => {
   const [user, setUser] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
   const [token, setToken] = useState(localStorage.getItem('ACCESS_TOKEN'))
 
   useEffect(() => {
@@ -22,6 +23,8 @@ const AuthProvider: FC<Props> = ({ children }) => {
       value={{
         user,
         token,
+        isLoading,
+        setIsLoading,
         setUser,
         setToken,
       }}

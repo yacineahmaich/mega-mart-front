@@ -2,14 +2,11 @@ import { Outlet } from 'react-router'
 import Header from '../../components/client/Header'
 import Footer from '../../components/client/Footer'
 import Navigation from '../../components/client/Navigation'
-import { useGetUser } from '../../features/auth/useGetUser'
 
-const DefaultLayout = () => {
-  const { isInitialLoading } = useGetUser()
-
+const ClientLayout = () => {
   return (
     <>
-      <Header isLoadingUser={isInitialLoading} />
+      <Header />
       <Navigation />
       <main>
         <Outlet />
@@ -19,4 +16,4 @@ const DefaultLayout = () => {
   )
 }
 
-export default DefaultLayout
+export default ClientLayout

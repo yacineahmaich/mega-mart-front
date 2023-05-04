@@ -4,9 +4,9 @@ import SideBar from '../../components/admin/SideBar'
 import { useAuth } from '../../context/Auth'
 
 const AdminLayout = () => {
-  const { user } = useAuth()
-  console.log(user)
-  if (!user) return <Navigate to="/" />
+  const { token } = useAuth()
+
+  if (!token) return <Navigate to="/" />
 
   return (
     <div className="w-full h-screen pl-admin-sidebar">

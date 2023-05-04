@@ -9,12 +9,8 @@ import MiniCartButton from './MiniCartButton'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../context/Auth'
 
-type Props = {
-  isLoadingUser: boolean
-}
-
-const Header: FC<Props> = ({ isLoadingUser }) => {
-  const { user } = useAuth()
+const Header: FC = () => {
+  const { user, isLoading } = useAuth()
 
   return (
     <>
@@ -60,11 +56,11 @@ const Header: FC<Props> = ({ isLoadingUser }) => {
                   </span>
                 </div>
               </Link>
-            ) : isLoadingUser ? (
+            ) : isLoading ? (
               <span>
                 <div
                   className={`flex flex-col items-center text-sm font-medium text-white transition-colors cursor-default hover:text-slate-200 ${
-                    isLoadingUser ? 'animate-pulse' : ''
+                    isLoading ? 'animate-pulse' : ''
                   }`}
                 >
                   <UserCircleIcon className="w-6 h-6 sm:h-8 sm:w-8" />
