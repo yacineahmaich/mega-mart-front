@@ -25,6 +25,10 @@ import ViewCategory from './pages/admin/category/ViewCategory'
 import CustomerLayout from './pages/admin/customer/CustomerLayout'
 import ViewCustomer from './pages/admin/customer/ViewCustomer'
 import DefaultLayout from './pages/DefaultLayout'
+import ProfileLayout from './pages/client/Profile/ProfileLayout'
+import Profile from './pages/client/Profile/Profile'
+import MyOrders from './pages/client/Profile/MyOrders'
+import EditProfile from './pages/client/Profile/EditProfile'
 
 const router = createBrowserRouter([
   {
@@ -50,15 +54,39 @@ const router = createBrowserRouter([
           },
           {
             path: 'account',
-            element: <AuthLayout />,
             children: [
+              // Auth
               {
-                path: 'login',
-                element: <Login />,
+                element: <AuthLayout />,
+                children: [
+                  {
+                    path: 'login',
+                    element: <Login />,
+                  },
+                  {
+                    path: 'signup',
+                    element: <Signup />,
+                  },
+                ],
               },
+              // Profile
               {
-                path: 'signup',
-                element: <Signup />,
+                path: 'profile',
+                element: <ProfileLayout />,
+                children: [
+                  {
+                    index: true,
+                    element: <Profile />,
+                  },
+                  {
+                    path: 'my-orders',
+                    element: <MyOrders />,
+                  },
+                  {
+                    path: 'edit-profile',
+                    element: <EditProfile />,
+                  },
+                ],
               },
             ],
           },

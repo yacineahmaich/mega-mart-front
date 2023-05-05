@@ -1,6 +1,8 @@
 import { useLocation } from 'react-router-dom'
+import { useAuth } from '../../context/Auth'
 
 const Navbar = () => {
+  const { user } = useAuth()
   const { pathname } = useLocation()
 
   const routerNavigation = pathname.split('/').filter(el => el !== '')
@@ -22,7 +24,7 @@ const Navbar = () => {
 
           <nav>
             <span className="inline-flex text-primary-600 font-bold items-center px-4 py-1.5 text-xs uppercase border border-primary-600">
-              Welcome Back,&nbsp;<span>yacine</span>
+              Welcome Back,&nbsp;<span>{user?.name}</span>
             </span>
           </nav>
         </header>

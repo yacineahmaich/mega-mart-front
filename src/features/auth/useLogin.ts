@@ -9,17 +9,9 @@ type loginCredentials = {
 }
 
 const login = async (credentials: loginCredentials) => {
-  try {
-    const response = await api.post('/login', credentials)
+  const response = await api.post('/login', credentials)
 
-    return response.data
-  } catch (error) {
-    if (isAxiosError(error)) {
-      throw error.response.data
-    }
-
-    throw error
-  }
+  return response.data
 }
 
 export const useLogin = () => {
