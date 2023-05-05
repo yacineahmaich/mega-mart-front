@@ -6,7 +6,7 @@ import { useLogin } from '../../features/auth/useLogin'
 import { toast } from 'react-hot-toast'
 
 const Login = () => {
-  const { mutateAsync: login, isError, error } = useLogin()
+  const { mutateAsync: login, isError, error, isLoading } = useLogin()
 
   const initialValues = {
     email: '',
@@ -20,7 +20,7 @@ const Login = () => {
       error: 'Failed to login',
     })
   }
-
+  console.log(isLoading)
   return (
     <div className="space-y-4">
       <h4 className="text-xl font-bold text-center text-primary-500">
@@ -55,7 +55,7 @@ const Login = () => {
                 id="email"
                 className="block w-full rounded-md focus:ring-2 focus:ring-primary-500 border-slate-400 focus:border-transparent form-input"
                 placeholder="Username"
-                autocomplete="on"
+                autoComplete="on"
               />
               <ErrorMessage
                 name="email"
@@ -81,7 +81,7 @@ const Login = () => {
                 id="password"
                 className="block w-full rounded-md focus:ring-2 focus:ring-primary-500 border-slate-400 focus:border-transparent form-input"
                 placeholder="******"
-                autocomplete="on"
+                autoComplete="on"
               />
               <ErrorMessage
                 name="password"
@@ -94,7 +94,10 @@ const Login = () => {
                 )}
               />
             </div>
-            <button className="w-full py-2 mt-3 text-white transition-colors rounded from-primary-600 to-primary-500 bg-gradient-to-tr hover:to-primary-600">
+            <button
+              className="w-full py-2 mt-3 text-white transition-colors rounded from-primary-600 to-primary-500 bg-gradient-to-tr hover:to-primary-600 disabled:cursor-auto disabled:hover:hover:to-primary-500"
+              disabled={isLoading}
+            >
               Login
             </button>
           </Form>
@@ -102,9 +105,9 @@ const Login = () => {
       </div>
 
       <div className="flex flex-wrap items-center justify-center gap-1 font-medium text-dark-600">
-        <p>You don't have account yet?</p>
+        <p>You don't have an account yet?</p>
         <Link to="/account/signup" className="font-semibold text-primary-600">
-          Login
+          Signup
         </Link>
       </div>
     </div>

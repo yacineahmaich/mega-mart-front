@@ -7,7 +7,7 @@ import { toast } from 'react-hot-toast'
 import { isError } from '@tanstack/react-query'
 
 const Signup = () => {
-  const { mutateAsync: signup, error } = useSignup()
+  const { mutateAsync: signup, error, isLoading } = useSignup()
 
   const initialValues = {
     name: '',
@@ -155,7 +155,8 @@ const Signup = () => {
             </div>
             <button
               type="submit"
-              className="w-full py-2 mt-3 text-white transition-colors rounded from-primary-600 to-primary-500 bg-gradient-to-tr hover:to-primary-600"
+              className="w-full py-2 mt-3 text-white transition-colors rounded from-primary-600 to-primary-500 bg-gradient-to-tr hover:to-primary-600 disabled:cursor-auto disabled:hover:hover:to-primary-500"
+              disabled={isLoading}
             >
               Signup
             </button>
@@ -165,7 +166,7 @@ const Signup = () => {
       <div className="flex flex-wrap items-center justify-center gap-1 font-medium text-dark-600">
         <p>Already have an account?</p>
         <Link to="/account/login" className="font-semibold text-primary-600">
-          Signup
+          Login
         </Link>
       </div>
     </div>

@@ -12,6 +12,7 @@ type SignupCredentials = {
 
 const signup = async (credentials: SignupCredentials) => {
   try {
+    await new Promise(resolve => setTimeout(resolve, 5000))
     const response = await api.post('/signup', credentials)
 
     return response.data

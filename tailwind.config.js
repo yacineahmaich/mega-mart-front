@@ -81,15 +81,6 @@ export default {
         gray: '#e5e5e5',
         light: '#f5f5f5f5',
       },
-      animation: {
-        drop: 'drop .4s ease-out',
-      },
-      keyframes: {
-        drop: {
-          '0%': { transform: 'translateY(-4px)' },
-          '100%': { transform: 'translateY(0)' },
-        },
-      },
     },
   },
   plugins: [
