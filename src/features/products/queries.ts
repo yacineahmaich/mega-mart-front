@@ -14,7 +14,7 @@ export const useProducts = (
     meta: {
       current_page: number
       per_page: number
-      total: number
+      last_page: number
     }
   }) => void,
   onError?: (err) => void

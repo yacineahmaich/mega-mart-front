@@ -6,7 +6,7 @@ type Props = {
   meta: {
     current_page: number
     per_page: number
-    total: number
+    last_page: number
   }
 }
 
@@ -14,7 +14,7 @@ const maxPagItems = 5
 
 const Pagination: FC<Props> = ({ meta }) => {
   const [_, setSearchParams] = useSearchParams()
-  const numPages = Math.ceil(meta.total / meta.per_page)
+  const numPages = meta.last_page
   const activePage = meta.current_page
 
   const goToPage = (page: number) => {
