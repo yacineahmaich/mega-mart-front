@@ -1,6 +1,7 @@
 import SideNav from '../../../components/client/account/SideNav'
 import { Navigate, Outlet } from 'react-router-dom'
 import { useAuth } from '../../../context/Auth'
+import spinner from '../../../assets/icons/spinner.png'
 
 const ProfileLayout = () => {
   const { token, isLoading } = useAuth()
@@ -12,7 +13,7 @@ const ProfileLayout = () => {
       {isLoading ? (
         <div className="w-full mb-3">
           <img
-            src="https://i.stack.imgur.com/RgwrS.png"
+            src={spinner}
             alt="spinner"
             className="w-8 h-8 mx-auto duration-1000 animate-spin"
           />

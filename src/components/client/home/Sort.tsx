@@ -1,6 +1,7 @@
 import { ChangeEvent, FC } from 'react'
 import FilterModalButton from './FilterModalButton'
 import { useSearchParams } from 'react-router-dom'
+import useResetPagination from '../../../hooks/useResetPagination'
 
 const sortOptions = [
   { label: 'Sort By', value: '' },
@@ -41,11 +42,11 @@ const Sort: FC = () => {
   // handle Products per page change
   const handleProdutPerPageChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const query = e.target.value.trim()
-
     setSearchParams(sp => {
       if (query === '') sp.delete('limit')
       else sp.set('limit', query)
 
+      sp.delete('page')
       return sp
     })
   }

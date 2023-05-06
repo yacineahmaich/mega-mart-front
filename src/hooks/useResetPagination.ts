@@ -7,7 +7,7 @@ const useResetPagination = () => {
   return useCallback(() => {
     setSearchParams(sp => {
       sp.delete('page')
-      console.log(sp.toString())
+
       return sp
     })
   }, [setSearchParams])
