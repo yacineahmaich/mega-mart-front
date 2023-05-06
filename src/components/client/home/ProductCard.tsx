@@ -1,12 +1,17 @@
 import { FC } from 'react'
 import { ShoppingCartIcon, HeartIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
+import { useCart } from '../../../context/Cart'
 
 type Props = {
   product: Product
 }
 
 const ProductCard: FC<Props> = ({ product }) => {
+  const { addToCart, productInCart } = useCart()
+
+  const inCart = productInCart(product.id)
+
   return (
     <article className="flex flex-col overflow-hidden bg-white border shadow-sm rounded-xl border-gray">
       <div className="relative bg-light h-52 group">
@@ -46,9 +51,61 @@ const ProductCard: FC<Props> = ({ product }) => {
             )} */}
           </div>
           <div>
-            <button className="p-2 text-white transition-colors rounded-full bg-primary-500 hover:bg-primary-600">
-              <ShoppingCartIcon className="w-4 h-4 sm:w-5 sm:h-5" />
-            </button>
+            {inCart ? (
+              <span>
+                <svg
+                  viewBox="0 0 133 133"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlnsXlink="http://www.w3.org/1999/xlink"
+                  className="w-10 h-10"
+                >
+                  <g
+                    id="check-group"
+                    stroke="none"
+                    stroke-width="1"
+                    fill="none"
+                    fill-rule="evenodd"
+                  >
+                    <circle
+                      id="filled-circle"
+                      className="fill-primary-500"
+                      cx="66.5"
+                      cy="66.5"
+                      r="54.5"
+                    />
+                    <circle
+                      id="white-circle"
+                      fill="#FFFFFF"
+                      cx="66.5"
+                      cy="66.5"
+                      r="55.5"
+                    />
+                    <circle
+                      id="outline"
+                      className="stroke-primary-500"
+                      stroke-width="4"
+                      cx="66.5"
+                      cy="66.5"
+                      r="54.5"
+                    />
+                    <polyline
+                      id="check"
+                      stroke="#FFFFFF"
+                      stroke-width="5.5"
+                      points="41 70 56 85 92 49"
+                    />
+                  </g>
+                </svg>
+              </span>
+            ) : (
+              <button
+                className="flex items-center justify-center w-10 h-10 text-white transition-colors rounded-full bg-primary-500 hover:bg-primary-600"
+                onClick={() => addToCart(product.id)}
+              >
+                <ShoppingCartIcon className="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
+            )}
           </div>
         </div>
       </div>
