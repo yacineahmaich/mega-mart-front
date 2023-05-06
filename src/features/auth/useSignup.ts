@@ -17,11 +17,7 @@ const signup = async (credentials: SignupCredentials) => {
 
     return response.data
   } catch (error) {
-    if (isAxiosError(error)) {
-      throw error.response.data
-    }
-
-    throw error
+    throw isAxiosError(error) ? error.response.data : error
   }
 }
 
@@ -30,6 +26,7 @@ export const useSignup = () => {
 
   return useMutation({
     mutationFn: signup,
+    retry: false,
     onSuccess: data => {
       setToken(data.token)
       setUser(data.user)
@@ -38,6 +35,5 @@ export const useSignup = () => {
       setToken(null)
       setUser(null)
     },
-    retry: false,
   })
 }

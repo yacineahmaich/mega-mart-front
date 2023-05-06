@@ -7,37 +7,45 @@ const Profile = () => {
         <span className="align-middle">Profile</span>
       </h3>
 
-      <div className="grid grid-cols-2 gap-4 p-4 border-2 rounded-lg border-dark-500">
-        <div className="p-3 space-y-4">
-          <h4 className="text-xl font-bold">Name</h4>
-
-          <p>Yacine</p>
-        </div>
-        <div className="p-3 space-y-4">
-          <h4 className="text-xl font-bold">User created At</h4>
-
-          <p>2023 04 12</p>
-        </div>
-        <div className="p-3 space-y-4">
-          <h4 className="text-xl font-bold">Country</h4>
-
-          <p>Morocco</p>
-        </div>
-        <div className="p-3 space-y-4">
-          <h4 className="text-xl font-bold">Email</h4>
-
-          <p>yacine@gmail.com</p>
-        </div>
-        <div className="p-3 space-y-4">
-          <h4 className="text-xl font-bold">Last Order</h4>
-
-          <p>2023 09 12</p>
+      <div className="flex border divide-x divide-gray border-gray">
+        <div className="w-1/2 divide-y divide-gray">
+          <div className="p-6">
+            <h5 className="text-lg font-semibold text-dark-500">Name</h5>
+            <span className="text-sm font-bold text-dark-700">
+              Yacine Ahmaich
+            </span>
+          </div>
+          <div className="p-6">
+            <h5 className="text-lg font-semibold text-dark-500">Email</h5>
+            <span className="text-sm font-bold text-dark-700">
+              yacine@gmail.com
+            </span>
+          </div>
+          <div className="p-6">
+            <h5 className="text-lg font-semibold text-dark-500">Identifier:</h5>
+            <span className="text-sm font-bold text-dark-700">343</span>
+          </div>
         </div>
 
-        <div className="p-3 space-y-4">
-          <h4 className="text-xl font-bold">User created At</h4>
-
-          <p>2023 04 12</p>
+        <div className="w-1/2 divide-y divide-gray">
+          <div className="p-6">
+            <h5 className="text-lg font-semibold text-dark-500">
+              Total Orders
+            </h5>
+            <span className="text-sm font-bold text-dark-700">12</span>
+          </div>
+          <div className="p-6">
+            <h5 className="text-lg font-semibold text-dark-500">
+              Total spented amount
+            </h5>
+            <span className="text-sm font-bold text-dark-700">$234</span>
+          </div>
+          <div className="p-6">
+            <h5 className="text-lg font-semibold text-dark-500">Join at</h5>
+            <span className="text-sm font-bold text-dark-700">
+              23 / 09 / 15
+            </span>
+          </div>
         </div>
       </div>
     </div>
