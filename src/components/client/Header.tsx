@@ -4,7 +4,7 @@ import {
   UserCircleIcon,
   MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline'
-import MiniCartButton from './MiniCartButton'
+import MiniCartButton from './miniCart/MiniCartButton'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../context/Auth'
 

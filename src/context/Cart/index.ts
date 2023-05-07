@@ -6,12 +6,14 @@ type CartCtx = {
   items: object
   addToCart: (id: string) => void
   removeFromCart: (id: string) => void
+  changeQuantity: (id: string, quantity: number) => void
 }
 
 const CartContext = createContext<CartCtx>({
   items: {},
   addToCart: () => null,
   removeFromCart: () => null,
+  changeQuantity: () => null,
 })
 
 export const useCart = () => useContext(CartContext)

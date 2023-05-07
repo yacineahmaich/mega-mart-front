@@ -15,7 +15,7 @@ const ListProducts: FC = () => {
   const { data, isLoading } = useProducts(params)
   return (
     <section className="flex flex-col justify-between w-full min-h-screen">
-      <div className="relative grid w-full grid-cols-2 gap-4 lg:gap-8 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      <div className="relative grid w-full grid-cols-2 gap-4 mb-10 lg:mb-14 lg:gap-8 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {data.data?.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}

@@ -19,6 +19,15 @@ const CartProvider: FC<Props> = ({ children }) => {
     }))
   }
 
+  // increate quantity
+  const changeQuantity = (id: string, quantity: number) => {
+    setItems(items =>
+      items[id]
+        ? { ...items, [id]: { ...items[id], quantity: quantity } }
+        : items
+    )
+  }
+
   // remove from cart
   const removeFromCart = (id: string) => {
     setItems(items =>
@@ -37,6 +46,7 @@ const CartProvider: FC<Props> = ({ children }) => {
         items,
         addToCart,
         removeFromCart,
+        changeQuantity,
       }}
     >
       {children}

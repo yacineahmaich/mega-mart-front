@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ShoppingBagIcon } from '@heroicons/react/24/solid'
 import MiniCart from './MiniCart'
-import { useCart } from '../../context/Cart'
+import { useCart } from '../../../context/Cart'
 
 const MiniCartButton = () => {
   const [isOpen, setIsOpen] = useState(false)
