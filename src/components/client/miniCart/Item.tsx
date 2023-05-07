@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import { TrashIcon } from '@heroicons/react/24/outline'
+import { ExclamationTriangleIcon, TrashIcon } from '@heroicons/react/24/outline'
 import { PlusSmallIcon, MinusSmallIcon } from '@heroicons/react/24/solid'
 import moment from 'moment'
 import { useCart } from '../../../context/Cart'
@@ -13,9 +13,10 @@ const Item: FC<Props> = ({ product }) => {
   const [quantity, setQuantity] = useState<number>(items[product.id]?.quantity)
 
   const increaseQty = () => {
+    if (quantity === product.quantity) return
     changeQuantity(product.id, quantity + 1)
     setQuantity(q => {
-      return q >= product.quantity ? q : q + 1
+      return q + 1
     })
   }
   const decreaseQty = () => {
@@ -55,31 +56,41 @@ const Item: FC<Props> = ({ product }) => {
             </div>
           </div>
 
-          <div className="flex items-center justify-between w-full mt-auto">
-            <div className="flex">
-              <button
-                className="px-4 border rounded-l-md border-light text-primary-400"
-                onClick={increaseQty}
-              >
-                <PlusSmallIcon className="w-4 h-4" />
-              </button>
-              <input
-                value={quantity}
-                type="number"
-                className="w-14 py-1 border-[1px] outline-0 border-y border-x-0 focus:border-light font-medium text-dark-600 text-center  border-light disabled:bg-white"
-                disabled
-              />
-              <button
-                className="px-4 border rounded-r-md border-light text-danger-400"
-                onClick={decreaseQty}
-              >
-                <MinusSmallIcon className="w-4 h-4 " />
-              </button>
-            </div>
-            <div>
-              <span className="text-lg font-bold text-primary-500">
-                ${product.price}
-              </span>
+          <div className="mt-auto">
+            {quantity === product.quantity && (
+              <p className="text-xs font-bold text-danger-400">
+                <ExclamationTriangleIcon className="inline w-5 h-5" />
+                &nbsp;
+                {/* <span>No more quantity to add.</span> */}
+                <span>You reach limit quantity</span>
+              </p>
+            )}
+            <div className="flex items-center justify-between w-full mt-1 ">
+              <div className="flex">
+                <button
+                  className="px-4 border rounded-l-md border-light text-primary-400"
+                  onClick={increaseQty}
+                >
+                  <PlusSmallIcon className="w-4 h-4" />
+                </button>
+                <input
+                  value={quantity}
+                  type="number"
+                  className="w-14 py-1 border-[1px] outline-0 border-y border-x-0 focus:border-light font-medium text-dark-600 text-center  border-light disabled:bg-white"
+                  disabled
+                />
+                <button
+                  className="px-4 border rounded-r-md border-light text-danger-400"
+                  onClick={decreaseQty}
+                >
+                  <MinusSmallIcon className="w-4 h-4 " />
+                </button>
+              </div>
+              <div>
+                <span className="text-lg font-bold text-primary-500">
+                  ${product.price}
+                </span>
+              </div>
             </div>
           </div>
         </div>
