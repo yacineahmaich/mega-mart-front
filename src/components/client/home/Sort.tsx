@@ -1,7 +1,6 @@
 import { ChangeEvent, FC } from 'react'
 import FilterModalButton from './FilterModalButton'
 import { useSearchParams } from 'react-router-dom'
-import useResetPagination from '../../../hooks/useResetPagination'
 
 const sortOptions = [
   { label: 'Sort By', value: '' },

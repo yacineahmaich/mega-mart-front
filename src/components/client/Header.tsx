@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import spinnerIcon from '../../assets/icons/spinner.svg'
 import {
   HeartIcon,
   UserCircleIcon,
