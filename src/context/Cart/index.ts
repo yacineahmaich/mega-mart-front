@@ -1,17 +1,17 @@
 import { createContext, useContext } from 'react'
 
-export type CartItem = { id: string; quantity: number }
+export type CartItem = { quantity: number; addedAt: string }
 
 type CartCtx = {
-  items: CartItem[]
+  items: object
   addToCart: (id: string) => void
-  productInCart: (id: string) => boolean
+  removeFromCart: (id: string) => void
 }
 
 const CartContext = createContext<CartCtx>({
-  items: [],
+  items: {},
   addToCart: () => null,
-  productInCart: () => null,
+  removeFromCart: () => null,
 })
 
 export const useCart = () => useContext(CartContext)

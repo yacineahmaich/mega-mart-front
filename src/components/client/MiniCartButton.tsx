@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { ShoppingBagIcon } from '@heroicons/react/24/solid'
 import MiniCart from './MiniCart'
+import { useCart } from '../../context/Cart'
 
 const MiniCartButton = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const { items } = useCart()
 
   const onOpen = () => setIsOpen(true)
   const onClose = () => setIsOpen(false)
@@ -16,7 +18,7 @@ const MiniCartButton = () => {
       <ShoppingBagIcon className="w-6 h-6 sm:h-6 sm:w-6" />
       <span className="hidden sm:block">Cart</span>
       <span className="absolute top-0 right-0 flex items-center justify-center w-5 h-5 text-xs font-bold rounded-full text-dark-600 bg-warning-500 translate-x-1/3 -translate-y-1/3">
-        2
+        {Object.entries(items).length}
       </span>
       <MiniCart isOpen={isOpen} onClose={onClose} />
     </button>

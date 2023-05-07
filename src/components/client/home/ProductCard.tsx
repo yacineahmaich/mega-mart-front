@@ -8,9 +8,7 @@ type Props = {
 }
 
 const ProductCard: FC<Props> = ({ product }) => {
-  const { addToCart, productInCart } = useCart()
-
-  const inCart = productInCart(product.id)
+  const { addToCart, items } = useCart()
 
   return (
     <article className="flex flex-col overflow-hidden bg-white border shadow-sm rounded-xl border-gray">
@@ -51,7 +49,7 @@ const ProductCard: FC<Props> = ({ product }) => {
             )} */}
           </div>
           <div>
-            {inCart ? (
+            {items[product.id] ? (
               <span>
                 <svg
                   viewBox="0 0 133 133"

@@ -22,7 +22,7 @@ const Header: FC = () => {
       </section>
 
       {!isLoading && (
-        <header className="w-full px-3 duration-200 animate-in slide-in-from-top-4 bg-primary-800 md:px-6">
+        <header className="w-full px-3 duration-100 animate-in slide-in-from-top-4 bg-primary-800 md:px-6">
           <div className="flex flex-wrap items-center justify-between py-4 min-h-header">
             <div>
               <Link to="/">
@@ -56,22 +56,7 @@ const Header: FC = () => {
                       {user.name}
                     </span>
                   </div>
-                </Link> /*: isLoading ? (
-                <span>
-                  <div
-                    className={`flex flex-col items-center text-sm font-medium text-white transition-colors cursor-default hover:text-slate-200 ${
-                      isLoading ? 'animate-pulse' : ''
-                    }`}
-                  >
-                    <UserCircleIcon className="w-6 h-6 sm:h-8 sm:w-8" />
-                    <img
-                      src={spinnerIcon}
-                      alt="spinner"
-                      className="w-5 h-5 duration-700 animate-spin"
-                    />
-                  </div>
-                </span>
-              ) */
+                </Link>
               ) : (
                 <Link to="/account/login">
                   <div className="flex flex-col items-center space-y-0.5 text-sm font-medium text-white transition-colors cursor-pointer hover:text-slate-200">
