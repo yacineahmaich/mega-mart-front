@@ -1,11 +1,20 @@
 import {
+  ArrowLeftOnRectangleIcon,
   PencilSquareIcon,
   ShoppingCartIcon,
   UserIcon,
 } from '@heroicons/react/24/solid'
 import { NavLink } from 'react-router-dom'
+import { useAuth } from '../../../context/Auth'
 
 const SideNav = () => {
+  const { setUser, setToken } = useAuth()
+
+  const handleLogout = () => {
+    setUser(null)
+    setToken(null)
+  }
+
   return (
     <div className="flex flex-col items-center gap-6 border border-gray bg-warning-400">
       <div className="px-10 py-4 space-y-4">
@@ -68,6 +77,15 @@ const SideNav = () => {
                 Edit Profile
               </span>
             </NavLink>
+          </li>
+          <li>
+            <button
+              className="flex items-center w-full gap-2 p-3 text-white bg-danger-600 hover:bg-danger-500"
+              onClick={handleLogout}
+            >
+              <ArrowLeftOnRectangleIcon className="w-5 h-5" />
+              <span className="text-sm font-bold align-bottom">Logout</span>
+            </button>
           </li>
         </ul>
       </div>
