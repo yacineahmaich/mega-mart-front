@@ -63,9 +63,9 @@ const ProductCard: FC<Props> = ({ product }) => {
                   <g
                     id="check-group"
                     stroke="none"
-                    stroke-width="1"
+                    strokeWidth="1"
                     fill="none"
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                   >
                     <circle
                       id="filled-circle"
@@ -84,7 +84,7 @@ const ProductCard: FC<Props> = ({ product }) => {
                     <circle
                       id="outline"
                       className="stroke-primary-500"
-                      stroke-width="4"
+                      strokeWidth="4"
                       cx="66.5"
                       cy="66.5"
                       r="54.5"
@@ -92,7 +92,7 @@ const ProductCard: FC<Props> = ({ product }) => {
                     <polyline
                       id="check"
                       stroke="#FFFFFF"
-                      stroke-width="5.5"
+                      strokeWidth="5.5"
                       points="41 70 56 85 92 49"
                     />
                   </g>
@@ -100,7 +100,7 @@ const ProductCard: FC<Props> = ({ product }) => {
               </span>
             ) : (
               <button
-                className="flex items-center justify-center w-10 h-10 text-white transition-colors rounded-full bg-primary-500 hover:bg-primary-600"
+                className="flex items-center justify-center w-10 h-10 text-white transition-colors rounded-full bg-primary-500 hover:bg-primary-600 active:ring active:ring-primary-500 active:ring-offset-1 active:scale-90"
                 onClick={() => addToCart(product.id)}
               >
                 <ShoppingCartIcon className="w-4 h-4 sm:w-5 sm:h-5" />

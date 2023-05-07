@@ -22,7 +22,7 @@ const Header: FC = () => {
       </section>
 
       {!isLoading && (
-        <header className="w-full px-3 duration-300 animate-in slide-in-from-top-4 bg-primary-800 md:px-6">
+        <header className="w-full px-3 duration-200 animate-in slide-in-from-top-4 bg-primary-800 md:px-6">
           <div className="flex flex-wrap items-center justify-between py-4 min-h-header">
             <div>
               <Link to="/">

@@ -1,24 +1,42 @@
 import { FC } from 'react'
-import { ChevronDoubleRightIcon } from '@heroicons/react/24/solid'
-import Sort from '../../components/client/home/Sort'
-import Filter from '../../components/client/home/Filter'
-import ListProducts from '../../components/client/home/ListProducts'
-import Subscribe from '../../components/client/home/Subscribe'
+import spinner from '../../assets/icons/spinner.png'
+import queryString from 'query-string'
+import HomeProducts from '../../components/client/home/HomeProducts'
+import { useSearchParams } from 'react-router-dom'
+import { useProducts } from '../../features/products/queries'
 
 const Home: FC = () => {
-  return (
-    <div className="min-h-screen px-3 space-y-6 sm:space-y-8 md:px-6">
-      <h2 className="text-sm font-semibold sm:text-lg text-dark-700">
-        <ChevronDoubleRightIcon className="inline w-4 mr-1 font-bold align-middle" />
-        Thousands of products to meet all your desires
-      </h2>
+  const [searchParams] = useSearchParams()
+  const params = queryString.parse(searchParams.toString(), {
+    arrayFormat: 'comma',
+  })
 
-      <section className="grid grid-cols-1 gap-y-3 md:gap-4 md:grid-cols-[250px_auto]">
-        <Sort />
-        <Filter />
-        <ListProducts />
-      </section>
-      <Subscribe />
+  const { isLoading, isFetching } = useProducts(params)
+
+  return (
+    <div className="min-h-screen px-3 md:px-6">
+      {isFetching && !isLoading && (
+        <div className="fixed left-1/2 top-4 flex items-center z-[99] gap-2 px-3 py-1 bg-white shadow">
+          <img
+            src={spinner}
+            alt="spinner"
+            className="w-4 h-4 mx-auto animate-spin"
+          />
+          <span className="text-sm font-bold">Loading...</span>
+        </div>
+      )}
+
+      {isLoading ? (
+        <div>
+          <img
+            src={spinner}
+            alt="spinner"
+            className="w-8 h-8 mx-auto duration-1000 mt-28 animate-spin"
+          />
+        </div>
+      ) : (
+        <HomeProducts />
+      )}
     </div>
   )
 }
