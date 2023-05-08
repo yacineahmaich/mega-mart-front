@@ -19,9 +19,12 @@ const Cart: FC<Props> = ({ isOpen, onClose }) => {
   const { data, isLoading, isFetching } = useProducts({
     productIds: ['-1', ...Object.keys(items)],
   })
-
+  console.log(items)
   const products = data?.data ?? []
-  const totalAmount = products.reduce((total, { price }) => price + total, 0)
+  const totalAmount = products.reduce(
+    (total, { id, price }) => price * items[id]?.quantity + total,
+    0
+  )
 
   const goToCart = () => {
     navigate('/cart')
@@ -83,7 +86,7 @@ const Cart: FC<Props> = ({ isOpen, onClose }) => {
               )}
 
               {isFetching && (
-                <div className="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-light/40 backdrop-blur-sm">
+                <div className="fixed top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-light/40 backdrop-blur-sm">
                   <img
                     src={spinner}
                     alt="spinner"

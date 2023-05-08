@@ -10,6 +10,7 @@ type Props = {
 
 const Item: FC<Props> = ({ product }) => {
   const { items, removeFromCart, changeQuantity } = useCart()
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false)
   const [quantity, setQuantity] = useState<number>(items[product.id]?.quantity)
 
   const increaseQty = () => {
@@ -20,14 +21,41 @@ const Item: FC<Props> = ({ product }) => {
     })
   }
   const decreaseQty = () => {
+    if (quantity === 1) return setIsConfirmOpen(true)
     changeQuantity(product.id, quantity - 1)
     setQuantity(q => {
-      return q === 1 ? q : q - 1
+      return q - 1
     })
   }
 
   return (
-    <li className="py-3" key={product.id}>
+    <li className="relative py-3" key={product.id}>
+      {/* delete confirm */}
+      {isConfirmOpen && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center w-full h-full gap-4 bg-white animate-in slide-in-from-top-2">
+          <p className="font-semibold text-center text-dark-700 text-md">
+            Are you sure ! You want to delete it ?
+          </p>
+          <div className="space-x-2">
+            <button
+              className="w-24 py-1 text-sm font-medium transition-colors border rounded-full border-primary-600 text-dark-700 active:ring-2 active:ring-primary-500 active:ring-offset-1 hover:bg-primary-600 hover:text-white"
+              onClick={() => setIsConfirmOpen(false)}
+            >
+              Cancel{' '}
+            </button>
+            <button
+              className="w-24 py-1 text-sm font-medium text-white border rounded-full border-primary-600 bg-primary-600 active:ring-2 active:ring-primary-500 active:ring-offset-1"
+              onClick={() => {
+                removeFromCart(product.id)
+                setIsConfirmOpen(false)
+              }}
+            >
+              Sure
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="flex gap-4">
         <div className="h-32 overflow-hidden w-28 rounded-xl">
           <img
@@ -50,7 +78,7 @@ const Item: FC<Props> = ({ product }) => {
               </span>
             </div>
             <div>
-              <button onClick={() => removeFromCart(product.id)}>
+              <button onClick={() => setIsConfirmOpen(true)}>
                 <TrashIcon className="w-5 h-5 text-danger-500 hover:text-danger-900" />
               </button>
             </div>
@@ -58,7 +86,7 @@ const Item: FC<Props> = ({ product }) => {
 
           <div className="mt-auto">
             {quantity === product.quantity && (
-              <p className="text-xs font-bold text-danger-400">
+              <p className="text-xs font-bold animate-in slide-in-from-bottom-1 text-danger-400">
                 <ExclamationTriangleIcon className="inline w-5 h-5" />
                 &nbsp;
                 {/* <span>No more quantity to add.</span> */}
