@@ -57,7 +57,7 @@ const Item: FC<Props> = ({ product }) => {
       )}
 
       <div className="flex gap-4">
-        <div className="h-32 overflow-hidden w-28 rounded-xl">
+        <div className="w-20 h-24 overflow-hidden md:w-24 md:h-28 lg:h-32 lg:w-28 rounded-xl">
           <img
             src={product.images[0].url}
             alt={product.name}
@@ -69,7 +69,7 @@ const Item: FC<Props> = ({ product }) => {
           <div className="flex justify-between gap-4">
             <div>
               <a href="#" className="leading-5 hover:underline">
-                <h3 className="font-medium text-dark-700 line-clamp-3 text-md">
+                <h3 className="text-sm font-medium text-dark-700 line-clamp-3 md:text-md hover:underline hover:text-primary-400">
                   {product.name}
                 </h3>
               </a>

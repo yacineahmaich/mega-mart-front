@@ -67,7 +67,7 @@ const Signup = () => {
               <ErrorMessage
                 name="name"
                 render={msg => (
-                  <p className="absolute mt-1 text-xs font-bold top-full text-danger-400">
+                  <p className="absolute mt-1 text-xs font-bold duration-200 top-full animate-in slide-in-from-top-1 text-danger-400">
                     <ExclamationTriangleIcon className="inline w-5 h-5" />
                     &nbsp;
                     <span>{msg}</span>
@@ -93,7 +93,7 @@ const Signup = () => {
               <ErrorMessage
                 name="email"
                 render={msg => (
-                  <p className="absolute mt-1 text-xs font-bold top-full text-danger-400">
+                  <p className="absolute mt-1 text-xs font-bold duration-200 top-full animate-in slide-in-from-top-1 text-danger-400">
                     <ExclamationTriangleIcon className="inline w-5 h-5" />
                     &nbsp;
                     <span>{msg}</span>
@@ -119,7 +119,7 @@ const Signup = () => {
               <ErrorMessage
                 name="password"
                 render={msg => (
-                  <p className="absolute mt-1 text-xs font-bold top-full text-danger-400">
+                  <p className="absolute mt-1 text-xs font-bold duration-200 animate-in slide-in-from-top-1 top-full text-danger-400">
                     <ExclamationTriangleIcon className="inline w-5 h-5" />
                     &nbsp;
                     <span>{msg}</span>
@@ -145,7 +145,7 @@ const Signup = () => {
               <ErrorMessage
                 name="passwordConfirmation"
                 render={msg => (
-                  <p className="absolute mt-1 text-xs font-bold top-full text-danger-400">
+                  <p className="absolute mt-1 text-xs font-bold duration-200 animate-in slide-in-from-top-1 top-full text-danger-400">
                     <ExclamationTriangleIcon className="inline w-5 h-5" />
                     &nbsp;
                     <span>{msg}</span>

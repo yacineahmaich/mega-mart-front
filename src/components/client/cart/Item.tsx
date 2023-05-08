@@ -3,6 +3,7 @@ import { ExclamationTriangleIcon, TrashIcon } from '@heroicons/react/24/outline'
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom'
 import { useCart } from '../../../context/Cart'
+import moment from 'moment'
 
 type Props = {
   product: Product
@@ -32,7 +33,7 @@ const Item: FC<Props> = ({ product }) => {
     <article className="relative flex p-4 border bg-light/40 border-gray rounded-xl">
       {/* delete confirm */}
       {isConfirmOpen && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center w-full h-full gap-4 bg-white animate-in slide-in-from-top-2">
+        <div className="absolute inset-0 flex flex-col items-center justify-center w-full h-full gap-4 bg-white rounded-xl animate-in slide-in-from-top-2">
           <p className="font-semibold text-center text-dark-700 text-md">
             Are you sure ! You want to delete it ?
           </p>
@@ -55,23 +56,27 @@ const Item: FC<Props> = ({ product }) => {
           </div>
         </div>
       )}
-      <div className="mr-6 w-28 h-28 md:w-32 md:h-32">
+      <div className="w-24 mr-6 h-28 md:w-28 md:h-32">
         <img
           src={product.images[0].url}
           alt={product.name}
           className="object-cover w-full h-full rounded-lg "
         />
       </div>
-      <div className="flex flex-col items-start justify-between">
+      <div className="flex flex-col items-start">
         <div>
           <Link to={`/${product.id}`}>
-            <h4 className="max-w-sm font-semibold leading-6 text-md md:text-lg text-dark-600 hover:underline">
+            <h4 className="max-w-sm font-semibold leading-6 text-md md:text-lg text-dark-600 hover:underline hover:text-primary-400">
               {product.name}
             </h4>
           </Link>
         </div>
 
-        <div>
+        <span className="mt-2 text-xs text-dark-500">
+          Added {moment(items[product.id]?.addedAt).fromNow()}
+        </span>
+
+        <div className="mt-auto">
           {quantity === product.quantity && (
             <p className="mb-1 text-xs font-bold animate-in slide-in-from-bottom-1 text-danger-400">
               <ExclamationTriangleIcon className="inline w-5 h-5" />
