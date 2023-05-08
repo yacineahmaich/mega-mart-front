@@ -1,20 +1,28 @@
+import { FC } from 'react'
 import { BookOpenIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
 import { HandThumbUpIcon, TruckIcon } from '@heroicons/react/24/solid'
 
-const Checkout = () => {
+type Props = {
+  totalProducts: number
+  totalAmount: number
+}
+
+const Checkout: FC<Props> = ({ totalProducts, totalAmount }) => {
   return (
     <div className="flex flex-col w-full gap-6 md:w-1/3 right-6">
       <article className="p-3 bg-white border divide-y rounded-lg divide-gray border-gray">
         <div className="flex items-center justify-between py-3 text-dark-700">
-          <span>Total products</span>
-          <span>22&nbsp;products</span>
+          <span className="font-medium text-dark-600">Total products</span>
+          <span className="text-lg font-bold text-dark-500">
+            x{totalProducts}
+          </span>
         </div>
         <div className="flex items-center justify-between py-3 text-lg font-bold text-primary-500">
           <span>TOTAL</span>
-          <span>11 165,61&nbsp;USD</span>
+          <span>${totalAmount}</span>
         </div>
       </article>
-      <button className="py-3 font-semibold text-white rounded-full bg-primary-600">
+      <button className="py-3 font-semibold text-white rounded-full hover:bg-primary-700 bg-primary-600">
         Validate Cart
       </button>
 
