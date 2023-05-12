@@ -1,6 +1,5 @@
-import React from 'react'
 import { Disclosure } from '@headlessui/react'
-import { ChevronUpIcon, StarIcon } from '@heroicons/react/24/solid'
+import { ChevronUpIcon } from '@heroicons/react/24/solid'
 
 const RatingFilterSidebar = () => {
   return (
@@ -15,45 +14,7 @@ const RatingFilterSidebar = () => {
               } h-4 w-4`}
             />
           </Disclosure.Button>
-          <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-            <div className="space-y-2">
-              <button className="flex">
-                <StarIcon className="w-3 h-3 text-yellow-400" />
-                <StarIcon className="w-3 h-3 text-gray" />
-                <StarIcon className="w-3 h-3 text-gray" />
-                <StarIcon className="w-3 h-3 text-gray" />
-                <StarIcon className="w-3 h-3 text-gray" />
-              </button>
-              <button className="flex">
-                <StarIcon className="w-3 h-3 text-yellow-400" />
-                <StarIcon className="w-3 h-3 text-yellow-400" />
-                <StarIcon className="w-3 h-3 text-gray" />
-                <StarIcon className="w-3 h-3 text-gray" />
-                <StarIcon className="w-3 h-3 text-gray" />
-              </button>
-              <button className="flex">
-                <StarIcon className="w-3 h-3 text-yellow-400" />
-                <StarIcon className="w-3 h-3 text-yellow-400" />
-                <StarIcon className="w-3 h-3 text-yellow-400" />
-                <StarIcon className="w-3 h-3 text-gray" />
-                <StarIcon className="w-3 h-3 text-gray" />
-              </button>
-              <button className="flex">
-                <StarIcon className="w-3 h-3 text-yellow-400" />
-                <StarIcon className="w-3 h-3 text-yellow-400" />
-                <StarIcon className="w-3 h-3 text-yellow-400" />
-                <StarIcon className="w-3 h-3 text-yellow-400" />
-                <StarIcon className="w-3 h-3 text-gray" />
-              </button>
-              <button className="flex">
-                <StarIcon className="w-3 h-3 text-yellow-400" />
-                <StarIcon className="w-3 h-3 text-yellow-400" />
-                <StarIcon className="w-3 h-3 text-yellow-400" />
-                <StarIcon className="w-3 h-3 text-yellow-400" />
-                <StarIcon className="w-3 h-3 text-yellow-400" />
-              </button>
-            </div>
-          </Disclosure.Panel>
+          <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500"></Disclosure.Panel>
         </>
       )}
     </Disclosure>
