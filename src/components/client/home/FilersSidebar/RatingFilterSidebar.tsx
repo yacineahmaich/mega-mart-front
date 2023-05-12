@@ -1,0 +1,63 @@
+import React from 'react'
+import { Disclosure } from '@headlessui/react'
+import { ChevronUpIcon, StarIcon } from '@heroicons/react/24/solid'
+
+const RatingFilterSidebar = () => {
+  return (
+    <Disclosure>
+      {({ open }) => (
+        <>
+          <Disclosure.Button className="flex items-center justify-between w-full px-4 py-1.5 text-sm font-medium text-left border rounded-md focus:outline-none border-gray">
+            <span>Assesemment</span>
+            <ChevronUpIcon
+              className={`${
+                open ? 'rotate-180 transition-transform transform' : ''
+              } h-4 w-4`}
+            />
+          </Disclosure.Button>
+          <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+            <div className="space-y-2">
+              <button className="flex">
+                <StarIcon className="w-3 h-3 text-yellow-400" />
+                <StarIcon className="w-3 h-3 text-gray" />
+                <StarIcon className="w-3 h-3 text-gray" />
+                <StarIcon className="w-3 h-3 text-gray" />
+                <StarIcon className="w-3 h-3 text-gray" />
+              </button>
+              <button className="flex">
+                <StarIcon className="w-3 h-3 text-yellow-400" />
+                <StarIcon className="w-3 h-3 text-yellow-400" />
+                <StarIcon className="w-3 h-3 text-gray" />
+                <StarIcon className="w-3 h-3 text-gray" />
+                <StarIcon className="w-3 h-3 text-gray" />
+              </button>
+              <button className="flex">
+                <StarIcon className="w-3 h-3 text-yellow-400" />
+                <StarIcon className="w-3 h-3 text-yellow-400" />
+                <StarIcon className="w-3 h-3 text-yellow-400" />
+                <StarIcon className="w-3 h-3 text-gray" />
+                <StarIcon className="w-3 h-3 text-gray" />
+              </button>
+              <button className="flex">
+                <StarIcon className="w-3 h-3 text-yellow-400" />
+                <StarIcon className="w-3 h-3 text-yellow-400" />
+                <StarIcon className="w-3 h-3 text-yellow-400" />
+                <StarIcon className="w-3 h-3 text-yellow-400" />
+                <StarIcon className="w-3 h-3 text-gray" />
+              </button>
+              <button className="flex">
+                <StarIcon className="w-3 h-3 text-yellow-400" />
+                <StarIcon className="w-3 h-3 text-yellow-400" />
+                <StarIcon className="w-3 h-3 text-yellow-400" />
+                <StarIcon className="w-3 h-3 text-yellow-400" />
+                <StarIcon className="w-3 h-3 text-yellow-400" />
+              </button>
+            </div>
+          </Disclosure.Panel>
+        </>
+      )}
+    </Disclosure>
+  )
+}
+
+export default RatingFilterSidebar

@@ -24,15 +24,6 @@ const DisclosureItem: FC<Props> = props => {
               } h-4 w-4 text-dark-500`}
             />
           </Disclosure.Button>
-          {/* <Transition
-            as={Fragment}
-            enter="transition  duration-100 ease-out"
-            enterFrom="transform  opacity-0"
-            enterTo="transform  opacity-100"
-            leave="transition duration-100  ease-out"
-            leaveFrom="transform  opacity-100"
-            leaveTo="transform  opacity-0"
-          > */}
           <Disclosure.Panel
             className={`px-4 pt-5 pb-3 rounded-b-lg text-sm text-gray-500 ${
               open ? 'border border-gray' : ''
@@ -40,7 +31,6 @@ const DisclosureItem: FC<Props> = props => {
           >
             {props.children}
           </Disclosure.Panel>
-          {/* </Transition> */}
         </>
       )}
     </Disclosure>

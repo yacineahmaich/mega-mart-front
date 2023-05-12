@@ -1,27 +1,15 @@
 import { FC, useState, ChangeEvent, useEffect } from 'react'
 import DisclosureItem from '../../../ui/DisclosureItem'
 import { useSearchParams } from 'react-router-dom'
-import { useCategories } from '../../../../features/categories/queries'
-import useResetPagination from '../../../../hooks/useResetPagination'
-
-// const categories = [
-//   {
-//     id: '1',
-//     name: 'Club',
-//   },
-//   {
-//     id: '2',
-//     name: 'National Team',
-//   },
-// ]
+import { useCategories } from '../../../../features/client/categories/queries'
 
 const CategoryFilter: FC = () => {
-  const resetPagination = useResetPagination()
-  const { data } = useCategories()
   const [searchParams, setSearchParams] = useSearchParams()
   const [selectedCatgegries, setSelectedCategories] = useState<string[]>(
     searchParams.get('cat')?.split(',') ?? []
   )
+  const { data } = useCategories()
+  const categories = data?.data
 
   const handleSelectCategory = (
     e: ChangeEvent<HTMLInputElement>,
@@ -29,7 +17,11 @@ const CategoryFilter: FC = () => {
   ) => {
     const checked = e.target.checked
 
-    resetPagination()
+    // reset pagination
+    setSearchParams(sp => {
+      sp.delete('page')
+      return sp
+    })
 
     if (!checked) {
       setSelectedCategories(prev => prev.filter(id => id !== catId))
@@ -51,13 +43,12 @@ const CategoryFilter: FC = () => {
   return (
     <DisclosureItem title="Category">
       <ul className="space-y-2">
-        {data?.data?.map(cat => (
+        {categories?.map(cat => (
           <li key={cat.id}>
             <label htmlFor={cat.name} className="space-x-3 cursor-pointer">
               <input
                 type="checkbox"
                 id={cat.name}
-                name="categories"
                 value={cat.id}
                 className="rounded focus:ring-0"
                 onChange={e => handleSelectCategory(e, cat.id.toString())}

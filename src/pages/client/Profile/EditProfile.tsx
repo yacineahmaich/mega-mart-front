@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { useAuth } from '../../../context/Auth'
 import { updateProfileSchema } from '../../../utils/validation/user'
 import { toast } from 'react-hot-toast'
-import { useUpdateProfile } from '../../../features/account/mutations'
+import { useUpdateProfile } from '../../../features/client/account/mutations'
 
 const EditProfile = () => {
   const { user } = useAuth()

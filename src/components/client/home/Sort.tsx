@@ -34,6 +34,8 @@ const Sort: FC = () => {
       if (query === '') sp.delete('sort')
       else sp.set('sort', query)
 
+      // reset pagination
+      sp.delete('page')
       return sp
     })
   }
@@ -45,6 +47,7 @@ const Sort: FC = () => {
       if (query === '') sp.delete('limit')
       else sp.set('limit', query)
 
+      // reset pagination
       sp.delete('page')
       return sp
     })

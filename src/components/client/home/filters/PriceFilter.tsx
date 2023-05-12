@@ -1,69 +1,118 @@
-import { ChangeEvent, FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 import DisclosureItem from '../../../ui/DisclosureItem'
 import { useSearchParams } from 'react-router-dom'
-import useResetPagination from '../../../../hooks/useResetPagination'
+import { Formik, Form, Field } from 'formik'
+import { filterByPriceSchema } from '../../../../utils/validation/filter'
+import clsx from 'clsx'
 
 const PriceFilter: FC = () => {
-  const resetPagination = useResetPagination()
   const [searchParams, setSearchParams] = useSearchParams()
 
-  const [minPrice, setMinPrice] = useState<string | null>(
-    searchParams.get('min_price') ?? ''
-  )
-  const [maxPrice, setMaxPrice] = useState<string | null>(
-    searchParams.get('max_price') ?? ''
-  )
+  const selectedMinPrice = searchParams.get('min_price') ?? ''
+  const selectedMaxPrice = searchParams.get('max_price') ?? ''
 
-  const handleMinPriceChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setMinPrice(e.target.value)
-    resetPagination()
-  }
-  const handleMaxPriceChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setMaxPrice(e.target.value)
-    resetPagination()
+  const initialValues = {
+    minPrice: selectedMinPrice,
+    maxPrice: selectedMaxPrice,
   }
 
-  useEffect(() => {
+  const handleApplyFilters = (values: typeof initialValues) => {
+    const { minPrice, maxPrice } = values
+
     setSearchParams(sp => {
-      if (minPrice.trim() === '') sp.delete('min_price')
+      if (minPrice === '') sp.delete('min_price')
       else sp.set('min_price', minPrice)
 
-      if (maxPrice.trim() === '') sp.delete('max_price')
+      if (maxPrice === '') sp.delete('max_price')
       else sp.set('max_price', maxPrice)
 
       return sp
     })
-  }, [minPrice, maxPrice, setSearchParams, resetPagination])
+  }
 
   return (
     <DisclosureItem title="Price">
-      <div className="flex items-center gap-2">
-        <div className="relative">
-          <span className="absolute top-0 text-[10px] px-1 -translate-y-1/2 bg-white left-2">
-            USD
-          </span>
-          <input
-            type="text"
-            placeholder="Min"
-            className="w-full py-1 rounded-lg focus:ring-0 focus:border-black placeholder:text-sm form-input"
-            onChange={handleMinPriceChange}
-            value={minPrice}
-          />
-        </div>
-        <div>-</div>
-        <div className="relative">
-          <span className="absolute top-0 text-[10px] px-1 -translate-y-1/2 bg-white left-2">
-            USD
-          </span>
-          <input
-            type="text"
-            placeholder="Max"
-            className="w-full py-1 rounded-lg focus:ring-0 focus:border-black placeholder:text-sm form-input"
-            onChange={handleMaxPriceChange}
-            value={maxPrice}
-          />
-        </div>
-      </div>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleApplyFilters}
+        validationSchema={filterByPriceSchema}
+      >
+        {formik => (
+          <Form>
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <div className="relative">
+                  <span className="absolute top-0 text-[10px] px-1 -translate-y-1/2 bg-white left-2">
+                    USD
+                  </span>
+                  <Field
+                    type="number"
+                    name="minPrice"
+                    placeholder="Min"
+                    autoComplete="off"
+                    className={clsx(
+                      'w-full py-1 rounded-lg focus:ring-0 focus:border-black placeholder:text-sm form-input',
+                      {
+                        'border-danger-500 focus:border-danger-500':
+                          formik.errors.minPrice,
+                      }
+                    )}
+                  />
+                </div>
+                <div>-</div>
+                <div className="relative">
+                  <span className="absolute top-0 text-[10px] px-1 -translate-y-1/2 bg-white left-2">
+                    USD
+                  </span>
+                  <Field
+                    type="number"
+                    name="maxPrice"
+                    placeholder="Max"
+                    autoComplete="off"
+                    className={clsx(
+                      'w-full py-1 rounded-lg focus:ring-0 focus:border-black placeholder:text-sm form-input',
+                      {
+                        'border-danger-500 focus:border-danger-500':
+                          formik.errors.maxPrice,
+                      }
+                    )}
+                  />
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-2">
+                {(selectedMinPrice || selectedMaxPrice) && (
+                  <button
+                    type="button"
+                    className="px-4 py-0.5 text-sm font-semibold border rounded bg-danger-300 text-white"
+                    onClick={() => {
+                      // reset values
+                      formik.setFieldValue('minPrice', '')
+                      formik.setFieldValue('maxPrice', '')
+
+                      setSearchParams(sp => {
+                        sp.delete('min_price')
+                        sp.delete('max_price')
+
+                        // reset Pagination
+                        sp.delete('page')
+                        return sp
+                      })
+                    }}
+                  >
+                    clear
+                  </button>
+                )}
+                <button
+                  type="submit"
+                  className="px-4 py-0.5 text-sm font-semibold border rounded bg-primary-600 text-white"
+                >
+                  apply
+                </button>
+              </div>
+            </div>
+          </Form>
+        )}
+      </Formik>
     </DisclosureItem>
   )
 }

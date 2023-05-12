@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { isAxiosError } from 'axios'
-import api from '../../utils/api'
-import { useAuth } from '../../context/Auth'
+import api from '../../../utils/api'
+import { useAuth } from '../../../context/Auth'
 
 type Data = {
   name: string
