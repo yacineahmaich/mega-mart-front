@@ -4,7 +4,7 @@ import { UseMutationOptions, useMutation } from '@tanstack/react-query'
 
 type Data = {
   token: string
-  profile: Customer
+  user: User
 }
 
 type loginCredentials = {

@@ -6,16 +6,17 @@ import { toast } from 'react-hot-toast'
 import { updateProfileSchema } from '../../../utils/validation/user'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { removeEmptyFields } from '../../../utils/helpers'
+import clsx from 'clsx'
 
 const EditProfile = () => {
-  const { profile, setProfile } = useAuth()
-  const { mutateAsync: updateProfile } = useUpdateProfile({
-    onSuccess: setProfile,
+  const { user, setUser } = useAuth()
+  const { mutateAsync: updateProfile, isLoading } = useUpdateProfile({
+    onSuccess: setUser,
   })
 
   const initialValues = {
-    name: profile?.name,
-    email: profile?.email,
+    name: user?.name,
+    email: user?.email,
     password: '',
     passwordConfirmation: '',
   }
@@ -41,122 +42,124 @@ const EditProfile = () => {
           onSubmit={handleSublmit}
           validationSchema={updateProfileSchema}
         >
-          <Form>
-            <div className="grid grid-cols-2 mt-8 gap-x-8">
-              <div className="relative mb-10">
-                <label
-                  className="block mb-2 text-lg font-bold w-fit text-dark-500"
-                  htmlFor="name"
-                >
-                  Name
-                </label>
-                <Field
-                  type="text"
-                  name="name"
-                  id="name"
-                  className="block w-full py-5 rounded-md focus:ring-2 focus:ring-primary-500 border-slate-400 focus:border-transparent form-input"
-                  placeholder="Your Name"
-                  autoComplete="on"
-                />
-                <ErrorMessage
-                  name="name"
-                  render={msg => (
-                    <p className="absolute mt-1 text-xs font-bold top-full text-danger-400">
-                      <ExclamationTriangleIcon className="inline w-5 h-5" />
-                      &nbsp;
-                      <span>{msg}</span>
-                    </p>
-                  )}
-                />
-              </div>
-              <div className="relative mb-10">
-                <label
-                  className="block mb-2 text-lg font-bold w-fit text-dark-500"
-                  htmlFor="email"
-                >
-                  Email
-                </label>
-                <Field
-                  type="text"
-                  name="email"
-                  id="email"
-                  className="block w-full py-5 rounded-md pointer-events-none focus:ring-2 focus:ring-primary-500 border-slate-400 focus:border-transparent form-input bg-light"
-                  placeholder="Your Email"
-                  autoComplete="on"
-                  disabled={true}
-                />
-                <ErrorMessage
-                  name="email"
-                  render={msg => (
-                    <p className="absolute mt-1 text-xs font-bold top-full text-danger-400">
-                      <ExclamationTriangleIcon className="inline w-5 h-5" />
-                      &nbsp;
-                      <span>{msg}</span>
-                    </p>
-                  )}
-                />
-              </div>
-              <div className="relative mb-10">
-                <label
-                  className="block mb-2 text-lg font-bold w-fit text-dark-500"
-                  htmlFor="password"
-                >
-                  Password
-                </label>
-                <Field
-                  type="password"
-                  name="password"
-                  id="password"
-                  className="block w-full py-5 rounded-md focus:ring-2 focus:ring-primary-500 border-slate-400 focus:border-transparent form-input"
-                  placeholder="******"
-                  autoComplete="on"
-                />
-                <ErrorMessage
-                  name="password"
-                  render={msg => (
-                    <p className="absolute mt-1 text-xs font-bold top-full text-danger-400">
-                      <ExclamationTriangleIcon className="inline w-5 h-5" />
-                      &nbsp;
-                      <span>{msg}</span>
-                    </p>
-                  )}
-                />
-              </div>
-              <div className="relative mb-10">
-                <label
-                  className="block mb-2 text-lg font-bold w-fit text-dark-500"
-                  htmlFor="passwordConfirmation"
-                >
-                  Confirm Password
-                </label>
-                <Field
-                  type="password"
-                  name="passwordConfirmation"
-                  id="passwordConfirmation"
-                  className="block w-full py-5 rounded-md focus:ring-2 focus:ring-primary-500 border-slate-400 focus:border-transparent form-input"
-                  placeholder="******"
-                  autoComplete="on"
-                />
-                <ErrorMessage
-                  name="passwordConfirmation"
-                  render={msg => (
-                    <p className="absolute mt-1 text-xs font-bold top-full text-danger-400">
-                      <ExclamationTriangleIcon className="inline w-5 h-5" />
-                      &nbsp;
-                      <span>{msg}</span>
-                    </p>
-                  )}
-                />
-              </div>
+          <fieldset disabled={isLoading}>
+            <Form>
+              <div className="grid grid-cols-2 mt-8 gap-x-8">
+                <div className="relative mb-10">
+                  <label
+                    className="block mb-2 text-lg font-bold w-fit text-dark-500"
+                    htmlFor="name"
+                  >
+                    Name
+                  </label>
+                  <Field
+                    type="text"
+                    name="name"
+                    id="name"
+                    className="block w-full py-5 rounded-md focus:ring-2 focus:ring-primary-500 border-slate-400 focus:border-transparent form-input"
+                    placeholder="Your Name"
+                    autoComplete="on"
+                  />
+                  <ErrorMessage
+                    name="name"
+                    render={msg => (
+                      <p className="absolute mt-1 text-xs font-bold top-full text-danger-400">
+                        <ExclamationTriangleIcon className="inline w-5 h-5" />
+                        &nbsp;
+                        <span>{msg}</span>
+                      </p>
+                    )}
+                  />
+                </div>
+                <div className="relative mb-10">
+                  <label
+                    className="block mb-2 text-lg font-bold w-fit text-dark-500"
+                    htmlFor="email"
+                  >
+                    Email
+                  </label>
+                  <Field
+                    type="text"
+                    name="email"
+                    id="email"
+                    className="block w-full py-5 rounded-md pointer-events-none focus:ring-2 focus:ring-primary-500 border-slate-400 focus:border-transparent form-input bg-light"
+                    placeholder="Your Email"
+                    autoComplete="on"
+                    disabled={true}
+                  />
+                  <ErrorMessage
+                    name="email"
+                    render={msg => (
+                      <p className="absolute mt-1 text-xs font-bold top-full text-danger-400">
+                        <ExclamationTriangleIcon className="inline w-5 h-5" />
+                        &nbsp;
+                        <span>{msg}</span>
+                      </p>
+                    )}
+                  />
+                </div>
+                <div className="relative mb-10">
+                  <label
+                    className="block mb-2 text-lg font-bold w-fit text-dark-500"
+                    htmlFor="password"
+                  >
+                    Password
+                  </label>
+                  <Field
+                    type="password"
+                    name="password"
+                    id="password"
+                    className="block w-full py-5 rounded-md focus:ring-2 focus:ring-primary-500 border-slate-400 focus:border-transparent form-input"
+                    placeholder="******"
+                    autoComplete="on"
+                  />
+                  <ErrorMessage
+                    name="password"
+                    render={msg => (
+                      <p className="absolute mt-1 text-xs font-bold top-full text-danger-400">
+                        <ExclamationTriangleIcon className="inline w-5 h-5" />
+                        &nbsp;
+                        <span>{msg}</span>
+                      </p>
+                    )}
+                  />
+                </div>
+                <div className="relative mb-10">
+                  <label
+                    className="block mb-2 text-lg font-bold w-fit text-dark-500"
+                    htmlFor="passwordConfirmation"
+                  >
+                    Confirm Password
+                  </label>
+                  <Field
+                    type="password"
+                    name="passwordConfirmation"
+                    id="passwordConfirmation"
+                    className="block w-full py-5 rounded-md focus:ring-2 focus:ring-primary-500 border-slate-400 focus:border-transparent form-input"
+                    placeholder="******"
+                    autoComplete="on"
+                  />
+                  <ErrorMessage
+                    name="passwordConfirmation"
+                    render={msg => (
+                      <p className="absolute mt-1 text-xs font-bold top-full text-danger-400">
+                        <ExclamationTriangleIcon className="inline w-5 h-5" />
+                        &nbsp;
+                        <span>{msg}</span>
+                      </p>
+                    )}
+                  />
+                </div>
 
-              <button
-                type="submit"
-                className="col-start-2 py-4 text-lg text-white rounded bg-primary-600"
-              >
-                Update Profile
-              </button>
-            </div>
-          </Form>
+                <button
+                  type="submit"
+                  className="col-start-2 py-4 text-lg text-white rounded bg-primary-600"
+                >
+                  Update Profile
+                </button>
+              </div>
+            </Form>
+          </fieldset>
         </Formik>
       </div>
     </div>

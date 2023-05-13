@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom'
-import { useGetCustomer } from '../features/auth/useGetCustomer'
+import { useGetUser } from '../features/auth/useGetUser'
 
 const DefaultLayout = () => {
-  useGetCustomer()
+  // useGetUser()
   return (
     <div>
       <Outlet />

@@ -7,7 +7,7 @@ import { toast } from 'react-hot-toast'
 import { useAuth } from '../../context/Auth'
 
 const Login = () => {
-  const { setProfile, setToken } = useAuth()
+  const { setUser, setToken } = useAuth()
   const {
     mutateAsync: login,
     isError,
@@ -15,7 +15,7 @@ const Login = () => {
     isLoading,
   } = useLogin({
     onSuccess: data => {
-      setProfile(data.profile)
+      setUser(data.user)
       setToken(data.token)
     },
   })

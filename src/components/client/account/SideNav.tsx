@@ -8,10 +8,10 @@ import { NavLink } from 'react-router-dom'
 import { useAuth } from '../../../context/Auth'
 
 const SideNav = () => {
-  const { setProfile, setToken } = useAuth()
+  const { setUser, setToken } = useAuth()
 
   const handleLogout = () => {
-    setProfile(null)
+    setUser(null)
     setToken(null)
   }
 

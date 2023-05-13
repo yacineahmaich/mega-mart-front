@@ -21,7 +21,7 @@ interface Category {
   products?: Product[]
 }
 
-interface Customer {
+interface User {
   id: string
   name: string
   email: string

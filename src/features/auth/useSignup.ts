@@ -4,7 +4,7 @@ import { UseMutationOptions, useMutation } from '@tanstack/react-query'
 
 type Data = {
   token: string
-  profile: Customer
+  user: User
 }
 
 type SignupCredentials = {
@@ -16,7 +16,6 @@ type SignupCredentials = {
 
 const signup = async (credentials: SignupCredentials) => {
   try {
-    await new Promise(resolve => setTimeout(resolve, 5000))
     const response = await api.post('/signup', credentials)
 
     return response.data

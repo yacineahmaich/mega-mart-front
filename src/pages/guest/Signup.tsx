@@ -8,14 +8,14 @@ import { isError } from '@tanstack/react-query'
 import { useAuth } from '../../context/Auth'
 
 const Signup = () => {
-  const { setProfile, setToken } = useAuth()
+  const { setUser, setToken } = useAuth()
   const {
     mutateAsync: signup,
     error,
     isLoading,
   } = useSignup({
     onSuccess: data => {
-      setProfile(data.profile)
+      setUser(data.user)
       setToken(data.token)
     },
   })
