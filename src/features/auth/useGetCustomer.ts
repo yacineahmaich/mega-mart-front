@@ -2,28 +2,28 @@ import { useQuery } from '@tanstack/react-query'
 import { useAuth } from '../../context/Auth'
 import api from '../../utils/api'
 
-const getUser = async () => {
+const getCustomer = async () => {
   const response = await api.get('/me')
   return response.data
 }
 
-export const useGetUser = () => {
-  const { setUser, setToken, token, user, setIsLoading } = useAuth()
+export const useGetCustomer = () => {
+  const { setProfile, setToken, token, profile, setIsLoading } = useAuth()
 
   return useQuery({
-    queryKey: ['user'],
+    queryKey: ['customer'],
     queryFn: () => {
       setIsLoading(true)
-      return getUser()
+      return getCustomer()
     },
     retry: false,
-    enabled: !!token && !user,
-    onSuccess(user: User) {
-      setUser(user)
+    enabled: !!token && !profile,
+    onSuccess(customer: Customer) {
+      setProfile(customer)
     },
     onError() {
       setToken(null)
-      setUser(null)
+      setProfile(null)
     },
     onSettled() {
       setIsLoading(false)

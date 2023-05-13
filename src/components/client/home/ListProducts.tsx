@@ -13,7 +13,7 @@ const ListProducts: FC = () => {
   })
 
   const { data, isLoading } = useProducts(params)
-  const products = data?.data
+  const products = data?.products
 
   return (
     <section className="flex flex-col justify-between w-full min-h-screen">

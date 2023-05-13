@@ -10,9 +10,9 @@ const Cart = () => {
   const { data, isLoading, isFetching } = useProducts({
     productIds: ['-1', ...Object.keys(items)],
   })
-  console.log(items)
-  const products = data?.data ?? []
-  const totalAmount = products.reduce(
+
+  const products = data?.products
+  const totalAmount = products?.reduce(
     (total, { id, price }) => price * items[id]?.quantity + total,
     0
   )
@@ -40,10 +40,10 @@ const Cart = () => {
               />
             </div>
           )}
-          {data?.data.map(product => (
+          {products?.map(product => (
             <Item key={product.id} product={product} />
           ))}
-          {data?.data.length === 0 && (
+          {products?.length === 0 && (
             <div className="p-2 bg-warning-400">
               <p className="text-sm font-semibold text-danger-500">
                 You cart is empty right now!
@@ -51,7 +51,10 @@ const Cart = () => {
             </div>
           )}
         </div>
-        <Checkout totalProducts={data?.data.length} totalAmount={totalAmount} />
+        <Checkout
+          totalProducts={products?.length ?? 0}
+          totalAmount={totalAmount}
+        />
       </main>
     </section>
   )

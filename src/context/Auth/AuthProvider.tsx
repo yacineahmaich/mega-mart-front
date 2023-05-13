@@ -6,7 +6,7 @@ type Props = {
 }
 
 const AuthProvider: FC<Props> = ({ children }) => {
-  const [user, setUser] = useState(null)
+  const [profile, setProfile] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [token, setToken] = useState(localStorage.getItem('ACCESS_TOKEN'))
 
@@ -21,11 +21,11 @@ const AuthProvider: FC<Props> = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        user,
+        profile,
         token,
         isLoading,
         setIsLoading,
-        setUser,
+        setProfile,
         setToken,
       }}
     >

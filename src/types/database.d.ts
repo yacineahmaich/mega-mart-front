@@ -21,8 +21,9 @@ interface Category {
   products?: Product[]
 }
 
-interface User {
+interface Customer {
   id: string
   name: string
   email: string
+  profileImg: string
 }

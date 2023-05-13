@@ -1,21 +1,21 @@
 import { createContext, useContext } from 'react'
 
 type AuthCtx = {
-  user: User | null
+  profile: Customer | null
   token: string | null
   isLoading: boolean
   setIsLoading: (isLoading: boolean) => void
-  setUser: (user: object) => void
+  setProfile: (customer: Customer) => void
   setToken: (token: string) => void
 }
 
 const AuthContext = createContext<AuthCtx>({
-  user: null,
+  profile: null,
   token: null,
   isLoading: false,
   setIsLoading: () => null,
   setToken: () => null,
-  setUser: () => null,
+  setProfile: () => null,
 })
 
 export const useAuth = () => useContext(AuthContext)

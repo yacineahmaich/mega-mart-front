@@ -20,7 +20,7 @@ const Cart: FC<Props> = ({ isOpen, onClose }) => {
     productIds: ['-1', ...Object.keys(items)],
   })
 
-  const products = data?.data ?? []
+  const products = data?.products ?? []
   const totalAmount = products.reduce(
     (total, { id, price }) => price * items[id]?.quantity + total,
     0

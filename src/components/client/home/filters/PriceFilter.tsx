@@ -26,6 +26,7 @@ const PriceFilter: FC = () => {
       if (maxPrice === '') sp.delete('max_price')
       else sp.set('max_price', maxPrice)
 
+      sp.delete('page')
       return sp
     })
   }

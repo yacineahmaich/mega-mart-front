@@ -1,7 +1,11 @@
 import { isAxiosError } from 'axios'
 import api from '../../utils/api'
-import { useMutation } from '@tanstack/react-query'
-import { useAuth } from '../../context/Auth'
+import { UseMutationOptions, useMutation } from '@tanstack/react-query'
+
+type Data = {
+  token: string
+  profile: Customer
+}
 
 type SignupCredentials = {
   name: string
@@ -17,23 +21,16 @@ const signup = async (credentials: SignupCredentials) => {
 
     return response.data
   } catch (error) {
-    throw isAxiosError(error) ? error.response.data : error
+    throw isAxiosError(error) ? error.response?.data : error
   }
 }
 
-export const useSignup = () => {
-  const { setToken, setUser } = useAuth()
-
-  return useMutation({
+export const useSignup = (
+  options?: UseMutationOptions<Data, Error, SignupCredentials>
+) => {
+  return useMutation<Data, Error, SignupCredentials>({
     mutationFn: signup,
     retry: false,
-    onSuccess: data => {
-      setToken(data.token)
-      setUser(data.user)
-    },
-    onError: (_: any) => {
-      setToken(null)
-      setUser(null)
-    },
+    ...options,
   })
 }

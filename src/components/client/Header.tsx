@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../../context/Auth'
 
 const Header: FC = () => {
-  const { user, isLoading } = useAuth()
+  const { profile, isLoading } = useAuth()
 
   return (
     <>
@@ -47,12 +47,12 @@ const Header: FC = () => {
                 <span className="hidden sm:block">Favorite</span>
               </div>
 
-              {user ? (
+              {profile ? (
                 <Link to="/account/profile">
                   <div className="flex flex-col items-center space-y-0.5 text-sm font-medium text-white transition-colors cursor-pointer hover:text-slate-200">
                     <UserCircleIcon className="w-6 h-6 sm:h-8 sm:w-8" />
                     <span className="hidden mt-4 uppercase sm:block">
-                      {user.name}
+                      {profile.name}
                     </span>
                   </div>
                 </Link>

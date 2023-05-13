@@ -3,7 +3,7 @@ import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import queryString from 'query-string'
 
 type Data = {
-  data: Product[]
+  products: Product[]
   meta: {
     current_page: number
     per_page: number

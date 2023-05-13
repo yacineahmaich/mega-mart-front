@@ -8,14 +8,14 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { removeEmptyFields } from '../../../utils/helpers'
 
 const EditProfile = () => {
-  const { user, setUser } = useAuth()
+  const { profile, setProfile } = useAuth()
   const { mutateAsync: updateProfile } = useUpdateProfile({
-    onSuccess: setUser,
+    onSuccess: setProfile,
   })
 
   const initialValues = {
-    name: user?.name,
-    email: user?.email,
+    name: profile?.name,
+    email: profile?.email,
     password: '',
     passwordConfirmation: '',
   }

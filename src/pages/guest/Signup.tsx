@@ -5,9 +5,20 @@ import { signupSchema } from '../../utils/validation/user'
 import { useSignup } from '../../features/auth/useSignup'
 import { toast } from 'react-hot-toast'
 import { isError } from '@tanstack/react-query'
+import { useAuth } from '../../context/Auth'
 
 const Signup = () => {
-  const { mutateAsync: signup, error, isLoading } = useSignup()
+  const { setProfile, setToken } = useAuth()
+  const {
+    mutateAsync: signup,
+    error,
+    isLoading,
+  } = useSignup({
+    onSuccess: data => {
+      setProfile(data.profile)
+      setToken(data.token)
+    },
+  })
 
   const initialValues = {
     name: '',

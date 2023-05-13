@@ -8,8 +8,7 @@ const CategoryFilter: FC = () => {
   const [selectedCatgegries, setSelectedCategories] = useState<string[]>(
     searchParams.get('cat')?.split(',') ?? []
   )
-  const { data } = useCategories({})
-  const categories = data?.data
+  const { data: categories } = useCategories({})
 
   const handleSelectCategory = (
     e: ChangeEvent<HTMLInputElement>,
