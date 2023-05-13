@@ -1,14 +1,18 @@
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { PencilSquareIcon } from '@heroicons/react/24/solid'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { useAuth } from '../../../context/Auth'
-import { updateProfileSchema } from '../../../utils/validation/user'
+import { useUpdateProfile } from '../../../features/client/account/mutations/useUpdateProfile'
 import { toast } from 'react-hot-toast'
-import { useUpdateProfile } from '../../../features/client/account/mutations'
+import { updateProfileSchema } from '../../../utils/validation/user'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { removeEmptyFields } from '../../../utils/helpers'
 
 const EditProfile = () => {
-  const { user } = useAuth()
-  const { mutateAsync: updateProfile } = useUpdateProfile()
+  const { user, setUser } = useAuth()
+  const { mutateAsync: updateProfile } = useUpdateProfile({
+    onSuccess: setUser,
+  })
+
   const initialValues = {
     name: user?.name,
     email: user?.email,
@@ -17,14 +21,7 @@ const EditProfile = () => {
   }
 
   const handleSublmit = (values: typeof initialValues) => {
-    // filter empty proprties (password, passwordConf)
-    //  (or we can do that in backend)
-
-    const data = Object.fromEntries(
-      Object.entries(values).filter(([_, v]) => v !== '')
-    )
-
-    toast.promise(updateProfile(data as typeof initialValues), {
+    toast.promise(updateProfile(removeEmptyFields(values)), {
       loading: 'Updating profile ...',
       success: 'Profile Updated successfully',
       error: 'Failed to update profile',

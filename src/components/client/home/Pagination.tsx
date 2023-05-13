@@ -18,7 +18,7 @@ const Pagination: FC<Props> = ({ meta }) => {
   const activePage = meta.current_page
 
   const goToPage = (page: number) => {
-    scrollTo({ top: 0, behavior: 'smooth' })
+    scrollTo({ top: 0 })
     setSearchParams(sp => {
       sp.set('page', page.toString())
       return sp
@@ -28,7 +28,7 @@ const Pagination: FC<Props> = ({ meta }) => {
   const goToPrevPage = () => {
     if (activePage === 1) return
 
-    scrollTo({ top: 0, behavior: 'smooth' })
+    scrollTo({ top: 0 })
 
     setSearchParams(sp => {
       sp.set('page', (activePage - 1).toString())
@@ -38,7 +38,7 @@ const Pagination: FC<Props> = ({ meta }) => {
   const goToNextPage = () => {
     if (activePage === numPages) return
 
-    scrollTo({ top: 0, behavior: 'smooth' })
+    scrollTo({ top: 0 })
 
     setSearchParams(sp => {
       sp.set('page', (activePage + 1).toString())

@@ -9,21 +9,12 @@ const api = axios.create({
 })
 
 api.interceptors.request.use(config => {
+  // add token in request header
   config.headers.Authorization = `Bearer ${localStorage.getItem(
     'ACCESS_TOKEN'
   )}`
 
   return config
 })
-
-// api.interceptors.response.use(
-//   response => response,
-//   error => {
-//     if (error.status === 401) {
-//       localStorage.removeItem('ACCESS_TOKEN')
-//     }
-//     return error
-//   }
-// )
 
 export default api

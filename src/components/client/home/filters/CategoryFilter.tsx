@@ -1,14 +1,14 @@
 import { FC, useState, ChangeEvent, useEffect } from 'react'
 import DisclosureItem from '../../../ui/DisclosureItem'
 import { useSearchParams } from 'react-router-dom'
-import { useCategories } from '../../../../features/client/categories/queries'
+import { useCategories } from '../../../../features/client/categories/queries/useCategories'
 
 const CategoryFilter: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const [selectedCatgegries, setSelectedCategories] = useState<string[]>(
     searchParams.get('cat')?.split(',') ?? []
   )
-  const { data } = useCategories()
+  const { data } = useCategories({})
   const categories = data?.data
 
   const handleSelectCategory = (

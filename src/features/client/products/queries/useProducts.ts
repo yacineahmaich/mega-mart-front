@@ -1,6 +1,15 @@
-import api from '../../../utils/api'
-import { useQuery } from '@tanstack/react-query'
+import api from '../../../../utils/api'
+import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import queryString from 'query-string'
+
+type Data = {
+  data: Product[]
+  meta: {
+    current_page: number
+    per_page: number
+    last_page: number
+  }
+}
 
 const getProducts = async (searchParams: string) => {
   const response = await api.get(`/products/?${searchParams}`)
@@ -9,17 +18,9 @@ const getProducts = async (searchParams: string) => {
 
 export const useProducts = (
   params: object,
-  onSuccess?: (data: {
-    data: Product[]
-    meta: {
-      current_page: number
-      per_page: number
-      last_page: number
-    }
-  }) => void,
-  onError?: (err) => void
+  options?: UseQueryOptions<Data>
 ) => {
-  return useQuery({
+  return useQuery<Data>({
     queryKey: ['products', params],
     queryFn: () =>
       getProducts(
@@ -28,8 +29,7 @@ export const useProducts = (
           arrayFormatSeparator: ',',
         })
       ),
-    onSuccess,
-    onError,
     keepPreviousData: true,
+    ...options,
   })
 }

@@ -1,7 +1,7 @@
 import Checkout from '../../components/client/cart/Checkout'
 import spinner from '../../assets/icons/spinner.png'
 import { useCart } from '../../context/Cart'
-import { useProducts } from '../../features/client/products/queries'
+import { useProducts } from '../../features/client/products/queries/useProducts'
 import Item from '../../components/client/cart/Item'
 
 const Cart = () => {

@@ -4,7 +4,7 @@ import { XMarkIcon } from '@heroicons/react/24/solid'
 import spinner from '../../../assets/icons/spinner.png'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from '../../../context/Cart'
-import { useProducts } from '../../../features/client/products/queries'
+import { useProducts } from '../../../features/client/products/queries/useProducts'
 import Item from './Item'
 
 type Props = {
@@ -19,7 +19,7 @@ const Cart: FC<Props> = ({ isOpen, onClose }) => {
   const { data, isLoading, isFetching } = useProducts({
     productIds: ['-1', ...Object.keys(items)],
   })
-  
+
   const products = data?.data ?? []
   const totalAmount = products.reduce(
     (total, { id, price }) => price * items[id]?.quantity + total,

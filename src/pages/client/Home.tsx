@@ -3,7 +3,7 @@ import spinner from '../../assets/icons/spinner.png'
 import queryString from 'query-string'
 import HomeProducts from '../../components/client/home/HomeProducts'
 import { useSearchParams } from 'react-router-dom'
-import { useProducts } from '../../features/client/products/queries'
+import { useProducts } from '../../features/client/products/queries/useProducts'
 
 const Home: FC = () => {
   const [searchParams] = useSearchParams()

@@ -71,7 +71,7 @@ const Preview = () => {
       >
         {productImages.map(image => (
           <SwiperSlide>
-            <div className="flex items-center justify-center w-full md:p-6">
+            <div className="flex items-center justify-center w-full h-full md:p-6">
               <div>
                 <img
                   src={image}

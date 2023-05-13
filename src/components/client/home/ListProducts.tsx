@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import ProductCard from './ProductCard'
 import Pagination from './Pagination'
-import { useProducts } from '../../../features/client/products/queries'
+import { useProducts } from '../../../features/client/products/queries/useProducts'
 import queryString from 'query-string'
 
 const ListProducts: FC = () => {
