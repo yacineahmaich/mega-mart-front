@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { ShoppingCartIcon, HeartIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 import { useCart } from '../../../context/Cart'
+import clsx from 'clsx'
 
 type Props = {
   product: Product
@@ -12,18 +13,35 @@ const ProductCard: FC<Props> = ({ product }) => {
 
   return (
     <article className="flex flex-col overflow-hidden bg-white border shadow-sm rounded-xl border-gray">
-      <div className="relative bg-light h-52 group">
+      <div className="relative group bg-light h-52">
         <Link to={`/${product.slug}`}>
           <img
             src={product.images[0].url}
             alt={product.name}
             title={product.name}
-            className="object-cover w-full h-full"
+            loading="lazy"
+            className={clsx('object-cover w-full h-full', {
+              ' duration-500 animate-out group-hover:fade-out-0':
+                product.images.length > 0,
+            })}
           />
+          {product.images.slice(1).map((img, idx) => (
+            <img
+              key={img.id}
+              src={img.url}
+              alt={img.url}
+              className={clsx(
+                'absolute inset-0 object-cover w-full h-full duration-500 hidden animate-in group-hover:block fade-in-0 fill-mode-backwards'
+              )}
+              style={{
+                animationDelay: idx === 0 ? '0ms' : 800 * idx + 'ms',
+              }}
+            />
+          ))}
         </Link>
-        <button className="absolute right-0 p-1 pr-3 transition-transform duration-200 translate-x-full rounded-l-lg outline-none text-light group-hover:translate-x-0 top-2 bg-primary-600">
+        {/* <button className="absolute right-0 p-1 pr-3 transition-transform duration-200 translate-x-full rounded-l-lg outline-none text-light group-hover:translate-x-0 top-2 bg-primary-600">
           <HeartIcon className="w-5 h-5" />
-        </button>
+        </button> */}
       </div>
       <div className="flex flex-col justify-between flex-1 p-3 space-y-4">
         <Link to={`/${product.slug}`}>
