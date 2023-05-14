@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom'
 import { useAuth } from '../../../context/Auth'
 
 const SideNav = () => {
-  const { setUser, setToken } = useAuth()
+  const { setUser, setToken, user } = useAuth()
 
   const handleLogout = () => {
     setUser(null)
@@ -18,14 +18,24 @@ const SideNav = () => {
   return (
     <div className="flex flex-col items-center gap-6 border border-gray bg-warning-400">
       <div className="px-10 py-4 space-y-4">
-        <img
-          src="https://newprofilepic2.photo-cdn.net//assets/images/article/profile.jpg"
-          alt="profile"
-          className="rounded-full w-36 h-36"
-        />
+        <div className="overflow-hidden rounded-full w-36 h-36">
+          {user.profileImg ? (
+            <img
+              src={user.profileImg}
+              alt="profile"
+              className="object-cover w-full h-full"
+            />
+          ) : (
+            <div className="flex items-center justify-center w-full h-full text-white bg-primary-600">
+              <span className="text-6xl font-bold uppercase">
+                {user.name[0]}
+              </span>
+            </div>
+          )}
+        </div>
         <div className="space-y-1 text-center">
-          <h2 className="text-xl font-bold text-dark-800">Rajae Omalk</h2>
-          <p className="text-sm font-medium text-dark-500">rajae@gmail.com</p>
+          <h2 className="text-xl font-bold text-dark-800">{user.name}</h2>
+          <p className="text-sm font-medium text-dark-500">{user.email}</p>
         </div>
       </div>
       <div className="w-full">

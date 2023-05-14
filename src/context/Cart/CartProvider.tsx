@@ -11,11 +11,11 @@ const CartProvider: FC<Props> = ({ children }) => {
   )
 
   // add item to cart
-  const addToCart = (id: string) => {
+  const addToCart = (id: string, quantity?: number) => {
     if (items[id]) return
     setItems(items => ({
       ...items,
-      [id]: { quantity: 1, addedAt: new Date().toISOString() },
+      [id]: { quantity: quantity ?? 1, addedAt: new Date().toISOString() },
     }))
   }
 

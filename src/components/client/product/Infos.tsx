@@ -1,8 +1,15 @@
-import { products } from '../../../utils/contants'
-import { StarIcon } from '@heroicons/react/24/solid'
+import { useProduct } from '../../../features/client/products/queries/useProduct'
+import { useParams } from 'react-router-dom'
+import StarRating from 'react-star-ratings'
 
 const Infos = () => {
-  const product = products[6]
+  const { slug } = useParams()
+  const { data: product } = useProduct(slug)
+
+  const avgRating = Math.trunc(
+    product.reviews.reduce((acc, review) => review.rating + acc, 0) /
+      product.reviews.length
+  )
 
   return (
     <div className="flex-1 p-3">
@@ -12,15 +19,17 @@ const Infos = () => {
 
       <div className="flex items-center gap-3 mb-6">
         <div className="flex">
-          <StarIcon className="w-4 h-4 text-yellow-300 md:w-5 md:h-5" />
-          <StarIcon className="w-4 h-4 text-yellow-300 md:w-5 md:h-5" />
-          <StarIcon className="w-4 h-4 text-yellow-300 md:w-5 md:h-5" />
-          <StarIcon className="w-4 h-4 text-yellow-300 md:w-5 md:h-5" />
-          <StarIcon className="w-4 h-4 text-yellow-300 md:w-5 md:h-5" />
+          <StarRating
+            rating={avgRating}
+            starDimension={20}
+            starSpacing={1}
+            starEmptyColor="#e5e5e5"
+            starRatedColor="#fde047"
+          />
         </div>
         <div>
           <p className="text-sm font-medium">
-            <span className="font-bold">34</span> Reviews
+            <span className="font-bold">{product.reviews.length}</span> Reviews
           </p>
         </div>
       </div>
@@ -30,13 +39,7 @@ const Infos = () => {
           About Product
         </h4>
 
-        <p className="max-w-lg text-dark-600">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus,
-          itaque. Dolor nulla porro blanditiis distinctio tempore vel eos
-          dolorem, tenetur consequuntur, nemo laboriosam odit possimus impedit
-          doloremque modi iusto vero nam ipsum quidem asperiores voluptates?
-          Incidunt, quae nam alias possimus atque sunt vitae autem iusto beatae.
-        </p>
+        <p className="max-w-lg text-dark-600">{product.description}</p>
       </div>
     </div>
   )

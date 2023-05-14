@@ -1,37 +1,57 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/solid'
+import { useProduct } from '../../../features/client/products/queries/useProduct'
+import { useParams } from 'react-router-dom'
+import { useCart } from '../../../context/Cart'
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 
 const Checkout = () => {
-  const product = {
-    price: 345.86,
-    hasDiscount: true,
-    discountValue: 16,
-    originalPrice: 435,
+  const { slug } = useParams()
+  const { data: product } = useProduct(slug)
+  const { items, changeQuantity, addToCart } = useCart()
+  const productInCart = items[product.id]
+  const [quantity, setQuantity] = useState<number>(productInCart?.quantity ?? 1)
+
+  const increaseQty = () => {
+    if (quantity === product.quantity) return
+    setQuantity(q => {
+      return q + 1
+    })
   }
+  const decreaseQty = () => {
+    if (quantity === 1) return
+    setQuantity(q => {
+      return q - 1
+    })
+  }
+
+  const handleUpdateCart = () => {
+    changeQuantity(product.id, quantity)
+  }
+
+  const handleAddToCart = () => {
+    addToCart(product.id, quantity)
+  }
+
   const [price, priceDecimal] = product.price.toString().split('.')
 
   const checkoutRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
     const navigationEl = document.getElementById('navigation')
     if (!navigationEl) return
-
     const options = {
       root: null,
       threshold: 0,
     }
-
     const headerObserver = new IntersectionObserver(entries => {
       if (!checkoutRef.current) return
-
       if (entries[0].isIntersecting) {
         checkoutRef.current.classList.remove('top-0')
       } else {
         checkoutRef.current.classList.add('top-0')
       }
     }, options)
-
     headerObserver.observe(navigationEl)
-
     return () => headerObserver.disconnect()
   }, [])
 
@@ -47,34 +67,55 @@ const Checkout = () => {
               <span className="block">USD</span>
             </p>
           </div>
-          <div className="flex justify-center gap-2">
-            <p className="text-sm text-dark-500">
-              <s>{product.originalPrice} USD</s>
-            </p>
-            <span className="px-4 py-0.5 text-xs rounded-lg bg-pink-400 font-medium text-light pointer-events-none">
-              -{product.discountValue}%
-            </span>
-          </div>
+          {product?.discount?.has && (
+            <div className="flex justify-center gap-2">
+              <p className="text-sm text-dark-500">
+                <s>9999 USD</s>
+              </p>
+              <span className="px-4 py-0.5 text-xs rounded-lg bg-pink-400 font-medium text-light pointer-events-none">
+                -16%
+              </span>
+            </div>
+          )}
         </header>
 
         <div className="flex justify-center py-3 lg:py-6">
-          <button className="px-4 border rounded-l-md border-light text-primary-400">
+          <button
+            className="px-4 border rounded-l-md border-light text-primary-400"
+            onClick={increaseQty}
+          >
             <PlusSmallIcon className="w-4 h-4" />
           </button>
           <input
-            defaultValue={1}
+            value={quantity}
             type="number"
             className="w-14 py-1 border-[1px] outline-0 border-y border-x-0 focus:border-light font-medium text-dark-600 text-center  border-light"
           />
-          <button className="px-4 border rounded-r-md border-light text-danger-400">
+
+          <button
+            className="px-4 border rounded-r-md border-light text-danger-400"
+            onClick={decreaseQty}
+          >
             <MinusSmallIcon className="w-4 h-4 " />
           </button>
         </div>
 
         <div className="flex flex-col justify-center gap-2 pt-3 lg:pt-6">
-          <button className="px-8 py-2 text-sm font-medium text-white border rounded-full bg-primary-700 border-primary-700 active:ring active:ring-primary-600 ring-offset-1">
-            Add To Cart
-          </button>
+          {productInCart ? (
+            <button
+              className="px-8 py-2 text-sm font-medium text-white border rounded-full bg-primary-700 border-primary-700 active:ring active:ring-primary-600 ring-offset-1"
+              onClick={handleUpdateCart}
+            >
+              Update Cart
+            </button>
+          ) : (
+            <button
+              className="px-8 py-2 text-sm font-medium text-white border rounded-full bg-primary-700 border-primary-700 active:ring active:ring-primary-600 ring-offset-1"
+              onClick={handleAddToCart}
+            >
+              Add To Cart
+            </button>
+          )}
           <button className="px-8 py-2 text-sm font-medium transition-colors border rounded-full hover:text-white border-primary-700 hover:bg-primary-700 text-primary-700 active:ring active:ring-primary-600 ring-offset-1">
             Buy Now
           </button>

@@ -1,17 +1,18 @@
 interface Product {
   id: string
   name: string
-  slug?: string
+  slug: string
+  description: string
   price: number
-  category: string
   quantity: number
+  category?: Category
+  images: Image[]
+  reviews: Review[]
   discount: {
     has: boolean
     value: number
     price: number
   }
-  images: { id: string; url: string }[]
-  category?: Category
 }
 
 interface Category {
@@ -26,4 +27,17 @@ interface User {
   name: string
   email: string
   profileImg: string
+}
+
+interface Review {
+  rating: number
+  comment: string
+  at: string
+  author: User
+  product?: Product
+}
+
+interface Image {
+  id: string
+  url: string
 }

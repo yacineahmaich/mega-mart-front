@@ -4,7 +4,7 @@ export type CartItem = { quantity: number; addedAt: string }
 
 type CartCtx = {
   items: object
-  addToCart: (id: string) => void
+  addToCart: (id: string, quantity?: number) => void
   removeFromCart: (id: string) => void
   changeQuantity: (id: string, quantity: number) => void
 }

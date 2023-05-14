@@ -6,6 +6,9 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
+import clsx from 'clsx'
+import { useProduct } from '../../../features/client/products/queries/useProduct'
+import { useParams } from 'react-router-dom'
 
 const productImages = [
   'https://img7-cdn.halftime.pt/p/2023/04/21/c/6/c6d03f3c86dc3c5d82e52548_thumb.jpg',
@@ -21,6 +24,9 @@ const productImages = [
 const Preview = () => {
   const [sideSwiper, setSideSwiper] = useState(null)
   const [productSwiper, setProductSwiper] = useState(null)
+  const { slug } = useParams()
+
+  const { data: product } = useProduct(slug)
 
   return (
     <div className="flex md:gap-2 lg:gap-4">
@@ -37,17 +43,21 @@ const Preview = () => {
           grabCursor={true}
           className="overflow-hidden w-14 md:w-16 lg:w-24 h-[300px] lg:h-swiper"
         >
-          {productImages.map((image, idx) => (
-            <SwiperSlide key={idx} className="p-1 select-none">
+          {product.images.map(img => (
+            <SwiperSlide key={img.id} className="p-1 select-none">
               {({ isActive }) => (
                 <div
-                  className={`w-full overflow-hidden rounded-lg cursor-pointer  border border-gray bg-light ${
-                    isActive ? 'ring-4 ring-primary-500' : ''
-                  }`}
+                  className={clsx(
+                    'w-full overflow-hidden rounded-lg cursor-pointer ring-2 border border-gray bg-light',
+                    {
+                      'ring-offset-2 ring-primary-500': isActive,
+                      'ring-gray': !isActive,
+                    }
+                  )}
                 >
                   <img
-                    src={image}
-                    alt="sasa"
+                    src={img.url}
+                    alt={product.name}
                     className="object-cover w-full h-full"
                   />
                 </div>
@@ -66,15 +76,15 @@ const Preview = () => {
         className="w-[90vw] lg:w-auto  h-[350px] md:h-[300px] lg:h-swiper"
         grabCursor={true}
         pagination={{
-          clickable: true,
+          clickable: false,
         }}
       >
-        {productImages.map(image => (
-          <SwiperSlide>
+        {product.images.map(img => (
+          <SwiperSlide key={img.id}>
             <div className="flex items-center justify-center w-full h-full md:p-6">
               <div>
                 <img
-                  src={image}
+                  src={img.url}
                   alt="zdzd"
                   className="object-cover max-w-full max-h-full select-none"
                 />

@@ -10,6 +10,7 @@ const RatingFilter: FC = () => {
     setSearchParams(sp => {
       sp.set('rating', value)
 
+      sp.delete('page')
       return sp
     })
   }
