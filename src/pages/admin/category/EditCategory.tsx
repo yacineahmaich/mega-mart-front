@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage, FormikValues } from 'formik'
-import { categorySchema } from '../../../utils/validation/category'
+import { categorySchema } from '../../../utils/validation/admin/category'
 
 const category = {
   id: 1,

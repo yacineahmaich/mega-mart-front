@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { signupSchema } from '../../utils/validation/user'
+import { signupSchema } from '../../utils/validation/auth'
 import { useSignup } from '../../features/auth/useSignup'
 import { toast } from 'react-hot-toast'
 import { isError } from '@tanstack/react-query'

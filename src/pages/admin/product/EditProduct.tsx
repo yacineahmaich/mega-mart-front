@@ -7,7 +7,7 @@ import { Formik, Form, Field, ErrorMessage, FormikValues } from 'formik'
 // @ts-ignore
 // import { v4 as uuid } from 'uuid'
 import { products } from '../../../utils/contants'
-import { productSchema } from '../../../utils/validation/product'
+import { productSchema } from '../../../utils/validation/admin/product'
 
 const EditProduct = () => {
   const product = products[0]

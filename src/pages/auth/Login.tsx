@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { loginSchema } from '../../utils/validation/user'
+import { loginSchema } from '../../utils/validation/auth'
 import { useLogin } from '../../features/auth/useLogin'
 import { toast } from 'react-hot-toast'
 import { useAuth } from '../../context/Auth'
