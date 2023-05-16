@@ -3,10 +3,9 @@ import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { useAuth } from '../../../context/Auth'
 import { useUpdateProfile } from '../../../features/client/account/mutations/useUpdateProfile'
 import { toast } from 'react-hot-toast'
-import { updateProfileSchema } from '../../../utils/validation/auth'
+import { updateProfileSchema } from '../../../utils/validation/client/profile'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { removeEmptyFields } from '../../../utils/helpers'
-import clsx from 'clsx'
 
 const EditProfile = () => {
   const { user, setUser } = useAuth()

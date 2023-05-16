@@ -6,7 +6,5 @@ export const productSchema = Yup.object({
   quantity: Yup.number().min(1).required(),
   category: Yup.number().required(),
   description: Yup.string().max(999),
-  images: Yup.array()
-    .min(1, 'you should provide at least one image')
-    .required(),
+  images: Yup.array().min(1, 'product thumbnail image is required').required(),
 })

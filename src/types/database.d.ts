@@ -5,7 +5,7 @@ interface Product {
   description: string
   price: number
   quantity: number
-  category?: Category
+  category: Category
   images: Image[]
   reviews: Review[]
   discount: {

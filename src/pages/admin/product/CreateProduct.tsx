@@ -187,7 +187,11 @@ const CreateProduct = () => {
                             }}
                             className="rounded-lg form-input border-gray focus:ring-primary-600"
                           />
-                          {idx >= 1 && (
+                          {idx === 0 ? (
+                            <p className="ml-2 text-sm font-bold text-primary-800">
+                              Thumbnail *
+                            </p>
+                          ) : (
                             <button
                               type="button"
                               className="ml-2"
