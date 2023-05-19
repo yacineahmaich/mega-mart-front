@@ -1,5 +1,5 @@
 import { isAxiosError } from 'axios'
-import api from '../../utils/api'
+import api from '../../utils/api/client'
 import { UseMutationOptions, useMutation } from '@tanstack/react-query'
 
 type Data = {

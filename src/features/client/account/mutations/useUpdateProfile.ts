@@ -1,5 +1,5 @@
 import { UseMutationOptions, useMutation } from '@tanstack/react-query'
-import api from '../../../../utils/api'
+import api from '../../../../utils/api/client'
 
 type UpdateProfileData = {
   email?: string

@@ -1,7 +1,22 @@
-import { products } from '../../../utils/contants'
-import { Link } from 'react-router-dom'
+import { Link, ScrollRestoration, useSearchParams } from 'react-router-dom'
+import spinner from '../../../assets/icons/spinner.svg'
+import { Pagination } from 'react-laravel-paginex'
+import { useProducts } from '../../../features/admin/products/queries/useProducts'
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 
 const ProductsTable = () => {
+  const [searchParams, setSearchParams] = useSearchParams()
+  const page = searchParams.get('page')
+  const { data, isFetching, isLoading, isError, refetch } = useProducts(page)
+
+  const onPaginate = ({ page }) => {
+    setSearchParams(sp => {
+      sp.set('page', page)
+
+      return sp
+    })
+  }
+
   return (
     <section>
       <div className="relative overflow-hidden overflow-x-auto rounded-t-lg">
@@ -25,139 +40,131 @@ const ProductsTable = () => {
               </th>
             </tr>
           </thead>
-          <tbody>
-            {products.map(product => (
-              <tr
-                key={product.id}
-                className="bg-white border-b last:border-none text-dark-600 border-light"
-              >
-                <td className="px-6 py-3">{product.id}</td>
-                <th
-                  scope="row"
-                  className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"
-                >
-                  {product.name.slice(0, 20)}
-                </th>
-                <td className="px-6 py-3">{product.quantity}</td>
-                <td className="px-6 py-3">{product.price}</td>
-
-                <td className="space-x-3 text-center">
-                  <Link
-                    to={`${product.id}/edit`}
-                    className="text-sm font-medium hover:underline text-info-300"
-                  >
-                    edit
-                  </Link>
-                  <Link
-                    to={`${product.id}`}
-                    className="text-sm font-medium hover:underline text-warning-900"
-                  >
-                    view
-                  </Link>
+          <tbody className="relative">
+            {isFetching && !isLoading && (
+              <tr>
+                <td colSpan={5} className="py-2 text-center bg-white">
+                  <img
+                    src={spinner}
+                    alt="loader"
+                    className="w-6 h-6 mx-auto animate-spin"
+                  />
                 </td>
               </tr>
-            ))}
+            )}
+            {isError ? (
+              <tr>
+                <td
+                  colSpan={5}
+                  className="py-2 text-center bg-white text-danger-400"
+                >
+                  <ExclamationTriangleIcon className="inline w-5 h-5 mr-2" />
+                  <span className="text-sm font-bold">
+                    Something went wrong! failed to get records.
+                  </span>
+                  <button
+                    className="px-4 py-1.5 font-semibold ml-2 border-2 rounded text-primary-600 border-primary-600"
+                    onClick={() => refetch()}
+                  >
+                    try again
+                  </button>
+                </td>
+              </tr>
+            ) : (
+              <>
+                {data?.products?.map(product => (
+                  <tr
+                    key={product.id}
+                    className="bg-white border-b last:border-none text-dark-600 border-light"
+                  >
+                    <td className="px-6 py-3">{product.id}</td>
+                    <th
+                      scope="row"
+                      className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"
+                    >
+                      {product.name.slice(0, 20)}
+                    </th>
+                    <td className="px-6 py-3">{product.quantity}</td>
+                    <td className="px-6 py-3">{product.price}</td>
+
+                    <td className="space-x-3 text-center">
+                      <Link
+                        to={`${product.id}/edit`}
+                        className="text-sm font-medium hover:underline text-info-300"
+                      >
+                        edit
+                      </Link>
+                      <Link
+                        to={`${product.slug}`}
+                        className="text-sm font-medium hover:underline text-warning-900"
+                      >
+                        show
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </>
+            )}
+
+            {isLoading &&
+              Array.from({ length: 15 }, (_, idx) => (
+                <tr key={idx} className="bg-white">
+                  <td className="p-3 text-center">
+                    <span className="block h-3 rounded-full w-14 animate-pulse bg-gray"></span>
+                  </td>
+                  <td className="p-3">
+                    <span className="block h-3 rounded-full w-60 animate-pulse bg-gray"></span>
+                  </td>
+                  <td className="p-3">
+                    <span className="block w-20 h-3 rounded-full animate-pulse bg-gray"></span>
+                  </td>
+                  <td className="p-3">
+                    <span className="block w-20 h-3 rounded-full animate-pulse bg-gray"></span>
+                  </td>
+                  <td className="flex justify-center p-3 space-x-2">
+                    <span className="block w-10 h-3 rounded-full animate-pulse bg-gray"></span>
+                    <span className="block w-10 h-3 rounded-full animate-pulse bg-gray"></span>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
 
-      {/* table pagination */}
-      <nav
-        className="flex items-center justify-between pt-4"
-        aria-label="Table navigation"
-      >
-        <span className="text-sm font-normal text-dark-600 ">
-          Showing&nbsp;
-          <span className="font-semibold text-gray-900">1-10&nbsp;</span>
-          of&nbsp;
-          <span className="font-semibold text-gray-900">1000&nbsp;</span>
-        </span>
-        <ul className="inline-flex items-center -space-x-px">
-          <li>
-            <a
-              href="#"
-              className="block px-3 py-2 ml-0 leading-tight bg-white border rounded-l-lg text-dark-600 border-gray hover:bg-primary-600 hover:text-white -700 "
-            >
-              <span className="sr-only">Previous</span>
-              <svg
-                className="w-5 h-5"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="px-3 py-2 leading-tight bg-white border text-dark-600 border-gray hover:bg-primary-600 hover:text-white"
-            >
-              1
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="px-3 py-2 leading-tight bg-white border text-dark-600 border-gray hover:bg-primary-600 hover:text-white"
-            >
-              2
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              aria-current="page"
-              className="px-3 py-2 leading-tight bg-white border text-dark-600 border-gray hover:bg-primary-600 hover:text-white"
-            >
-              3
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="px-3 py-2 leading-tight bg-white border text-dark-600 border-gray hover:bg-primary-600 hover:text-white"
-            >
-              ...
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="px-3 py-2 leading-tight bg-white border text-dark-600 border-gray hover:bg-primary-600 hover:text-white "
-            >
-              100
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="block px-3 py-2 leading-tight bg-white border rounded-r-lg text-dark-600 border-gray hover:bg-primary-600 hover:text-white "
-            >
-              <span className="sr-only">Next</span>
-              <svg
-                className="w-5 h-5"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-            </a>
-          </li>
-        </ul>
-      </nav>
+      {!isLoading && !isError && (
+        <div className="flex items-center justify-between my-4">
+          <span className="text-sm font-normal text-dark-600 ">
+            Showing&nbsp;
+            <span className="font-semibold text-gray-900">
+              {data.meta.from}-{data.meta.to}&nbsp;
+            </span>
+            of&nbsp;
+            <span className="font-semibold text-gray-900">
+              {data.meta.total}&nbsp;
+            </span>
+          </span>
+          <Pagination
+            disabled={isFetching}
+            data={data}
+            options={{
+              containerClass: 'flex -space-x-px',
+              numberButtonClass:
+                ' py-1.5 bg-white border text-dark-600 border-gray w-fit hover:bg-primary-600 hover:text-white',
+              numberClass: 'px-4 py-1.5',
+              prevButtonClass:
+                ' py-1.5 bg-white border rounded-l-lg text-dark-600 border-gray hover:bg-primary-600 hover:text-white',
+              nextButtonClass:
+                'py-1.5 bg-white border rounded-r-lg text-dark-600 border-gray hover:bg-primary-600 hover:text-white',
+              activeClass:
+                'bg-gradient-to-br  border-b from-primary-600 to-primary-600 text-white',
+              prevButtonText: '<',
+              nextButtonText: '>',
+            }}
+            changePage={onPaginate}
+          />
+        </div>
+      )}
+      <ScrollRestoration />
     </section>
   )
 }

@@ -89,4 +89,10 @@ export default {
     }),
     require('tailwindcss-animate'),
   ],
+  safelist: [
+    {
+      pattern:
+        /(bg|text|border)-s2cond(Purple|Pink|Orange|Yellow|Lime|Mint|Test|Test2)/,
+    },
+  ],
 }

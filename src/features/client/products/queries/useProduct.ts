@@ -1,8 +1,8 @@
-import api from '../../../../utils/api'
+import api from '../../../../utils/api/client'
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 
 const getProduct = async (slug: string) => {
-  const response = await api.get(`/products/${slug}/slug`)
+  const response = await api.get(`/products/${slug}`)
   return response.data
 }
 

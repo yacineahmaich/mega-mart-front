@@ -8,7 +8,7 @@ const CategoryFilter: FC = () => {
   const [selectedCatgegries, setSelectedCategories] = useState<string[]>(
     searchParams.get('cat')?.split(',') ?? []
   )
-  const { data: categories } = useCategories({})
+  const { data } = useCategories()
 
   const handleSelectCategory = (
     e: ChangeEvent<HTMLInputElement>,
@@ -42,7 +42,7 @@ const CategoryFilter: FC = () => {
   return (
     <DisclosureItem title="Category">
       <ul className="space-y-2">
-        {categories?.map(cat => (
+        {data?.map(cat => (
           <li key={cat.id}>
             <label htmlFor={cat.name} className="space-x-3 cursor-pointer">
               <input

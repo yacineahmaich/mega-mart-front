@@ -1,27 +1,48 @@
 import { useState } from 'react'
 import { XMarkIcon } from '@heroicons/react/24/solid'
-import { Link } from 'react-router-dom'
-// eslint-disable-next-line
-// @ts-ignore
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+import spinner from '../../../assets/icons/spinner.svg'
 import { v4 as uuid } from 'uuid'
-
+import { Link } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage, FormikValues } from 'formik'
 import { productSchema } from '../../../utils/validation/admin/product'
+import { useCreateProduct } from '../../../features/admin/products/mutations/useCreateProduct'
+import { useCategories } from '../../../features/admin/categories/queries/useCategories'
+import { useNavigate } from 'react-router-dom'
 
 const CreateProduct = () => {
+  const navigate = useNavigate()
   const [images, setImages] = useState<string[]>([uuid()])
+  const { data, isLoading } = useCategories()
+  const {
+    mutate: createProduct,
+    isError,
+    error,
+    isLoading: isCreatingProduct,
+  } = useCreateProduct({
+    onSuccess: () =>
+      navigate('..', {
+        relative: 'path',
+      }),
+  })
 
   const initialValues = {
-    title: '',
-    price: '0',
-    quantity: '0',
+    name: '',
+    price: '',
+    quantity: '',
     category: '',
     description: '',
     images: [],
   }
-
   const handleSubmit = (values: FormikValues & typeof initialValues) => {
-    console.log(values)
+    const productData = {
+      ...values,
+      images: Object.values(Object.fromEntries(values.images)),
+    }
+
+    // eslint-disable-next-line
+    // @ts-ignore
+    createProduct(productData)
   }
 
   return (
@@ -30,8 +51,20 @@ const CreateProduct = () => {
         Create Product
       </h2>
 
-      <section>
-        <div className="max-w-2xl p-6 mx-auto bg-white rounded-lg text-dark-600">
+      <section className="max-w-2xl p-6 mx-auto bg-white rounded-lg text-dark-600">
+        {isError && error?.errors && (
+          <ul className="p-4 mb-4 border rounded-lg border-danger-700">
+            {Object.values(error.errors)
+              .flat()
+              .map((err: string, idx) => (
+                <li key={idx} className="text-sm font-semibold text-danger-300">
+                  <ExclamationTriangleIcon className="inline w-5 h-5" />
+                  &nbsp;<span>{err}</span>
+                </li>
+              ))}
+          </ul>
+        )}
+        <fieldset disabled={isCreatingProduct}>
           <Formik
             initialValues={initialValues}
             validationSchema={productSchema}
@@ -42,22 +75,27 @@ const CreateProduct = () => {
                 <div className="grid grid-cols-2 gap-8">
                   <div className="relative col-span-2">
                     <label
-                      htmlFor="title"
+                      htmlFor="name"
                       className="block mb-2 text-sm font-medium"
                     >
-                      Title
+                      Name
                     </label>
                     <Field
                       type="text"
-                      id="title"
-                      name="title"
+                      id="name"
+                      name="name"
                       className="bg-white form-input border-gray focus:ring-primary-600 text-sm rounded-lg p-2.5 block w-full"
-                      placeholder="Product title here..."
+                      placeholder="Product name here..."
                     />
                     <ErrorMessage
-                      component="span"
-                      name="title"
-                      className="absolute mt-1 text-sm font-medium top-full text-danger-500 animate-drop"
+                      name="name"
+                      render={msg => (
+                        <p className="absolute mt-1 text-xs font-bold duration-200 top-full animate-in slide-in-from-top-1 text-danger-400">
+                          <ExclamationTriangleIcon className="inline w-5 h-5" />
+                          &nbsp;
+                          <span>{msg}</span>
+                        </p>
+                      )}
                     />
                   </div>
 
@@ -76,9 +114,14 @@ const CreateProduct = () => {
                       placeholder="Product price here..."
                     />
                     <ErrorMessage
-                      component="span"
                       name="price"
-                      className="absolute mt-1 text-sm font-medium top-full text-danger-500 animate-drop"
+                      render={msg => (
+                        <p className="absolute mt-1 text-xs font-bold duration-200 top-full animate-in slide-in-from-top-1 text-danger-400">
+                          <ExclamationTriangleIcon className="inline w-5 h-5" />
+                          &nbsp;
+                          <span>{msg}</span>
+                        </p>
+                      )}
                     />
                   </div>
                   <div className="relative">
@@ -96,9 +139,14 @@ const CreateProduct = () => {
                       placeholder="Product quantity here..."
                     />
                     <ErrorMessage
-                      component="span"
                       name="quantity"
-                      className="absolute mt-1 text-sm font-medium top-full text-danger-500 animate-drop"
+                      render={msg => (
+                        <p className="absolute mt-1 text-xs font-bold duration-200 top-full animate-in slide-in-from-top-1 text-danger-400">
+                          <ExclamationTriangleIcon className="inline w-5 h-5" />
+                          &nbsp;
+                          <span>{msg}</span>
+                        </p>
+                      )}
                     />
                   </div>
                   <div className="relative col-span-2">
@@ -116,16 +164,25 @@ const CreateProduct = () => {
                       placeholder="Product category here..."
                     >
                       <option value="" disabled>
-                        select category
+                        {isLoading
+                          ? 'getting categories...'
+                          : 'select category'}
                       </option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
+                      {data?.categories?.map(category => (
+                        <option key={category.id} value={category.id}>
+                          {category.name}
+                        </option>
+                      ))}
                     </Field>
                     <ErrorMessage
-                      component="span"
                       name="category"
-                      className="absolute mt-1 text-sm font-medium top-full text-danger-500 animate-drop"
+                      render={msg => (
+                        <p className="absolute mt-1 text-xs font-bold duration-200 top-full animate-in slide-in-from-top-1 text-danger-400">
+                          <ExclamationTriangleIcon className="inline w-5 h-5" />
+                          &nbsp;
+                          <span>{msg}</span>
+                        </p>
+                      )}
                     />
                   </div>
 
@@ -144,28 +201,38 @@ const CreateProduct = () => {
                       placeholder="Product description here..."
                     />
                     <ErrorMessage
-                      component="span"
                       name="description"
-                      className="absolute mt-1 text-sm font-medium top-full text-danger-500 animate-drop"
+                      render={msg => (
+                        <p className="absolute mt-1 text-xs font-bold duration-200 top-full animate-in slide-in-from-top-1 text-danger-400">
+                          <ExclamationTriangleIcon className="inline w-5 h-5" />
+                          &nbsp;
+                          <span>{msg}</span>
+                        </p>
+                      )}
                     />
                   </div>
 
                   <div className="col-span-2">
-                    <label className="block mb-2 text-sm font-medium">
-                      images
+                    <div className="flex items-center mb-3">
+                      <label className="mr-2 text-sm font-medium">images</label>
                       <button
                         type="button"
-                        className="px-2 py-1 ml-1 text-xs text-white rounded bg-primary-600"
+                        className="px-2 py-1 text-xs text-white rounded bg-primary-600"
                         onClick={() => setImages(prev => [...prev, uuid()])}
                       >
-                        add image
+                        + image
                       </button>
-                    </label>
-                    <ErrorMessage
-                      component="span"
-                      name="images"
-                      className="ml-1 text-sm font-medium pointer-events-none text-danger-500"
-                    />
+                      <ErrorMessage
+                        name="images"
+                        render={msg => (
+                          <p className="ml-3 text-xs font-bold duration-200 left-full animate-in slide-in-from-left-1 text-danger-400">
+                            <ExclamationTriangleIcon className="inline w-5 h-5" />
+                            &nbsp;
+                            <span>{msg}</span>
+                          </p>
+                        )}
+                      />
+                    </div>
                     <div className="space-y-2">
                       {images.map((imageId, idx) => (
                         <div className="flex items-center" key={imageId}>
@@ -173,16 +240,13 @@ const CreateProduct = () => {
                             type="file"
                             name="images"
                             onChange={event => {
-                              const image = event.target.files
-                                ? event.target.files[0]
-                                : null
+                              const image = event.target.files?.[0]
 
-                              if (image === null) return
+                              if (!image) return
 
                               formik.setFieldValue('images', [
-                                ...new Map(formik.values.images)
-                                  .set(imageId, image)
-                                  .entries(),
+                                ...formik.values.images,
+                                [imageId, image],
                               ])
                             }}
                             className="rounded-lg form-input border-gray focus:ring-primary-600"
@@ -196,13 +260,12 @@ const CreateProduct = () => {
                               type="button"
                               className="ml-2"
                               onClick={() => {
-                                formik.setFieldValue('images', [
-                                  ...new Map(
-                                    Object.entries(formik.values.images).filter(
-                                      ([key]) => key !== imageId
-                                    )
-                                  ),
-                                ])
+                                formik.setFieldValue(
+                                  'images',
+                                  formik.values.images.filter(
+                                    ([id]) => id !== imageId
+                                  )
+                                )
                                 setImages(prev =>
                                   prev.filter(id => id !== imageId)
                                 )
@@ -226,14 +289,34 @@ const CreateProduct = () => {
                   </Link>
                   <button
                     type="submit"
-                    className="px-8 py-2 text-white rounded-lg bg-info-600"
+                    className="px-6 py-2 text-white rounded-lg bg-info-600 focus:ring focus:ring-info-100 focus:ring-offset-1 hover:bg-info-800 disabled:hover:bg-info-600"
                   >
+                    {isCreatingProduct && (
+                      <span className="h-4 text-white ">
+                        <img
+                          src={spinner}
+                          alt="spinner"
+                          className="inline w-4 mr-2 animate-spin"
+                        />
+                      </span>
+                    )}
                     <span className="text-sm font-medium">Create Product</span>
                   </button>
                 </div>
               </Form>
             )}
           </Formik>
+        </fieldset>
+        <div className="p-3 mt-8 space-y-1 text-sm rounded text-dark-500 bg-light">
+          <h4 className="font-bold text-primary-500">&gt;&nbsp;Notes</h4>
+          <p>
+            <span className="mr-3 font-bold">Supported image types:</span>
+            jpeg,jpg,png
+          </p>
+          <p>
+            <span className="mr-3 font-bold">Supported image dimensions:</span>
+            600 / 800 - 600 / 800
+          </p>
         </div>
       </section>
     </div>

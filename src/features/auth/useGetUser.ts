@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { useAuth } from '../../context/Auth'
-import api from '../../utils/api'
+import api from '../../utils/api/client'
 
 const getProfile = async () => {
   const response = await api.get('/me')

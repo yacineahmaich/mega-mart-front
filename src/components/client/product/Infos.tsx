@@ -7,8 +7,8 @@ const Infos = () => {
   const { data: product } = useProduct(slug)
 
   const avgRating = Math.trunc(
-    product.reviews.reduce((acc, review) => review.rating + acc, 0) /
-      product.reviews.length
+    product.reviews.reduce((acc, review) => review.rating + acc, 0) ??
+      0 / product.reviews.length
   )
 
   return (

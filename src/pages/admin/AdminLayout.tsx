@@ -23,7 +23,7 @@ const AdminLayout = () => {
       ) : (
         <>
           <Navbar />
-          <main className="w-full p-6 bg-light">
+          <main className="w-full min-h-screen p-6 bg-light">
             <Outlet />
           </main>
         </>
