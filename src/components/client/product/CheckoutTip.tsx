@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/solid'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useProduct } from '../../../features/client/products/queries/useProduct'
 import { useCart } from '../../../context/Cart'
 
 const CheckoutTip = () => {
+  const navigate = useNavigate()
   const { slug } = useParams()
   const { data: product } = useProduct(slug)
   const { items, changeQuantity, addToCart } = useCart()
@@ -30,6 +31,7 @@ const CheckoutTip = () => {
 
   const handleAddToCart = () => {
     addToCart(product.id, quantity)
+    navigate('/cart')
   }
   return (
     <div className="fixed bottom-0 left-0 z-20 flex items-center w-full gap-2 px-3 bg-white md:hidden">
@@ -44,6 +46,7 @@ const CheckoutTip = () => {
           value={quantity}
           type="number"
           className="w-14 py-1 border-[1px] outline-0 border-y border-x-0 focus:border-light font-medium text-dark-600 text-center  border-gray"
+          onChange={() => null}
         />
         <button
           className="px-4 border rounded-r-md border-gray text-danger-400"

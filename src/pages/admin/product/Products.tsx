@@ -1,9 +1,19 @@
 import { PlusCircleIcon } from '@heroicons/react/24/solid'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 
 import ProductsTable from '../../../components/admin/products/ProductsTable'
+import { useProducts } from '../../../features/admin/products/queries/useProducts'
+import Loader from './Loader'
+import Error from './Error'
 
 const Products = () => {
+  const [searchParams] = useSearchParams()
+  const page = searchParams.get('page')
+  const { isLoading, isError } = useProducts(page)
+
+  if (isLoading) return <Loader />
+  if (isError) return <Error />
+
   return (
     <div>
       <div className="flex items-center justify-between mb-3">

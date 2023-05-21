@@ -2,12 +2,12 @@ import { Link, ScrollRestoration, useSearchParams } from 'react-router-dom'
 import spinner from '../../../assets/icons/spinner.svg'
 import { Pagination } from 'react-laravel-paginex'
 import { useProducts } from '../../../features/admin/products/queries/useProducts'
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+// import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 
 const ProductsTable = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const page = searchParams.get('page')
-  const { data, isFetching, isLoading, isError, refetch } = useProducts(page)
+  const { data, isFetching } = useProducts(page)
 
   const onPaginate = ({ page }) => {
     setSearchParams(sp => {
@@ -41,7 +41,7 @@ const ProductsTable = () => {
             </tr>
           </thead>
           <tbody className="relative">
-            {isFetching && !isLoading && (
+            {isFetching && (
               <tr>
                 <td colSpan={5} className="py-2 text-center bg-white">
                   <img
@@ -52,7 +52,7 @@ const ProductsTable = () => {
                 </td>
               </tr>
             )}
-            {isError ? (
+            {/* {isError ? (
               <tr>
                 <td
                   colSpan={5}
@@ -71,99 +71,75 @@ const ProductsTable = () => {
                 </td>
               </tr>
             ) : (
-              <>
-                {data?.products?.map(product => (
-                  <tr
-                    key={product.id}
-                    className="bg-white border-b last:border-none text-dark-600 border-light"
+              <> */}
+            {data.products.map(product => (
+              <tr
+                key={product.id}
+                className="bg-white border-b last:border-none text-dark-600 border-light"
+              >
+                <td className="px-6 py-3">{product.id}</td>
+                <th
+                  scope="row"
+                  className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"
+                >
+                  {product.name}
+                </th>
+                <td className="px-6 py-3">{product.quantity}</td>
+                <td className="px-6 py-3">{product.price}</td>
+
+                <td className="space-x-3 text-center">
+                  <Link
+                    to={`${product.id}/edit`}
+                    className="text-sm font-medium hover:underline text-info-300"
                   >
-                    <td className="px-6 py-3">{product.id}</td>
-                    <th
-                      scope="row"
-                      className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"
-                    >
-                      {product.name.slice(0, 20)}
-                    </th>
-                    <td className="px-6 py-3">{product.quantity}</td>
-                    <td className="px-6 py-3">{product.price}</td>
-
-                    <td className="space-x-3 text-center">
-                      <Link
-                        to={`${product.id}/edit`}
-                        className="text-sm font-medium hover:underline text-info-300"
-                      >
-                        edit
-                      </Link>
-                      <Link
-                        to={`${product.slug}`}
-                        className="text-sm font-medium hover:underline text-warning-900"
-                      >
-                        show
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-              </>
-            )}
-
-            {isLoading &&
-              Array.from({ length: 15 }, (_, idx) => (
-                <tr key={idx} className="bg-white">
-                  <td className="p-3 text-center">
-                    <span className="block h-3 rounded-full w-14 animate-pulse bg-gray"></span>
-                  </td>
-                  <td className="p-3">
-                    <span className="block h-3 rounded-full w-60 animate-pulse bg-gray"></span>
-                  </td>
-                  <td className="p-3">
-                    <span className="block w-20 h-3 rounded-full animate-pulse bg-gray"></span>
-                  </td>
-                  <td className="p-3">
-                    <span className="block w-20 h-3 rounded-full animate-pulse bg-gray"></span>
-                  </td>
-                  <td className="flex justify-center p-3 space-x-2">
-                    <span className="block w-10 h-3 rounded-full animate-pulse bg-gray"></span>
-                    <span className="block w-10 h-3 rounded-full animate-pulse bg-gray"></span>
-                  </td>
-                </tr>
-              ))}
+                    edit
+                  </Link>
+                  <Link
+                    to={`${product.id}`}
+                    className="text-sm font-medium hover:underline text-warning-900"
+                  >
+                    view
+                  </Link>
+                </td>
+              </tr>
+            ))}
+            {/* </>
+            )} */}
           </tbody>
         </table>
       </div>
 
-      {!isLoading && !isError && (
-        <div className="flex items-center justify-between my-4">
-          <span className="text-sm font-normal text-dark-600 ">
-            Showing&nbsp;
-            <span className="font-semibold text-gray-900">
-              {data.meta.from}-{data.meta.to}&nbsp;
-            </span>
-            of&nbsp;
-            <span className="font-semibold text-gray-900">
-              {data.meta.total}&nbsp;
-            </span>
+      <div className="flex items-center justify-between my-4">
+        <span className="text-sm font-normal text-dark-600 ">
+          Showing&nbsp;
+          <span className="font-semibold text-gray-900">
+            {data.meta.from}-{data.meta.to}&nbsp;
           </span>
-          <Pagination
-            disabled={isFetching}
-            data={data}
-            options={{
-              containerClass: 'flex -space-x-px',
-              numberButtonClass:
-                ' py-1.5 bg-white border text-dark-600 border-gray w-fit hover:bg-primary-600 hover:text-white',
-              numberClass: 'px-4 py-1.5',
-              prevButtonClass:
-                ' py-1.5 bg-white border rounded-l-lg text-dark-600 border-gray hover:bg-primary-600 hover:text-white',
-              nextButtonClass:
-                'py-1.5 bg-white border rounded-r-lg text-dark-600 border-gray hover:bg-primary-600 hover:text-white',
-              activeClass:
-                'bg-gradient-to-br  border-b from-primary-600 to-primary-600 text-white',
-              prevButtonText: '<',
-              nextButtonText: '>',
-            }}
-            changePage={onPaginate}
-          />
-        </div>
-      )}
+          of&nbsp;
+          <span className="font-semibold text-gray-900">
+            {data.meta.total}&nbsp;
+          </span>
+        </span>
+        <Pagination
+          disabled={isFetching}
+          data={data}
+          options={{
+            containerClass: 'flex -space-x-px',
+            numberButtonClass:
+              ' py-1.5 bg-white border text-dark-600 border-gray w-fit hover:bg-primary-600 hover:text-white',
+            numberClass: 'px-3 font-medium py-1.5',
+            prevButtonClass:
+              ' py-1.5 bg-white border rounded-l-lg text-dark-600 border-gray hover:bg-primary-600 hover:text-white',
+            nextButtonClass:
+              'py-1.5 bg-white border rounded-r-lg text-dark-600 border-gray hover:bg-primary-600 hover:text-white',
+            activeClass:
+              'bg-gradient-to-br  border-b from-primary-600 to-primary-600 text-white',
+            prevButtonText: '<',
+            nextButtonText: '>',
+          }}
+          changePage={onPaginate}
+        />
+      </div>
       <ScrollRestoration />
     </section>
   )

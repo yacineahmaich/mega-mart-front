@@ -6,11 +6,6 @@ const Reviews = () => {
   const { slug } = useParams()
   const { data: product } = useProduct(slug)
 
-  const avgRating = Math.trunc(
-    product.reviews.reduce((acc, review) => review.rating + acc, 0) ??
-      0 / product.reviews.length
-  )
-
   return (
     <div>
       <h4 className="mb-10 font-medium">Product reviews</h4>
@@ -18,10 +13,10 @@ const Reviews = () => {
       <div className="flex flex-col gap-10 sm:flex-row">
         <div className="space-y-2">
           <span className="block text-6xl font-bold sm:text-center text-dark-700">
-            {avgRating}
+            {product.avgRating}
           </span>
           <StarRating
-            rating={avgRating}
+            rating={product.avgRating}
             starDimension={20}
             starSpacing={1}
             starEmptyColor="#e5e5e5"

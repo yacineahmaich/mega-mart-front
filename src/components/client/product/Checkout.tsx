@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/solid'
 import { useProduct } from '../../../features/client/products/queries/useProduct'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useCart } from '../../../context/Cart'
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 
 const Checkout = () => {
+  const navigate = useNavigate()
   const { slug } = useParams()
   const { data: product } = useProduct(slug)
   const { items, changeQuantity, addToCart } = useCart()
@@ -31,6 +31,7 @@ const Checkout = () => {
 
   const handleAddToCart = () => {
     addToCart(product.id, quantity)
+    navigate('/cart')
   }
 
   const [price, priceDecimal] = product.price.toString().split('.')
@@ -90,6 +91,7 @@ const Checkout = () => {
             value={quantity}
             type="number"
             className="w-14 py-1 border-[1px] outline-0 border-y border-x-0 focus:border-light font-medium text-dark-600 text-center  border-light"
+            onChange={() => null}
           />
 
           <button

@@ -5,6 +5,7 @@ interface Product {
   description: string
   price: number
   quantity: number
+  avgRating: number
   category: Category
   images: Image[]
   reviews: Review[]
@@ -30,6 +31,7 @@ interface User {
 }
 
 interface Review {
+  id: string
   rating: number
   comment: string
   at: string

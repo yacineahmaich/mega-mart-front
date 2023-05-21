@@ -9,16 +9,22 @@ import { productSchema } from '../../../utils/validation/admin/product'
 import { useCreateProduct } from '../../../features/admin/products/mutations/useCreateProduct'
 import { useCategories } from '../../../features/admin/categories/queries/useCategories'
 import { useNavigate } from 'react-router-dom'
+import Loader from './Loader'
+import Error from './Error'
 
 const CreateProduct = () => {
   const navigate = useNavigate()
   const [images, setImages] = useState<string[]>([uuid()])
-  const { data, isLoading } = useCategories()
+  const {
+    data,
+    isLoading: isCategoriesLoading,
+    isError: isCategoriesError,
+  } = useCategories()
   const {
     mutate: createProduct,
+    isLoading: isCreatingProduct,
     isError,
     error,
-    isLoading: isCreatingProduct,
   } = useCreateProduct({
     onSuccess: () =>
       navigate('..', {
@@ -44,6 +50,9 @@ const CreateProduct = () => {
     // @ts-ignore
     createProduct(productData)
   }
+
+  if (isCategoriesLoading) return <Loader />
+  if (isCategoriesError) return <Error />
 
   return (
     <div>
@@ -164,11 +173,9 @@ const CreateProduct = () => {
                       placeholder="Product category here..."
                     >
                       <option value="" disabled>
-                        {isLoading
-                          ? 'getting categories...'
-                          : 'select category'}
+                        select category
                       </option>
-                      {data?.categories?.map(category => (
+                      {data.categories.map(category => (
                         <option key={category.id} value={category.id}>
                           {category.name}
                         </option>

@@ -92,7 +92,7 @@ const CategoriesTable = () => {
           <li>
             <a
               href="#"
-              className="block px-3 py-2 ml-0 leading-tight bg-white border rounded-l-lg text-dark-600 border-gray hover:bg-warning-900 hover:text-white -700 "
+              className="block px-3 py-2 ml-0 leading-tight bg-white border rounded-l-lg text-dark-600 border-gray hover:bg-warning-900 hover:text-white"
             >
               <span className="sr-only">Previous</span>
               <svg

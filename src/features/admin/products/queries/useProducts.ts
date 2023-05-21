@@ -18,7 +18,7 @@ const getProducts = async (page: string) => {
   return response.data
 }
 
-export const useProducts = (page: string, options?: UseQueryOptions<Data>) => {
+export const useProducts = (page?: string, options?: UseQueryOptions<Data>) => {
   return useQuery<Data>({
     queryKey: ['products', page],
     queryFn: () => getProducts(page),

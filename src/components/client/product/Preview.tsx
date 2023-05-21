@@ -10,17 +10,6 @@ import clsx from 'clsx'
 import { useProduct } from '../../../features/client/products/queries/useProduct'
 import { useParams } from 'react-router-dom'
 
-const productImages = [
-  'https://img7-cdn.halftime.pt/p/2023/04/21/c/6/c6d03f3c86dc3c5d82e52548_thumb.jpg',
-  'https://img8-cdn.halftime.pt/p/2023/04/21/4/d/4d7cb43a709b3ace5ea62b15_thumb.jpg',
-
-  'https://img2-cdn.halftime.pt/2023/04/19/c/8/c8aca091e979da7d_thumb.jpeg',
-  'https://img2-cdn.halftime.pt/2023/04/19/2/e/2ed13921a82d614a_thumb.jpeg',
-  'https://img5-cdn.halftime.pt/2023/04/17/d/7/d72b26cf3e4c6058_thumb.jpeg',
-  'https://img7-cdn.halftime.pt/p/2023/04/21/c/6/c6d03f3c86dc3c5d82e52548_thumb.jpg',
-  'https://img8-cdn.halftime.pt/p/2023/04/21/4/d/4d7cb43a709b3ace5ea62b15_thumb.jpg',
-]
-
 const Preview = () => {
   const [sideSwiper, setSideSwiper] = useState(null)
   const [productSwiper, setProductSwiper] = useState(null)

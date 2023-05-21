@@ -11,7 +11,7 @@ const Cart = () => {
     productIds: ['-1', ...Object.keys(items)],
   })
 
-  const products = data?.products
+  const products = data?.products?.slice().reverse()
   const totalAmount = products?.reduce(
     (total, { id, price }) => price * items[id]?.quantity + total,
     0
