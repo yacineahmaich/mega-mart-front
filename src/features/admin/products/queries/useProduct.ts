@@ -8,7 +8,7 @@ const getProduct = async (id: string) => {
 
 export const useProduct = (id: string, options?: UseQueryOptions<Product>) => {
   return useQuery<Product>({
-    queryKey: ['product', id],
+    queryKey: ['products', id],
     queryFn: () => getProduct(id),
     keepPreviousData: true,
     ...options,

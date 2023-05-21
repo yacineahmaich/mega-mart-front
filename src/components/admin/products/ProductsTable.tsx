@@ -1,5 +1,5 @@
 import { Link, ScrollRestoration, useSearchParams } from 'react-router-dom'
-import spinner from '../../../assets/icons/spinner.svg'
+import spinner from '../../../assets/icons/spinner.png'
 import { Pagination } from 'react-laravel-paginex'
 import { useProducts } from '../../../features/admin/products/queries/useProducts'
 // import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
@@ -7,7 +7,7 @@ import { useProducts } from '../../../features/admin/products/queries/useProduct
 const ProductsTable = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const page = searchParams.get('page')
-  const { data, isFetching } = useProducts(page)
+  const { data, isFetching, isLoading } = useProducts(page)
 
   const onPaginate = ({ page }) => {
     setSearchParams(sp => {
@@ -19,6 +19,16 @@ const ProductsTable = () => {
 
   return (
     <section>
+      {isFetching && !isLoading && (
+        <div className="fixed left-1/2 top-4 flex items-center z-[99] gap-2 px-3 py-1 bg-white shadow">
+          <img
+            src={spinner}
+            alt="spinner"
+            className="w-4 h-4 mx-auto animate-spin"
+          />
+          <span className="text-sm font-bold">Loading...</span>
+        </div>
+      )}
       <div className="relative overflow-hidden overflow-x-auto rounded-t-lg">
         <table className="w-full text-sm text-left border text-dark-600 border-light ">
           <thead className="text-xs text-white uppercase bg-primary-600">
@@ -28,6 +38,9 @@ const ProductsTable = () => {
               </th>
               <th scope="col" className="px-6 py-3">
                 Product name
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Category
               </th>
               <th scope="col" className="px-6 py-3">
                 quantity
@@ -41,7 +54,7 @@ const ProductsTable = () => {
             </tr>
           </thead>
           <tbody className="relative">
-            {isFetching && (
+            {/* {isFetching && (
               <tr>
                 <td colSpan={5} className="py-2 text-center bg-white">
                   <img
@@ -51,7 +64,7 @@ const ProductsTable = () => {
                   />
                 </td>
               </tr>
-            )}
+            )} */}
             {/* {isError ? (
               <tr>
                 <td
@@ -84,6 +97,7 @@ const ProductsTable = () => {
                 >
                   {product.name}
                 </th>
+                <td className="px-6 py-3">{product.category.name}</td>
                 <td className="px-6 py-3">{product.quantity}</td>
                 <td className="px-6 py-3">{product.price}</td>
 

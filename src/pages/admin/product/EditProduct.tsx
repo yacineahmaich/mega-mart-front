@@ -1,31 +1,63 @@
-// import { useState } from 'react'
-import { Link } from 'react-router-dom'
-// import { XMarkIcon } from '@heroicons/react/24/outline'
+import {
+  Link,
+  ScrollRestoration,
+  useNavigate,
+  useParams,
+} from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage, FormikValues } from 'formik'
 
-// eslint-disable-next-line
-// @ts-ignore
-// import { v4 as uuid } from 'uuid'
-import { products } from '../../../utils/contants'
 import { productSchema } from '../../../utils/validation/admin/product'
+import { useProduct } from '../../../features/admin/products/queries/useProduct'
+import { useCategories } from '../../../features/admin/categories/queries/useCategories'
+import { useUpdateProduct } from '../../../features/admin/products/mutations/useUpdateProduct'
+import Loader from './Loader'
+import Error from './Error'
+import spinner from '../../../assets/icons/spinner.svg'
+import { useQueryClient } from '@tanstack/react-query'
 
 const EditProduct = () => {
-  const product = products[0]
+  const queryClient = useQueryClient()
+  const navigate = useNavigate()
+  const { id } = useParams()
+  const {
+    data: product,
+    isLoading: isProductLoading,
+    isError: isProductError,
+  } = useProduct(id)
+  const {
+    data,
+    isLoading: isCategoriesLoading,
+    isError: isCatgeoriesError,
+  } = useCategories()
+  const { mutate: updateProduct, isLoading } = useUpdateProduct({
+    onSuccess: () => {
+      queryClient.invalidateQueries(['products'])
+      queryClient.invalidateQueries(['products', product.id])
 
-  // const [images, setImages] = useState<string[]>([])
+      navigate('/dashboard/products')
+    },
+  })
 
   const initialValues = {
-    title: product.name ?? '',
-    price: product.price ?? '',
-    quantity: product.quantity ?? 0,
-    category: 1,
-    description: 'some description',
-    // images: [],
+    name: product?.name ?? '',
+    price: product?.price ?? '',
+    quantity: product?.quantity ?? '',
+    category: product?.category.id,
+    description: product?.description ?? '',
+    images: ['zdzdzdzdzd'],
   }
 
   const handleSubmit = (values: FormikValues & typeof initialValues) => {
-    console.log(values)
+    updateProduct({
+      id: product.id,
+      // eslint-disable-next-line
+      // @ts-ignore
+      product: values,
+    })
   }
+
+  if (isCategoriesLoading || isProductLoading) return <Loader />
+  if (isCatgeoriesError || isProductError) return <Error />
 
   return (
     <div>
@@ -45,21 +77,21 @@ const EditProduct = () => {
                 <div className="grid grid-cols-2 gap-8">
                   <div className="relative col-span-2">
                     <label
-                      htmlFor="title"
+                      htmlFor="name"
                       className="block mb-2 text-sm font-medium"
                     >
-                      Title
+                      Name
                     </label>
                     <Field
                       type="text"
-                      id="title"
-                      name="title"
+                      id="name"
+                      name="name"
                       className="bg-white form-input border-gray focus:ring-primary-600 text-sm rounded-lg p-2.5 block w-full"
-                      placeholder="Product title here..."
+                      placeholder="Product name here..."
                     />
                     <ErrorMessage
                       component="span"
-                      name="title"
+                      name="name"
                       className="absolute mt-1 text-sm font-medium top-full text-danger-500 animate-drop"
                     />
                   </div>
@@ -117,13 +149,13 @@ const EditProduct = () => {
                       name="category"
                       className="bg-white form-select border-gray focus:ring-primary-600 text-sm rounded-lg p-2.5 block w-full"
                       placeholder="Product category here..."
+                      defaultValue={product.category.id}
                     >
-                      <option value="" disabled>
-                        select category
-                      </option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
+                      {data.categories.map(cat => (
+                        <option key={cat.id} value={cat.id}>
+                          {cat.name}
+                        </option>
+                      ))}
                     </Field>
                     <ErrorMessage
                       component="span"
@@ -152,68 +184,6 @@ const EditProduct = () => {
                       className="absolute mt-1 text-sm font-medium top-full text-danger-500 animate-drop"
                     />
                   </div>
-
-                  {/* <div className="col-span-2">
-                    <label className="block mb-2 text-sm font-medium">
-                      images
-                      <button
-                        type="button"
-                        className="px-2 py-1 ml-1 text-xs text-white rounded bg-primary-600"
-                        onClick={() => setImages(prev => [...prev, uuid()])}
-                      >
-                        add image
-                      </button>
-                    </label>
-                    <ErrorMessage
-                      component="span"
-                      name="images"
-                      className="ml-1 text-sm font-medium pointer-events-none text-danger-500"
-                    />
-                    <div className="space-y-2">
-                      {images.map((imageId, idx) => (
-                        <div className="flex items-center" key={imageId}>
-                          <input
-                            type="file"
-                            name="images"
-                            onChange={event => {
-                              const image = event.target.files
-                                ? event.target.files[0]
-                                : null
-
-                              if (image === null) return
-
-                              formik.setFieldValue('images', [
-                                ...new Map(formik.values.images)
-                                  .set(imageId, image)
-                                  .entries(),
-                              ])
-                            }}
-                            className="rounded-lg form-input border-gray focus:ring-primary-600"
-                          />
-                          {idx >= 1 && (
-                            <button
-                              type="button"
-                              className="ml-2"
-                              onClick={() => {
-                                formik.setFieldValue('images', [
-                                  ...new Map(
-                                    Object.entries(formik.values.images).filter(
-                                      ([key]) => key !== imageId
-                                    )
-                                  ),
-                                ])
-                                setImages(prev =>
-                                  prev.filter(id => id !== imageId)
-                                )
-                              }}
-                            >
-                              <XMarkIcon className="w-4 h-4" />
-                            </button>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div> */}
                 </div>
 
                 <div className="flex items-center justify-end gap-3 mt-6">
@@ -227,6 +197,15 @@ const EditProduct = () => {
                     type="submit"
                     className="px-8 py-2 text-white rounded-lg bg-info-600"
                   >
+                    {isLoading && (
+                      <span className="h-4 text-white ">
+                        <img
+                          src={spinner}
+                          alt="spinner"
+                          className="inline w-4 mr-2 animate-spin"
+                        />
+                      </span>
+                    )}
                     <span className="text-sm font-medium">Update Product</span>
                   </button>
                 </div>
@@ -235,6 +214,7 @@ const EditProduct = () => {
           </Formik>
         </div>
       </section>
+      <ScrollRestoration />
     </div>
   )
 }
