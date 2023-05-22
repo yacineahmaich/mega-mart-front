@@ -2,8 +2,8 @@ import api from '../../../../utils/api/admin'
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 
 type Data = {
-  categories: Category[]
-  meta?: {
+  reviews: Review[]
+  meta: {
     current_page: number
     per_page: number
     last_page: number
@@ -13,20 +13,19 @@ type Data = {
   }
 }
 
-const getCategories = async (page: string) => {
-  const response = await api.get(`/categories?page=${page}`)
+const getProductReviews = async (id: string) => {
+  const response = await api.get(`/products/${id}/reviews`)
   return response.data
 }
 
-export const useCategories = (
-  page?: string,
+export const useProductReviews = (
+  id?: string,
   options?: UseQueryOptions<Data>
 ) => {
   return useQuery<Data>({
-    queryKey: ['categories', { page }],
-    queryFn: () => getCategories(page),
+    queryKey: ['products', id, 'reviews'],
+    queryFn: () => getProductReviews(id),
     keepPreviousData: true,
-    refetchOnMount: true,
     ...options,
   })
 }

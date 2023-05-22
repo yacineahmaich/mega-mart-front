@@ -1,3 +1,4 @@
+import spinner from '../../../assets/icons/spinner.svg'
 import {
   Link,
   ScrollRestoration,
@@ -5,35 +6,36 @@ import {
   useParams,
 } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage, FormikValues } from 'formik'
-
 import { productSchema } from '../../../utils/validation/admin/product'
+
+import { useQueryClient } from '@tanstack/react-query'
 import { useProduct } from '../../../features/admin/products/queries/useProduct'
 import { useCategories } from '../../../features/admin/categories/queries/useCategories'
 import { useUpdateProduct } from '../../../features/admin/products/mutations/useUpdateProduct'
-import Loader from './Loader'
-import Error from './Error'
-import spinner from '../../../assets/icons/spinner.svg'
-import { useQueryClient } from '@tanstack/react-query'
+
+import Loader from '../Loader'
+import Error from '../Error'
 
 const EditProduct = () => {
   const queryClient = useQueryClient()
   const navigate = useNavigate()
   const { id } = useParams()
+
   const {
     data: product,
     isLoading: isProductLoading,
     isError: isProductError,
   } = useProduct(id)
+
   const {
     data,
     isLoading: isCategoriesLoading,
     isError: isCatgeoriesError,
   } = useCategories()
+
   const { mutate: updateProduct, isLoading } = useUpdateProduct({
     onSuccess: () => {
       queryClient.invalidateQueries(['products'])
-      queryClient.invalidateQueries(['products', product.id])
-
       navigate('/dashboard/products')
     },
   })

@@ -1,24 +1,25 @@
-import { Link, ScrollRestoration, useSearchParams } from 'react-router-dom'
+import { FC, useState } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import spinner from '../../../assets/icons/spinner.png'
-import { Pagination } from 'react-laravel-paginex'
 import { useProducts } from '../../../features/admin/products/queries/useProducts'
-// import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+import {
+  ArrowPathIcon,
+  CheckIcon,
+  TrashIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline'
+import { PencilSquareIcon } from '@heroicons/react/24/solid'
+import { useDeleteProduct } from '../../../features/admin/products/mutations/useDeleteProduct'
+import { useQueryClient } from '@tanstack/react-query'
 
 const ProductsTable = () => {
-  const [searchParams, setSearchParams] = useSearchParams()
-  const page = searchParams.get('page')
-  const { data, isFetching, isLoading } = useProducts(page)
+  const [searchParams] = useSearchParams()
+  const page = searchParams.get('page') ?? '1'
 
-  const onPaginate = ({ page }) => {
-    setSearchParams(sp => {
-      sp.set('page', page)
-
-      return sp
-    })
-  }
+  const { data, isFetching, isLoading } = useProducts(page, { enabled: false })
 
   return (
-    <section>
+    <>
       {isFetching && !isLoading && (
         <div className="fixed left-1/2 top-4 flex items-center z-[99] gap-2 px-3 py-1 bg-white shadow">
           <img
@@ -54,108 +55,79 @@ const ProductsTable = () => {
             </tr>
           </thead>
           <tbody className="relative">
-            {/* {isFetching && (
-              <tr>
-                <td colSpan={5} className="py-2 text-center bg-white">
-                  <img
-                    src={spinner}
-                    alt="loader"
-                    className="w-6 h-6 mx-auto animate-spin"
-                  />
-                </td>
-              </tr>
-            )} */}
-            {/* {isError ? (
-              <tr>
-                <td
-                  colSpan={5}
-                  className="py-2 text-center bg-white text-danger-400"
-                >
-                  <ExclamationTriangleIcon className="inline w-5 h-5 mr-2" />
-                  <span className="text-sm font-bold">
-                    Something went wrong! failed to get records.
-                  </span>
-                  <button
-                    className="px-4 py-1.5 font-semibold ml-2 border-2 rounded text-primary-600 border-primary-600"
-                    onClick={() => refetch()}
-                  >
-                    try again
-                  </button>
-                </td>
-              </tr>
-            ) : (
-              <> */}
             {data.products.map(product => (
-              <tr
-                key={product.id}
-                className="bg-white border-b last:border-none text-dark-600 border-light"
-              >
-                <td className="px-6 py-3">{product.id}</td>
-                <th
-                  scope="row"
-                  className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"
-                >
-                  {product.name}
-                </th>
-                <td className="px-6 py-3">{product.category.name}</td>
-                <td className="px-6 py-3">{product.quantity}</td>
-                <td className="px-6 py-3">{product.price}</td>
-
-                <td className="space-x-3 text-center">
-                  <Link
-                    to={`${product.id}/edit`}
-                    className="text-sm font-medium hover:underline text-info-300"
-                  >
-                    edit
-                  </Link>
-                  <Link
-                    to={`${product.id}`}
-                    className="text-sm font-medium hover:underline text-warning-900"
-                  >
-                    view
-                  </Link>
-                </td>
-              </tr>
+              <ProductRow key={product.id} product={product} />
             ))}
-            {/* </>
-            )} */}
           </tbody>
         </table>
       </div>
+    </>
+  )
+}
 
-      <div className="flex items-center justify-between my-4">
-        <span className="text-sm font-normal text-dark-600 ">
-          Showing&nbsp;
-          <span className="font-semibold text-gray-900">
-            {data.meta.from}-{data.meta.to}&nbsp;
-          </span>
-          of&nbsp;
-          <span className="font-semibold text-gray-900">
-            {data.meta.total}&nbsp;
-          </span>
-        </span>
-        <Pagination
-          disabled={isFetching}
-          data={data}
-          options={{
-            containerClass: 'flex -space-x-px',
-            numberButtonClass:
-              ' py-1.5 bg-white border text-dark-600 border-gray w-fit hover:bg-primary-600 hover:text-white',
-            numberClass: 'px-3 font-medium py-1.5',
-            prevButtonClass:
-              ' py-1.5 bg-white border rounded-l-lg text-dark-600 border-gray hover:bg-primary-600 hover:text-white',
-            nextButtonClass:
-              'py-1.5 bg-white border rounded-r-lg text-dark-600 border-gray hover:bg-primary-600 hover:text-white',
-            activeClass:
-              'bg-gradient-to-br  border-b from-primary-600 to-primary-600 text-white',
-            prevButtonText: '<',
-            nextButtonText: '>',
-          }}
-          changePage={onPaginate}
-        />
-      </div>
-      <ScrollRestoration />
-    </section>
+type Props = {
+  product: Product
+}
+
+const ProductRow: FC<Props> = ({ product }) => {
+  const queryClient = useQueryClient()
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false)
+  const { mutate: deleteProduct, isLoading } = useDeleteProduct({
+    onSuccess: () => {
+      queryClient.invalidateQueries(['products'])
+      setIsConfirmOpen(false)
+    },
+  })
+
+  const handleDelete = () => {
+    deleteProduct({ productId: product.id })
+  }
+
+  return (
+    <tr
+      key={product.id}
+      className="bg-white border-b last:border-none text-dark-600 border-light"
+    >
+      <td className="px-6 py-3">{product.id}</td>
+      <th
+        scope="row"
+        className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"
+      >
+        {product.name}
+      </th>
+      <td className="px-6 py-3">{product.category.name}</td>
+      <td className="px-6 py-3">{product.quantity}</td>
+      <td className="px-6 py-3">{product.price}</td>
+
+      <td className="space-x-3 text-center">
+        {isConfirmOpen ? (
+          <div className="flex items-center justify-center w-full h-full gap-3">
+            <button onClick={handleDelete}>
+              {isLoading ? (
+                <ArrowPathIcon className="inline w-5 h-5 text-danger-100 animate-spin" />
+              ) : (
+                <CheckIcon className="inline w-5 h-5 text-danger-100" />
+              )}
+            </button>
+            <button onClick={() => setIsConfirmOpen(false)}>
+              <XMarkIcon className="inline w-5 h-5 text-dark-500" />
+            </button>
+          </div>
+        ) : (
+          <>
+            <Link to={`${product.id}/edit`} className="text-info-100">
+              <PencilSquareIcon className="inline w-5 h-5" />
+            </Link>
+            <button
+              className="text-danger-100"
+              onClick={() => setIsConfirmOpen(true)}
+            >
+              <TrashIcon className="inline w-5 h-5" />
+            </button>
+          </>
+        )}
+      </td>
+    </tr>
   )
 }
 

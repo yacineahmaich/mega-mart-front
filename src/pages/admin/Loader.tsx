@@ -1,4 +1,4 @@
-import loader from '../../../assets/icons/spinner.png'
+import loader from '../../assets/icons/spinner.png'
 
 const Loader = () => {
   return (

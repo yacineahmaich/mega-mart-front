@@ -19,7 +19,6 @@ import Orders from './pages/admin/order/Orders'
 import CreateProduct from './pages/admin/product/CreateProduct'
 import ProductLayout from './pages/admin/product/ProductLayout'
 import EditProduct from './pages/admin/product/EditProduct'
-import ViewProduct from './pages/admin/product/ViewProduct'
 import CategoryLayout from './pages/admin/category/CategoryLayout'
 import CreateCategory from './pages/admin/category/CreateCategory'
 import EditCategory from './pages/admin/category/EditCategory'
@@ -113,10 +112,6 @@ const router = createBrowserRouter([
               {
                 path: 'create',
                 element: <CreateProduct />,
-              },
-              {
-                path: ':id',
-                element: <ViewProduct />,
               },
               {
                 path: ':id/edit',

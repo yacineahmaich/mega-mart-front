@@ -8,7 +8,8 @@ interface Product {
   avgRating: number
   category: Category
   images: Image[]
-  reviews: Review[]
+  totalReviews: string
+  // reviews: Review[]
   discount: {
     has: boolean
     value: number
@@ -20,6 +21,7 @@ interface Category {
   id: string
   name: string
   description: string
+  totalProducts: string
   products?: Product[]
 }
 

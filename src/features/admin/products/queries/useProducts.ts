@@ -14,15 +14,16 @@ type Data = {
 }
 
 const getProducts = async (page: string) => {
-  const response = await api.get(`/products${page ? '?page=' + page : ''}`)
+  const response = await api.get(`/products?page=${page}`)
   return response.data
 }
 
 export const useProducts = (page?: string, options?: UseQueryOptions<Data>) => {
   return useQuery<Data>({
-    queryKey: ['products', page],
+    queryKey: ['products', { page }],
     queryFn: () => getProducts(page),
     keepPreviousData: true,
+    refetchOnMount: true,
     ...options,
   })
 }

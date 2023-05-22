@@ -1,16 +1,23 @@
-import { Link } from 'react-router-dom'
-
+import { Link, useNavigate } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage, FormikValues } from 'formik'
 import { categorySchema } from '../../../utils/validation/admin/category'
+import { useCreateCategory } from '../../../features/admin/categories/mutations/useCreateCategory'
+import spinner from '../../../assets/icons/spinner.svg'
 
 const CreateCategory = () => {
+  const navigate = useNavigate()
+  const { mutate: createCategory, isLoading } = useCreateCategory({
+    onSuccess: () => {
+      navigate('/dashboard/categories')
+    },
+  })
   const initialValues = {
     name: '',
     description: '',
   }
 
   const handleSubmit = (values: FormikValues & typeof initialValues) => {
-    console.log(values)
+    createCategory(values)
   }
 
   return (
@@ -73,16 +80,25 @@ const CreateCategory = () => {
 
               <div className="flex items-center justify-end gap-3 mt-6">
                 <Link
-                  to="/dashboard/categories"
+                  to="/dashboard/products"
                   className="px-4 py-2 text-white rounded-lg bg-danger-300"
                 >
                   <span className="text-sm font-medium">Cancel</span>
                 </Link>
                 <button
                   type="submit"
-                  className="px-8 py-2 text-white rounded-lg bg-info-600"
+                  className="px-6 py-2 text-white rounded-lg bg-info-600 focus:ring focus:ring-info-100 focus:ring-offset-1 hover:bg-info-800 disabled:hover:bg-info-600"
                 >
-                  <span className="text-sm font-medium">Create Catgegory</span>
+                  {isLoading && (
+                    <span className="h-4 text-white ">
+                      <img
+                        src={spinner}
+                        alt="spinner"
+                        className="inline w-4 mr-2 animate-spin"
+                      />
+                    </span>
+                  )}
+                  <span className="text-sm font-medium">Create Category</span>
                 </button>
               </div>
             </Form>

@@ -9,7 +9,7 @@ const CheckoutTip = () => {
   const { slug } = useParams()
   const { data: product } = useProduct(slug)
   const { items, changeQuantity, addToCart } = useCart()
-  const productInCart = items[product.id]
+  const productInCart = items[product?.id]
   const [quantity, setQuantity] = useState<number>(productInCart?.quantity ?? 1)
 
   const increaseQty = () => {

@@ -9,8 +9,8 @@ import { productSchema } from '../../../utils/validation/admin/product'
 import { useCreateProduct } from '../../../features/admin/products/mutations/useCreateProduct'
 import { useCategories } from '../../../features/admin/categories/queries/useCategories'
 import { useNavigate } from 'react-router-dom'
-import Loader from './Loader'
-import Error from './Error'
+import Loader from '../Loader'
+import Error from '../Error'
 
 const CreateProduct = () => {
   const navigate = useNavigate()
@@ -26,10 +26,7 @@ const CreateProduct = () => {
     isError,
     error,
   } = useCreateProduct({
-    onSuccess: () =>
-      navigate('..', {
-        relative: 'path',
-      }),
+    onSuccess: () => navigate('/dashboard/products'),
   })
 
   const initialValues = {
