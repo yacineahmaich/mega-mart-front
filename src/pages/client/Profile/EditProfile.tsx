@@ -1,21 +1,19 @@
 import { PencilSquareIcon } from '@heroicons/react/24/solid'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
-import { useAuth } from '../../../context/Auth'
 import { useUpdateProfile } from '../../../features/client/account/mutations/useUpdateProfile'
 import { toast } from 'react-hot-toast'
 import { updateProfileSchema } from '../../../utils/validation/client/profile'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { removeEmptyFields } from '../../../utils/helpers'
+import { useGetUser } from '../../../features/auth/useGetUser'
 
 const EditProfile = () => {
-  const { user, setUser } = useAuth()
-  const { mutateAsync: updateProfile, isLoading } = useUpdateProfile({
-    onSuccess: setUser,
-  })
+  const { data: user } = useGetUser()
+  const { mutateAsync: updateProfile, isLoading } = useUpdateProfile()
 
   const initialValues = {
-    name: user?.name,
-    email: user?.email,
+    name: user.name,
+    email: user.email,
     password: '',
     passwordConfirmation: '',
   }
@@ -81,10 +79,9 @@ const EditProfile = () => {
                     type="text"
                     name="email"
                     id="email"
-                    className="block w-full py-5 rounded-md pointer-events-none focus:ring-2 focus:ring-primary-500 border-slate-400 focus:border-transparent form-input bg-light"
+                    className="block w-full py-5 rounded-md focus:ring-2 focus:ring-primary-500 border-slate-400 focus:border-transparent form-input"
                     placeholder="Your Email"
                     autoComplete="on"
-                    disabled={true}
                   />
                   <ErrorMessage
                     name="email"

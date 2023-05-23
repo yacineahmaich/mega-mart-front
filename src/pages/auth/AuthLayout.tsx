@@ -1,10 +1,10 @@
 import { Navigate, Outlet } from 'react-router-dom'
-import { useAuth } from '../../context/Auth'
+import { useGetUser } from '../../features/auth/useGetUser'
 
 const AuthLayout = () => {
-  const { token } = useAuth()
+  const { data: user } = useGetUser()
 
-  if (token) return <Navigate to="/" />
+  if (user) return <Navigate to="/" />
 
   return (
     <section className="px-3">

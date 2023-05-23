@@ -1,8 +1,8 @@
 import { useLocation } from 'react-router-dom'
-import { useAuth } from '../../context/Auth'
+import { useGetUser } from '../../features/auth/useGetUser'
 
 const Navbar = () => {
-  const { user } = useAuth()
+  const { data: user } = useGetUser()
   const { pathname } = useLocation()
 
   const routerNavigation = pathname.split('/').filter(el => el !== '')

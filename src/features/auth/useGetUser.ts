@@ -1,32 +1,21 @@
 import { useQuery } from '@tanstack/react-query'
-import { useAuth } from '../../context/Auth'
 import api from '../../utils/api/client'
 
+const TOKEN = localStorage.getItem('ACCESS_TOKEN')
+
 const getProfile = async () => {
+  if (!TOKEN) return null
+
   const response = await api.get('/me')
   return response.data
 }
 
-export const useGetUser = () => {
-  const { setUser, setToken, token, user, setIsLoading } = useAuth()
-
-  return useQuery({
+export const useGetUser = (enabled = false) => {
+  return useQuery<User>({
     queryKey: ['user'],
-    queryFn: () => {
-      setIsLoading(true)
-      return getProfile()
-    },
+    queryFn: () => getProfile(),
     retry: false,
-    enabled: !!token && !user,
-    onSuccess(user: User) {
-      setUser(user)
-    },
-    onError() {
-      setToken(null)
-      setUser(null)
-    },
-    onSettled() {
-      setIsLoading(false)
-    },
+    enabled,
+    staleTime: 1000,
   })
 }

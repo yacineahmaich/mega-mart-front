@@ -1,6 +1,10 @@
 import { isAxiosError } from 'axios'
 import api from '../../utils/api/client'
-import { UseMutationOptions, useMutation } from '@tanstack/react-query'
+import {
+  UseMutationOptions,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query'
 
 type Data = {
   token: string
@@ -27,9 +31,15 @@ const signup = async (credentials: SignupCredentials) => {
 export const useSignup = (
   options?: UseMutationOptions<Data, Error, SignupCredentials>
 ) => {
+  const queryClient = useQueryClient()
+
   return useMutation<Data, Error, SignupCredentials>({
     mutationFn: signup,
     retry: false,
+    onSuccess: data => {
+      queryClient.setQueryData(['user'], data.user),
+        localStorage.setItem('ACCESS_TOKEN', data.token)
+    },
     ...options,
   })
 }

@@ -27,6 +27,7 @@ interface Category {
 
 interface User {
   id: string
+  isAdmin: boolean
   name: string
   email: string
   profileImg: string

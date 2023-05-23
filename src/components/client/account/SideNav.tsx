@@ -5,15 +5,13 @@ import {
   UserIcon,
 } from '@heroicons/react/24/solid'
 import { NavLink } from 'react-router-dom'
-import { useAuth } from '../../../context/Auth'
+import { useGetUser } from '../../../features/auth/useGetUser'
+import { useLogout } from '../../../features/auth/useLogout'
+import { ArrowPathIcon } from '@heroicons/react/24/outline'
 
 const SideNav = () => {
-  const { setUser, setToken, user } = useAuth()
-
-  const handleLogout = () => {
-    setUser(null)
-    setToken(null)
-  }
+  const { data: user } = useGetUser()
+  const { mutate: logout, isLoading } = useLogout()
 
   return (
     <div className="flex flex-col items-center gap-6 border border-gray bg-warning-400">
@@ -91,9 +89,13 @@ const SideNav = () => {
           <li>
             <button
               className="flex items-center w-full gap-2 p-3 text-white bg-danger-600 hover:bg-danger-500"
-              onClick={handleLogout}
+              onClick={() => logout()}
             >
-              <ArrowLeftOnRectangleIcon className="w-5 h-5" />
+              {isLoading ? (
+                <ArrowPathIcon className="w-5 h-5 animate-spin" />
+              ) : (
+                <ArrowLeftOnRectangleIcon className="w-5 h-5" />
+              )}
               <span className="text-sm font-bold align-bottom">Logout</span>
             </button>
           </li>

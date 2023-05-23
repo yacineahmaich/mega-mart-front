@@ -4,21 +4,9 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { loginSchema } from '../../utils/validation/auth'
 import { useLogin } from '../../features/auth/useLogin'
 import { toast } from 'react-hot-toast'
-import { useAuth } from '../../context/Auth'
 
 const Login = () => {
-  const { setUser, setToken } = useAuth()
-  const {
-    mutateAsync: login,
-    isError,
-    error,
-    isLoading,
-  } = useLogin({
-    onSuccess: data => {
-      setUser(data.user)
-      setToken(data.token)
-    },
-  })
+  const { mutateAsync: login, isError, error, isLoading } = useLogin()
 
   const initialValues = {
     email: '',

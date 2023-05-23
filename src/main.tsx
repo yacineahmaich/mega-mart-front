@@ -5,7 +5,6 @@ import App from './App.tsx'
 import { Toaster } from 'react-hot-toast'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import AuthProvider from './context/Auth/AuthProvider.tsx'
 import CartProvider from './context/Cart/CartProvider.tsx'
 
 const queryClient = new QueryClient({
@@ -17,11 +16,9 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   // <React.StrictMode>
   <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <CartProvider>
-        <App />
-      </CartProvider>
-    </AuthProvider>
+    <CartProvider>
+      <App />
+    </CartProvider>
     <Toaster
       position="top-right"
       toastOptions={{
