@@ -4,10 +4,10 @@ import {
   ShoppingCartIcon,
   UserIcon,
 } from '@heroicons/react/24/solid'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useGetUser } from '../../../features/auth/useGetUser'
 import { useLogout } from '../../../features/auth/useLogout'
-import { ArrowPathIcon } from '@heroicons/react/24/outline'
+import { ArrowPathIcon, Squares2X2Icon } from '@heroicons/react/24/outline'
 
 const SideNav = () => {
   const { data: user } = useGetUser()
@@ -86,6 +86,19 @@ const SideNav = () => {
               </span>
             </NavLink>
           </li>
+          {user.isAdmin && (
+            <li>
+              <Link
+                to="/dashboard"
+                className="flex items-center w-full gap-2 p-3 text-white bg-slate-600 hover:bg-slate-700"
+              >
+                <Squares2X2Icon className="w-5 h-5" />
+                <span className="text-sm font-bold align-bottom">
+                  Dashboard
+                </span>
+              </Link>
+            </li>
+          )}
           <li>
             <button
               className="flex items-center w-full gap-2 p-3 text-white bg-danger-600 hover:bg-danger-500"
