@@ -30,6 +30,7 @@ import Profile from './pages/client/Profile/Profile'
 import MyOrders from './pages/client/Profile/MyOrders'
 import EditProfile from './pages/client/Profile/EditProfile'
 import NotFound from './pages/NotFound'
+import Checkout from './pages/client/Checkout'
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,7 @@ const router = createBrowserRouter([
             path: 'cart',
             element: <Cart />,
           },
+          { path: '/cart/checkout', element: <Checkout /> },
           {
             path: 'account',
             children: [

@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { BookOpenIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
 import { HandThumbUpIcon, TruckIcon } from '@heroicons/react/24/solid'
+import { Link } from 'react-router-dom'
 
 type Props = {
   totalProducts: number
@@ -22,9 +23,12 @@ const Checkout: FC<Props> = ({ totalProducts, totalAmount }) => {
           <span>${totalAmount}</span>
         </div>
       </article>
-      <button className="py-3 font-semibold text-white rounded-full hover:bg-primary-700 bg-primary-600">
-        Validate Cart
-      </button>
+      <Link
+        to="checkout"
+        className="py-3 font-semibold text-center text-white rounded-full hover:bg-primary-700 bg-primary-600"
+      >
+        Checkout
+      </Link>
 
       <article className="px-8 py-4 rounded-lg bg-primary-800">
         <ul className="space-y-4 font-medium">
