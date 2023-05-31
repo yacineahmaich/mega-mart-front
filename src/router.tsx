@@ -29,6 +29,7 @@ import ProfileLayout from './pages/client/Profile/ProfileLayout'
 import Profile from './pages/client/Profile/Profile'
 import MyOrders from './pages/client/Profile/MyOrders'
 import EditProfile from './pages/client/Profile/EditProfile'
+import NotFound from './pages/NotFound'
 
 const router = createBrowserRouter([
   {
@@ -89,6 +90,10 @@ const router = createBrowserRouter([
                 ],
               },
             ],
+          },
+          {
+            path: '*',
+            element: <NotFound backUrl="/" backText="Back Home" />,
           },
         ],
       },
@@ -158,6 +163,12 @@ const router = createBrowserRouter([
           {
             path: 'orders',
             element: <Orders />,
+          },
+          {
+            path: '*',
+            element: (
+              <NotFound backUrl="/dashboard" backText="Back Dashboard" />
+            ),
           },
         ],
       },
