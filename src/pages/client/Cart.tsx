@@ -18,7 +18,7 @@ const Cart = () => {
   )
 
   return (
-    <section className="min-h-screen px-3 mb-20 md:px-6">
+    <section className="min-h-screen p-3 mb-20 md:p-6">
       <main className="relative flex flex-col h-full gap-12 md:flex-row">
         {isLoading && (
           <div className="w-full">

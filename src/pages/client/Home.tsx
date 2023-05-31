@@ -14,7 +14,7 @@ const Home: FC = () => {
   const { isLoading, isFetching } = useProducts(params)
 
   return (
-    <div className="min-h-screen px-3 md:px-6">
+    <div className="min-h-screen p-3 md:p-6">
       {isFetching && !isLoading && (
         <div className="fixed left-1/2 top-4 flex items-center z-[99] gap-2 px-3 py-1 bg-white shadow">
           <img

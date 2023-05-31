@@ -5,7 +5,6 @@ export const checkoutSchema = Yup.object({
   phone: Yup.mixed().required(),
   email: Yup.string().email().required(),
   city: Yup.string().required(),
-  state: Yup.string().required(),
   zipCode: Yup.string(),
   adress: Yup.string().required(),
   customerNote: Yup.string(),

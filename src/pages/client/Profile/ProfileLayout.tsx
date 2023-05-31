@@ -7,7 +7,7 @@ const ProfileLayout = () => {
   if (!user) return <Navigate to="/" />
 
   return (
-    <section className="flex w-full min-h-screen gap-6 px-3 sm:px-6">
+    <section className="flex w-full min-h-screen gap-6 p-3 sm:p-6">
       <div className="w-1/4">
         <SideNav />
       </div>

@@ -13,7 +13,6 @@ const Checkout = () => {
     phone: '',
     email: user.email,
     city: '',
-    state: '',
     zipCode: '',
     adress: '',
     customerNote: '',
@@ -25,9 +24,9 @@ const Checkout = () => {
   }
 
   return (
-    <section className="max-w-6xl px-3 mx-auto md:px-6">
-      <div>
-        <h2 className="mb-4 text-lg font-medium text-primary-600">
+    <section className="p-3 pb-10 bg-light md:p-6 md:pb-14">
+      <div className="max-w-6xl mx-auto ">
+        <h2 className="block mb-2 font-bold w-fit text-dark-500">
           Delevery information
         </h2>
 
@@ -38,7 +37,7 @@ const Checkout = () => {
             validationSchema={checkoutSchema}
           >
             <Form>
-              <div className="grid gap-4 md:grid-cols-2">
+              <div className="grid gap-4 p-4 mb-6 bg-white md:grid-cols-2">
                 <div className="relative mb-7">
                   <label
                     className="block mb-2 text-sm font-bold w-fit text-dark-500"
@@ -198,11 +197,38 @@ const Checkout = () => {
                 <div className="relative col-span-2 mb-7">
                   <label
                     className="block mb-2 text-sm font-bold w-fit text-dark-500"
-                    htmlFor="paymentMethod"
+                    htmlFor="customerNote"
                   >
-                    Payment Method
+                    Note
                   </label>
-                  <div className="flex flex-wrap items-center justify-around gap-3 my-4">
+                  <Field
+                    as="textarea"
+                    name="customerNote"
+                    id="customerNote"
+                    className="block w-full transition-all rounded-none focus:ring-2 focus:ring-primary-800 border-slate-400 focus:border-transparent form-textarea"
+                    placeholder="Your Note"
+                    autoComplete="on"
+                    rows={5}
+                  />
+                  <ErrorMessage
+                    name="customerNote"
+                    render={msg => (
+                      <p className="absolute mt-1 text-xs font-bold duration-200 top-full animate-in slide-in-from-top-1 text-danger-400">
+                        <ExclamationTriangleIcon className="inline w-5 h-5" />
+                        &nbsp;
+                        <span>{msg}</span>
+                      </p>
+                    )}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <div className="relative col-span-2 mb-7">
+                  <h2 className="block mb-2 font-bold w-fit text-dark-500">
+                    Payment Method
+                  </h2>
+                  <div className="flex flex-wrap items-center justify-around gap-3 py-8 my-4 bg-white">
                     <label
                       className="flex items-center gap-3 cursor-pointer"
                       htmlFor="online"
@@ -254,42 +280,14 @@ const Checkout = () => {
                     )}
                   />
                 </div>
-                <div className="relative col-span-2 mb-7">
-                  <label
-                    className="block mb-2 text-sm font-bold w-fit text-dark-500"
-                    htmlFor="customerNote"
-                  >
-                    Note
-                  </label>
-                  <Field
-                    as="textarea"
-                    name="customerNote"
-                    id="customerNote"
-                    className="block w-full transition-all rounded-none focus:ring-2 focus:ring-primary-800 border-slate-400 focus:border-transparent form-textarea"
-                    placeholder="Your Note"
-                    autoComplete="on"
-                    rows={5}
-                  />
-                  <ErrorMessage
-                    name="customerNote"
-                    render={msg => (
-                      <p className="absolute mt-1 text-xs font-bold duration-200 top-full animate-in slide-in-from-top-1 text-danger-400">
-                        <ExclamationTriangleIcon className="inline w-5 h-5" />
-                        &nbsp;
-                        <span>{msg}</span>
-                      </p>
-                    )}
-                  />
-                </div>
-
-                <div className="flex justify-end col-span-2">
-                  <button
-                    type="submit"
-                    className="px-20 py-4 text-white bg-gradient-to-tr from-primary-700 to-primary-600"
-                  >
-                    <span>Confirm Order</span>
-                  </button>
-                </div>
+              </div>
+              <div className="flex justify-end col-span-2">
+                <button
+                  type="submit"
+                  className="px-20 py-4 text-white rounded-sm bg-gradient-to-tr from-primary-700 to-primary-600"
+                >
+                  <span>Confirm Order</span>
+                </button>
               </div>
             </Form>
           </Formik>

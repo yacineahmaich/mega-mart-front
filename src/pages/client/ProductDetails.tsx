@@ -14,7 +14,7 @@ const ProductDetails = () => {
   console.log(product)
 
   return (
-    <div className="min-h-screen px-3 space-y-12 sm:px-6">
+    <div className="min-h-screen p-3 space-y-12 sm:p-6">
       {isLoading ? (
         <div>
           <img
