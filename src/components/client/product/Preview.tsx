@@ -14,7 +14,6 @@ const Preview = () => {
   const [sideSwiper, setSideSwiper] = useState(null)
   const [productSwiper, setProductSwiper] = useState(null)
   const { slug } = useParams()
-
   const { data: product } = useProduct(slug)
 
   return (

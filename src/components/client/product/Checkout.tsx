@@ -68,7 +68,7 @@ const Checkout = () => {
               <span className="block">USD</span>
             </p>
           </div>
-          {product?.discount?.has && (
+          {product?.discount && (
             <div className="flex justify-center gap-2">
               <p className="text-sm text-dark-500">
                 <s>9999 USD</s>

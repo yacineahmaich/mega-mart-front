@@ -2,7 +2,7 @@ import { isAxiosError } from 'axios'
 import api from '../../../../utils/api/admin'
 import { UseMutationOptions, useMutation } from '@tanstack/react-query'
 
-const deleteCustomer = async ({ customerId }: { customerId: string }) => {
+const deleteCustomer = async ({ customerId }: { customerId: number }) => {
   try {
     await api.delete(`/customers/${customerId}`)
   } catch (error) {
@@ -11,9 +11,9 @@ const deleteCustomer = async ({ customerId }: { customerId: string }) => {
 }
 
 export const useDeleteCustomer = (
-  options?: UseMutationOptions<unknown, unknown, { customerId: string }>
+  options?: UseMutationOptions<unknown, unknown, { customerId: number }>
 ) => {
-  return useMutation<unknown, unknown, { customerId: string }>({
+  return useMutation<unknown, unknown, { customerId: number }>({
     mutationFn: deleteCustomer,
     ...options,
   })

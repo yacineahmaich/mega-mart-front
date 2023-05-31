@@ -11,7 +11,7 @@ const CartProvider: FC<Props> = ({ children }) => {
   )
 
   // add item to cart
-  const addToCart = (id: string, quantity?: number) => {
+  const addToCart = (id: number, quantity?: number) => {
     if (items[id]) return
     setItems(items => ({
       ...items,
@@ -20,7 +20,7 @@ const CartProvider: FC<Props> = ({ children }) => {
   }
 
   // increate quantity
-  const changeQuantity = (id: string, quantity: number) => {
+  const changeQuantity = (id: number, quantity: number) => {
     setItems(items =>
       items[id]
         ? { ...items, [id]: { ...items[id], quantity: quantity } }
@@ -29,9 +29,9 @@ const CartProvider: FC<Props> = ({ children }) => {
   }
 
   // remove from cart
-  const removeFromCart = (id: string) => {
+  const removeFromCart = (id: number) => {
     setItems(items =>
-      Object.fromEntries(Object.entries(items).filter(([key]) => key != id))
+      Object.fromEntries(Object.entries(items).filter(([key]) => +key !== id))
     )
   }
 

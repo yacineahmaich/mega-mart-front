@@ -10,8 +10,7 @@ import { useParams } from 'react-router-dom'
 
 const ProductDetails = () => {
   const { slug } = useParams()
-  const { data: product, isLoading } = useProduct(slug)
-  console.log(product)
+  const { isLoading } = useProduct(slug)
 
   return (
     <div className="min-h-screen p-3 space-y-12 sm:p-6">

@@ -65,7 +65,7 @@ const Item: FC<Props> = ({ product }) => {
       </div>
       <div className="flex flex-col items-start">
         <div>
-          <Link to={`/${product.id}`}>
+          <Link to={`/${product.slug}`}>
             <h4 className="max-w-sm font-semibold leading-6 text-md md:text-lg text-dark-600 hover:underline hover:text-primary-400">
               {product.name}
             </h4>
@@ -81,7 +81,6 @@ const Item: FC<Props> = ({ product }) => {
             <p className="mb-1 text-xs font-bold animate-in slide-in-from-bottom-1 text-danger-400">
               <ExclamationTriangleIcon className="inline w-5 h-5" />
               &nbsp;
-              {/* <span>No more quantity to add.</span> */}
               <span>You reach limit quantity</span>
             </p>
           )}
@@ -96,6 +95,7 @@ const Item: FC<Props> = ({ product }) => {
               value={quantity}
               type="number"
               className="w-14 py-1 border-[1px] outline-0 border-y border-x-0 font-medium text-dark-600 text-center  border-gray"
+              onChange={() => null}
             />
             <button
               className="px-4 bg-white border rounded-r-md border-gray text-danger-400"

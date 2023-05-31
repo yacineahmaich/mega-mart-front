@@ -4,7 +4,7 @@ import { UseMutationOptions, useMutation } from '@tanstack/react-query'
 import { productSchema } from '../../../../utils/validation/admin/product'
 
 type ProductData = {
-  id: string
+  id: number
   product: typeof productSchema.__outputType
 }
 

@@ -2,7 +2,7 @@ import api from '../../../../utils/api/admin'
 import { isAxiosError } from 'axios'
 import { UseMutationOptions, useMutation } from '@tanstack/react-query'
 
-const deleteCategory = async ({ categoryId }: { categoryId: string }) => {
+const deleteCategory = async ({ categoryId }: { categoryId: number }) => {
   try {
     const response = await api.delete(`/categories/${categoryId}`)
 
@@ -13,9 +13,9 @@ const deleteCategory = async ({ categoryId }: { categoryId: string }) => {
 }
 
 export const useDeleteCategory = (
-  options?: UseMutationOptions<unknown, unknown, { categoryId: string }>
+  options?: UseMutationOptions<unknown, unknown, { categoryId: number }>
 ) => {
-  return useMutation<unknown, unknown, { categoryId: string }>({
+  return useMutation<unknown, unknown, { categoryId: number }>({
     mutationFn: deleteCategory,
     ...options,
   })

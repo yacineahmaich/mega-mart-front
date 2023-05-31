@@ -13,19 +13,19 @@ type Data = {
   }
 }
 
-const getProductReviews = async (slug: string, limit: number) => {
-  const response = await api.get(`/products/${slug}/reviews?limit=${limit}`)
+const getProductReviews = async (id: number, limit: number) => {
+  const response = await api.get(`/products/${id}/reviews?limit=${limit}`)
   return response.data
 }
 
 export const useProductReviews = (
-  slug: string,
+  id: number,
   limit: number,
   options?: UseQueryOptions<Data>
 ) => {
   return useQuery<Data>({
-    queryKey: ['products', slug, 'reviews'],
-    queryFn: () => getProductReviews(slug, limit),
+    queryKey: ['products', id, 'reviews'],
+    queryFn: () => getProductReviews(id, limit),
     keepPreviousData: true,
     ...options,
   })

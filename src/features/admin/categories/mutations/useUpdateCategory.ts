@@ -4,7 +4,7 @@ import { UseMutationOptions, useMutation } from '@tanstack/react-query'
 import { categorySchema } from '../../../../utils/validation/admin/category'
 
 type CategoryData = {
-  id: string
+  id: number
   category: typeof categorySchema.__outputType
 }
 

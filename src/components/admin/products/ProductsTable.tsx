@@ -47,7 +47,7 @@ const ProductsTable = () => {
           </thead>
           <tbody className="relative">
             {isFetching && (
-              <div className="absolute inset-0 z-40 w-full h-full"></div>
+              <tr className="absolute inset-0 z-40 w-full h-full"></tr>
             )}
             {data.products.map(product => (
               <ProductRow key={product.id} product={product} />

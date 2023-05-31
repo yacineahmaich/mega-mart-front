@@ -18,6 +18,7 @@ export const useGetUser = (options?: UseQueryOptions<User>) => {
     enabled: false,
     staleTime: 1000 * 60 * 60 * 24,
     onSettled: () => {
+      // hide page loader
       document.querySelector('#loader')?.remove()
       document.body.style.overflow = 'auto'
     },

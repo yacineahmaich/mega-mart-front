@@ -1,5 +1,5 @@
 interface Product {
-  id: string
+  id: number
   name: string
   slug: string
   description: string
@@ -8,25 +8,24 @@ interface Product {
   avgRating: number
   category: Category
   images: Image[]
-  totalReviews: string
+  totalReviews: number
   // reviews: Review[]
   discount: {
-    has: boolean
     value: number
     price: number
-  }
+  } | null
 }
 
 interface Category {
-  id: string
+  id: number
   name: string
   description: string
-  totalProducts: string
+  totalProducts: number
   products?: Product[]
 }
 
 interface User {
-  id: string
+  id: number
   isAdmin: boolean
   name: string
   email: string
@@ -34,7 +33,7 @@ interface User {
 }
 
 interface Review {
-  id: string
+  id: number
   rating: number
   comment: string
   at: string
@@ -43,6 +42,6 @@ interface Review {
 }
 
 interface Image {
-  id: string
+  id: number
   url: string
 }

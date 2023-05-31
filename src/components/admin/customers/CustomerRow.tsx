@@ -63,7 +63,7 @@ const CustomerRow: FC<Props> = ({ customer }) => {
         ) : (
           <>
             <button className="group text-warning-900">
-              {customer.id == '1' ? (
+              {customer.id === 1 ? (
                 <LockOpenIcon className="inline w-4 h-4 mr-1" />
               ) : (
                 <LockClosedIcon className="inline w-4 h-4 mr-1" />
