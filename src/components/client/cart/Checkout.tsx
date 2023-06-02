@@ -10,7 +10,7 @@ type Props = {
 
 const Checkout: FC<Props> = ({ totalProducts, totalAmount }) => {
   return (
-    <div className="flex flex-col w-full gap-6 md:w-1/3 right-6">
+    <div className="flex flex-col w-full gap-6 ml-auto md:w-1/3 right-6">
       <article className="p-3 bg-white border divide-y rounded-lg divide-gray border-gray">
         <div className="flex items-center justify-between py-3 text-dark-700">
           <span className="font-medium text-dark-600">Total products</span>

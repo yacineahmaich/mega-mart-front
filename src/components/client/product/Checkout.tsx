@@ -47,9 +47,9 @@ const Checkout = () => {
     const headerObserver = new IntersectionObserver(entries => {
       if (!checkoutRef.current) return
       if (entries[0].isIntersecting) {
-        checkoutRef.current.classList.remove('top-0')
+        checkoutRef.current.classList.remove('top-6')
       } else {
-        checkoutRef.current.classList.add('top-0')
+        checkoutRef.current.classList.add('top-6')
       }
     }, options)
     headerObserver.observe(navigationEl)

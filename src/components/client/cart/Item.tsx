@@ -30,7 +30,7 @@ const Item: FC<Props> = ({ product }) => {
   }
 
   return (
-    <article className="relative flex p-4 border bg-light/40 border-gray rounded-xl">
+    <article className="relative flex p-4 bg-white border border-gray rounded-xl">
       {/* delete confirm */}
       {isConfirmOpen && (
         <div className="absolute inset-0 flex flex-col items-center justify-center w-full h-full gap-4 bg-white rounded-xl animate-in slide-in-from-top-2">
@@ -60,7 +60,7 @@ const Item: FC<Props> = ({ product }) => {
         <img
           src={product.images[0].url}
           alt={product.name}
-          className="object-cover w-full h-full rounded-lg "
+          className="object-cover w-full h-full rounded-sm"
         />
       </div>
       <div className="flex flex-col items-start">
