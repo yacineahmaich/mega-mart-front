@@ -1,5 +1,8 @@
 import { useState } from 'react'
-import FilterModal from './FilterModal'
+import Sheet from '../../ui/Sheet'
+import CategoryFilter from './filersSheet/CategoryFilter'
+import PriceFilter from './filersSheet/PriceFilter'
+import RatingFilter from './filersSheet/RatingFilter'
 
 const FilterModalButton = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -16,7 +19,13 @@ const FilterModalButton = () => {
         Filter
       </button>
 
-      <FilterModal isOpen={isOpen} onClose={onClose} />
+      <Sheet title="Filter" isOpen={isOpen} onClose={onClose}>
+        <div className="p-3 space-y-3">
+          <CategoryFilter />
+          <PriceFilter />
+          <RatingFilter />
+        </div>
+      </Sheet>
     </>
   )
 }

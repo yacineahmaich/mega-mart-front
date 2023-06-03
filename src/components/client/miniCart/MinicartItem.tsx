@@ -1,14 +1,19 @@
 import { FC, useState } from 'react'
-import { ExclamationTriangleIcon, TrashIcon } from '@heroicons/react/24/outline'
-import { PlusSmallIcon, MinusSmallIcon } from '@heroicons/react/24/solid'
-import moment from 'moment'
 import { useCart } from '../../../context/Cart'
+import moment from 'moment'
+import {
+  ExclamationTriangleIcon,
+  MinusSmallIcon,
+  PlusSmallIcon,
+  TrashIcon,
+} from '@heroicons/react/24/outline'
 
 type Props = {
   product: Product
+  goToProduct: (slug: string) => void
 }
 
-const Item: FC<Props> = ({ product }) => {
+const MinicartItem: FC<Props> = ({ product, goToProduct }) => {
   const { items, removeFromCart, changeQuantity } = useCart()
   const [isConfirmOpen, setIsConfirmOpen] = useState(false)
   const [quantity, setQuantity] = useState<number>(items[product.id]?.quantity)
@@ -38,10 +43,10 @@ const Item: FC<Props> = ({ product }) => {
           </p>
           <div className="space-x-2">
             <button
-              className="w-24 py-1 text-sm font-medium transition-colors border rounded-full border-primary-600 text-dark-700 active:ring-2 active:ring-primary-500 active:ring-offset-1 hover:bg-primary-600 hover:text-white"
+              className="w-24 py-1 text-sm font-medium transition-colors border rounded-full border-primary-600 text-dark-700 active:ring-2 active:ring-primary-500 active:ring-offset-1"
               onClick={() => setIsConfirmOpen(false)}
             >
-              Cancel{' '}
+              Cancel
             </button>
             <button
               className="w-24 py-1 text-sm font-medium text-white border rounded-full border-primary-600 bg-primary-600 active:ring-2 active:ring-primary-500 active:ring-offset-1"
@@ -68,7 +73,12 @@ const Item: FC<Props> = ({ product }) => {
         <div className="flex flex-col justify-between flex-1">
           <div className="flex justify-between gap-4">
             <div>
-              <a href="#" className="leading-5 hover:underline">
+              <a
+                href="#"
+                role="link"
+                className="leading-5 hover:underline"
+                onClick={() => goToProduct(product.slug)}
+              >
                 <h3 className="text-sm font-medium text-dark-700 line-clamp-3 md:text-md hover:underline hover:text-primary-400">
                   {product.name}
                 </h3>
@@ -127,4 +137,4 @@ const Item: FC<Props> = ({ product }) => {
   )
 }
 
-export default Item
+export default MinicartItem

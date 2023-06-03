@@ -1,13 +1,14 @@
 import { Disclosure } from '@headlessui/react'
 import { ChevronUpIcon } from '@heroicons/react/24/solid'
+import React from 'react'
 
-const CategoryFilterSidebar = () => {
+const PriceFilter = () => {
   return (
     <Disclosure>
       {({ open }) => (
         <>
           <Disclosure.Button className="flex items-center justify-between w-full px-4 py-1.5 text-sm font-medium text-left border rounded-md focus:outline-none border-gray">
-            <span>Category</span>
+            <span>Price</span>
             <ChevronUpIcon
               className={`${
                 open ? 'rotate-180 transition-transform transform' : ''
@@ -21,4 +22,4 @@ const CategoryFilterSidebar = () => {
   )
 }
 
-export default CategoryFilterSidebar
+export default PriceFilter

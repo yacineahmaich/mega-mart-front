@@ -31,6 +31,7 @@ import MyOrders from './pages/client/Profile/MyOrders'
 import EditProfile from './pages/client/Profile/EditProfile'
 import NotFound from './pages/NotFound'
 import Checkout from './pages/client/Checkout'
+import HomeCategory from './pages/client/HomeCategory'
 
 const router = createBrowserRouter([
   {
@@ -47,7 +48,11 @@ const router = createBrowserRouter([
             element: <Home />,
           },
           {
-            path: ':slug',
+            path: ':category',
+            element: <HomeCategory />,
+          },
+          {
+            path: 'products/:slug',
             element: <ProductDetails />,
           },
           {

@@ -29,24 +29,3 @@ const ListProducts: FC = () => {
 }
 
 export default ListProducts
-
-{
-  /* {isFetching && !isLoading && (
-          <div className="absolute inset-0 z-40 w-full h-full bg-white/90">
-            <img
-              src={spinner}
-              alt="spinner"
-              className="w-8 h-8 mx-auto duration-1000 mt-28 animate-spin"
-            />
-          </div>
-        )} */
-}
-{
-  /* {isLoading
-          ? Array.from({ length: productsPerPage }, (_, i) => (
-              <ProductCardSkeleton key={i} />
-            ))
-          : data.data?.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))} */
-}

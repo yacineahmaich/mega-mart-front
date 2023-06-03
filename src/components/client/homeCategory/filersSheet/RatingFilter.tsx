@@ -1,7 +1,7 @@
 import { Disclosure } from '@headlessui/react'
 import { ChevronUpIcon } from '@heroicons/react/24/solid'
 
-const RatingFilterSidebar = () => {
+const RatingFilter = () => {
   return (
     <Disclosure>
       {({ open }) => (
@@ -21,4 +21,4 @@ const RatingFilterSidebar = () => {
   )
 }
 
-export default RatingFilterSidebar
+export default RatingFilter

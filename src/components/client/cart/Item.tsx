@@ -42,7 +42,7 @@ const Item: FC<Props> = ({ product }) => {
               className="w-24 py-1 text-sm font-medium transition-colors border rounded-full border-primary-600 text-dark-700 active:ring-2 active:ring-primary-500 active:ring-offset-1 hover:bg-primary-600 hover:text-white"
               onClick={() => setIsConfirmOpen(false)}
             >
-              Cancel{' '}
+              Cancel
             </button>
             <button
               className="w-24 py-1 text-sm font-medium text-white border rounded-full border-primary-600 bg-primary-600 active:ring-2 active:ring-primary-500 active:ring-offset-1"
@@ -65,7 +65,7 @@ const Item: FC<Props> = ({ product }) => {
       </div>
       <div className="flex flex-col items-start">
         <div>
-          <Link to={`/${product.slug}`}>
+          <Link to={`/products/${product.slug}`}>
             <h4 className="max-w-sm font-semibold leading-6 text-md md:text-lg text-dark-600 hover:underline hover:text-primary-400">
               {product.name}
             </h4>

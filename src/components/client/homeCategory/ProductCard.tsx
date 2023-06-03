@@ -14,7 +14,7 @@ const ProductCard: FC<Props> = ({ product }) => {
   return (
     <article className="flex flex-col overflow-hidden bg-white border shadow-sm rounded-xl border-gray">
       <div className="relative group bg-light h-52">
-        <Link to={`/${product.slug}`}>
+        <Link to={`/products/${product.slug}`}>
           <img
             src={product.images[0].url}
             alt={product.name}
@@ -39,12 +39,9 @@ const ProductCard: FC<Props> = ({ product }) => {
             />
           ))}
         </Link>
-        {/* <button className="absolute right-0 p-1 pr-3 transition-transform duration-200 translate-x-full rounded-l-lg outline-none text-light group-hover:translate-x-0 top-2 bg-primary-600">
-          <HeartIcon className="w-5 h-5" />
-        </button> */}
       </div>
       <div className="flex flex-col justify-between flex-1 p-3 space-y-4">
-        <Link to={`/${product.slug}`}>
+        <Link to={`/products/${product.slug}`}>
           <span className="font-medium leading-5 md:text-sm md:leading-4 line-clamp-3 text-dark-600 hover:underline hover:text-primary-400">
             {product.name}
           </span>
@@ -55,7 +52,7 @@ const ProductCard: FC<Props> = ({ product }) => {
             <span className="text-sm font-bold sm:text-md">
               ${product.price}
             </span>
-            {/* {product.discount.has && (
+            {/* {product.discount && (
               <>
                 <span className="absolute block -mb-1 text-sm font-medium bottom-full text-dark-500">
                   <s>${product.discount.price}</s>
