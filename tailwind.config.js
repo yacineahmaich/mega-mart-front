@@ -7,7 +7,7 @@ export default {
         roboto: ['Roboto', 'sans-serif'],
       },
       screens: {
-        xs: '400',
+        xs: '460px',
       },
       width: {
         minicart: '450px',

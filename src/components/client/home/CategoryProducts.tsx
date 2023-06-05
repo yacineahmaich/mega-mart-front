@@ -24,7 +24,7 @@ const CategoryProducts: FC<Props> = ({ category }) => {
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 gap-8 mt-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+      <div className="grid grid-cols-2 gap-2 mt-10 md:gap-8 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {isLoading ? (
           <>
             {Array.from({ length: 12 }, (_, i) => i).map(i => (

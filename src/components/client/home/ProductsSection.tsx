@@ -8,7 +8,7 @@ const ProductsSection = () => {
   return (
     <main>
       {categories.map(category => (
-        <div className="p-3 space-y-10 md:p-6" key={category.id}>
+        <div className="p-2 space-y-10 md:p-6" key={category.id}>
           <CategoryProducts category={category} />
           <SubCategories category={category} />
         </div>

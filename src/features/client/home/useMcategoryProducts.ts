@@ -14,7 +14,9 @@ type Data = {
 }
 
 const getMCategoryProducts = async (mCategoryId: number, pageParam: number) => {
-  const response = await api.get(`/${mCategoryId}/products?page=${pageParam}`)
+  const response = await api.get(
+    `/m-categories/${mCategoryId}/products?page=${pageParam}`
+  )
 
   return response.data
 }

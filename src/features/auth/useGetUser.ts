@@ -17,7 +17,7 @@ export const useGetUser = (options?: UseQueryOptions<User>) => {
     retry: false,
     enabled: false,
     staleTime: 1000 * 60 * 60 * 24,
-    onSettled: () => {
+    onSuccess: () => {
       // hide page loader
       document.querySelector('#loader')?.remove()
       document.body.style.overflow = 'auto'

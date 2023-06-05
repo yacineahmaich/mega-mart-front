@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { isAxiosError } from 'axios'
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_APP_API_BASEURL,
@@ -16,5 +16,15 @@ api.interceptors.request.use(config => {
 
   return config
 })
+
+api.interceptors.response.use(
+  respons => respons,
+  err => {
+    if (isAxiosError(err) && err.response.status === 401) {
+      localStorage.removeItem('ACCESS_TOKEN')
+      window.location.reload()
+    }
+  }
+)
 
 export default api
