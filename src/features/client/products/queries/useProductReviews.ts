@@ -15,7 +15,7 @@ type Data = {
 
 const getProductReviews = async (id: number, limit: number) => {
   const response = await api.get(`/products/${id}/reviews?limit=${limit}`)
-  return response.data
+  return response.data.reviews
 }
 
 export const useProductReviews = (

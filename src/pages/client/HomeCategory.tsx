@@ -8,7 +8,6 @@ import { useProducts } from '../../features/client/products/queries/useProducts'
 import Sort from '../../components/client/homeCategory/Sort'
 import Filter from '../../components/client/homeCategory/Filter'
 import ListProducts from '../../components/client/homeCategory/ListProducts'
-import Subscribe from '../../components/client/Subscribe'
 
 const HomeCategory: FC = () => {
   const [searchParams] = useSearchParams()

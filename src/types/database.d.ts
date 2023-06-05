@@ -21,12 +21,21 @@ interface Category {
   name: string
   description: string
   totalProducts: number
-  products?: Product[]
+  products?: Product[] // Specific to Category
+  image: Image
+}
+
+interface MainCategory {
+  id: number
+  name: string
+  description: string
+  image: Image
+  categories?: Category[]
 }
 
 interface User {
   id: number
-  isAdmin: boolean
+  isAdmin?: boolean
   name: string
   email: string
   profileImg: string
@@ -43,5 +52,13 @@ interface Review {
 
 interface Image {
   id: number
+  name: string
   url: string
+}
+
+interface Offer {
+  id: number
+  start: string
+  end: string
+  backdrop: Image
 }
