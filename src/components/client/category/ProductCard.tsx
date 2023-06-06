@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { ShoppingCartIcon, HeartIcon } from '@heroicons/react/24/outline'
+import { ShoppingCartIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 import { useCart } from '../../../context/Cart'
 import clsx from 'clsx'
@@ -40,7 +40,7 @@ const ProductCard: FC<Props> = ({ product }) => {
           ))}
         </Link>
       </div>
-      <div className="flex flex-col justify-between flex-1 p-3 space-y-4">
+      <div className="flex flex-col justify-between flex-1 p-3 space-y-10">
         <Link to={`/products/${product.slug}`}>
           <span className="font-medium leading-5 md:text-sm md:leading-4 line-clamp-3 text-dark-600 hover:underline hover:text-primary-400">
             {product.name}

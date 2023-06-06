@@ -1,16 +1,16 @@
-import { useMcategories } from '../../../features/client/main-category/useMcategories'
+import { useParams } from 'react-router-dom'
+import { useMCategory } from '../../../features/client/main-category/useMCategory'
 import CategoryProducts from './CategoryProducts'
-import SubCategories from './SubCategories'
 
 const ProductsSection = () => {
-  const { data: categories } = useMcategories()
+  const { slug } = useParams()
+  const { data: mainCategory } = useMCategory(slug)
 
   return (
     <main>
-      {categories.map(category => (
+      {mainCategory.categories.map(category => (
         <div className="p-2 space-y-10 md:p-6" key={category.id}>
           <CategoryProducts category={category} />
-          <SubCategories category={category} />
         </div>
       ))}
     </main>

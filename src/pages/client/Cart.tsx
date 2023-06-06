@@ -1,14 +1,14 @@
 import Checkout from '../../components/client/cart/Checkout'
 import spinner from '../../assets/icons/spinner.png'
 import { useCart } from '../../context/Cart'
-import { useProducts } from '../../features/client/products/queries/useProducts'
 import Item from '../../components/client/cart/Item'
+import { useProductsByIds } from '../../features/client/products/useProducts'
 
 const Cart = () => {
   const { items } = useCart()
 
-  const { data, isLoading, isFetching } = useProducts({
-    productIds: ['-1', ...Object.keys(items)],
+  const { data, isLoading, isFetching } = useProductsByIds({
+    productIds: [...Object.keys(items)],
   })
 
   const products = data?.products?.slice().reverse()

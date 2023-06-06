@@ -1,18 +1,20 @@
 import { FC } from 'react'
 
-import { useSearchParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import ProductCard from './ProductCard'
 import Pagination from './Pagination'
-import { useProducts } from '../../../features/client/products/queries/useProducts'
 import queryString from 'query-string'
+import { useCategoryProducts } from '../../../features/client/products/useCategoryProducts'
 
 const ListProducts: FC = () => {
+  const { slug } = useParams()
+
   const [searchParams] = useSearchParams()
   const params = queryString.parse(searchParams.toString(), {
     arrayFormat: 'comma',
   })
 
-  const { data, isLoading } = useProducts(params)
+  const { data, isLoading } = useCategoryProducts(slug, params)
   const products = data?.products
 
   return (

@@ -1,4 +1,4 @@
-import api from '../../../../utils/api/client'
+import api from '../../../utils/api/client'
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import queryString from 'query-string'
 
@@ -11,20 +11,20 @@ type Data = {
   }
 }
 
-const getProducts = async (searchParams: string) => {
-  const response = await api.get(`/products/?${searchParams}`)
+const getProductsByIds = async (idsParam: string) => {
+  const response = await api.get(`/products?${idsParam}`)
   return response.data
 }
 
-export const useProducts = (
-  params: object,
+export const useProductsByIds = (
+  ids: object,
   options?: UseQueryOptions<Data>
 ) => {
   return useQuery<Data>({
-    queryKey: ['products', params],
+    queryKey: ['products', { ids }],
     queryFn: () =>
-      getProducts(
-        queryString.stringify(params, {
+      getProductsByIds(
+        queryString.stringify(ids, {
           arrayFormat: 'comma',
           arrayFormatSeparator: ',',
         })

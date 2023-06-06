@@ -1,4 +1,4 @@
-import api from '../../../../utils/api/client'
+import api from '../../../utils/api/client'
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 
 const getCategories = async () => {

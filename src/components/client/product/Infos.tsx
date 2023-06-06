@@ -1,4 +1,4 @@
-import { useProduct } from '../../../features/client/products/queries/useProduct'
+import { useProduct } from '../../../features/client/products/useProduct'
 import { useParams } from 'react-router-dom'
 import StarRating from 'react-star-ratings'
 

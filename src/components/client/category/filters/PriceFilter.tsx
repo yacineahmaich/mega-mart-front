@@ -52,11 +52,7 @@ const PriceFilter: FC = () => {
                     placeholder="Min"
                     autoComplete="off"
                     className={clsx(
-                      'w-full py-1 rounded-lg focus:ring-0 focus:border-black placeholder:text-sm form-input',
-                      {
-                        'border-danger-500 focus:border-danger-500':
-                          formik.errors.minPrice,
-                      }
+                      'w-full py-1 rounded-lg focus:ring-0 focus:border-black placeholder:text-sm form-input'
                     )}
                   />
                 </div>
@@ -71,11 +67,7 @@ const PriceFilter: FC = () => {
                     placeholder="Max"
                     autoComplete="off"
                     className={clsx(
-                      'w-full py-1 rounded-lg focus:ring-0 focus:border-black placeholder:text-sm form-input',
-                      {
-                        'border-danger-500 focus:border-danger-500':
-                          formik.errors.maxPrice,
-                      }
+                      'w-full py-1 rounded-lg focus:ring-0 focus:border-black placeholder:text-sm form-input'
                     )}
                   />
                 </div>
@@ -84,7 +76,7 @@ const PriceFilter: FC = () => {
                 {(selectedMinPrice || selectedMaxPrice) && (
                   <button
                     type="button"
-                    className="px-4 py-0.5 text-sm font-semibold border rounded bg-danger-300 text-white"
+                    className="px-4 py-0.5 text-sm font-semibold border rounded bg-slate-100 text-dark-500"
                     onClick={() => {
                       // reset values
                       formik.setFieldValue('minPrice', '')
@@ -105,7 +97,10 @@ const PriceFilter: FC = () => {
                 )}
                 <button
                   type="submit"
-                  className="px-4 py-0.5 text-sm font-semibold border rounded bg-primary-600 text-white"
+                  className={clsx(
+                    'px-4 py-0.5 text-sm font-semibold border rounded bg-primary-600 text-white'
+                  )}
+                  disabled={!!formik.errors.maxPrice}
                 >
                   apply
                 </button>

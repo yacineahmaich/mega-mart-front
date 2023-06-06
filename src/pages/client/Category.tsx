@@ -3,19 +3,23 @@ import spinner from '../../assets/icons/spinner.png'
 import queryString from 'query-string'
 import { ChevronDoubleRightIcon } from '@heroicons/react/24/solid'
 
-import { useSearchParams } from 'react-router-dom'
-import { useProducts } from '../../features/client/products/queries/useProducts'
-import Sort from '../../components/client/homeCategory/Sort'
-import Filter from '../../components/client/homeCategory/Filter'
-import ListProducts from '../../components/client/homeCategory/ListProducts'
+import { useParams, useSearchParams } from 'react-router-dom'
+import Sort from '../../components/client/category/Sort'
+import Filter from '../../components/client/category/Filter'
+import ListProducts from '../../components/client/category/ListProducts'
+import { useCategoryProducts } from '../../features/client/products/useCategoryProducts'
 
 const HomeCategory: FC = () => {
+  const { slug } = useParams()
+
   const [searchParams] = useSearchParams()
   const params = queryString.parse(searchParams.toString(), {
     arrayFormat: 'comma',
   })
 
-  const { isLoading, isFetching } = useProducts(params)
+  const { data, isLoading, isFetching } = useCategoryProducts(slug, params)
+
+  console.log(data)
 
   return (
     <div className="min-h-screen p-3 md:p-6">
@@ -38,12 +42,17 @@ const HomeCategory: FC = () => {
             className="w-8 h-8 mx-auto duration-1000 mt-28 animate-spin"
           />
         </div>
+      ) : data.products.length === 0 ? (
+        <div>
+          <p>No products to show</p>
+        </div>
       ) : (
         <>
-          <h2 className="text-sm font-semibold sm:text-lg text-dark-700">
-            <ChevronDoubleRightIcon className="inline w-4 mr-1 font-bold align-middle" />
-            Thousands of products to meet all your desires
-          </h2>
+          <p className="text-sm font-semibold sm:text-lg text-dark-700">
+            <ChevronDoubleRightIcon className="inline w-4 mr-1 align-middle" />
+            Explore our {data.products.at(0).category.name}
+            products
+          </p>
 
           <section className="grid grid-cols-1 gap-y-3 md:gap-4 md:grid-cols-[250px_auto]">
             <Sort />

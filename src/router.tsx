@@ -31,7 +31,8 @@ import MyOrders from './pages/client/Profile/MyOrders'
 import EditProfile from './pages/client/Profile/EditProfile'
 import NotFound from './pages/NotFound'
 import Checkout from './pages/client/Checkout'
-import HomeCategory from './pages/client/HomeCategory'
+import Category from './pages/client/Category'
+import MainCategory from './pages/client/MainCategory'
 
 const router = createBrowserRouter([
   {
@@ -48,8 +49,12 @@ const router = createBrowserRouter([
             element: <Home />,
           },
           {
-            path: ':category',
-            element: <HomeCategory />,
+            path: 'mc/:slug',
+            element: <MainCategory />,
+          },
+          {
+            path: 'mc/:mcslug/category/:slug',
+            element: <Category />,
           },
           {
             path: 'products/:slug',

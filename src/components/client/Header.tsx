@@ -35,9 +35,9 @@ const Header: FC = () => {
             <input
               type="text"
               placeholder="Search your Jersy within thousands ..."
-              className="peer w-full px-3 py-1.5 focus:py-2 transition-all outline-none rounded-lg focus:ring-0  placeholder:font-medium placeholder:text-dark-600"
+              className="w-full px-6 py-2 transition-all rounded-lg outline-none peer focus:ring-0 placeholder:font-medium placeholder:text-dark-600 placeholder:text-sm"
             />
-            <MagnifyingGlassIcon className="absolute z-50 w-5 h-5 transition-all -translate-y-1/2 right-3 top-1/2 text-dark-500 peer-focus:w-6 peer-focus:h-6" />
+            <MagnifyingGlassIcon className="absolute z-50 w-6 h-6 transition-all -translate-y-1/2 right-3 top-1/2 text-dark-500" />
           </form>
 
           <div className="flex items-center order-2 space-x-6 lg:order-3">

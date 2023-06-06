@@ -1,7 +1,7 @@
 import MainCategoriesSlider from '../../components/client/home/MainCategoriesSlider'
 import OffersSlider from '../../components/client/home/OffersSlider'
 import ProductsSection from '../../components/client/home/ProductsSection'
-import { useMcategories } from '../../features/client/home/useMcategories'
+import { useMcategories } from '../../features/client/main-category/useMcategories'
 import { useOffers } from '../../features/client/home/useOffers'
 
 const Home = () => {

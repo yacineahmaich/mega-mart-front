@@ -19,6 +19,7 @@ interface Product {
 interface Category {
   id: number
   name: string
+  slug: string
   description: string
   totalProducts: number
   products?: Product[] // Specific to Category
@@ -28,6 +29,7 @@ interface Category {
 interface MainCategory {
   id: number
   name: string
+  slug: string
   description: string
   image: Image
   categories?: Category[]

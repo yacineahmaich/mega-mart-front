@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Sheet from '../../ui/Sheet'
-import CategoryFilter from './filersSheet/CategoryFilter'
+// import CategoryFilter from './filersSheet/CategoryFilter'
 import PriceFilter from './filersSheet/PriceFilter'
 import RatingFilter from './filersSheet/RatingFilter'
 
@@ -21,7 +21,7 @@ const FilterModalButton = () => {
 
       <Sheet title="Filter" isOpen={isOpen} onClose={onClose}>
         <div className="p-3 space-y-3">
-          <CategoryFilter />
+          {/* <CategoryFilter /> */}
           <PriceFilter />
           <RatingFilter />
         </div>

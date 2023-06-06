@@ -20,7 +20,12 @@ api.interceptors.request.use(config => {
 api.interceptors.response.use(
   respons => respons,
   err => {
-    if (isAxiosError(err) && err.response.status === 401) {
+    if (
+      isAxiosError(err) &&
+      err.response &&
+      err.response.status &&
+      err.response.status === 401
+    ) {
       localStorage.removeItem('ACCESS_TOKEN')
       window.location.reload()
     }

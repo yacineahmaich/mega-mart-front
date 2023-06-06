@@ -1,6 +1,6 @@
 import { PencilSquareIcon } from '@heroicons/react/24/solid'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
-import { useUpdateProfile } from '../../../features/client/account/mutations/useUpdateProfile'
+import { useUpdateProfile } from '../../../features/client/account/useUpdateProfile'
 import { toast } from 'react-hot-toast'
 import { updateProfileSchema } from '../../../utils/validation/client/profile'
 import { Formik, Form, Field, ErrorMessage } from 'formik'

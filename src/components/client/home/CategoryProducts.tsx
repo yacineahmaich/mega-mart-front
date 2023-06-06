@@ -1,8 +1,8 @@
 import { FC } from 'react'
-import ProductCardSkeleton from '../homeCategory/ProductCardSekeleton'
-import { useMcategoryProducts } from '../../../features/client/home/useMcategoryProducts'
-import ProductCard from '../homeCategory/ProductCard'
+import ProductCardSkeleton from '../category/ProductCardSekeleton'
+import ProductCard from '../category/ProductCard'
 import { Link } from 'react-router-dom'
+import { useMainCategoryProducts } from '../../../features/client/products/useMaincategoryProducts'
 
 type Props = {
   category: MainCategory
@@ -10,14 +10,14 @@ type Props = {
 
 const CategoryProducts: FC<Props> = ({ category }) => {
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useMcategoryProducts(category.id)
+    useMainCategoryProducts(category.id)
 
   return (
     <section>
       <div className="flex justify-between">
         <h2 className="text-3xl font-bold text-dark-800">{category.name}</h2>
 
-        <Link to="#">
+        <Link to={`/mc/${category.slug}`}>
           <span className="text-sm font-medium underline text-dark-700 hover:no-underline">
             See more
           </span>

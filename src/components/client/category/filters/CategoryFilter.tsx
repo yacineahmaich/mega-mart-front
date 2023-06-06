@@ -1,14 +1,15 @@
 import { FC, useState, ChangeEvent, useEffect } from 'react'
 import DisclosureItem from '../../../ui/DisclosureItem'
-import { useSearchParams } from 'react-router-dom'
-import { useCategories } from '../../../../features/client/categories/queries/useCategories'
+import { useParams, useSearchParams } from 'react-router-dom'
+import { useMCategory } from '../../../../features/client/main-category/useMCategory'
 
 const CategoryFilter: FC = () => {
+  const { slug } = useParams()
+  const { data, isLoading } = useMCategory(slug)
   const [searchParams, setSearchParams] = useSearchParams()
   const [selectedCatgegries, setSelectedCategories] = useState<string[]>(
     searchParams.get('cat')?.split(',') ?? []
   )
-  const { data } = useCategories()
 
   const handleSelectCategory = (
     e: ChangeEvent<HTMLInputElement>,
@@ -39,10 +40,12 @@ const CategoryFilter: FC = () => {
     })
   }, [selectedCatgegries, setSearchParams])
 
+  if (isLoading) return null
+
   return (
     <DisclosureItem title="Category">
       <ul className="space-y-2">
-        {data?.map(cat => (
+        {data.categories?.map(cat => (
           <li key={cat.id}>
             <label htmlFor={cat.name} className="space-x-3 cursor-pointer">
               <input

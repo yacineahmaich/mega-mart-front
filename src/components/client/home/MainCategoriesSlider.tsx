@@ -50,7 +50,8 @@ import {
   ArrowLongRightIcon,
 } from '@heroicons/react/24/solid'
 import { useRef } from 'react'
-import { useMcategories } from '../../../features/client/home/useMcategories'
+import { useMcategories } from '../../../features/client/main-category/useMcategories'
+import { Link } from 'react-router-dom'
 
 const MainCategoriesSlider = () => {
   const prevRef = useRef()
@@ -102,16 +103,18 @@ const MainCategoriesSlider = () => {
         {categories.map(category => (
           <SwiperSlide
             key={category.id}
-            className="relative overflow-hidden rounded-lg shadow-2xl"
+            className="relative overflow-hidden rounded-lg shadow"
           >
-            <div className="absolute top-0 left-0 w-full p-2 bg-light/80">
-              <h4>{category.name}</h4>
-            </div>
-            <img
-              src={category.image.url}
-              alt={category.image.name}
-              className="object-cover w-full h-full"
-            />
+            <Link to={`/mc/${category.slug}`}>
+              <div className="absolute top-0 left-0 w-full p-2 bg-light/80">
+                <h4>{category.name}</h4>
+              </div>
+              <img
+                src={category.image.url}
+                alt={category.image.name}
+                className="object-cover w-full h-full"
+              />
+            </Link>
           </SwiperSlide>
         ))}
       </div>

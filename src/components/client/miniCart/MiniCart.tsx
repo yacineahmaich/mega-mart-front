@@ -4,7 +4,7 @@ import Sheet from '../../ui/Sheet'
 import MiniCartFooter from './MiniCartFooter'
 import MinicartItems from './MinicartItems'
 import { useCart } from '../../../context/Cart'
-import { useProducts } from '../../../features/client/products/queries/useProducts'
+import { useProductsByIds } from '../../../features/client/products/useProducts'
 
 type Props = {
   isOpen: boolean
@@ -13,8 +13,8 @@ type Props = {
 
 const Cart: FC<Props> = ({ isOpen, onClose }) => {
   const { items } = useCart()
-  const { data, isLoading, isFetching } = useProducts({
-    productIds: ['-1', ...Object.keys(items)],
+  const { data, isLoading, isFetching } = useProductsByIds({
+    productIds: [...Object.keys(items)],
   })
 
   return (

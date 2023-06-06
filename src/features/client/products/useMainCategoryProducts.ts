@@ -13,7 +13,10 @@ type Data = {
   }
 }
 
-const getMCategoryProducts = async (mCategoryId: number, pageParam: number) => {
+const getMainCategoryProducts = async (
+  mCategoryId: number,
+  pageParam: number
+) => {
   const response = await api.get(
     `/m-categories/${mCategoryId}/products?page=${pageParam}`
   )
@@ -21,14 +24,14 @@ const getMCategoryProducts = async (mCategoryId: number, pageParam: number) => {
   return response.data
 }
 
-export const useMcategoryProducts = (
+export const useMainCategoryProducts = (
   mCategoryId: number,
   options?: UseInfiniteQueryOptions<Data>
 ) => {
   return useInfiniteQuery<Data>({
     queryKey: ['m-categories', mCategoryId, 'products'],
     queryFn: ({ pageParam = 1 }) =>
-      getMCategoryProducts(mCategoryId, pageParam),
+      getMainCategoryProducts(mCategoryId, pageParam),
     getNextPageParam: ({ meta }) => {
       const { current_page: currentPage, last_page: lastPage } = meta
       return currentPage < lastPage ? currentPage + 1 : undefined

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/solid'
-import { useProduct } from '../../../features/client/products/queries/useProduct'
+import { useProduct } from '../../../features/client/products/useProduct'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useCart } from '../../../context/Cart'
 

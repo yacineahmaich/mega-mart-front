@@ -5,7 +5,7 @@ import GeneralInfos from '../../components/client/product/GeneralInfos'
 import Infos from '../../components/client/product/Infos'
 import Preview from '../../components/client/product/Preview'
 import CheckoutTip from '../../components/client/product/CheckoutTip'
-import { useProduct } from '../../features/client/products/queries/useProduct'
+import { useProduct } from '../../features/client/products/useProduct'
 import { useParams } from 'react-router-dom'
 
 const ProductDetails = () => {
