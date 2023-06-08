@@ -23,7 +23,6 @@ export const useProducts = (page?: string, options?: UseQueryOptions<Data>) => {
     queryKey: ['products', { page }],
     queryFn: () => getProducts(page),
     keepPreviousData: true,
-    refetchOnMount: true,
     ...options,
   })
 }

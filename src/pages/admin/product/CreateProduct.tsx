@@ -5,7 +5,7 @@ import spinner from '../../../assets/icons/spinner.svg'
 import { v4 as uuid } from 'uuid'
 import { Link } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage, FormikValues } from 'formik'
-import { productSchema } from '../../../utils/validation/admin/product'
+import { createProductSchema } from '../../../utils/validation/admin/product'
 import { useCreateProduct } from '../../../features/admin/products/mutations/useCreateProduct'
 import { useCategories } from '../../../features/admin/categories/queries/useCategories'
 import { useNavigate } from 'react-router-dom'
@@ -73,7 +73,7 @@ const CreateProduct = () => {
         <fieldset disabled={isCreatingProduct}>
           <Formik
             initialValues={initialValues}
-            validationSchema={productSchema}
+            validationSchema={createProductSchema}
             onSubmit={handleSubmit}
           >
             {formik => (
@@ -284,16 +284,20 @@ const CreateProduct = () => {
                   </div>
                 </div>
 
+                {
+                  // actions
+                }
+
                 <div className="flex items-center justify-end gap-3 mt-6">
                   <Link
                     to="/dashboard/products"
-                    className="px-4 py-2 text-white rounded-lg bg-danger-300"
+                    className="px-4 py-1.5 border rounded-lg border-gray text-dark-500 bg-light  hover:border-dark-500"
                   >
                     <span className="text-sm font-medium">Cancel</span>
                   </Link>
                   <button
                     type="submit"
-                    className="px-6 py-2 text-white rounded-lg bg-info-600 focus:ring focus:ring-info-100 focus:ring-offset-1 hover:bg-info-800 disabled:hover:bg-info-600"
+                    className="px-8 py-1.5 border border-gray text-white rounded-lg bg-info-600"
                   >
                     {isCreatingProduct && (
                       <span className="h-4 text-white ">
@@ -304,7 +308,7 @@ const CreateProduct = () => {
                         />
                       </span>
                     )}
-                    <span className="text-sm font-medium">Create Product</span>
+                    <span className="text-sm font-medium">Save changes</span>
                   </button>
                 </div>
               </Form>

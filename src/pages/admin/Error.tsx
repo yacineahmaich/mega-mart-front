@@ -1,4 +1,10 @@
-const Error = () => {
+import { FC } from 'react'
+
+type Props = {
+  msg?: string
+}
+
+const Error: FC<Props> = ({ msg }) => {
   const reload = () => {
     location.reload()
   }
@@ -12,7 +18,7 @@ const Error = () => {
         </p>
 
         <p className="text-dark-600">
-          please check you connection and retry again
+          {msg ? msg : 'please check you connection and retry again'}
         </p>
         <button
           className="px-6 py-1 text-white rounded-full bg-primary-600"

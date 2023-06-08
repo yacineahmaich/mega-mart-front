@@ -20,7 +20,7 @@ const Preview = () => {
     <div className="flex md:gap-2 lg:gap-4">
       <div className="hidden md:block">
         <Swiper
-          spaceBetween={40}
+          spaceBetween={20}
           modules={[Controller]}
           slidesPerView={4}
           onSwiper={setSideSwiper as () => void}
@@ -29,14 +29,14 @@ const Preview = () => {
           slideToClickedSlide
           centeredSlides={true}
           grabCursor={true}
-          className="overflow-hidden w-14 md:w-16 lg:w-24 h-[300px] lg:h-swiper"
+          className="overflow-hidden h-[300px] lg:h-swiper"
         >
           {product.images.map(img => (
             <SwiperSlide key={img.id} className="p-1 select-none">
               {({ isActive }) => (
                 <div
                   className={clsx(
-                    'w-full overflow-hidden rounded-lg cursor-pointer ring-2 border border-gray bg-light',
+                    'overflow-hidden rounded-lg cursor-pointer ring-2 border border-gray bg-light w-20 h-20 ',
                     {
                       'ring-offset-2 ring-primary-500': isActive,
                       'ring-gray': !isActive,

@@ -12,7 +12,7 @@ const Reviews = () => {
   const { slug } = useParams()
 
   const { data: product } = useProduct(slug)
-  const { data, isLoading } = useProductReviews(product.id, limit)
+  const { data: reviews, isLoading } = useProductReviews(product?.id, limit)
 
   return (
     <div>
@@ -59,14 +59,14 @@ const Reviews = () => {
                   </div>
                 </article>
               ))
-            ) : data.reviews.length > 0 ? (
-              data.reviews.map(review => (
+            ) : reviews.length > 0 ? (
+              reviews.map(review => (
                 <article key={review.id} className="space-y-2">
                   <div className="flex items-center gap-3">
                     <div className="overflow-hidden rounded-full w-11 h-11 bg-gray">
-                      {review.author.profileImg ? (
+                      {review.author.avatar ? (
                         <img
-                          src={review.author.profileImg}
+                          src={review.author.avatar.url}
                           alt={review.author.name}
                         />
                       ) : (
@@ -98,7 +98,7 @@ const Reviews = () => {
               <p className="font-medium text-dark-500">No reviews found!</p>
             )}
           </div>
-          {data?.reviews?.length < +product.totalReviews && (
+          {reviews?.length < +product.totalReviews && (
             <button
               className="mt-4 group text-md text-primary-500 hover:underline"
               onClick={() => setLimit(limit => limit + REVIEWS_PER_STEP)}

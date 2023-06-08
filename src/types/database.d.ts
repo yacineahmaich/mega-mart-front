@@ -40,7 +40,7 @@ interface User {
   isAdmin?: boolean
   name: string
   email: string
-  profileImg: string
+  avatar: Image
 }
 
 interface Review {

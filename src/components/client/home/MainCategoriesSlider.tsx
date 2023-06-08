@@ -103,7 +103,7 @@ const MainCategoriesSlider = () => {
         {categories.map(category => (
           <SwiperSlide
             key={category.id}
-            className="relative overflow-hidden rounded-lg shadow"
+            className="relative overflow-hidden bg-white rounded-lg shadow"
           >
             <Link to={`/mc/${category.slug}`}>
               <div className="absolute top-0 left-0 w-full p-2 bg-light/80">

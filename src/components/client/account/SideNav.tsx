@@ -17,10 +17,10 @@ const SideNav = () => {
     <div className="flex flex-col items-center gap-6 border border-gray bg-warning-400">
       <div className="px-10 py-4 space-y-4">
         <div className="overflow-hidden rounded-full w-36 h-36">
-          {user.profileImg ? (
+          {user.avatar ? (
             <img
-              src={user.profileImg}
-              alt="profile"
+              src={user.avatar.url}
+              alt={user.avatar.name}
               className="object-cover w-full h-full"
             />
           ) : (

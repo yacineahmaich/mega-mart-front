@@ -1,24 +1,28 @@
 import api from '../../../../utils/api/admin'
-import { isAxiosError } from 'axios'
 import { UseMutationOptions, useMutation } from '@tanstack/react-query'
-import { productSchema } from '../../../../utils/validation/admin/product'
+import { editProductSchema } from '../../../../utils/validation/admin/product'
 
 type ProductData = {
   id: number
-  product: typeof productSchema.__outputType
+  product: typeof editProductSchema.__outputType
 }
 
 const updateProduct = async (productData: ProductData) => {
-  try {
-    const response = await api.put(
-      `/products/${productData.id}`,
-      productData.product
-    )
+  const response = await api.post(
+    `/products/${productData.id}`,
+    productData.product,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      params: {
+        // to make file upload work in laravel api
+        _method: 'PUT',
+      },
+    }
+  )
 
-    return response.data
-  } catch (error) {
-    throw isAxiosError(error) ? error.response?.data : error
-  }
+  return response.data
 }
 
 export const useUpdateProduct = (

@@ -13,7 +13,7 @@ export default {
         minicart: '450px',
         swiper: '414px',
         'swiper-min': '300px',
-        'admin-sidebar': '200px',
+        'admin-sidebar': '220px',
       },
       height: {
         header: '6rem',
@@ -23,7 +23,7 @@ export default {
         'admin-navbar': '80px',
       },
       padding: {
-        'admin-sidebar': '200px',
+        'admin-sidebar': '220px',
         'admin-navbar': '80px',
       },
       colors: {

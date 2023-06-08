@@ -16,6 +16,11 @@ const sidebarNavigation = [
     path: 'products',
     Icon: RectangleGroupIcon,
   },
+  // {
+  //   label: 'Main Categories',
+  //   path: 'main-categories',
+  //   Icon: Square3Stack3DIcon,
+  // },
   {
     label: 'Categories',
     path: 'categories',

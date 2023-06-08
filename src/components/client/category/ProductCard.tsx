@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { ShoppingCartIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 import { useCart } from '../../../context/Cart'
@@ -9,6 +9,7 @@ type Props = {
 }
 
 const ProductCard: FC<Props> = ({ product }) => {
+  const [showcase, setShowcase] = useState(false)
   const { addToCart, items } = useCart()
 
   return (
@@ -24,20 +25,22 @@ const ProductCard: FC<Props> = ({ product }) => {
               ' duration-500 animate-out group-hover:fade-out-0':
                 product.images.length > 0,
             })}
+            onMouseEnter={() => setShowcase(true)}
           />
-          {product.images.slice(1).map((img, idx) => (
-            <img
-              key={img.id}
-              src={img.url}
-              alt={img.url}
-              className={clsx(
-                'absolute inset-0 object-cover w-full h-full duration-500 hidden animate-in group-hover:block fade-in-0 fill-mode-backwards'
-              )}
-              style={{
-                animationDelay: idx === 0 ? '0ms' : 800 * idx + 'ms',
-              }}
-            />
-          ))}
+          {showcase &&
+            product.images.slice(1).map((img, idx) => (
+              <img
+                key={img.id}
+                src={img.url}
+                alt={img.url}
+                className={clsx(
+                  'absolute inset-0 object-cover w-full h-full duration-500 hidden animate-in group-hover:block fade-in-0 fill-mode-backwards'
+                )}
+                style={{
+                  animationDelay: idx === 0 ? '0ms' : 800 * idx + 'ms',
+                }}
+              />
+            ))}
         </Link>
       </div>
       <div className="flex flex-col justify-between flex-1 p-3 space-y-10">
