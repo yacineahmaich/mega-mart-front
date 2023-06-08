@@ -3,7 +3,7 @@ import {
   PuzzlePieceIcon,
   RectangleGroupIcon,
 } from '@heroicons/react/24/outline'
-import StatisticCard from '../StatisticCard'
+import StatisticCard from '../ui/StatisticCard'
 
 const CategoriesStatistcis = () => {
   return (

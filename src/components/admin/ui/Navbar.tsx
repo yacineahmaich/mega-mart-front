@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom'
-import { useGetUser } from '../../features/auth/useGetUser'
+import { useGetUser } from '../../../features/auth/useGetUser'
 
 const Navbar = () => {
   const { data: user } = useGetUser()

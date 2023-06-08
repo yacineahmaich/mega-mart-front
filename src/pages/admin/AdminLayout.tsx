@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom'
-import Navbar from '../../components/admin/Navbar'
-import SideBar from '../../components/admin/SideBar'
+import Navbar from '../../components/admin/ui/Navbar'
+import SideBar from '../../components/admin/ui/SideBar'
 import { useGetUser } from '../../features/auth/useGetUser'
 
 const AdminLayout = () => {

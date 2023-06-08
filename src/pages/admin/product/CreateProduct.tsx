@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { XMarkIcon } from '@heroicons/react/24/solid'
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+import { ExclamationTriangleIcon, PhotoIcon } from '@heroicons/react/24/outline'
 import spinner from '../../../assets/icons/spinner.svg'
 import { v4 as uuid } from 'uuid'
 import { Link } from 'react-router-dom'
@@ -216,7 +216,11 @@ const CreateProduct = () => {
                     />
                   </div>
 
-                  <div className="col-span-2">
+                  {
+                    // upload images
+                  }
+
+                  <div className="relative col-span-2">
                     <div className="flex items-center mb-3">
                       <label className="mr-2 text-sm font-medium">images</label>
                       <button
@@ -237,32 +241,38 @@ const CreateProduct = () => {
                         )}
                       />
                     </div>
-                    <div className="space-y-2">
+                    <div className="flex flex-wrap gap-3">
                       {images.map((imageId, idx) => (
-                        <div className="flex items-center" key={imageId}>
-                          <input
-                            type="file"
-                            name="images"
-                            onChange={event => {
-                              const image = event.target.files?.[0]
+                        <div
+                          className="relative flex items-center"
+                          key={imageId}
+                        >
+                          <label htmlFor={imageId}>
+                            <div className="flex items-center justify-center w-20 h-24 rounded-lg bg-light">
+                              <PhotoIcon className="w-6 h-6" />
+                              <input
+                                id={imageId}
+                                type="file"
+                                name="images"
+                                onChange={event => {
+                                  const image = event.target.files?.[0]
 
-                              if (!image) return
+                                  if (!image) return
 
-                              formik.setFieldValue('images', [
-                                ...formik.values.images,
-                                [imageId, image],
-                              ])
-                            }}
-                            className="rounded-lg form-input border-gray focus:ring-primary-600"
-                          />
-                          {idx === 0 ? (
-                            <p className="ml-2 text-sm font-bold text-primary-800">
-                              Thumbnail *
-                            </p>
-                          ) : (
+                                  formik.setFieldValue('images', [
+                                    ...formik.values.images,
+                                    [imageId, image],
+                                  ])
+                                }}
+                                className="rounded-lg form-input border-gray focus:ring-primary-600"
+                                hidden
+                              />
+                            </div>
+                          </label>
+                          {idx > 0 && (
                             <button
                               type="button"
-                              className="ml-2"
+                              className="absolute top-1 right-1"
                               onClick={() => {
                                 formik.setFieldValue(
                                   'images',

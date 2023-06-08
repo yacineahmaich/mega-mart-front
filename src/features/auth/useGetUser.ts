@@ -14,9 +14,8 @@ export const useGetUser = (options?: UseQueryOptions<User>) => {
   return useQuery<User>({
     queryKey: ['user'],
     queryFn: () => getProfile(),
-    retry: false,
     enabled: false,
-    staleTime: 1000 * 60 * 60 * 24,
+    staleTime: Infinity,
     onSuccess: () => {
       // hide page loader
       document.querySelector('#loader')?.remove()
