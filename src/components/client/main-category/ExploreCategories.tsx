@@ -28,7 +28,7 @@ const ExploreCategories = () => {
         <SwiperSlide key={category.id}>
           <Link to={`/mc/${mainCategory.slug}/category/${category.slug}`}>
             <article
-              className="relative mx-auto overflow-hidden rounded-full w-44 h-44 md:w-48 md:h-48"
+              className="relative mx-auto overflow-hidden rounded-full w-44 h-44 md:w-48 md:h-48 bg-light"
               title={category.name}
             >
               <img

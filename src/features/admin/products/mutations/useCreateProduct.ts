@@ -1,10 +1,17 @@
 import api from '../../../../utils/api/admin'
 import { UseMutationOptions, useMutation } from '@tanstack/react-query'
-import { createProductSchema } from '../../../../utils/validation/admin/product'
+import { useNavigate } from 'react-router-dom'
 
-type ProductData = typeof createProductSchema.__outputType
+type Variables = {
+  name: string
+  price: string
+  quantity: string
+  category: string
+  description: string
+  images: File[]
+}
 
-const createProduct = async (productData: ProductData) => {
+const createProduct = async (productData: Variables) => {
   const response = await api.post('/products', productData, {
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -15,10 +22,15 @@ const createProduct = async (productData: ProductData) => {
 }
 
 export const useCreateProduct = (
-  options?: UseMutationOptions<Product, Error, ProductData>
+  options?: UseMutationOptions<Product, Error, Variables>
 ) => {
-  return useMutation<Product, Error, ProductData>({
+  const navigate = useNavigate()
+
+  return useMutation<Product, Error, Variables>({
     mutationFn: createProduct,
+    onSuccess() {
+      navigate('/dashboard/products')
+    },
     ...options,
   })
 }

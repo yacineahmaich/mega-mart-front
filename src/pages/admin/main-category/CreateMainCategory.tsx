@@ -1,49 +1,38 @@
-import { Link } from 'react-router-dom'
-import { Formik, Form, FormikValues } from 'formik'
-import { createCategorySchema } from '../../../utils/validation/admin/category'
-import { useCreateCategory } from '../../../features/admin/categories/mutations/useCreateCategory'
-import spinner from '../../../assets/icons/spinner.svg'
+import { Form, Formik, FormikValues } from 'formik'
 import ErrorMsg from '../ErrorMsg'
-import { useMcategories } from '../../../features/client/main-category/useMcategories'
-import Loader from '../Loader'
+import { Link } from 'react-router-dom'
+import spinner from '../../../assets/icons/spinner.svg'
 import Error from '../Error'
+import { createMainCategorySchema } from '../../../utils/validation/admin/main-category'
+import { useCreateMainCategory } from '../../../features/admin/main-categories/mutations/useCreateMainCategory'
 import FormErrors from '../FormErrors'
 import ImageInput from '../../../components/admin/ui/ImageInput'
 import FieldGroup from '../../../components/admin/ui/FieldGroup'
 
-const CreateCategory = () => {
+function CreateMainCategory() {
   const {
-    data: maincategories,
-    isLoading: isMcategoriesLoading,
-    isError: isMcategoriesError,
-  } = useMcategories()
-
-  const {
-    mutate: createCategory,
+    mutate: createMainCategory,
     isLoading,
     isError,
     error,
-  } = useCreateCategory()
+  } = useCreateMainCategory({})
+
   const initialValues = {
     name: '',
     description: '',
-    category: '',
     image: null,
   }
 
   const handleSubmit = (values: FormikValues & typeof initialValues) => {
-    // eslint-disable-next-line
-    //@ts-ignore
-    createCategory(values)
+    createMainCategory(values)
   }
 
-  if (isMcategoriesLoading) return <Loader />
-  if (isMcategoriesError) return <Error />
+  if (isError) return <Error />
 
   return (
     <div>
       <h2 className="mb-4 text-lg font-bold text-center text-dark-500">
-        Create Category
+        Create Main Category
       </h2>
 
       <section>
@@ -51,50 +40,27 @@ const CreateCategory = () => {
           {isError && <FormErrors error={error} />}
           <Formik
             initialValues={initialValues}
-            validationSchema={createCategorySchema}
+            validationSchema={createMainCategorySchema}
             onSubmit={handleSubmit}
           >
             {formik => (
               <Form>
                 <div className="grid grid-cols-2 gap-8">
                   {
-                    // NAME
+                    // name
                   }
-                  <div className="col-span-2">
+                  <div className="relative col-span-2">
                     <FieldGroup
                       label="Name"
                       name="name"
-                      placeholder="Name here..."
+                      placeholder="Name here ..."
                     />
                   </div>
 
                   {
-                    // PARENT CATEGORY
+                    // description
                   }
-                  <div className="col-span-2">
-                    <FieldGroup
-                      input={{
-                        as: 'select',
-                      }}
-                      label="Parent Category"
-                      name="category"
-                      placeholder="Name here..."
-                    >
-                      <option value="" disabled>
-                        select category
-                      </option>
-                      {maincategories.map(category => (
-                        <option key={category.id} value={category.id}>
-                          {category.name}
-                        </option>
-                      ))}
-                    </FieldGroup>
-                  </div>
-
-                  {
-                    // Description
-                  }
-                  <div className="col-span-2">
+                  <div className="relative col-span-2">
                     <FieldGroup
                       input={{
                         as: 'textarea',
@@ -102,18 +68,19 @@ const CreateCategory = () => {
                       }}
                       label="Description"
                       name="description"
-                      placeholder="Name here..."
+                      placeholder="Description here ..."
                     />
                   </div>
 
                   {
-                    // IMAGE
+                    // image
                   }
                   <div className="relative col-span-2">
                     <div className="flex items-center mb-3">
                       <label className="mr-2 text-sm font-medium">Image</label>
                       <ErrorMsg name="image" position="right" />
                     </div>
+
                     <ImageInput
                       id="image"
                       onChange={image => formik.setFieldValue('image', image)}
@@ -124,6 +91,7 @@ const CreateCategory = () => {
                 {
                   // actions
                 }
+
                 <div className="flex items-center justify-end gap-3 mt-6">
                   <Link
                     to="/dashboard/categories"
@@ -156,4 +124,4 @@ const CreateCategory = () => {
   )
 }
 
-export default CreateCategory
+export default CreateMainCategory

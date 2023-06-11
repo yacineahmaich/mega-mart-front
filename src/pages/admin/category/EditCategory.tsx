@@ -1,29 +1,44 @@
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import { Formik, Form, Field, ErrorMessage, FormikValues } from 'formik'
-import { categorySchema } from '../../../utils/validation/admin/category'
+import { Link, useParams } from 'react-router-dom'
+import { Formik, Form, FormikValues } from 'formik'
+import { editCategorySchema } from '../../../utils/validation/admin/category'
 import { useCategory } from '../../../features/admin/categories/queries/useCategory'
 import spinner from '../../../assets/icons/spinner.svg'
 import Loader from '../Loader'
 import Error from '../Error'
-import { useQueryClient } from '@tanstack/react-query'
 import { useUpdateCategory } from '../../../features/admin/categories/mutations/useUpdateCategory'
+import ErrorMsg from '../ErrorMsg'
+import FormErrors from '../FormErrors'
+import { useMcategories } from '../../../features/client/main-category/useMcategories'
+import ImageInput from '../../../components/admin/ui/ImageInput'
+import FieldGroup from '../../../components/admin/ui/FieldGroup'
 
 const EditProduct = () => {
-  const queryClient = useQueryClient()
-  const navigate = useNavigate()
   const { id } = useParams()
 
-  const { data: category, isLoading, isError } = useCategory(id)
-  const { mutate: updateCategory, isLoading: isUpdating } = useUpdateCategory({
-    onSuccess: () => {
-      queryClient.invalidateQueries(['categories'])
-      navigate('/dashboard/categories')
-    },
-  })
+  const {
+    data: maincategories,
+    isLoading: isMcategoriesLoading,
+    isError: isMcategoriesError,
+  } = useMcategories()
+
+  const {
+    data: category,
+    isLoading: isCategoryLoading,
+    isError: isCategoryError,
+  } = useCategory(id)
+
+  const {
+    mutate: updateCategory,
+    isLoading: isUpdating,
+    error,
+    isError: isUpdateCategoryError,
+  } = useUpdateCategory()
 
   const initialValues = {
     name: category?.name ?? '',
     description: category?.description ?? '',
+    category: category?.parentCategory?.id,
+    image: null,
   }
 
   const handleSubmit = (values: FormikValues & typeof initialValues) => {
@@ -32,9 +47,8 @@ const EditProduct = () => {
       category: values,
     })
   }
-
-  if (isLoading) return <Loader />
-  if (isError) return <Error />
+  if (isMcategoriesLoading || isCategoryLoading) return <Loader />
+  if (isMcategoriesError || isCategoryError) return <Error />
 
   return (
     <div>
@@ -44,80 +58,107 @@ const EditProduct = () => {
 
       <section>
         <div className="max-w-2xl p-6 mx-auto bg-white rounded-lg text-dark-600">
+          {isUpdateCategoryError && <FormErrors error={error} />}
           <Formik
             initialValues={initialValues}
-            validationSchema={categorySchema}
+            validationSchema={editCategorySchema}
             onSubmit={handleSubmit}
           >
-            <Form>
-              <div className="grid grid-cols-2 gap-8">
-                <div className="relative col-span-2">
-                  <label
-                    htmlFor="name"
-                    className="block mb-2 text-sm font-medium"
-                  >
-                    Name
-                  </label>
-                  <Field
-                    type="text"
-                    id="name"
-                    name="name"
-                    className="bg-white form-input border-gray focus:ring-primary-600 text-sm rounded-lg p-2.5 block w-full"
-                    placeholder="Category name here..."
-                  />
-                  <ErrorMessage
-                    component="span"
-                    name="name"
-                    className="absolute mt-1 text-sm font-medium top-full text-danger-500 animate-drop"
-                  />
+            {formik => (
+              <Form>
+                <div className="grid grid-cols-2 gap-8">
+                  {
+                    // name
+                  }
+                  <div className="relative col-span-2">
+                    <FieldGroup
+                      label="Name"
+                      name="name"
+                      placeholder="Name here..."
+                    />
+                  </div>
+
+                  {
+                    // Main category
+                  }
+                  <div className="relative col-span-2">
+                    <FieldGroup
+                      input={{
+                        as: 'select',
+                      }}
+                      label="Main Category"
+                      name="category"
+                    >
+                      <option value="" disabled>
+                        select category
+                      </option>
+                      {maincategories.map(category => (
+                        <option key={category.id} value={category.id}>
+                          {category.name}
+                        </option>
+                      ))}
+                    </FieldGroup>
+                  </div>
+
+                  {
+                    // description
+                  }
+                  <div className="relative col-span-2">
+                    <FieldGroup
+                      input={{
+                        as: 'textarea',
+                        rows: 5,
+                      }}
+                      label="Description"
+                      name="description"
+                      placeholder="Description here..."
+                    />
+                  </div>
+
+                  {
+                    // image
+                  }
+                  <div className="relative col-span-2">
+                    <div className="flex items-center mb-3">
+                      <label className="mr-2 text-sm font-medium">Image</label>
+                      <ErrorMsg name="image" position="right" />
+                    </div>
+                    <ImageInput
+                      id="image"
+                      defaultPreview={category.image.url}
+                      onChange={image => formik.setFieldValue('image', image)}
+                    />
+                  </div>
                 </div>
 
-                <div className="relative col-span-2">
-                  <label
-                    htmlFor="description"
-                    className="block mb-2 text-sm font-medium"
+                {
+                  // actions
+                }
+                <div className="flex items-center justify-end gap-3 mt-6">
+                  <Link
+                    to="/dashboard/categories"
+                    className="px-4 py-1.5 border rounded-lg border-gray text-dark-500 bg-light  hover:border-dark-500"
                   >
-                    Description
-                  </label>
-                  <Field
-                    as="textarea"
-                    id="description"
-                    name="description"
-                    className="bg-white form-textarea border-gray focus:ring-primary-600 text-sm rounded-lg p-2.5 block w-full min-h-[150px]"
-                    placeholder="Product description here..."
-                  />
-                  <ErrorMessage
-                    component="span"
-                    name="description"
-                    className="absolute mt-1 text-sm font-medium top-full text-danger-500 animate-drop"
-                  />
+                    <span className="text-sm font-medium">Cancel</span>
+                  </Link>
+                  <button
+                    type="submit"
+                    className="px-8 py-1.5 border border-gray text-white rounded-lg bg-info-600"
+                  >
+                    {isUpdating && (
+                      <span className="h-4 text-white ">
+                        <img
+                          src={spinner}
+                          alt="spinner"
+                          className="inline w-4 mr-2 animate-spin"
+                        />
+                      </span>
+                    )}
+                    <span className="text-sm font-medium">Save changes</span>
+                  </button>
                 </div>
-              </div>
-
-              <div className="flex items-center justify-end gap-3 mt-6">
-                <Link
-                  to="/dashboard/products"
-                  className="px-4 py-2 text-white rounded-lg bg-danger-300"
-                >
-                  <span className="text-sm font-medium">Cancel</span>
-                </Link>
-                <button
-                  type="submit"
-                  className="px-8 py-2 text-white rounded-lg bg-info-600"
-                >
-                  {isUpdating && (
-                    <span className="h-4 text-white ">
-                      <img
-                        src={spinner}
-                        alt="spinner"
-                        className="inline w-4 mr-2 animate-spin"
-                      />
-                    </span>
-                  )}
-                  <span className="text-sm font-medium">Update Category</span>
-                </button>
-              </div>
-            </Form>
+              </Form>
+            )}
           </Formik>
         </div>
       </section>

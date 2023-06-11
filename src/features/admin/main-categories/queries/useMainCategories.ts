@@ -6,8 +6,8 @@ import {
 } from '@tanstack/react-query'
 
 type Data = {
-  products: Product[]
-  meta: {
+  mainCategories: MainCategory[]
+  meta?: {
     current_page: number
     per_page: number
     last_page: number
@@ -17,17 +17,20 @@ type Data = {
   }
 }
 
-const getProducts = async (page: string) => {
-  const response = await api.get(`/products?page=${page}`)
+const getMainCategories = async (page: string) => {
+  const response = await api.get(`/main-categories?page=${page}`)
   return response.data
 }
 
-export const useProducts = (page?: string, options?: UseQueryOptions<Data>) => {
+export const useMainCategories = (
+  page?: string,
+  options?: UseQueryOptions<Data>
+) => {
   const queryClient = useQueryClient()
 
   return useQuery<Data>({
-    queryKey: ['products', { page }],
-    queryFn: () => getProducts(page),
+    queryKey: ['main-categories', { page }],
+    queryFn: () => getMainCategories(page),
     keepPreviousData: true,
     refetchOnMount: true,
     onSuccess(data) {
@@ -35,16 +38,16 @@ export const useProducts = (page?: string, options?: UseQueryOptions<Data>) => {
       if (data.meta.current_page < data.meta.last_page) {
         const nextPage = (1 + +page).toString()
         queryClient.prefetchQuery({
-          queryKey: ['products', { page: nextPage }],
-          queryFn: () => getProducts(nextPage),
+          queryKey: ['main-categories', { page: nextPage }],
+          queryFn: () => getMainCategories(nextPage),
         })
       }
       // PREFETCH PREVIOUS PAGE
       if (data.meta.current_page > 1) {
         const prevPage = (+page - 1).toString()
         queryClient.prefetchQuery({
-          queryKey: ['products', { page: prevPage }],
-          queryFn: () => getProducts(prevPage),
+          queryKey: ['main-categories', { page: prevPage }],
+          queryFn: () => getMainCategories(prevPage),
         })
       }
     },

@@ -1,5 +1,9 @@
 import api from '../../../../utils/api/admin'
-import { UseQueryOptions, useQuery } from '@tanstack/react-query'
+import {
+  UseQueryOptions,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query'
 
 type Data = {
   customers: User[]
@@ -23,11 +27,31 @@ export const useCustomers = (
   page?: string,
   options?: UseQueryOptions<Data>
 ) => {
+  const queryClient = useQueryClient()
+
   return useQuery<Data>({
     queryKey: ['customers', { page }],
     queryFn: () => getCustomers(page),
     keepPreviousData: true,
     refetchOnMount: true,
+    onSuccess(data) {
+      // PREFETCH NEXT PAGE
+      if (data.meta.current_page < data.meta.last_page) {
+        const nextPage = (1 + +page).toString()
+        queryClient.prefetchQuery({
+          queryKey: ['customers', { page: nextPage }],
+          queryFn: () => getCustomers(nextPage),
+        })
+      }
+      // PREFETCH PREVIOUS PAGE
+      if (data.meta.current_page > 1) {
+        const prevPage = (+page - 1).toString()
+        queryClient.prefetchQuery({
+          queryKey: ['customers', { page: prevPage }],
+          queryFn: () => getCustomers(prevPage),
+        })
+      }
+    },
     ...options,
   })
 }

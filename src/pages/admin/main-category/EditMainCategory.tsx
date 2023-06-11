@@ -1,113 +1,86 @@
-import { Link } from 'react-router-dom'
-import { Formik, Form, FormikValues } from 'formik'
-import { createCategorySchema } from '../../../utils/validation/admin/category'
-import { useCreateCategory } from '../../../features/admin/categories/mutations/useCreateCategory'
+import { Form, Formik, FormikValues } from 'formik'
 import spinner from '../../../assets/icons/spinner.svg'
+import FormErrors from '../FormErrors'
 import ErrorMsg from '../ErrorMsg'
-import { useMcategories } from '../../../features/client/main-category/useMcategories'
+import { Link, useParams } from 'react-router-dom'
+import { useMainCategory } from '../../../features/admin/main-categories/queries/useMainCategory'
+import { useUpdateMainCategory } from '../../../features/admin/main-categories/mutations/useUpdateMainCategory'
+import { editMainCategorySchema } from '../../../utils/validation/admin/main-category'
 import Loader from '../Loader'
 import Error from '../Error'
-import FormErrors from '../FormErrors'
 import ImageInput from '../../../components/admin/ui/ImageInput'
 import FieldGroup from '../../../components/admin/ui/FieldGroup'
 
-const CreateCategory = () => {
-  const {
-    data: maincategories,
-    isLoading: isMcategoriesLoading,
-    isError: isMcategoriesError,
-  } = useMcategories()
+function EditMainCategory() {
+  const { id } = useParams()
 
-  const {
-    mutate: createCategory,
-    isLoading,
-    isError,
-    error,
-  } = useCreateCategory()
+  const { data: mainCategory, isLoading, isError } = useMainCategory(id)
+
   const initialValues = {
-    name: '',
-    description: '',
-    category: '',
+    name: mainCategory?.name,
+    description: mainCategory?.description,
     image: null,
   }
 
+  const {
+    mutate: updateMainCategory,
+    isLoading: isUpdating,
+    isError: isUpdateError,
+    error,
+  } = useUpdateMainCategory()
+
   const handleSubmit = (values: FormikValues & typeof initialValues) => {
-    // eslint-disable-next-line
-    //@ts-ignore
-    createCategory(values)
+    updateMainCategory({ mainCategory: values, id })
   }
 
-  if (isMcategoriesLoading) return <Loader />
-  if (isMcategoriesError) return <Error />
+  if (isLoading) return <Loader />
+  if (isError) return <Error />
 
   return (
     <div>
       <h2 className="mb-4 text-lg font-bold text-center text-dark-500">
-        Create Category
+        Edit Main Category
       </h2>
 
       <section>
         <div className="max-w-2xl p-6 mx-auto bg-white rounded-lg text-dark-600">
-          {isError && <FormErrors error={error} />}
+          {isUpdateError && <FormErrors error={error} />}
           <Formik
             initialValues={initialValues}
-            validationSchema={createCategorySchema}
+            validationSchema={editMainCategorySchema}
             onSubmit={handleSubmit}
           >
             {formik => (
               <Form>
                 <div className="grid grid-cols-2 gap-8">
                   {
-                    // NAME
+                    // name
                   }
-                  <div className="col-span-2">
+                  <div className="relative col-span-2">
                     <FieldGroup
                       label="Name"
                       name="name"
-                      placeholder="Name here..."
+                      placeholder="Name here ..."
                     />
                   </div>
 
                   {
-                    // PARENT CATEGORY
+                    // description
                   }
-                  <div className="col-span-2">
-                    <FieldGroup
-                      input={{
-                        as: 'select',
-                      }}
-                      label="Parent Category"
-                      name="category"
-                      placeholder="Name here..."
-                    >
-                      <option value="" disabled>
-                        select category
-                      </option>
-                      {maincategories.map(category => (
-                        <option key={category.id} value={category.id}>
-                          {category.name}
-                        </option>
-                      ))}
-                    </FieldGroup>
-                  </div>
-
-                  {
-                    // Description
-                  }
-                  <div className="col-span-2">
+                  <div className="relative col-span-2">
                     <FieldGroup
                       input={{
                         as: 'textarea',
-                        rows: 5,
+                        row: 5,
                       }}
                       label="Description"
                       name="description"
-                      placeholder="Name here..."
+                      placeholder="Description here ..."
                     />
                   </div>
 
                   {
-                    // IMAGE
+                    // image
                   }
                   <div className="relative col-span-2">
                     <div className="flex items-center mb-3">
@@ -116,6 +89,7 @@ const CreateCategory = () => {
                     </div>
                     <ImageInput
                       id="image"
+                      defaultPreview={mainCategory.image.url}
                       onChange={image => formik.setFieldValue('image', image)}
                     />
                   </div>
@@ -124,9 +98,10 @@ const CreateCategory = () => {
                 {
                   // actions
                 }
+
                 <div className="flex items-center justify-end gap-3 mt-6">
                   <Link
-                    to="/dashboard/categories"
+                    to="/dashboard/main-categories"
                     className="px-4 py-1.5 border rounded-lg border-gray text-dark-500 bg-light  hover:border-dark-500"
                   >
                     <span className="text-sm font-medium">Cancel</span>
@@ -135,7 +110,7 @@ const CreateCategory = () => {
                     type="submit"
                     className="px-8 py-1.5 border border-gray text-white rounded-lg bg-info-600"
                   >
-                    {isLoading && (
+                    {isUpdating && (
                       <span className="h-4 text-white ">
                         <img
                           src={spinner}
@@ -156,4 +131,4 @@ const CreateCategory = () => {
   )
 }
 
-export default CreateCategory
+export default EditMainCategory

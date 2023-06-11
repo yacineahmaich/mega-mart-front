@@ -1,27 +1,30 @@
 import { useSearchParams } from 'react-router-dom'
-import { useCustomers } from '../../../features/admin/customers/queries/useCustomers'
-import CustomerRow from './CustomerRow'
+import MainCategoryRow from './MainCategoryRow'
 import Pagination from '../ui/Pagination'
+import { useMainCategories } from '../../../features/admin/main-categories/queries/useMainCategories'
 
-const CustomersTable = () => {
+const MainCategoriesTable = () => {
   const [searchParams] = useSearchParams()
   const page = searchParams.get('page') ?? '1'
-  const { data } = useCustomers(page, { enabled: false })
+
+  const { data } = useMainCategories(page, {
+    enabled: false,
+  })
 
   return (
     <section className="overflow-hidden border rounded-lg border-gray">
-      <div className="relative overflow-hidden overflow-x-auto rounded-t-lg">
+      <div className="relative overflow-x-auto">
         <table className="w-full text-sm text-left border text-dark-600 border-light ">
-          <thead className="text-xs text-white uppercase bg-danger-600">
+          <thead className="text-xs text-white uppercase bg-info-700">
             <tr>
               <th scope="col" className="px-6 py-4">
                 #
               </th>
               <th scope="col" className="px-6 py-4">
-                Customer
+                Name
               </th>
               <th scope="col" className="px-6 py-4">
-                Customer Email
+                Subcategories per category
               </th>
               <th scope="col" className="px-6 py-4 text-center">
                 actions
@@ -29,15 +32,18 @@ const CustomersTable = () => {
             </tr>
           </thead>
           <tbody className="relative">
-            {data.customers.map(customer => (
-              <CustomerRow key={customer.id} customer={customer} />
+            {data.mainCategories.map(mainCategory => (
+              <MainCategoryRow
+                key={mainCategory.id}
+                mainCategory={mainCategory}
+              />
             ))}
           </tbody>
         </table>
       </div>
-      <Pagination data={data} theme="danger-500" />
+      <Pagination data={data} theme="info-100" />
     </section>
   )
 }
 
-export default CustomersTable
+export default MainCategoriesTable

@@ -4,7 +4,7 @@ import api from '../../../utils/api/client'
 const getMCategories = async () => {
   const response = await api.get('/m-categories')
 
-  return response.data
+  return response.data.mainCategories
 }
 
 export const useMcategories = (options?: UseQueryOptions<MainCategory[]>) => {

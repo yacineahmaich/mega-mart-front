@@ -1,9 +1,8 @@
 import { PlusCircleIcon } from '@heroicons/react/24/solid'
-import { Link, ScrollRestoration, useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 
 import Loader from '../Loader'
 import Error from '../Error'
-import ProductsPagination from '../../../components/admin/products/ProductsPagination'
 import ProductsTable from '../../../components/admin/products/ProductsTable'
 import { useProducts } from '../../../features/admin/products/queries/useProducts'
 
@@ -29,8 +28,6 @@ const Products = () => {
       </div>
 
       <ProductsTable />
-      <ProductsPagination />
-      <ScrollRestoration />
     </div>
   )
 }

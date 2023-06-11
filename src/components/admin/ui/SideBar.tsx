@@ -7,24 +7,27 @@ import {
   Squares2X2Icon,
   ArrowLeftOnRectangleIcon,
   Cog8ToothIcon,
+  RectangleStackIcon,
+  GiftIcon,
+  BanknotesIcon,
 } from '@heroicons/react/24/outline'
 import { NavLink, Link } from 'react-router-dom'
 
-const sidebarNavigation = [
+const manageStoreNavigation = [
   {
     label: 'Products',
     path: 'products',
     Icon: RectangleGroupIcon,
   },
-  // {
-  //   label: 'Main Categories',
-  //   path: 'main-categories',
-  //   Icon: Square3Stack3DIcon,
-  // },
   {
     label: 'Categories',
     path: 'categories',
     Icon: Square3Stack3DIcon,
+  },
+  {
+    label: 'Main Categories',
+    path: 'main-categories',
+    Icon: RectangleStackIcon,
   },
   {
     label: 'Customers',
@@ -38,12 +41,24 @@ const sidebarNavigation = [
   },
 ]
 
+const othersNavigation = [
+  {
+    label: 'Offers',
+    path: 'offers',
+    Icon: GiftIcon,
+  },
+  {
+    label: 'Discounts',
+    path: 'discounts',
+    Icon: BanknotesIcon,
+  },
+]
+
 const SideBar = () => {
   return (
     <div className="fixed top-0 left-0 z-10 flex flex-col h-screen border-r shadow w-admin-sidebar border-gray">
       <div className="py-6 text-center border-b border-gray">
         <Link to="/">
-          {/* <img src="" alt="" /> */}
           <h1 className="text-lg font-bold text-primary-400">Jersy - Hub</h1>
         </Link>
       </div>
@@ -65,30 +80,56 @@ const SideBar = () => {
           </NavLink>
         </div>
 
-        <div className="px-3">
-          <h3 className="mb-3 text-xs font-semibold uppercase text-dark-600">
-            Manage store
-          </h3>
+        <div className="px-3 space-y-3">
+          <div>
+            <h3 className="mb-3 text-xs font-semibold uppercase text-dark-600">
+              Manage store
+            </h3>
+            <ul>
+              {manageStoreNavigation.map((item, idx) => (
+                <li className="py-2" key={idx}>
+                  <NavLink
+                    to={item.path}
+                    className={({ isActive }) =>
+                      `relative flex items-stretch gap-3 pl-3 text-primary-800 hover:text-primary-400 transition-colors ${
+                        isActive
+                          ? 'after:absolute after:h-full after:left-0 after:top-1/2 after:-translate-y-1/2 after:w-1 after:rounded-r after:bg-primary-500'
+                          : ''
+                      }`
+                    }
+                  >
+                    <item.Icon className="w-5 h-5" />
+                    <span className="text-sm">{item.label}</span>
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          <ul>
-            {sidebarNavigation.map((item, idx) => (
-              <li className="py-2" key={idx}>
-                <NavLink
-                  to={item.path}
-                  className={({ isActive }) =>
-                    `relative flex items-stretch gap-3 pl-3 text-primary-800 hover:text-primary-400 transition-colors ${
-                      isActive
-                        ? 'after:absolute after:h-full after:left-0 after:top-1/2 after:-translate-y-1/2 after:w-1 after:rounded-r after:bg-primary-500'
-                        : ''
-                    }`
-                  }
-                >
-                  <item.Icon className="w-5 h-5" />
-                  <span className="text-sm">{item.label}</span>
-                </NavLink>
-              </li>
-            ))}
-          </ul>
+          <div>
+            <h3 className="mb-3 text-xs font-semibold uppercase text-dark-600">
+              Others
+            </h3>
+            <ul>
+              {othersNavigation.map((item, idx) => (
+                <li className="py-2" key={idx}>
+                  <NavLink
+                    to={item.path}
+                    className={({ isActive }) =>
+                      `relative flex items-stretch gap-3 pl-3 text-primary-800 hover:text-primary-400 transition-colors ${
+                        isActive
+                          ? 'after:absolute after:h-full after:left-0 after:top-1/2 after:-translate-y-1/2 after:w-1 after:rounded-r after:bg-primary-500'
+                          : ''
+                      }`
+                    }
+                  >
+                    <item.Icon className="w-5 h-5" />
+                    <span className="text-sm">{item.label}</span>
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </aside>
 

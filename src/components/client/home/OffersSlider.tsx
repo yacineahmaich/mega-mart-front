@@ -32,7 +32,7 @@ const OffersSlider = () => {
         swiper.navigation.init()
         swiper.navigation.update()
       }}
-      className="relative h-96 md:h-[400px] group"
+      className="relative h-96 md:h-[400px] group bg-light"
     >
       {
         // shadow

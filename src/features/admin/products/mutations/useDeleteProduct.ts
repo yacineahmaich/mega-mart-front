@@ -1,21 +1,20 @@
 import api from '../../../../utils/api/admin'
-import { isAxiosError } from 'axios'
 import { UseMutationOptions, useMutation } from '@tanstack/react-query'
 
-const deleteProduct = async ({ productId }: { productId: number }) => {
-  try {
-    const response = await api.delete(`/products/${productId}`)
+type Variables = {
+  productId: number
+}
 
-    return response.data
-  } catch (error) {
-    throw isAxiosError(error) ? error.response?.data : error
-  }
+const deleteProduct = async ({ productId }: Variables) => {
+  const response = await api.delete(`/products/${productId}`)
+
+  return response.data
 }
 
 export const useDeleteProduct = (
-  options?: UseMutationOptions<unknown, unknown, { productId: number }>
+  options?: UseMutationOptions<unknown, unknown, Variables>
 ) => {
-  return useMutation<unknown, unknown, { productId: number }>({
+  return useMutation<unknown, unknown, Variables>({
     mutationFn: deleteProduct,
     ...options,
   })

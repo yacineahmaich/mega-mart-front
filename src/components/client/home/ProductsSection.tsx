@@ -3,11 +3,13 @@ import CategoryProducts from './CategoryProducts'
 import SubCategories from './SubCategories'
 
 const ProductsSection = () => {
-  const { data: categories } = useMcategories()
+  const { data: mainCategories } = useMcategories()
+
+  console.log(mainCategories)
 
   return (
     <main>
-      {categories.map(category => (
+      {mainCategories.map(category => (
         <div className="p-2 space-y-10 md:p-6" key={category.id}>
           <CategoryProducts category={category} />
           <SubCategories category={category} />

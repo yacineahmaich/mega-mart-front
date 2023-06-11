@@ -22,7 +22,6 @@ import EditProduct from './pages/admin/product/EditProduct'
 import CategoryLayout from './pages/admin/category/CategoryLayout'
 import CreateCategory from './pages/admin/category/CreateCategory'
 import EditCategory from './pages/admin/category/EditCategory'
-import ViewCategory from './pages/admin/category/ViewCategory'
 import CustomerLayout from './pages/admin/customer/CustomerLayout'
 import ViewCustomer from './pages/admin/customer/ViewCustomer'
 import ProfileLayout from './pages/client/Profile/ProfileLayout'
@@ -33,6 +32,11 @@ import NotFound from './pages/NotFound'
 import Checkout from './pages/client/Checkout'
 import Category from './pages/client/Category'
 import MainCategory from './pages/client/MainCategory'
+import Maincategories from './pages/admin/main-category/Maincategories'
+import MainCategoryLayout from './pages/admin/main-category/MainCategoryLayout'
+import CreateMainCategory from './pages/admin/main-category/CreateMainCategory'
+import EditMainCategory from './pages/admin/main-category/EditMainCategory'
+import Offers from './pages/admin/offer/Offers'
 
 const router = createBrowserRouter([
   {
@@ -149,12 +153,26 @@ const router = createBrowserRouter([
                 element: <CreateCategory />,
               },
               {
-                path: ':id',
-                element: <ViewCategory />,
+                path: ':id/edit',
+                element: <EditCategory />,
+              },
+            ],
+          },
+          {
+            path: 'main-categories',
+            element: <MainCategoryLayout />,
+            children: [
+              {
+                index: true,
+                element: <Maincategories />,
+              },
+              {
+                path: 'create',
+                element: <CreateMainCategory />,
               },
               {
                 path: ':id/edit',
-                element: <EditCategory />,
+                element: <EditMainCategory />,
               },
             ],
           },
@@ -175,6 +193,10 @@ const router = createBrowserRouter([
           {
             path: 'orders',
             element: <Orders />,
+          },
+          {
+            path: 'offers',
+            element: <Offers />,
           },
           {
             path: '*',

@@ -7,19 +7,18 @@ import {
 import { useNavigate } from 'react-router-dom'
 
 type Variables = {
-  id: number
-  category: {
+  id: string
+  mainCategory: {
     name: string
     description: string
-    category: string | number
     image: File | null
   }
 }
 
-const updateCategory = async (categoryData: Variables) => {
+const updateMainCategory = async (categoryData: Variables) => {
   const response = await api.post(
-    `/categories/${categoryData.id}`,
-    categoryData.category,
+    `/main-categories/${categoryData.id}`,
+    categoryData.mainCategory,
     {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -33,19 +32,19 @@ const updateCategory = async (categoryData: Variables) => {
   return response.data
 }
 
-export const useUpdateCategory = (
-  options?: UseMutationOptions<Category, Error, Variables>
+export const useUpdateMainCategory = (
+  options?: UseMutationOptions<MainCategory, Error, Variables>
 ) => {
   const navigate = useNavigate()
   const queryClient = useQueryClient()
 
-  return useMutation<Category, Error, Variables>({
-    mutationFn: updateCategory,
+  return useMutation<MainCategory, Error, Variables>({
+    mutationFn: updateMainCategory,
     onSuccess(_, { id }) {
       queryClient.invalidateQueries({
-        queryKey: ['categories', id.toString()],
+        queryKey: ['main-categories', id],
       })
-      navigate('/dashboard/categories')
+      navigate('/dashboard/main-categories')
     },
     onError() {
       window.scrollTo({ top: 0 })

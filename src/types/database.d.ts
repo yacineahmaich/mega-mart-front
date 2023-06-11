@@ -24,6 +24,7 @@ interface Category {
   totalProducts: number
   products?: Product[] // Specific to Category
   image: Image
+  parentCategory: MainCategory
 }
 
 interface MainCategory {
@@ -31,6 +32,7 @@ interface MainCategory {
   name: string
   slug: string
   description: string
+  totalCategories: number
   image: Image
   categories?: Category[]
 }
@@ -41,6 +43,7 @@ interface User {
   name: string
   email: string
   avatar: Image
+  createdAt: string
 }
 
 interface Review {

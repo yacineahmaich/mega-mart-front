@@ -1,19 +1,20 @@
 import { useState } from 'react'
 import { XMarkIcon } from '@heroicons/react/24/solid'
-import { ExclamationTriangleIcon, PhotoIcon } from '@heroicons/react/24/outline'
 import spinner from '../../../assets/icons/spinner.svg'
 import { v4 as uuid } from 'uuid'
 import { Link } from 'react-router-dom'
-import { Formik, Form, Field, ErrorMessage, FormikValues } from 'formik'
+import { Formik, Form, FormikValues } from 'formik'
 import { createProductSchema } from '../../../utils/validation/admin/product'
 import { useCreateProduct } from '../../../features/admin/products/mutations/useCreateProduct'
 import { useCategories } from '../../../features/admin/categories/queries/useCategories'
-import { useNavigate } from 'react-router-dom'
 import Loader from '../Loader'
 import Error from '../Error'
+import ErrorMsg from '../ErrorMsg'
+import FormErrors from '../FormErrors'
+import ImageInput from '../../../components/admin/ui/ImageInput'
+import FieldGroup from '../../../components/admin/ui/FieldGroup'
 
 const CreateProduct = () => {
-  const navigate = useNavigate()
   const [images, setImages] = useState<string[]>([uuid()])
   const {
     data,
@@ -26,7 +27,9 @@ const CreateProduct = () => {
     isError,
     error,
   } = useCreateProduct({
-    onSuccess: () => navigate('/dashboard/products'),
+    onError() {
+      window.scrollTo({ top: 0 })
+    },
   })
 
   const initialValues = {
@@ -42,9 +45,6 @@ const CreateProduct = () => {
       ...values,
       images: Object.values(Object.fromEntries(values.images)),
     }
-
-    // eslint-disable-next-line
-    // @ts-ignore
     createProduct(productData)
   }
 
@@ -58,18 +58,7 @@ const CreateProduct = () => {
       </h2>
 
       <section className="max-w-2xl p-6 mx-auto bg-white rounded-lg text-dark-600">
-        {isError && error?.errors && (
-          <ul className="p-4 mb-4 border rounded-lg border-danger-700">
-            {Object.values(error.errors)
-              .flat()
-              .map((err: string, idx) => (
-                <li key={idx} className="text-sm font-semibold text-danger-300">
-                  <ExclamationTriangleIcon className="inline w-5 h-5" />
-                  &nbsp;<span>{err}</span>
-                </li>
-              ))}
-          </ul>
-        )}
+        {isError && <FormErrors error={error} />}
         <fieldset disabled={isCreatingProduct}>
           <Formik
             initialValues={initialValues}
@@ -79,95 +68,43 @@ const CreateProduct = () => {
             {formik => (
               <Form>
                 <div className="grid grid-cols-2 gap-8">
-                  <div className="relative col-span-2">
-                    <label
-                      htmlFor="name"
-                      className="block mb-2 text-sm font-medium"
-                    >
-                      Name
-                    </label>
-                    <Field
-                      type="text"
-                      id="name"
+                  {
+                    // NAME
+                  }
+                  <div className="col-span-2">
+                    <FieldGroup
+                      label="Name"
                       name="name"
-                      className="bg-white form-input border-gray focus:ring-primary-600 text-sm rounded-lg p-2.5 block w-full"
                       placeholder="Product name here..."
-                    />
-                    <ErrorMessage
-                      name="name"
-                      render={msg => (
-                        <p className="absolute mt-1 text-xs font-bold duration-200 top-full animate-in slide-in-from-top-1 text-danger-400">
-                          <ExclamationTriangleIcon className="inline w-5 h-5" />
-                          &nbsp;
-                          <span>{msg}</span>
-                        </p>
-                      )}
                     />
                   </div>
 
-                  <div className="relative">
-                    <label
-                      htmlFor="price"
-                      className="block mb-2 text-sm font-medium"
-                    >
-                      Price
-                    </label>
-                    <Field
-                      type="number"
-                      id="price"
-                      name="price"
-                      className="bg-white form-input border-gray focus:ring-primary-600 text-sm rounded-lg p-2.5 block w-full"
-                      placeholder="Product price here..."
-                    />
-                    <ErrorMessage
-                      name="price"
-                      render={msg => (
-                        <p className="absolute mt-1 text-xs font-bold duration-200 top-full animate-in slide-in-from-top-1 text-danger-400">
-                          <ExclamationTriangleIcon className="inline w-5 h-5" />
-                          &nbsp;
-                          <span>{msg}</span>
-                        </p>
-                      )}
-                    />
-                  </div>
-                  <div className="relative">
-                    <label
-                      htmlFor="quantity"
-                      className="block mb-2 text-sm font-medium"
-                    >
-                      Quantity
-                    </label>
-                    <Field
-                      type="number"
-                      id="quantity"
-                      name="quantity"
-                      className="bg-white form-input border-gray focus:ring-primary-600 text-sm rounded-lg p-2.5 block w-full"
-                      placeholder="Product quantity here..."
-                    />
-                    <ErrorMessage
-                      name="quantity"
-                      render={msg => (
-                        <p className="absolute mt-1 text-xs font-bold duration-200 top-full animate-in slide-in-from-top-1 text-danger-400">
-                          <ExclamationTriangleIcon className="inline w-5 h-5" />
-                          &nbsp;
-                          <span>{msg}</span>
-                        </p>
-                      )}
-                    />
-                  </div>
-                  <div className="relative col-span-2">
-                    <label
-                      htmlFor="category"
-                      className="block mb-2 text-sm font-medium"
-                    >
-                      category
-                    </label>
-                    <Field
-                      as="select"
-                      id="category"
+                  {
+                    // PRICE
+                  }
+                  <FieldGroup
+                    label="Price"
+                    name="price"
+                    placeholder="Price name here..."
+                  />
+
+                  {
+                    // QUANTITY
+                  }
+                  <FieldGroup
+                    label="Quantity"
+                    name="quantity"
+                    placeholder="Product name here..."
+                  />
+
+                  {
+                    // CATEGORY
+                  }
+                  <div className="col-span-2">
+                    <FieldGroup
+                      input={{ as: 'select' }}
+                      label="category"
                       name="category"
-                      className="bg-white form-select border-gray focus:ring-primary-600 text-sm rounded-lg p-2.5 block w-full"
-                      placeholder="Product category here..."
                     >
                       <option value="" disabled>
                         select category
@@ -177,49 +114,27 @@ const CreateProduct = () => {
                           {category.name}
                         </option>
                       ))}
-                    </Field>
-                    <ErrorMessage
-                      name="category"
-                      render={msg => (
-                        <p className="absolute mt-1 text-xs font-bold duration-200 top-full animate-in slide-in-from-top-1 text-danger-400">
-                          <ExclamationTriangleIcon className="inline w-5 h-5" />
-                          &nbsp;
-                          <span>{msg}</span>
-                        </p>
-                      )}
-                    />
+                    </FieldGroup>
                   </div>
 
-                  <div className="relative col-span-2">
-                    <label
-                      htmlFor="description"
-                      className="block mb-2 text-sm font-medium"
-                    >
-                      Description
-                    </label>
-                    <Field
-                      as="textarea"
-                      id="description"
+                  {
+                    // DESCRIPTION
+                  }
+                  <div className="col-span-2">
+                    <FieldGroup
+                      input={{
+                        as: 'textarea',
+                        rows: 5,
+                      }}
+                      label="Description"
                       name="description"
-                      className="bg-white form-textarea border-gray focus:ring-primary-600 text-sm rounded-lg p-2.5 block w-full min-h-[150px]"
-                      placeholder="Product description here..."
-                    />
-                    <ErrorMessage
-                      name="description"
-                      render={msg => (
-                        <p className="absolute mt-1 text-xs font-bold duration-200 top-full animate-in slide-in-from-top-1 text-danger-400">
-                          <ExclamationTriangleIcon className="inline w-5 h-5" />
-                          &nbsp;
-                          <span>{msg}</span>
-                        </p>
-                      )}
+                      placeholder="Description name here..."
                     />
                   </div>
 
                   {
                     // upload images
                   }
-
                   <div className="relative col-span-2">
                     <div className="flex items-center mb-3">
                       <label className="mr-2 text-sm font-medium">images</label>
@@ -230,45 +145,21 @@ const CreateProduct = () => {
                       >
                         + image
                       </button>
-                      <ErrorMessage
-                        name="images"
-                        render={msg => (
-                          <p className="ml-3 text-xs font-bold duration-200 left-full animate-in slide-in-from-left-1 text-danger-400">
-                            <ExclamationTriangleIcon className="inline w-5 h-5" />
-                            &nbsp;
-                            <span>{msg}</span>
-                          </p>
-                        )}
-                      />
+                      <ErrorMsg name="images" position="right" />
                     </div>
                     <div className="flex flex-wrap gap-3">
                       {images.map((imageId, idx) => (
-                        <div
-                          className="relative flex items-center"
-                          key={imageId}
-                        >
-                          <label htmlFor={imageId}>
-                            <div className="flex items-center justify-center w-20 h-24 rounded-lg bg-light">
-                              <PhotoIcon className="w-6 h-6" />
-                              <input
-                                id={imageId}
-                                type="file"
-                                name="images"
-                                onChange={event => {
-                                  const image = event.target.files?.[0]
-
-                                  if (!image) return
-
-                                  formik.setFieldValue('images', [
-                                    ...formik.values.images,
-                                    [imageId, image],
-                                  ])
-                                }}
-                                className="rounded-lg form-input border-gray focus:ring-primary-600"
-                                hidden
-                              />
-                            </div>
-                          </label>
+                        <div className="relative">
+                          <ImageInput
+                            id={imageId}
+                            key={imageId}
+                            onChange={image => {
+                              formik.setFieldValue('images', [
+                                ...formik.values.images,
+                                [imageId, image],
+                              ])
+                            }}
+                          />
                           {idx > 0 && (
                             <button
                               type="button"

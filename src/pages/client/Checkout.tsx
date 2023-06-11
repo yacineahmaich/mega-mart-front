@@ -3,10 +3,16 @@ import { useGetUser } from '../../features/auth/useGetUser'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { checkoutSchema } from '../../utils/validation/client/checkout'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+import { useCart } from '../../context/Cart'
 
 const Checkout = () => {
   const { data: user } = useGetUser()
+  const { items } = useCart()
+
+  const cartIsValid = Object.entries(items).length > 0
+
   if (!user) return <Navigate to="/account/login" />
+  if (!cartIsValid) return <Navigate to=".." />
 
   const initialValues = {
     name: user.name,

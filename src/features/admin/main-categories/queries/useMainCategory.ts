@@ -2,19 +2,18 @@ import api from '../../../../utils/api/admin'
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 
 const getCategory = async (id: string) => {
-  const response = await api.get(`/categories/${id}`)
+  const response = await api.get(`/main-categories/${id}`)
   return response.data
 }
 
-export const useCategory = (
+export const useMainCategory = (
   id: string,
-  options?: UseQueryOptions<Category>
+  options?: UseQueryOptions<MainCategory>
 ) => {
-  return useQuery<Category>({
-    queryKey: ['categories', id],
+  return useQuery<MainCategory>({
+    queryKey: ['main-categories', id],
     queryFn: () => getCategory(id),
     keepPreviousData: true,
-    refetchOnMount: true,
     ...options,
   })
 }
