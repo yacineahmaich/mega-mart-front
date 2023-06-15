@@ -23,7 +23,6 @@ import CategoryLayout from './pages/admin/category/CategoryLayout'
 import CreateCategory from './pages/admin/category/CreateCategory'
 import EditCategory from './pages/admin/category/EditCategory'
 import CustomerLayout from './pages/admin/customer/CustomerLayout'
-import ViewCustomer from './pages/admin/customer/ViewCustomer'
 import ProfileLayout from './pages/client/Profile/ProfileLayout'
 import Profile from './pages/client/Profile/Profile'
 import MyOrders from './pages/client/Profile/MyOrders'
@@ -37,6 +36,10 @@ import MainCategoryLayout from './pages/admin/main-category/MainCategoryLayout'
 import CreateMainCategory from './pages/admin/main-category/CreateMainCategory'
 import EditMainCategory from './pages/admin/main-category/EditMainCategory'
 import Offers from './pages/admin/offer/Offers'
+import CreateOffer from './pages/admin/offer/CreateOffer'
+import Discounts from './pages/admin/discount/Discounts'
+import CreateDiscount from './pages/admin/discount/CreateDiscount'
+import EditDiscount from './pages/admin/discount/EditDiscount'
 
 const router = createBrowserRouter([
   {
@@ -177,16 +180,29 @@ const router = createBrowserRouter([
             ],
           },
           {
+            path: 'discounts',
+            children: [
+              {
+                index: true,
+                element: <Discounts />,
+              },
+              {
+                path: 'apply/:productId',
+                element: <CreateDiscount />,
+              },
+              {
+                path: ':id/edit',
+                element: <EditDiscount />,
+              },
+            ],
+          },
+          {
             path: 'customers',
             element: <CustomerLayout />,
             children: [
               {
                 index: true,
                 element: <Customers />,
-              },
-              {
-                path: ':id',
-                element: <ViewCustomer />,
               },
             ],
           },
@@ -197,6 +213,10 @@ const router = createBrowserRouter([
           {
             path: 'offers',
             element: <Offers />,
+          },
+          {
+            path: 'offers/make/:productId',
+            element: <CreateOffer />,
           },
           {
             path: '*',

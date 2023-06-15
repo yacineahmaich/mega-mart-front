@@ -30,7 +30,7 @@ export const useCustomers = (
   const queryClient = useQueryClient()
 
   return useQuery<Data>({
-    queryKey: ['customers', { page }],
+    queryKey: ['admin', 'customers', { page }],
     queryFn: () => getCustomers(page),
     keepPreviousData: true,
     refetchOnMount: true,
@@ -39,7 +39,7 @@ export const useCustomers = (
       if (data.meta.current_page < data.meta.last_page) {
         const nextPage = (1 + +page).toString()
         queryClient.prefetchQuery({
-          queryKey: ['customers', { page: nextPage }],
+          queryKey: ['admin', 'customers', { page: nextPage }],
           queryFn: () => getCustomers(nextPage),
         })
       }
@@ -47,7 +47,7 @@ export const useCustomers = (
       if (data.meta.current_page > 1) {
         const prevPage = (+page - 1).toString()
         queryClient.prefetchQuery({
-          queryKey: ['customers', { page: prevPage }],
+          queryKey: ['admin', 'customers', { page: prevPage }],
           queryFn: () => getCustomers(prevPage),
         })
       }

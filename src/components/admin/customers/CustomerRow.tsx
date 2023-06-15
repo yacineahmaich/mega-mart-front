@@ -1,14 +1,10 @@
 import { FC, useState } from 'react'
-import {
-  ArrowPathIcon,
-  CheckIcon,
-  ChevronUpDownIcon,
-  TrashIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline'
+import { EyeIcon, TrashIcon } from '@heroicons/react/24/outline'
 import { useQueryClient } from '@tanstack/react-query'
 import { useDeleteCustomer } from '../../../features/admin/customers/mutations/useDeleteCustomer'
 import CustomerModal from './CustomerModal'
+import Actions from '../ui/Actions'
+import ConfirmDelete from '../ui/ConfirmDelete'
 
 type Props = {
   customer: User
@@ -19,9 +15,9 @@ const CustomerRow: FC<Props> = ({ customer }) => {
   const [isShowDetails, setIsShowDetails] = useState(false)
 
   const [isConfirmOpen, setIsConfirmOpen] = useState(false)
-  const { mutate: deleteCustomer, isLoading } = useDeleteCustomer({
+  const { mutate: deleteCustomer, isLoading: isDeleting } = useDeleteCustomer({
     onSuccess: () => {
-      queryClient.invalidateQueries(['customers'])
+      queryClient.invalidateQueries(['admin', 'customers'])
       setIsConfirmOpen(false)
     },
   })
@@ -40,36 +36,30 @@ const CustomerRow: FC<Props> = ({ customer }) => {
         <span>{customer.name}</span>
       </th>
       <td className="px-6 py-3">{customer.email}</td>
-      <td className="space-x-3 text-center">
-        {isConfirmOpen ? (
-          <div className="flex items-center justify-center w-full h-full gap-3">
-            <button onClick={handleDelete} disabled={isLoading}>
-              {isLoading ? (
-                <ArrowPathIcon className="inline w-5 h-5 text-danger-100 animate-spin" />
-              ) : (
-                <CheckIcon className="inline w-5 h-5 text-danger-100" />
-              )}
-            </button>
-            <button onClick={() => setIsConfirmOpen(false)}>
-              <XMarkIcon className="inline w-5 h-5 text-dark-500" />
-            </button>
-          </div>
-        ) : (
-          <>
-            <button
-              className="group text-primary-900"
-              onClick={() => setIsShowDetails(true)}
-            >
-              <ChevronUpDownIcon className="inline w-5 h-5 mr-1" />
-            </button>
-            <button
-              className="text-danger-100"
-              onClick={() => setIsConfirmOpen(true)}
-            >
-              <TrashIcon className="inline w-5 h-5" />
-            </button>
-          </>
-        )}
+      <td className="flex items-center justify-center p-2">
+        <Actions>
+          <button
+            className="px-6 py-2.5 text-left hover:bg-light whitespace-nowrap"
+            onClick={() => setIsShowDetails(true)}
+          >
+            <EyeIcon className="inline w-4 h-4 mr-4" />
+            <span className="text-sm">See details</span>
+          </button>
+          <button
+            className="px-6 py-2.5 text-left hover:bg-light whitespace-nowrap"
+            onClick={() => setIsConfirmOpen(true)}
+          >
+            <TrashIcon className="inline w-4 h-4 mr-4" />
+            <span className="text-sm">Delete account</span>
+          </button>
+        </Actions>
+        <ConfirmDelete
+          resourceName="category"
+          isDeleting={isDeleting}
+          isOpen={isConfirmOpen}
+          onClose={() => setIsConfirmOpen(false)}
+          onDelete={handleDelete}
+        />
       </td>
       <CustomerModal
         customer={customer}

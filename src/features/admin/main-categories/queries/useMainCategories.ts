@@ -29,7 +29,7 @@ export const useMainCategories = (
   const queryClient = useQueryClient()
 
   return useQuery<Data>({
-    queryKey: ['main-categories', { page }],
+    queryKey: ['admin', 'main-categories', { page }],
     queryFn: () => getMainCategories(page),
     keepPreviousData: true,
     refetchOnMount: true,
@@ -38,7 +38,7 @@ export const useMainCategories = (
       if (data.meta.current_page < data.meta.last_page) {
         const nextPage = (1 + +page).toString()
         queryClient.prefetchQuery({
-          queryKey: ['main-categories', { page: nextPage }],
+          queryKey: ['admin', 'main-categories', { page: nextPage }],
           queryFn: () => getMainCategories(nextPage),
         })
       }
@@ -46,7 +46,7 @@ export const useMainCategories = (
       if (data.meta.current_page > 1) {
         const prevPage = (+page - 1).toString()
         queryClient.prefetchQuery({
-          queryKey: ['main-categories', { page: prevPage }],
+          queryKey: ['admin', 'main-categories', { page: prevPage }],
           queryFn: () => getMainCategories(prevPage),
         })
       }

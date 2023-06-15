@@ -35,6 +35,19 @@ const CartProvider: FC<Props> = ({ children }) => {
     )
   }
 
+  // calc total
+  const calcProductsTotalPrice = (products: Product[]) => {
+    return products.reduce((total, product) => {
+      const finalPrice = product.discount
+        ? product.discount.price
+        : product.price
+
+      const cartItem = items[product.id]
+
+      return total + finalPrice * cartItem?.quantity
+    }, 0)
+  }
+
   // Sync Cart With LocalStorage
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(items))
@@ -47,6 +60,7 @@ const CartProvider: FC<Props> = ({ children }) => {
         addToCart,
         removeFromCart,
         changeQuantity,
+        calcProductsTotalPrice,
       }}
     >
       {children}

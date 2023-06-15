@@ -26,6 +26,7 @@ export const useDeleteProductImage = (
     retry: false,
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries([
+        'admin',
         'products',
         variables.productId.toString(),
       ])

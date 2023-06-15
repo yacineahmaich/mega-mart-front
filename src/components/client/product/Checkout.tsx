@@ -61,20 +61,19 @@ const Checkout = () => {
       <article className="hidden w-full p-4 bg-white border divide-y rounded-lg md:block divide-gray border-gray">
         <header className="pb-3 space-y-3 lg:pb-6">
           <div className="flex items-center justify-center gap-1 text-primary-600">
-            <p className="text-3xl font-bold lg:text-4xl ">{price}</p>
+            <p className="text-3xl font-bold lg:text-4xl ">${price}</p>
 
             <p className="text-sm font-bold leading-4">
               <span className="block">{priceDecimal}</span>
-              <span className="block">USD</span>
             </p>
           </div>
           {product?.discount && (
             <div className="flex justify-center gap-2">
               <p className="text-sm text-dark-500">
-                <s>9999 USD</s>
+                <s>${product.discount.price}</s>
               </p>
               <span className="px-4 py-0.5 text-xs rounded-lg bg-pink-400 font-medium text-light pointer-events-none">
-                -16%
+                -{product.discount.percentage}%
               </span>
             </div>
           )}

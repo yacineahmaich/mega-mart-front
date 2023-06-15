@@ -31,7 +31,7 @@ const Reviews = () => {
             starRatedColor="#fde047"
           />
           <p className="text-sm font-medium text-dark-600">
-            {product.avgRating} reviews
+            {product.totalReviews} reviews
           </p>
         </div>
         <div className="flex-1">

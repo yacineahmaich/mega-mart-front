@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 type Props = {
@@ -25,19 +26,23 @@ const SubCategories: FC<Props> = ({ category }) => {
     >
       {category.categories.map(category => (
         <SwiperSlide key={category.id}>
-          <article
-            className="relative h-48 overflow-hidden rounded-lg md:h-64"
-            title={category.name}
+          <Link
+            to={`/mc/${category.parentCategory.slug}/category/${category.slug}`}
           >
-            <div className="absolute inset-0 flex items-center justify-center w-full h-full text-lg font-medium text-white shadow-inner pointer-events-none bg-black/20">
-              {category.name}
-            </div>
-            <img
-              src={category.image.url}
-              alt={category.image.name}
-              className="object-cover w-full h-full"
-            />
-          </article>
+            <article
+              className="relative h-48 overflow-hidden rounded-lg md:h-64"
+              title={category.name}
+            >
+              <div className="absolute inset-0 flex items-center justify-center w-full h-full text-lg font-medium text-white shadow-inner pointer-events-none bg-black/20">
+                {category.name}
+              </div>
+              <img
+                src={category.image.url}
+                alt={category.image.name}
+                className="object-cover w-full h-full"
+              />
+            </article>
+          </Link>
         </SwiperSlide>
       ))}
     </Swiper>

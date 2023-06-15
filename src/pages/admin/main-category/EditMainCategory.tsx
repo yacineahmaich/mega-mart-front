@@ -17,8 +17,8 @@ function EditMainCategory() {
   const { data: mainCategory, isLoading, isError } = useMainCategory(id)
 
   const initialValues = {
-    name: mainCategory?.name,
-    description: mainCategory?.description,
+    name: mainCategory?.name ?? '',
+    description: mainCategory?.description ?? '',
     image: null,
   }
 
@@ -101,7 +101,7 @@ function EditMainCategory() {
 
                 <div className="flex items-center justify-end gap-3 mt-6">
                   <Link
-                    to="/dashboard/main-categories"
+                    to=".."
                     className="px-4 py-1.5 border rounded-lg border-gray text-dark-500 bg-light  hover:border-dark-500"
                   >
                     <span className="text-sm font-medium">Cancel</span>

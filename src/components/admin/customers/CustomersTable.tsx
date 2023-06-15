@@ -9,9 +9,9 @@ const CustomersTable = () => {
   const { data } = useCustomers(page, { enabled: false })
 
   return (
-    <section className="overflow-hidden border rounded-lg border-gray">
-      <div className="relative overflow-hidden overflow-x-auto rounded-t-lg">
-        <table className="w-full text-sm text-left border text-dark-600 border-light ">
+    <section className="pb-40 overflow-x-auto">
+      <div className="border rounded-b-lg border-gray">
+        <table className="w-full text-sm text-left border text-dark-600 border-light">
           <thead className="text-xs text-white uppercase bg-danger-600">
             <tr>
               <th scope="col" className="px-6 py-4">
@@ -34,8 +34,8 @@ const CustomersTable = () => {
             ))}
           </tbody>
         </table>
+        <Pagination data={data} theme="danger-500" />
       </div>
-      <Pagination data={data} theme="danger-500" />
     </section>
   )
 }

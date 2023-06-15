@@ -1,14 +1,10 @@
 import { useState, FC } from 'react'
 import { Link } from 'react-router-dom'
-import {
-  ArrowPathIcon,
-  CheckIcon,
-  PencilSquareIcon,
-  TrashIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline'
+import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline'
 import { useQueryClient } from '@tanstack/react-query'
 import { useDeleteMainCategory } from '../../../features/admin/main-categories/mutations/useDeleteMainCategory'
+import Actions from '../ui/Actions'
+import ConfirmDelete from '../ui/ConfirmDelete'
 
 type Props = {
   mainCategory: MainCategory
@@ -17,12 +13,13 @@ type Props = {
 const MainCategoryRow: FC<Props> = ({ mainCategory }) => {
   const queryClient = useQueryClient()
   const [isConfirmOpen, setIsConfirmOpen] = useState(false)
-  const { mutate: deleteCategory, isLoading } = useDeleteMainCategory({
-    onSuccess: () => {
-      queryClient.invalidateQueries(['main-categories'])
-      setIsConfirmOpen(false)
-    },
-  })
+  const { mutate: deleteCategory, isLoading: isDeleting } =
+    useDeleteMainCategory({
+      onSuccess: () => {
+        queryClient.invalidateQueries(['admin', 'main-categories'])
+        setIsConfirmOpen(false)
+      },
+    })
 
   const handleDelete = () => {
     deleteCategory({ mainCategoryId: mainCategory.id })
@@ -42,33 +39,35 @@ const MainCategoryRow: FC<Props> = ({ mainCategory }) => {
       </th>
       <td className="px-6 py-3">{mainCategory.totalCategories}</td>
 
-      <td className="space-x-3 text-center">
-        {isConfirmOpen ? (
-          <div className="flex items-center justify-center w-full h-full gap-3">
-            <button onClick={handleDelete} disabled={isLoading}>
-              {isLoading ? (
-                <ArrowPathIcon className="inline w-5 h-5 text-danger-100 animate-spin" />
-              ) : (
-                <CheckIcon className="inline w-5 h-5 text-danger-100" />
-              )}
-            </button>
-            <button onClick={() => setIsConfirmOpen(false)}>
-              <XMarkIcon className="inline w-5 h-5 text-dark-500" />
-            </button>
-          </div>
-        ) : (
-          <>
-            <Link to={`${mainCategory.id}/edit`} className="text-info-100">
-              <PencilSquareIcon className="inline w-5 h-5" />
-            </Link>
-            <button
-              className="text-danger-100"
-              onClick={() => setIsConfirmOpen(true)}
-            >
-              <TrashIcon className="inline w-5 h-5" />
-            </button>
-          </>
-        )}
+      <td className="flex items-center justify-center p-2">
+        <Actions>
+          <Link
+            to={`${mainCategory.id}/edit`}
+            className="px-6 py-2.5 text-left hover:bg-light whitespace-nowrap"
+          >
+            <PencilIcon className="inline w-4 h-4 mr-4" />
+            <span className="text-sm">Edit category</span>
+          </Link>
+          <button
+            className="px-6 py-2.5 text-left hover:bg-light whitespace-nowrap"
+            onClick={() => setIsConfirmOpen(true)}
+          >
+            <TrashIcon className="inline w-4 h-4 mr-4" />
+            <span className="text-sm">Delete category</span>
+          </button>
+        </Actions>
+        <ConfirmDelete
+          resourceName="category"
+          isDeleting={isDeleting}
+          isOpen={isConfirmOpen}
+          onClose={() => setIsConfirmOpen(false)}
+          onDelete={handleDelete}
+          notes={
+            mainCategory.totalCategories > 0 && [
+              `(${mainCategory.totalCategories}) categories under this main category will be also deleted !`,
+            ]
+          }
+        />
       </td>
     </tr>
   )

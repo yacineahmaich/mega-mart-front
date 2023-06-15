@@ -1,14 +1,15 @@
 import { FC, useState } from 'react'
 import {
-  ArrowPathIcon,
-  CheckIcon,
+  ArrowTrendingDownIcon,
+  GiftIcon,
+  PencilIcon,
   TrashIcon,
-  XMarkIcon,
 } from '@heroicons/react/24/outline'
-import { PencilSquareIcon } from '@heroicons/react/24/solid'
 import { useDeleteProduct } from '../../../features/admin/products/mutations/useDeleteProduct'
 import { useQueryClient } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
+import Actions from '../ui/Actions'
+import ConfirmDelete from '../ui/ConfirmDelete'
 
 type Props = {
   product: Product
@@ -17,9 +18,10 @@ type Props = {
 const ProductRow: FC<Props> = ({ product }) => {
   const queryClient = useQueryClient()
   const [isConfirmOpen, setIsConfirmOpen] = useState(false)
-  const { mutate: deleteProduct, isLoading } = useDeleteProduct({
+
+  const { mutate: deleteProduct, isLoading: isDeleting } = useDeleteProduct({
     onSuccess: () => {
-      queryClient.invalidateQueries(['products'])
+      queryClient.invalidateQueries(['admin', 'products'])
       setIsConfirmOpen(false)
     },
   })
@@ -27,6 +29,8 @@ const ProductRow: FC<Props> = ({ product }) => {
   const handleDelete = () => {
     deleteProduct({ productId: product.id })
   }
+
+  const finalPrice = product.discount ? product.discount.price : product.price
 
   return (
     <tr
@@ -42,36 +46,60 @@ const ProductRow: FC<Props> = ({ product }) => {
       </th>
       <td className="px-6 py-3">{product.category.name}</td>
       <td className="px-6 py-3">{product.quantity}</td>
-      <td className="px-6 py-3">{product.price}</td>
-
-      <td className="space-x-3 text-center">
-        {isConfirmOpen ? (
-          <div className="flex items-center justify-center w-full h-full gap-3">
-            <button onClick={handleDelete}>
-              {isLoading ? (
-                <ArrowPathIcon className="inline w-5 h-5 text-danger-100 animate-spin" />
-              ) : (
-                <CheckIcon className="inline w-5 h-5 text-danger-100" />
-              )}
-            </button>
-            <button onClick={() => setIsConfirmOpen(false)}>
-              <XMarkIcon className="inline w-5 h-5 text-dark-500" />
-            </button>
-          </div>
-        ) : (
-          <>
-            <Link to={`${product.id}/edit`} className="text-info-100">
-              <PencilSquareIcon className="inline w-5 h-5" />
-            </Link>
-            <button
-              className="text-danger-100"
-              onClick={() => setIsConfirmOpen(true)}
-            >
-              <TrashIcon className="inline w-5 h-5" />
-            </button>
-          </>
-        )}
+      <td className="px-6 py-3">${finalPrice}</td>
+      <td className="px-6 py-3">
+        {product.discount ? `${product.discount.percentage}%` : <>&ndash;</>}
       </td>
+
+      <td className="flex items-center justify-center p-2">
+        <Actions>
+          <Link
+            to={`${product.id}/edit`}
+            className="px-6 py-2.5 text-left hover:bg-light whitespace-nowrap"
+          >
+            <PencilIcon className="inline w-4 h-4 mr-4" />
+            <span className="text-sm">Edit product</span>
+          </Link>
+          <Link
+            to={`/dashboard/offers/make/${product.id}`}
+            className="px-6 py-2.5 text-left hover:bg-light whitespace-nowrap"
+          >
+            <GiftIcon className="inline w-4 h-4 mr-4" />
+            <span className="text-sm">Make offer</span>
+          </Link>
+          {product.discount ? (
+            <Link
+              to={`/dashboard/discounts/${product.discount.id}/edit`}
+              className="px-6 py-2.5 text-left hover:bg-light whitespace-nowrap"
+            >
+              <ArrowTrendingDownIcon className="inline w-4 h-4 mr-4" />
+              <span className="text-sm">Edit discount</span>
+            </Link>
+          ) : (
+            <Link
+              to={`/dashboard/discounts/apply/${product.id}`}
+              className="px-6 py-2.5 text-left hover:bg-light whitespace-nowrap"
+            >
+              <ArrowTrendingDownIcon className="inline w-4 h-4 mr-4" />
+              <span className="text-sm">Apply discount</span>
+            </Link>
+          )}
+          <button
+            className="px-6 py-2.5 text-left hover:bg-light whitespace-nowrap"
+            onClick={() => setIsConfirmOpen(true)}
+          >
+            <TrashIcon className="inline w-4 h-4 mr-4" />
+            <span className="text-sm">Delete product</span>
+          </button>
+        </Actions>
+      </td>
+      <ConfirmDelete
+        resourceName="product"
+        isOpen={isConfirmOpen}
+        onClose={() => setIsConfirmOpen(false)}
+        onDelete={handleDelete}
+        isDeleting={isDeleting}
+      />
     </tr>
   )
 }

@@ -23,10 +23,10 @@ const OffersSlider = () => {
         nextEl: nextRef.current ? nextRef.current : undefined,
       }}
       onInit={swiper => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // eslint-disable-next-line
         // @ts-ignore
         swiper.params.navigation.prevEl = prevRef.current
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // eslint-disable-next-line
         // @ts-ignore
         swiper.params.navigation.nextEl = nextRef.current
         swiper.navigation.init()
@@ -34,14 +34,8 @@ const OffersSlider = () => {
       }}
       className="relative h-96 md:h-[400px] group bg-light"
     >
-      {
-        // shadow
-      }
       <div className="absolute bottom-0 left-0 z-20 w-full h-20 bg-gradient-to-t from-white to-transparent"></div>
 
-      {
-        // slides
-      }
       <div>
         {offers.map(offer => (
           <SwiperSlide key={offer.id}>
@@ -54,9 +48,6 @@ const OffersSlider = () => {
         ))}
       </div>
 
-      {
-        // navigation buttons
-      }
       <div className="absolute inset-0 z-10 items-center justify-between hidden w-full h-full p-3 pointer-events-none group-hover:flex">
         <button ref={prevRef} className="p-2 rounded-full pointer-events-auto">
           <ChevronLeftIcon className="w-8 h-8 text-light drop-shadow-lg" />

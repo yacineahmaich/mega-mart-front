@@ -12,9 +12,9 @@ const MainCategoriesTable = () => {
   })
 
   return (
-    <section className="overflow-hidden border rounded-lg border-gray">
-      <div className="relative overflow-x-auto">
-        <table className="w-full text-sm text-left border text-dark-600 border-light ">
+    <section className="pb-40 overflow-x-auto">
+      <div className="border rounded-b-lg border-gray">
+        <table className="w-full text-sm text-left border text-dark-600 border-light">
           <thead className="text-xs text-white uppercase bg-info-700">
             <tr>
               <th scope="col" className="px-6 py-4">
@@ -40,8 +40,8 @@ const MainCategoriesTable = () => {
             ))}
           </tbody>
         </table>
+        <Pagination data={data} theme="info-100" />
       </div>
-      <Pagination data={data} theme="info-100" />
     </section>
   )
 }

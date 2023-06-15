@@ -11,7 +11,7 @@ export const useCategory = (
   options?: UseQueryOptions<Category>
 ) => {
   return useQuery<Category>({
-    queryKey: ['categories', id],
+    queryKey: ['admin', 'categories', id],
     queryFn: () => getCategory(id),
     keepPreviousData: true,
     refetchOnMount: true,

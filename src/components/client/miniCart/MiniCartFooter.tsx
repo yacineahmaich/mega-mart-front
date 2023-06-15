@@ -9,11 +9,8 @@ type Props = {
 
 const MiniCartFooter: FC<Props> = ({ products, onClose }) => {
   const navigate = useNavigate()
-  const { items } = useCart()
-  const totalAmount = products.reduce(
-    (total, { id, price }) => price * items[id]?.quantity + total,
-    0
-  )
+  const { calcProductsTotalPrice } = useCart()
+  const totalAmount = calcProductsTotalPrice(products)
 
   const goToCart = () => {
     navigate('/cart')
@@ -21,7 +18,7 @@ const MiniCartFooter: FC<Props> = ({ products, onClose }) => {
   }
 
   return (
-    <div className="p-6 mt-auto space-y-4 bg-opacity-50 border-t border-gray bg-gray">
+    <div className="p-6 space-y-4 bg-opacity-50 border-t border-gray bg-gray">
       <div className="flex items-center justify-between pb-3 text-sm font-medium text-dark-500">
         <span>
           Products: <span>{products.length}</span>

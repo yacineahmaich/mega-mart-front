@@ -2,7 +2,7 @@ import { FC } from 'react'
 import ProductCardSkeleton from '../category/ProductCardSekeleton'
 import ProductCard from '../category/ProductCard'
 import { Link } from 'react-router-dom'
-import { useMainCategoryProducts } from '../../../features/client/products/useMaincategoryProducts'
+import { useMainCategoryProducts } from '../../../features/client/products/useMainCategoryProducts'
 
 type Props = {
   category: MainCategory
@@ -48,8 +48,8 @@ const CategoryProducts: FC<Props> = ({ category }) => {
             onClick={() => fetchNextPage()}
             disabled={isFetchingNextPage}
           >
-            <span className="mr-2 group-hover:underline">
-              {isFetchingNextPage ? '...' : 'Load more'}
+            <span className="mr-2 group-disabled:no-underline group-hover:underline">
+              Load more {isFetchingNextPage && '...'}
             </span>
           </button>
         </div>

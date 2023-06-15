@@ -23,7 +23,7 @@ export const useProductReviews = (
   options?: UseQueryOptions<Data>
 ) => {
   return useQuery<Data>({
-    queryKey: ['products', id, 'reviews'],
+    queryKey: ['admin', 'products', id, 'reviews'],
     queryFn: () => getProductReviews(id),
     keepPreviousData: true,
     ...options,

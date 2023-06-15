@@ -17,7 +17,7 @@ type Data = {
   }
 }
 
-const getCategories = async (page: string) => {
+const getCategories = async (page = '1') => {
   const response = await api.get(`/categories?page=${page}`)
   return response.data
 }
@@ -29,7 +29,7 @@ export const useCategories = (
   const queryClient = useQueryClient()
 
   return useQuery<Data>({
-    queryKey: ['categories', { page }],
+    queryKey: ['admin', 'categories', { page }],
     queryFn: () => getCategories(page),
     keepPreviousData: true,
     refetchOnMount: true,
@@ -38,7 +38,7 @@ export const useCategories = (
       if (data.meta.current_page < data.meta.last_page) {
         const nextPage = (1 + +page).toString()
         queryClient.prefetchQuery({
-          queryKey: ['categories', { page: nextPage }],
+          queryKey: ['admin', 'categories', { page: nextPage }],
           queryFn: () => getCategories(nextPage),
         })
       }
@@ -46,7 +46,7 @@ export const useCategories = (
       if (data.meta.current_page > 1) {
         const prevPage = (+page - 1).toString()
         queryClient.prefetchQuery({
-          queryKey: ['categories', { page: prevPage }],
+          queryKey: ['admin', 'categories', { page: prevPage }],
           queryFn: () => getCategories(prevPage),
         })
       }

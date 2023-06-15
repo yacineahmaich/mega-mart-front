@@ -10,10 +10,7 @@ interface Product {
   images: Image[]
   totalReviews: number
   // reviews: Review[]
-  discount: {
-    value: number
-    price: number
-  } | null
+  discount: Discount | null
 }
 
 interface Category {
@@ -66,4 +63,14 @@ interface Offer {
   start: string
   end: string
   backdrop: Image
+  product: Product
+}
+
+interface Discount {
+  id: number
+  start: string
+  end: string
+  percentage: number
+  price: number
+  product?: Product
 }

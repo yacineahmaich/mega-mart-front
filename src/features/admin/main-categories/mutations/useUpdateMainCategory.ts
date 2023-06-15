@@ -42,7 +42,7 @@ export const useUpdateMainCategory = (
     mutationFn: updateMainCategory,
     onSuccess(_, { id }) {
       queryClient.invalidateQueries({
-        queryKey: ['main-categories', id],
+        queryKey: ['admin', 'main-categories', id],
       })
       navigate('/dashboard/main-categories')
     },

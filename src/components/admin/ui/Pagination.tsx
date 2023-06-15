@@ -32,11 +32,11 @@ const Pagination: FC<Props> = ({ data, theme = 'primary-600' }) => {
         data={data}
         options={{
           containerClass: 'flex space-x-px',
-          numberButtonClass: `py-1.5 text-dark-500 bg-white border text-dark-600 rounded-lg border-gray w-fit hover:bg-${theme} hover:text-white`,
+          numberButtonClass: `overflow-hidden relative py-1.5 text-dark-500 bg-white border text-dark-600 rounded-lg border-gray w-fit hover:bg-${theme} hover:text-white`,
           numberClass: `px-3 font-medium py-1.5`,
           prevButtonClass: `py-1.5  bg-white border rounded-lg text-dark-600 border-gray hover:bg-${theme} hover:text-white`,
           nextButtonClass: `py-1.5  bg-white border rounded-lg text-dark-600 border-gray hover:bg-${theme} hover:text-white`,
-          activeClass: `border text-${theme}`,
+          activeClass: `after:absolute after:w-full after:h-0.5 after:rounded-t-lg after:bg-dark-500 after:rounded-full after:bottom-0 after:left-1/2 after:-translate-x-1/2`,
           prevButtonText: `<`,
           nextButtonText: `>`,
         }}

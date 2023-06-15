@@ -113,8 +113,23 @@ const Item: FC<Props> = ({ product }) => {
         </button>
 
         <div className="flex items-center gap-1 text-primary-800">
-          <span className="text-lg font-bold md:text-xl">{product.price}</span>
-          <span className="text-xs font-semibold">USD</span>
+          {product.discount ? (
+            <div className="flex relative flex-col items-center gap-0">
+              <span className="text-md  text-gray">
+                <s>${product.price}</s>
+              </span>
+              <span className="right-full mr-2 mb-1 bottom-0 absolute px-3 py-0.5 text-xs rounded bg-pink-600 self-end font-medium text-light pointer-events-none">
+                -{product.discount.percentage}%
+              </span>
+              <span className="text-lg font-bold text-primary-500">
+                ${product.discount.price}
+              </span>
+            </div>
+          ) : (
+            <span className="text-lg font-bold text-primary-500">
+              ${product.price}
+            </span>
+          )}
         </div>
       </div>
     </article>

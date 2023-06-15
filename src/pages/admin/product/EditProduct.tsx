@@ -225,7 +225,7 @@ const EditProduct = () => {
               }
               <div className="flex items-center justify-end gap-3 mt-6">
                 <Link
-                  to="/dashboard/products"
+                  to=".."
                   className="px-4 py-1.5 border rounded-lg border-gray text-dark-500 bg-light  hover:border-dark-500"
                 >
                   <span className="text-sm font-medium">Cancel</span>

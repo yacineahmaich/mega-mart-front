@@ -34,7 +34,7 @@ const Sheet: FC<Props> = ({ title, isOpen, onClose, children }) => {
           leaveFrom="opacity-100 translate-x-0"
           leaveTo="opacity-0 translate-x-full"
         >
-          <Dialog.Panel className="fixed top-0 right-0 flex flex-col h-screen max-h-[100dvh] max-w-full overflow-hidden transition-all transform bg-white shadow-xl w-minicart">
+          <Dialog.Panel className="fixed top-0 right-0 flex flex-col h-screen max-h-[100dvh] max-w-full overflow-hidden transition-all transform bg-white shadow-xl w-[450px]">
             <header className="flex items-center justify-between px-5 py-2 border-b border-gray text-dark-600">
               <Dialog.Title as="h3" className="text-lg font-medium">
                 {title}

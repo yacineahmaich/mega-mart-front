@@ -7,7 +7,7 @@ import StatisticCard from '../ui/StatisticCard'
 
 const CategoriesStatistcis = () => {
   return (
-    <div className="grid grid-cols-3 gap-6 px-10 bg-warning-900 py-14 mb-14">
+    <div className="grid grid-cols-3 gap-6 px-10 bg-orange-500 py-14 mb-14">
       <StatisticCard
         label="Total Categories"
         value={6}

@@ -12,16 +12,19 @@ const CategoriesTable = () => {
   })
 
   return (
-    <section className="overflow-hidden border rounded-lg border-gray">
-      <div className="relative overflow-x-auto">
-        <table className="w-full text-sm text-left border text-dark-600 border-light ">
-          <thead className="text-xs text-white uppercase bg-warning-900">
+    <section className="pb-40 overflow-x-auto">
+      <div className="border rounded-b-lg border-gray">
+        <table className="w-full text-sm text-left border text-dark-600 border-light">
+          <thead className="text-xs text-white uppercase bg-orange-500">
             <tr>
               <th scope="col" className="px-6 py-4">
                 #
               </th>
               <th scope="col" className="px-6 py-4">
                 Category name
+              </th>
+              <th scope="col" className="px-6 py-4">
+                Parent category
               </th>
               <th scope="col" className="px-6 py-4">
                 Products per category
@@ -37,8 +40,8 @@ const CategoriesTable = () => {
             ))}
           </tbody>
         </table>
+        <Pagination data={data} theme="orange-500" />
       </div>
-      <Pagination data={data} theme="warning-900" />
     </section>
   )
 }

@@ -11,7 +11,7 @@ export const useMainCategory = (
   options?: UseQueryOptions<MainCategory>
 ) => {
   return useQuery<MainCategory>({
-    queryKey: ['main-categories', id],
+    queryKey: ['admin', 'main-categories', id],
     queryFn: () => getCategory(id),
     keepPreviousData: true,
     ...options,

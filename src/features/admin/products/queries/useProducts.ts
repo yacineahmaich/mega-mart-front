@@ -26,7 +26,7 @@ export const useProducts = (page?: string, options?: UseQueryOptions<Data>) => {
   const queryClient = useQueryClient()
 
   return useQuery<Data>({
-    queryKey: ['products', { page }],
+    queryKey: ['admin', 'products', { page }],
     queryFn: () => getProducts(page),
     keepPreviousData: true,
     refetchOnMount: true,
@@ -35,7 +35,7 @@ export const useProducts = (page?: string, options?: UseQueryOptions<Data>) => {
       if (data.meta.current_page < data.meta.last_page) {
         const nextPage = (1 + +page).toString()
         queryClient.prefetchQuery({
-          queryKey: ['products', { page: nextPage }],
+          queryKey: ['admin', 'products', { page: nextPage }],
           queryFn: () => getProducts(nextPage),
         })
       }
@@ -43,7 +43,7 @@ export const useProducts = (page?: string, options?: UseQueryOptions<Data>) => {
       if (data.meta.current_page > 1) {
         const prevPage = (+page - 1).toString()
         queryClient.prefetchQuery({
-          queryKey: ['products', { page: prevPage }],
+          queryKey: ['admin', 'products', { page: prevPage }],
           queryFn: () => getProducts(prevPage),
         })
       }

@@ -45,7 +45,7 @@ export const useUpdateProduct = (
   return useMutation<Product, Error, Variables>({
     mutationFn: updateProduct,
     onSuccess(_, { id }) {
-      queryClient.invalidateQueries(['products', id.toString()])
+      queryClient.invalidateQueries(['admin', 'products', id.toString()])
       navigate('/dashboard/products')
     },
     ...options,

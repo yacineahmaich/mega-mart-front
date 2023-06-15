@@ -55,16 +55,16 @@ const ProductCard: FC<Props> = ({ product }) => {
             <span className="text-sm font-bold sm:text-md">
               ${product.price}
             </span>
-            {/* {product.discount && (
+            {product.discount && (
               <>
                 <span className="absolute block -mb-1 text-sm font-medium bottom-full text-dark-500">
                   <s>${product.discount.price}</s>
                 </span>
                 <span className="left-full bottom-0 ml-1 absolute px-3 py-0.5 text-xs rounded bg-pink-600 self-end font-medium text-light pointer-events-none">
-                  -{product.discount.value}%
+                  -{product.discount.percentage}%
                 </span>
               </>
-            )} */}
+            )}
           </div>
           <div>
             {items[product.id] ? (

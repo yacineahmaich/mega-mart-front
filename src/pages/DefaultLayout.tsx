@@ -4,7 +4,15 @@ import { useGetUser } from '../features/auth/useGetUser'
 const DefaultLayout = () => {
   const { isLoading, isError } = useGetUser({ enabled: true })
 
-  return <div>{isLoading || isError ? null : <Outlet />}</div>
+  return (
+    <div>
+      {isLoading || isError ? null : (
+        <>
+          <Outlet />
+        </>
+      )}
+    </div>
+  )
 }
 
 export default DefaultLayout
