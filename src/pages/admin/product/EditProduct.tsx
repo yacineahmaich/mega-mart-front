@@ -13,7 +13,11 @@ import Error from '../Error'
 import { XMarkIcon } from '@heroicons/react/24/solid'
 import { useDeleteProductImage } from '../../../features/admin/products/mutations/useDeleteProductImage'
 import { FC, useState } from 'react'
-import { ArrowPathIcon } from '@heroicons/react/24/outline'
+import {
+  ArrowPathIcon,
+  ArrowTopRightOnSquareIcon,
+  ExclamationTriangleIcon,
+} from '@heroicons/react/24/outline'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import ErrorMsg from '../ErrorMsg'
 import FormErrors from '../FormErrors'
@@ -111,6 +115,24 @@ const EditProduct = () => {
                   name="quantity"
                   placeholder="Quantity here..."
                 />
+
+                {product.discount && (
+                  <div className="col-span-2 border rounded p-3 text-slate-400 italic">
+                    <ExclamationTriangleIcon className="w-5 h-5  inline mr-2" />
+                    <p className="text-sm inline font-medium">
+                      This product has a {product.discount.percentage}% discount
+                      applyed. current price is{' '}
+                      <span className="font-bold text-md text-primary-600">
+                        ${product.discount.price}
+                      </span>
+                      <Link
+                        to={`/dashboard/discounts/${product.discount.id}/edit`}
+                      >
+                        <ArrowTopRightOnSquareIcon className="w-4 h-4 text-primary-600 -mt-1 inline ml-2" />
+                      </Link>
+                    </p>
+                  </div>
+                )}
 
                 {
                   // category

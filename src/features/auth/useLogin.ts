@@ -18,13 +18,9 @@ type loginCredentials = {
 }
 
 const login = async (credentials: loginCredentials) => {
-  try {
-    const response = await api.post('/login', credentials)
+  const response = await api.post('/login', credentials)
 
-    return response.data
-  } catch (error) {
-    throw isAxiosError(error) ? error.response?.data : error
-  }
+  return response.data
 }
 
 export const useLogin = (
@@ -39,6 +35,8 @@ export const useLogin = (
     onSuccess: data => {
       queryClient.setQueryData(['user'], data.user)
       localStorage.setItem('ACCESS_TOKEN', data.token)
+
+      // navigate admin users to dashboard
       data.user.isAdmin && navigate('/dashboard')
     },
     ...options,

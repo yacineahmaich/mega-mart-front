@@ -9,7 +9,7 @@ import CartProvider from './context/Cart/CartProvider.tsx'
 
 const queryClient = new QueryClient({
   defaultOptions: {
-    queries: { refetchOnWindowFocus: false, refetchOnMount: false },
+    queries: { refetchOnWindowFocus: false },
   },
 })
 

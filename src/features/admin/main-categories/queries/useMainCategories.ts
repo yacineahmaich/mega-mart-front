@@ -32,7 +32,6 @@ export const useMainCategories = (
     queryKey: ['admin', 'main-categories', { page }],
     queryFn: () => getMainCategories(page),
     keepPreviousData: true,
-    refetchOnMount: true,
     onSuccess(data) {
       // PREFETCH NEXT PAGE
       if (data.meta.current_page < data.meta.last_page) {

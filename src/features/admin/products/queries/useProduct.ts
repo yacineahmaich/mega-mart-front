@@ -10,7 +10,6 @@ export const useProduct = (id: string, options?: UseQueryOptions<Product>) => {
   return useQuery<Product>({
     queryKey: ['admin', 'products', id],
     queryFn: () => getProduct(id),
-    keepPreviousData: true,
     ...options,
   })
 }

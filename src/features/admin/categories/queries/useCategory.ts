@@ -14,7 +14,6 @@ export const useCategory = (
     queryKey: ['admin', 'categories', id],
     queryFn: () => getCategory(id),
     keepPreviousData: true,
-    refetchOnMount: true,
     ...options,
   })
 }

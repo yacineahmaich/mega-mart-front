@@ -60,13 +60,25 @@ const ProductRow: FC<Props> = ({ product }) => {
             <PencilIcon className="inline w-4 h-4 mr-4" />
             <span className="text-sm">Edit product</span>
           </Link>
-          <Link
-            to={`/dashboard/offers/make/${product.id}`}
-            className="px-6 py-2.5 text-left hover:bg-light whitespace-nowrap"
-          >
-            <GiftIcon className="inline w-4 h-4 mr-4" />
-            <span className="text-sm">Make offer</span>
-          </Link>
+
+          {product.offer ? (
+            <Link
+              to={`/dashboard/offers/${product.id}/edit`}
+              className="px-6 py-2.5 text-left hover:bg-light whitespace-nowrap"
+            >
+              <GiftIcon className="inline w-4 h-4 mr-4" />
+              <span className="text-sm">Edit offer</span>
+            </Link>
+          ) : (
+            <Link
+              to={`/dashboard/offers/make/${product.id}`}
+              className="px-6 py-2.5 text-left hover:bg-light whitespace-nowrap"
+            >
+              <GiftIcon className="inline w-4 h-4 mr-4" />
+              <span className="text-sm">Make offer</span>
+            </Link>
+          )}
+
           {product.discount ? (
             <Link
               to={`/dashboard/discounts/${product.discount.id}/edit`}

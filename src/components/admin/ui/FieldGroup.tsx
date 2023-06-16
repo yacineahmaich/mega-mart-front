@@ -26,7 +26,7 @@ const FieldGroup: FC<Props> = ({
         {...input}
         id={name}
         name={name}
-        className="bg-white form-input border-gray focus:ring-primary-600 text-sm rounded-lg p-2.5 block w-full"
+        className="bg-white form-input border-gray focus:ring-primary-600 text-sm rounded-lg p-2.5 block w-full disabled:bg-light"
         placeholder={placeholder}
       >
         {children}

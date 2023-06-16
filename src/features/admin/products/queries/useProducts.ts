@@ -29,7 +29,6 @@ export const useProducts = (page?: string, options?: UseQueryOptions<Data>) => {
     queryKey: ['admin', 'products', { page }],
     queryFn: () => getProducts(page),
     keepPreviousData: true,
-    refetchOnMount: true,
     onSuccess(data) {
       // PREFETCH NEXT PAGE
       if (data.meta.current_page < data.meta.last_page) {

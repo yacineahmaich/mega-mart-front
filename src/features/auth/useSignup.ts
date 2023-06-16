@@ -19,13 +19,9 @@ type SignupCredentials = {
 }
 
 const signup = async (credentials: SignupCredentials) => {
-  try {
-    const response = await api.post('/signup', credentials)
+  const response = await api.post('/signup', credentials)
 
-    return response.data
-  } catch (error) {
-    throw isAxiosError(error) ? error.response?.data : error
-  }
+  return response.data
 }
 
 export const useSignup = (

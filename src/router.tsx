@@ -40,6 +40,7 @@ import CreateOffer from './pages/admin/offer/CreateOffer'
 import Discounts from './pages/admin/discount/Discounts'
 import CreateDiscount from './pages/admin/discount/CreateDiscount'
 import EditDiscount from './pages/admin/discount/EditDiscount'
+import EditOffer from './pages/admin/offer/EditOffer'
 
 const router = createBrowserRouter([
   {
@@ -212,12 +213,22 @@ const router = createBrowserRouter([
           },
           {
             path: 'offers',
-            element: <Offers />,
+            children: [
+              {
+                index: true,
+                element: <Offers />,
+              },
+              {
+                path: 'make/:productId',
+                element: <CreateOffer />,
+              },
+              {
+                path: ':id/edit',
+                element: <EditOffer />,
+              },
+            ],
           },
-          {
-            path: 'offers/make/:productId',
-            element: <CreateOffer />,
-          },
+
           {
             path: '*',
             element: (

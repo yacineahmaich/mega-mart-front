@@ -10,7 +10,8 @@ interface Product {
   images: Image[]
   totalReviews: number
   // reviews: Review[]
-  discount: Discount | null
+  discount?: Discount
+  offer?: Offer
 }
 
 interface Category {

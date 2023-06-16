@@ -9,3 +9,8 @@ export const createOfferSchema = Yup.object({
     .min(Yup.ref('start'), 'End date cannot be earlier than start date'),
   backdrop: Yup.mixed().required().label('backdrop image'),
 })
+
+export const editOfferSchema = Yup.object({
+  end: Yup.date().required().min(new Date(), 'End date cannot be in the past'),
+  backdrop: Yup.mixed().nullable(),
+})

@@ -13,8 +13,6 @@ export const useDiscount = (
   return useQuery<Discount>({
     queryKey: ['admin', 'discounts', id],
     queryFn: () => getDiscount(id),
-    keepPreviousData: true,
-    refetchOnMount: true,
     ...options,
   })
 }

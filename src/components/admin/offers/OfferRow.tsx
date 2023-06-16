@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import { TrashIcon } from '@heroicons/react/24/outline'
+import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline'
 import { useQueryClient } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 import { useDeleteOffer } from '../../../features/admin/offers/useDeleteOffer'
@@ -43,6 +43,13 @@ const OfferRow: FC<Props> = ({ offer }) => {
 
       <td className="flex items-center justify-center p-2">
         <Actions>
+          <Link
+            to={`${offer.id}/edit`}
+            className="px-6 py-2.5 text-left hover:bg-light whitespace-nowrap"
+          >
+            <PencilIcon className="inline w-4 h-4 mr-4" />
+            <span className="text-sm">Edit offer</span>
+          </Link>
           <button
             className="px-6 py-2.5 text-left hover:bg-light whitespace-nowrap"
             onClick={() => setIsConfirmOpen(true)}

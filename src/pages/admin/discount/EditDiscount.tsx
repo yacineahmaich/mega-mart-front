@@ -6,7 +6,6 @@ import Loader from '../Loader'
 import Error from '../Error'
 import FormErrors from '../FormErrors'
 import FieldGroup from '../../../components/admin/ui/FieldGroup'
-import { useApplyDiscount } from '../../../features/admin/discounts/useApplyDiscount'
 import { useDiscount } from '../../../features/admin/discounts/useDiscount'
 import { useUpdateDiscount } from '../../../features/admin/discounts/useUpdateDiscount'
 
@@ -31,6 +30,7 @@ const EditDiscount = () => {
   })
 
   const initialValues = {
+    start: discount?.start,
     end: discount?.end,
     percentage: discount?.percentage,
   }
@@ -59,6 +59,15 @@ const EditDiscount = () => {
         >
           <Form>
             <div className="grid grid-cols-2 gap-8">
+              <FieldGroup
+                input={{
+                  type: 'datetime-local',
+                  disabled: true,
+                }}
+                label="Start"
+                name="start"
+              />
+
               <FieldGroup
                 input={{
                   type: 'datetime-local',
