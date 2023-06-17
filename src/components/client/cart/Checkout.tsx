@@ -1,7 +1,7 @@
 import { FC, useState } from 'react'
 import { BookOpenIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
 import { HandThumbUpIcon, TruckIcon } from '@heroicons/react/24/solid'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import AuthModal from '../ui/AuthModal'
 import { useGetUser } from '../../../features/auth/useGetUser'
 
@@ -17,7 +17,7 @@ const Checkout: FC<Props> = ({ totalProducts, totalAmount }) => {
 
   const handleCheckout = () => {
     if (user) {
-      navigate('checkout')
+      navigate('/checkout')
     } else {
       setIsAuthModalOpen(true)
     }

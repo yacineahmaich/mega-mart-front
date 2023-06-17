@@ -1,3 +1,4 @@
+import React from 'react'
 import './index.css'
 import './global.css'
 import ReactDOM from 'react-dom/client'
@@ -14,18 +15,18 @@ const queryClient = new QueryClient({
 })
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  // <React.StrictMode>
-  <QueryClientProvider client={queryClient}>
-    <CartProvider>
-      <App />
-    </CartProvider>
-    <Toaster
-      position="top-right"
-      toastOptions={{
-        className: 'rounded-none text-sm font-medium',
-      }}
-    />
-    <ReactQueryDevtools />
-  </QueryClientProvider>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <CartProvider>
+        <App />
+      </CartProvider>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          className: 'rounded-none text-sm font-medium',
+        }}
+      />
+      <ReactQueryDevtools />
+    </QueryClientProvider>
+  </React.StrictMode>
 )

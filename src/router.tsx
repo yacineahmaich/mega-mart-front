@@ -28,7 +28,6 @@ import Profile from './pages/client/Profile/Profile'
 import MyOrders from './pages/client/Profile/MyOrders'
 import EditProfile from './pages/client/Profile/EditProfile'
 import NotFound from './pages/NotFound'
-import Checkout from './pages/client/Checkout'
 import Category from './pages/client/Category'
 import MainCategory from './pages/client/MainCategory'
 import Maincategories from './pages/admin/main-category/Maincategories'
@@ -41,12 +40,30 @@ import Discounts from './pages/admin/discount/Discounts'
 import CreateDiscount from './pages/admin/discount/CreateDiscount'
 import EditDiscount from './pages/admin/discount/EditDiscount'
 import EditOffer from './pages/admin/offer/EditOffer'
+import CheckoutLayout from './pages/client/Checkout/CheckoutLayout'
+import PlaceOrder from './pages/client/Checkout/PlaceOrder'
+import Delevery from './pages/client/Checkout/Delevery'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <DefaultLayout />,
     children: [
+      // Checkout
+      {
+        path: 'checkout',
+        element: <CheckoutLayout />,
+        children: [
+          {
+            index: true,
+            element: <Delevery />,
+          },
+          {
+            path: 'place-order',
+            element: <PlaceOrder />,
+          },
+        ],
+      },
       // Client - Routes
       {
         path: '/',
@@ -72,7 +89,6 @@ const router = createBrowserRouter([
             path: 'cart',
             element: <Cart />,
           },
-          { path: '/cart/checkout', element: <Checkout /> },
           {
             path: 'account',
             children: [

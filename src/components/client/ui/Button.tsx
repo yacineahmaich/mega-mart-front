@@ -22,7 +22,7 @@ const Button: FC<Props> = ({
       {...button}
       type="submit"
       className={clsx(
-        'relative py-4 text-lg w-full text-white rounded bg-primary-600',
+        'relative py-4 text-lg w-full text-white rounded bg-gradient-to-tr bg-primary-600  hover:bg-primary-500 transition-colors  focus:ring-2 focus:ring-primary-400 focus:ring-offset-1',
         {
           'bg-opacity-90': isLoading,
         },

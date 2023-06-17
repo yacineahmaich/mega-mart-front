@@ -1,0 +1,85 @@
+import { BoltIcon, CheckCircleIcon } from '@heroicons/react/24/outline'
+import clsx from 'clsx'
+import { useLocation } from 'react-router-dom'
+import { useCheckout } from '../../../context/Checkout'
+
+const Header = () => {
+  const location = useLocation()
+  const { delevery, placeOrder, complete } = useCheckout()
+
+  const activeStep = location.pathname.split('/')?.at(-1)
+
+  return (
+    <header className="flex justify-center w-full p-8 bg-primary-500">
+      <div className="flex items-center gap-6 text-white">
+        <div
+          className={clsx('flex flex-col items-center justify-center', {
+            'opacity-100': activeStep === '' || activeStep === 'checkout',
+            'w-6 h-6': activeStep !== 'checkout' && activeStep !== '',
+          })}
+        >
+          {delevery.isValid ? (
+            <CheckCircleIcon className="w-5 h-5" />
+          ) : (
+            <BoltIcon
+              className={clsx('w-5 h-5', {
+                'w-6 h-6': activeStep === '' || activeStep === 'checkout',
+              })}
+            />
+          )}
+          <span
+            className={clsx({
+              'font-medium': activeStep === '' || activeStep === 'checkout',
+            })}
+          >
+            Delevery
+          </span>
+        </div>
+        <span>---------</span>
+        <div
+          className={clsx('flex flex-col items-center justify-center', {
+            'opacity-100': activeStep === 'place-order',
+            'opacity-50': activeStep !== 'place-order',
+          })}
+        >
+          {placeOrder.isValid ? (
+            <CheckCircleIcon className="w-5 h-5" />
+          ) : (
+            <BoltIcon
+              className={clsx('w-5 h-5', {
+                'w-6 h-6': activeStep === 'place-order',
+              })}
+            />
+          )}
+          <span
+            className={clsx({ 'font-medium': activeStep === 'place-order' })}
+          >
+            Place order
+          </span>
+        </div>
+        <span>---------</span>
+        <div
+          className={clsx('flex flex-col items-center justify-center', {
+            'opacity-100': activeStep === 'complete',
+            'opacity-50': activeStep !== 'complete',
+          })}
+        >
+          {complete.isValid ? (
+            <CheckCircleIcon className="w-5 h-5" />
+          ) : (
+            <BoltIcon
+              className={clsx('w-5 h-5', {
+                'w-6 h-6': activeStep === 'complete',
+              })}
+            />
+          )}
+          <span className={clsx({ 'font-medium': activeStep === 'complete' })}>
+            complete
+          </span>
+        </div>
+      </div>
+    </header>
+  )
+}
+
+export default Header
