@@ -13,7 +13,7 @@ const Checkout = () => {
 
   const cartIsValid = Object.entries(items).length > 0
 
-  // if (!user) return <Navigate to="/account/login" />
+  if (!user) return <Navigate to="/account/login" />
   if (!cartIsValid) return <Navigate to=".." />
 
   const initialValues = {
@@ -32,7 +32,7 @@ const Checkout = () => {
   }
 
   return (
-    <section className="relative p-3 pb-10 bg-light md:p-6 md:pb-14">
+    <section className="relative p-3 pb-10 md:p-6 md:pb-14">
       <div className="max-w-6xl mx-auto ">
         <h2 className="block mb-2 font-bold w-fit text-dark-500">
           Delevery information
@@ -101,7 +101,7 @@ const Checkout = () => {
                 </div>
               </div>
               <div className="flex justify-end">
-                <Button className="max-w-xs ml-auto">Proced</Button>
+                <Button className="max-w-md ml-auto">Proced</Button>
               </div>
             </Form>
           </Formik>

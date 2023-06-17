@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom'
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { Formik, Form } from 'formik'
 import { signupSchema } from '../../utils/validation/auth'
 import { useSignup } from '../../features/auth/useSignup'
@@ -23,11 +21,7 @@ const Signup = () => {
   }
 
   return (
-    <div className="space-y-6">
-      <h4 className="text-xl font-bold text-center text-primary-500">
-        Create your Account Now
-      </h4>
-
+    <div className="space-y-6 animate-in slide-in-from-right-5">
       <div>
         {isError && <FormErrors error={error} />}
         <Formik
@@ -64,12 +58,6 @@ const Signup = () => {
             </Button>
           </Form>
         </Formik>
-      </div>
-      <div className="flex flex-wrap items-center justify-center gap-1 font-medium text-dark-600">
-        <p>Already have an account?</p>
-        <Link to="/account/login" className="font-semibold text-primary-600">
-          Login
-        </Link>
       </div>
     </div>
   )
