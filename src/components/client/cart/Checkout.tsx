@@ -1,7 +1,9 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { BookOpenIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
 import { HandThumbUpIcon, TruckIcon } from '@heroicons/react/24/solid'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import AuthModal from '../ui/AuthModal'
+import { useGetUser } from '../../../features/auth/useGetUser'
 
 type Props = {
   totalProducts: number
@@ -9,6 +11,18 @@ type Props = {
 }
 
 const Checkout: FC<Props> = ({ totalProducts, totalAmount }) => {
+  const navigate = useNavigate()
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+  const { data: user } = useGetUser()
+
+  const handleCheckout = () => {
+    if (user) {
+      navigate('checkout')
+    } else {
+      setIsAuthModalOpen(true)
+    }
+  }
+
   return (
     <div className="flex flex-col w-full gap-6 ml-auto md:w-1/3 right-6">
       <article className="p-3 bg-white border divide-y rounded-lg divide-gray border-gray">
@@ -23,12 +37,17 @@ const Checkout: FC<Props> = ({ totalProducts, totalAmount }) => {
           <span>${totalAmount}</span>
         </div>
       </article>
-      <Link
-        to="checkout"
+      <button
         className="py-3 font-semibold text-center text-white rounded-full hover:bg-primary-700 bg-primary-600"
+        onClick={handleCheckout}
       >
         Checkout
-      </Link>
+      </button>
+
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+      />
 
       <article className="px-8 py-4 rounded-lg bg-primary-800">
         <ul className="space-y-4 font-medium">

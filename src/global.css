@@ -1,5 +1,6 @@
 html {
   overflow: auto !important;
+  padding: 0px !important;
 }
 
 /* ================== Input[type=number] ================== */
