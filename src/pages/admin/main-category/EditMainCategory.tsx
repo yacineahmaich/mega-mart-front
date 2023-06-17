@@ -1,6 +1,6 @@
 import { Form, Formik, FormikValues } from 'formik'
 import spinner from '../../../assets/icons/spinner.svg'
-import FormErrors from '../FormErrors'
+import FormErrors from '../../../components/common/FormErrors'
 import ErrorMsg from '../ErrorMsg'
 import { Link, useParams } from 'react-router-dom'
 import { useMainCategory } from '../../../features/admin/main-categories/queries/useMainCategory'

@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import DisclosureItem from '../../../ui/DisclosureItem'
+import DisclosureItem from '../../ui/DisclosureItem'
 import { useSearchParams } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
 import { filterByPriceSchema } from '../../../../utils/validation/client/filter'

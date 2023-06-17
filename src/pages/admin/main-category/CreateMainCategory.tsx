@@ -5,7 +5,7 @@ import spinner from '../../../assets/icons/spinner.svg'
 import Error from '../Error'
 import { createMainCategorySchema } from '../../../utils/validation/admin/main-category'
 import { useCreateMainCategory } from '../../../features/admin/main-categories/mutations/useCreateMainCategory'
-import FormErrors from '../FormErrors'
+import FormErrors from '../../../components/common/FormErrors'
 import ImageInput from '../../../components/admin/ui/ImageInput'
 import FieldGroup from '../../../components/admin/ui/FieldGroup'
 

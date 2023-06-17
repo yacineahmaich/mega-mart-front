@@ -1,5 +1,6 @@
 import { useState, useEffect, FC } from 'react'
 import CartContext from '.'
+import { formatNumber } from '../../utils/helpers'
 
 type Props = {
   children: React.ReactNode
@@ -12,11 +13,20 @@ const CartProvider: FC<Props> = ({ children }) => {
 
   // add item to cart
   const addToCart = (id: number, quantity?: number) => {
-    if (items[id]) return
-    setItems(items => ({
-      ...items,
-      [id]: { quantity: quantity ?? 1, addedAt: new Date().toISOString() },
-    }))
+    const cartItem = items[id]
+    // increase quantity by 1 if product already exists
+    if (cartItem) {
+      setItems(items => ({
+        ...items,
+        [id]: { ...cartItem, quantity: cartItem.quantity + 1 },
+      }))
+    } else {
+      // add product to cart
+      setItems(items => ({
+        ...items,
+        [id]: { quantity: quantity ?? 1, addedAt: new Date().toISOString() },
+      }))
+    }
   }
 
   // increate quantity
@@ -28,6 +38,28 @@ const CartProvider: FC<Props> = ({ children }) => {
     )
   }
 
+  // increate quantity
+  const increaseQty = (id: number) => {
+    const cartItem = items[id]
+    if (!cartItem) return
+
+    setItems(items => ({
+      ...items,
+      [id]: { ...cartItem, quantity: cartItem.quantity + 1 },
+    }))
+  }
+
+  // decrease quantity
+  const decreaseQty = (id: number) => {
+    const cartItem = items[id]
+    if (!cartItem) return
+
+    setItems(items => ({
+      ...items,
+      [id]: { ...cartItem, quantity: cartItem.quantity - 1 },
+    }))
+  }
+
   // remove from cart
   const removeFromCart = (id: number) => {
     setItems(items =>
@@ -37,14 +69,14 @@ const CartProvider: FC<Props> = ({ children }) => {
 
   // calc total
   const calcProductsTotalPrice = (products: Product[]) => {
-    return products.reduce((total, product) => {
+    return products?.reduce((total, product) => {
       const finalPrice = product.discount
         ? product.discount.price
         : product.price
 
       const cartItem = items[product.id]
 
-      return total + finalPrice * cartItem?.quantity
+      return formatNumber(total + finalPrice * cartItem?.quantity) || 0
     }, 0)
   }
 
@@ -60,6 +92,8 @@ const CartProvider: FC<Props> = ({ children }) => {
         addToCart,
         removeFromCart,
         changeQuantity,
+        increaseQty,
+        decreaseQty,
         calcProductsTotalPrice,
       }}
     >

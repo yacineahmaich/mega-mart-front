@@ -20,7 +20,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import ErrorMsg from '../ErrorMsg'
-import FormErrors from '../FormErrors'
+import FormErrors from '../../../components/common/FormErrors'
 import ImageInput from '../../../components/admin/ui/ImageInput'
 import FieldGroup from '../../../components/admin/ui/FieldGroup'
 
@@ -117,9 +117,9 @@ const EditProduct = () => {
                 />
 
                 {product.discount && (
-                  <div className="col-span-2 border rounded p-3 text-slate-400 italic">
-                    <ExclamationTriangleIcon className="w-5 h-5  inline mr-2" />
-                    <p className="text-sm inline font-medium">
+                  <div className="col-span-2 p-3 italic border rounded text-slate-400">
+                    <ExclamationTriangleIcon className="inline w-5 h-5 mr-2" />
+                    <p className="inline text-sm font-medium">
                       This product has a {product.discount.percentage}% discount
                       applyed. current price is{' '}
                       <span className="font-bold text-md text-primary-600">
@@ -128,7 +128,7 @@ const EditProduct = () => {
                       <Link
                         to={`/dashboard/discounts/${product.discount.id}/edit`}
                       >
-                        <ArrowTopRightOnSquareIcon className="w-4 h-4 text-primary-600 -mt-1 inline ml-2" />
+                        <ArrowTopRightOnSquareIcon className="inline w-4 h-4 ml-2 -mt-1 text-primary-600" />
                       </Link>
                     </p>
                   </div>

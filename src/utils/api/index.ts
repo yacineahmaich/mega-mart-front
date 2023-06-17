@@ -25,7 +25,8 @@ export function createHttpClient(prefix: string = null) {
     (error: AxiosError) => {
       if (error.response) {
         // handle invalid token
-        if (error.response.status === 401) {
+        const TOKEN = localStorage.getItem('ACCESS_TOKEN')
+        if (error.response.status === 401 && TOKEN) {
           localStorage.removeItem('ACCESS_TOKEN')
           window.location.reload()
         }

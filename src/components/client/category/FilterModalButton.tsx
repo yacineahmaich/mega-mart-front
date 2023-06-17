@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Sheet from '../../ui/Sheet'
+import Sheet from '../ui/Sheet'
 // import CategoryFilter from './filersSheet/CategoryFilter'
 import PriceFilter from './filersSheet/PriceFilter'
 import RatingFilter from './filersSheet/RatingFilter'

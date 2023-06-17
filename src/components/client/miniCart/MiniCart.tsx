@@ -1,10 +1,10 @@
 import { FC } from 'react'
 import spinner from '../../../assets/icons/spinner.png'
-import Sheet from '../../ui/Sheet'
+import Sheet from '../ui/Sheet'
 import MiniCartFooter from './MiniCartFooter'
 import MinicartItems from './MinicartItems'
 import { useCart } from '../../../context/Cart'
-import { useProductsByIds } from '../../../features/client/products/useProducts'
+import { useProductsByIds } from '../../../features/client/products/useProductsByIds'
 
 type Props = {
   isOpen: boolean
@@ -13,7 +13,11 @@ type Props = {
 
 const Cart: FC<Props> = ({ isOpen, onClose }) => {
   const { items } = useCart()
-  const { data, isLoading, isFetching } = useProductsByIds({
+  const {
+    data: products,
+    isLoading,
+    isFetching,
+  } = useProductsByIds({
     productIds: [...Object.keys(items)],
   })
 
@@ -29,7 +33,7 @@ const Cart: FC<Props> = ({ isOpen, onClose }) => {
         </div>
       ) : (
         <>
-          {data?.products?.length === 0 ? (
+          {products?.length === 0 ? (
             <div className="p-2 bg-warning-400">
               <p className="text-sm font-semibold text-danger-500">
                 You cart is empty right now!
@@ -47,11 +51,11 @@ const Cart: FC<Props> = ({ isOpen, onClose }) => {
                     />
                   </div>
                 )}
-                <MinicartItems products={data?.products} onClose={onClose} />
+                <MinicartItems products={products} onClose={onClose} />
               </div>
             </>
           )}
-          <MiniCartFooter products={data?.products} onClose={onClose} />
+          <MiniCartFooter products={products} onClose={onClose} />
         </>
       )}
     </Sheet>

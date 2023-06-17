@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 import { useParams, useSearchParams } from 'react-router-dom'
-import ProductCard from './ProductCard'
+import ProductCard from '../ui/ProductCard'
 import Pagination from './Pagination'
 import queryString from 'query-string'
 import { useCategoryProducts } from '../../../features/client/products/useCategoryProducts'

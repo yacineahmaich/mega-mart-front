@@ -10,7 +10,7 @@ import { useCategories } from '../../../features/admin/categories/queries/useCat
 import Loader from '../Loader'
 import Error from '../Error'
 import ErrorMsg from '../ErrorMsg'
-import FormErrors from '../FormErrors'
+import FormErrors from '../../../components/common/FormErrors'
 import ImageInput from '../../../components/admin/ui/ImageInput'
 import FieldGroup from '../../../components/admin/ui/FieldGroup'
 

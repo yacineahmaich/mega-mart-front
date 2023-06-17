@@ -7,6 +7,8 @@ type CartCtx = {
   addToCart: (id: number, quantity?: number) => void
   removeFromCart: (id: number) => void
   changeQuantity: (id: number, quantity: number) => void
+  increaseQty: (id: number) => void
+  decreaseQty: (id: number) => void
   calcProductsTotalPrice: (products: Product[]) => number
 }
 
@@ -16,6 +18,8 @@ const CartContext = createContext<CartCtx>({
   removeFromCart: () => null,
   changeQuantity: () => null,
   calcProductsTotalPrice: () => null,
+  increaseQty: () => null,
+  decreaseQty: () => null,
 })
 
 export const useCart = () => useContext(CartContext)

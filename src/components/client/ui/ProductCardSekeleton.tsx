@@ -11,7 +11,7 @@ const ProductCardSkeleton = () => {
 
         <div className="flex items-center justify-between gap-6 mt-auto">
           <span className="w-1/2 h-3 rounded-full bg-gray"></span>
-          <span className="w-8 h-8 rounded-lg bg-gray"></span>
+          <span className="w-8 h-8 rounded-full bg-gray"></span>
         </div>
       </div>
     </article>

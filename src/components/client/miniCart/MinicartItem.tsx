@@ -14,23 +14,23 @@ type Props = {
 }
 
 const MinicartItem: FC<Props> = ({ product, goToProduct }) => {
-  const { items, removeFromCart, changeQuantity } = useCart()
+  const { items, removeFromCart, increaseQty, decreaseQty } = useCart()
   const [isConfirmOpen, setIsConfirmOpen] = useState(false)
-  const [quantity, setQuantity] = useState<number>(items[product.id]?.quantity)
 
-  const increaseQty = () => {
-    if (quantity === product.quantity) return
-    changeQuantity(product.id, quantity + 1)
-    setQuantity(q => {
-      return q + 1
-    })
+  const itemInCart = items[product.id]
+
+  const handleIncreaseQty = () => {
+    if (itemInCart?.quantity === product.quantity) return
+    increaseQty(product.id)
   }
-  const decreaseQty = () => {
-    if (quantity === 1) return setIsConfirmOpen(true)
-    changeQuantity(product.id, quantity - 1)
-    setQuantity(q => {
-      return q - 1
-    })
+  const handleDecreaseQty = () => {
+    if (itemInCart?.quantity === 1) return setIsConfirmOpen(true)
+    decreaseQty(product.id)
+  }
+
+  const handleRemoveFromCart = () => {
+    removeFromCart(product.id)
+    setIsConfirmOpen(false)
   }
 
   return (
@@ -50,10 +50,7 @@ const MinicartItem: FC<Props> = ({ product, goToProduct }) => {
             </button>
             <button
               className="w-24 py-1 text-sm font-medium text-white border rounded-full border-primary-600 bg-primary-600 active:ring-2 active:ring-primary-500 active:ring-offset-1"
-              onClick={() => {
-                removeFromCart(product.id)
-                setIsConfirmOpen(false)
-              }}
+              onClick={handleRemoveFromCart}
             >
               Sure
             </button>
@@ -95,11 +92,10 @@ const MinicartItem: FC<Props> = ({ product, goToProduct }) => {
           </div>
 
           <div className="mt-auto">
-            {quantity === product.quantity && (
+            {itemInCart?.quantity === product.quantity && (
               <p className="text-xs font-bold animate-in slide-in-from-bottom-1 text-danger-400">
                 <ExclamationTriangleIcon className="inline w-5 h-5" />
                 &nbsp;
-                {/* <span>No more quantity to add.</span> */}
                 <span>You reach limit quantity</span>
               </p>
             )}
@@ -107,27 +103,27 @@ const MinicartItem: FC<Props> = ({ product, goToProduct }) => {
               <div className="flex">
                 <button
                   className="px-4 border rounded-l-md border-light text-primary-400"
-                  onClick={increaseQty}
+                  onClick={handleIncreaseQty}
                 >
                   <PlusSmallIcon className="w-4 h-4" />
                 </button>
                 <input
-                  value={quantity}
+                  value={itemInCart?.quantity}
                   type="number"
                   className="w-14 py-1 border-[1px] outline-0 border-y border-x-0 focus:border-light font-medium text-dark-600 text-center  border-light disabled:bg-white"
                   disabled
                 />
                 <button
                   className="px-4 border rounded-r-md border-light text-danger-400"
-                  onClick={decreaseQty}
+                  onClick={handleDecreaseQty}
                 >
                   <MinusSmallIcon className="w-4 h-4 " />
                 </button>
               </div>
               <div>
                 {product.discount ? (
-                  <div className="flex relative flex-col items-center gap-0">
-                    <span className="text-md  text-gray">
+                  <div className="relative flex flex-col items-center gap-0">
+                    <span className="text-md text-gray">
                       <s>${product.price}</s>
                     </span>
                     <span className="right-full bottom-full absolute px-3 py-0.5 text-xs rounded bg-pink-600 self-end font-medium text-light pointer-events-none">

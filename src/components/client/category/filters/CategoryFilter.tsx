@@ -1,5 +1,5 @@
 import { FC, useState, ChangeEvent, useEffect } from 'react'
-import DisclosureItem from '../../../ui/DisclosureItem'
+import DisclosureItem from '../../ui/DisclosureItem'
 import { useParams, useSearchParams } from 'react-router-dom'
 import { useMCategory } from '../../../../features/client/main-category/useMCategory'
 

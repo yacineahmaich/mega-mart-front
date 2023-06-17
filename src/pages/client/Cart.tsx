@@ -2,20 +2,21 @@ import Checkout from '../../components/client/cart/Checkout'
 import spinner from '../../assets/icons/spinner.png'
 import { useCart } from '../../context/Cart'
 import Item from '../../components/client/cart/Item'
-import { useProductsByIds } from '../../features/client/products/useProducts'
+import { useProductsByIds } from '../../features/client/products/useProductsByIds'
 
 const Cart = () => {
-  const { items } = useCart()
+  const { items, calcProductsTotalPrice } = useCart()
 
-  const { data, isLoading, isFetching } = useProductsByIds({
+  const {
+    data: products,
+    isLoading,
+    isFetching,
+  } = useProductsByIds({
     productIds: [...Object.keys(items)],
   })
 
-  const products = data?.products?.slice().reverse()
-  const totalAmount = products?.reduce(
-    (total, { id, price }) => price * items[id]?.quantity + total,
-    0
-  )
+  const sortedProducts = products?.slice().reverse()
+  const totalAmount = calcProductsTotalPrice(products)
 
   return (
     <section className="min-h-screen p-3 mb-20 md:p-6">
@@ -53,7 +54,7 @@ const Cart = () => {
                 />
               </div>
             )}
-            {products?.map(product => (
+            {sortedProducts?.map(product => (
               <Item key={product.id} product={product} />
             ))}
           </div>

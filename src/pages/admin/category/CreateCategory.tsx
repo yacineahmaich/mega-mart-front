@@ -7,7 +7,7 @@ import ErrorMsg from '../ErrorMsg'
 import { useMcategories } from '../../../features/client/main-category/useMcategories'
 import Loader from '../Loader'
 import Error from '../Error'
-import FormErrors from '../FormErrors'
+import FormErrors from '../../../components/common/FormErrors'
 import ImageInput from '../../../components/admin/ui/ImageInput'
 import FieldGroup from '../../../components/admin/ui/FieldGroup'
 

@@ -8,11 +8,6 @@ const Footer: FC = () => {
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <a href="/" className="flex items-center">
-              {/* <img
-                src=""
-                className="h-8 mr-3"
-                alt="JersyHub Logo"
-              /> */}
               <span className="self-center text-2xl font-semibold whitespace-nowrap text-primary-700">
                 Jersy Hub
               </span>

@@ -3,3 +3,7 @@ export const removeEmptyFields = <T>(obj: T): T => {
     Object.entries(obj).filter(([_, v]) => v.trim() !== '')
   ) as T
 }
+
+export const formatNumber = (number: number) => {
+  return Number(number.toFixed(2))
+}
