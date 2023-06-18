@@ -17,7 +17,7 @@ function StepTitle() {
     step = 2
   } else if (activeStep === 'place-order') {
     title = 'Place order'
-    step = 4
+    step = 3
   }
 
   return (

@@ -42,6 +42,7 @@ interface User {
   email: string
   avatar: Image
   createdAt: string
+  orders?: Order[]
 }
 
 interface Review {
@@ -93,4 +94,6 @@ interface Order {
   delivered: boolean
   deliveredAt?: string
   date: string
+  paidAt: string
+  // session: string
 }

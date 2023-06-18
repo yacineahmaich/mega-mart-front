@@ -90,7 +90,10 @@ function VerifyPayment() {
       </span>
       <p className="font-medium text-center text-dark-600">
         Congratulation You Order
-        <Link to="/" className="mx-1 underline text-primary-600">
+        <Link
+          to={`/account/profile/my-orders/${order.id}`}
+          className="mx-1 underline text-primary-600"
+        >
           #{order.id}
         </Link>
         Paid succeflly.

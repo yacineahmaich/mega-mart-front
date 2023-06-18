@@ -7,6 +7,8 @@ import {
   ShoppingCartIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
+import { Link } from 'react-router-dom'
+import clsx from 'clsx'
 
 type Props = {
   isOpen: boolean
@@ -15,6 +17,17 @@ type Props = {
 }
 
 const CustomerModal: FC<Props> = ({ isOpen, onClose, customer }) => {
+  const totalOrders = customer?.orders?.length ?? 0
+
+  const completedOrders =
+    customer.orders.filter(order => order.delivered && order.status === 'paid')
+      ?.length ?? 0
+
+  const spentedAmount = customer.orders.reduce(
+    (total, order) => total + order.totalPrice,
+    0
+  )
+
   return createPortal(
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={onClose}>
@@ -54,10 +67,10 @@ const CustomerModal: FC<Props> = ({ isOpen, onClose, customer }) => {
                   </Dialog.Title>
                   <div className="py-5 space-y-6">
                     <div className="flex gap-3">
-                      <div className="w-16 h-16 overflow-hidden rounded-full shadow-md">
+                      <div className="w-16 h-16 overflow-hidden rounded-full shadow-md bg-light">
                         <img
-                          src={customer.avatar.url}
-                          alt={customer.avatar.name}
+                          src={customer.avatar?.url}
+                          alt={customer.avatar?.name}
                           className="w-full h-full transition-transform duration-300 objec-cover hover:scale-110 hover:rotate-1"
                         />
                       </div>
@@ -79,21 +92,21 @@ const CustomerModal: FC<Props> = ({ isOpen, onClose, customer }) => {
                           <ShoppingCartIcon className="inline w-5 h-5 mr-2 " />
                           <span>Total Orders</span>
                         </div>
-                        <span className="text-dark-600">23</span>
+                        <span className="text-dark-600">{totalOrders}</span>
                       </div>
                       <div className="flex flex-col gap-1 font-medium text-center text-blue-400 ">
                         <div className="px-2 py-1 text-sm">
                           <CheckBadgeIcon className="inline w-5 h-5 mr-2 " />
                           <span>Completed Orders</span>
                         </div>
-                        <span className="text-dark-600">23</span>
+                        <span className="text-dark-600">{completedOrders}</span>
                       </div>
                       <div className="flex flex-col gap-1 font-medium text-center text-green-400">
                         <div className="px-2 py-1 text-sm ">
                           <CurrencyDollarIcon className="inline w-5 h-5 mr-2 " />
                           <span>Spented Amount</span>
                         </div>
-                        <span className="text-dark-600">$ 23</span>
+                        <span className="text-dark-600">$ {spentedAmount}</span>
                       </div>
                     </div>
                     <div>
@@ -110,16 +123,21 @@ const CustomerModal: FC<Props> = ({ isOpen, onClose, customer }) => {
                             </tr>
                           </thead>
                           <tbody>
-                            {Array.from({ length: 5 }, (_, idx) => (
-                              <tr key={idx} className="text-sm">
-                                <td className="p-2">
-                                  kz6èhqqdh6_zjzs6_çuj99988
+                            {customer.orders.map(order => (
+                              <tr key={order.id} className="text-sm">
+                                <td className="p-2">{order.id}</td>
+                                <td
+                                  className={clsx('font-semibold text-center', {
+                                    'text-green-400': order.status === 'paid',
+                                    'text-danger-400':
+                                      order.status === 'unpaid',
+                                  })}
+                                >
+                                  {order.status}
                                 </td>
-                                <td className="font-semibold text-center text-green-500">
-                                  Paid
-                                </td>
+
                                 <td className="font-semibold text-center text-dark-500">
-                                  $ 223
+                                  $ {order.totalPrice}
                                 </td>
                               </tr>
                             ))}

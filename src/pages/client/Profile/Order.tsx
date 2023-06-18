@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import { useOrder } from '../../../features/client/account/useOrder'
 import Spinner from '../../../components/client/ui/Spinner'
 import {
+  BanknotesIcon,
   CalendarDaysIcon,
   ClipboardDocumentListIcon,
   CurrencyDollarIcon,
@@ -22,14 +23,25 @@ function Order() {
   return (
     <div>
       <div className="mb-10">
-        <h3 className="mb-5 text-xl font-bold text-dark-500">
-          <ShoppingCartIcon className="inline w-6 h-6 mr-2" />
-          <span className="align-middle">
-            Order <span className="text-sm">({order.id})</span>
-          </span>
-        </h3>
+        <div className="flex items-center justify-between mb-5">
+          <h3 className="text-xl font-bold text-dark-500">
+            <ShoppingCartIcon className="inline w-6 h-6 mr-2" />
+            <span className="align-middle">
+              Order <span className="text-sm">({order.id})</span>
+            </span>
+          </h3>
 
-        <div className="grid grid-cols-4 p-6 font-medium border divide-x text-primary-500">
+          {/* {order.status === 'unpaid' && (
+            <a
+              href={order.session}
+              className="px-8 py-0.5 text-white rounded-full bg-gradient-to-tr from-primary-400 to-primary-500 transition-colors"
+            >
+              pay now
+            </a>
+          )} */}
+        </div>
+
+        <div className="grid grid-cols-5 p-6 font-medium border divide-x text-primary-500">
           <div className="text-center">
             <MapIcon className="inline w-6 h-6 mb-4" />
             <p>{order.delivery.shippingAddress}</p>
@@ -48,6 +60,14 @@ function Order() {
               <p className="text-green-400">{order.deliveredAt}</p>
             ) : (
               <p className="text-danger-400">Not Delivered</p>
+            )}
+          </div>
+          <div className="text-center">
+            <BanknotesIcon className="inline w-6 h-6 mb-4" />
+            {order.status === 'paid' ? (
+              <p className="text-green-400">{order.paidAt}</p>
+            ) : (
+              <p className="text-danger-400">Unpaid</p>
             )}
           </div>
         </div>
