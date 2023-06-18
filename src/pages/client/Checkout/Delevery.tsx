@@ -27,14 +27,14 @@ const Delevery = () => {
   }
 
   return (
-    <section className="relative max-w-3xl p-3 mx-auto md:p-6">
+    <section className="relative max-w-3xl p-3 mx-auto my-5 border rounded-lg shadow-lg md:p-6 border-gray">
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
         validationSchema={checkoutSchema}
       >
         <Form>
-          <div className="grid p-6 bg-white border-gray gap-y-1 gap-x-6 md:grid-cols-2">
+          <div className="grid p-2 bg-white border-gray gap-x-6 md:grid-cols-2">
             <FieldGroup
               variant="small"
               label="Name"

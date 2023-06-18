@@ -44,7 +44,7 @@ import CheckoutLayout from './pages/client/Checkout/CheckoutLayout'
 import PlaceOrder from './pages/client/Checkout/PlaceOrder'
 import Delevery from './pages/client/Checkout/Delevery'
 import PaymentMethod from './pages/client/Checkout/PaymentMethod'
-import VerifyCheckout from './pages/client/VerifyCheckout'
+import VerifyPayment from './pages/client/VerifyPayment'
 
 const router = createBrowserRouter([
   {
@@ -97,7 +97,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'cart/checkout/:session',
-            element: <VerifyCheckout />,
+            element: <VerifyPayment />,
           },
           {
             path: 'account',

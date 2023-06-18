@@ -25,14 +25,14 @@ const Radio: FC<Props> = ({ label, name, value, input, disabled = false }) => {
         className={clsx(
           'form-radio checked:bg-primary-500 checked:hover:bg-primary-500 checked:focus:bg-primary-500 focus:outline-primary-500',
           {
-            'border-gray': disabled,
+            'border-slate-400': disabled,
           }
         )}
         disabled={disabled}
       />
       <span
         className={clsx('font-medium text-dark-500', {
-          'text-gray': disabled,
+          'text-slate-400': disabled,
         })}
       >
         {label}

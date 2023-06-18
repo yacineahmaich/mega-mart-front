@@ -24,8 +24,8 @@ function PaymentMethod() {
   }
 
   return (
-    <section className="relative p-3 md:p-6">
-      <div className="max-w-sm p-6 mx-auto rounded-lg shadow-lg">
+    <section>
+      <div className="max-w-sm p-6 mx-auto mt-5 border rounded-lg shadow-lg border-gray">
         <Formik
           initialValues={initialValues}
           onSubmit={onSubmit}
