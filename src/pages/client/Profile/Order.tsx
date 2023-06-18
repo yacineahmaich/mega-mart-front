@@ -5,18 +5,19 @@ import {
   CalendarDaysIcon,
   ClipboardDocumentListIcon,
   CurrencyDollarIcon,
-  HashtagIcon,
   MapIcon,
   ShoppingCartIcon,
   TruckIcon,
 } from '@heroicons/react/24/outline'
+import Error from '../../../components/client/ui/Error'
 
 function Order() {
   const { id } = useParams()
 
-  const { data: order, isLoading } = useOrder(id)
+  const { data: order, isLoading, isError, refetch } = useOrder(id)
 
   if (isLoading) return <Spinner />
+  if (isError) return <Error retry={refetch} />
 
   return (
     <div>
@@ -44,7 +45,7 @@ function Order() {
           <div className="text-center">
             <TruckIcon className="inline w-6 h-6 mb-4" />
             {order.delivered ? (
-              <p className="text-green-400">Delivered 5 days ago</p>
+              <p className="text-green-400">{order.deliveredAt}</p>
             ) : (
               <p className="text-danger-400">Not Delivered</p>
             )}

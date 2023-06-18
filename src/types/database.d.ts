@@ -91,5 +91,6 @@ interface Order {
   items: Item[]
   delivery: DeliveryData
   delivered: boolean
+  deliveredAt?: string
   date: string
 }

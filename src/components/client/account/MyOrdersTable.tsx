@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useMyOrders } from '../../../features/client/account/useMyOrders'
 import clsx from 'clsx'
 import Spinner from '../ui/Spinner'
+import moment from 'moment'
 
 function MyOrdersTable() {
   const { data: orders, isLoading } = useMyOrders()
@@ -31,6 +32,7 @@ function MyOrdersTable() {
             <th className="px-4 py-2">date</th>
             <th className="px-4 py-2">price</th>
             <th className="px-4 py-2">status</th>
+            <th className="px-4 py-2">delivery</th>
             <th className="px-4 py-2">items</th>
           </tr>
         </thead>
@@ -55,6 +57,18 @@ function MyOrdersTable() {
                   })}
                 >
                   {order.status}
+                </span>
+              </td>
+              <td className="px-4 py-2">
+                <span
+                  className={clsx('px-4 text-sm text-white rounded-full', {
+                    'bg-green-400': order.delivered,
+                    'bg-danger-400': !order.delivered,
+                  })}
+                >
+                  {order.delivered
+                    ? `Delivered ${moment(order.deliveredAt).fromNow()}`
+                    : 'Not Delivered'}
                 </span>
               </td>
               <td className="px-4 py-2">{order.items.length}</td>
