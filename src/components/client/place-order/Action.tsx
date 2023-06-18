@@ -4,12 +4,16 @@ import { useProductsByIds } from '../../../features/client/products/useProductsB
 import loader from '../../../assets/icons/loader.svg'
 import clsx from 'clsx'
 import { toast } from 'react-hot-toast'
+import { useCheckout } from '../../../context/Checkout'
 
 function Action() {
   const { items, calcProductsTotalPrice } = useCart()
   const { data: products, isLoading } = useProductsByIds({
     productIds: [...Object.keys(items)],
   })
+
+  const { delivery } = useCheckout()
+
   const { mutate: placeOrder, isLoading: isPlacingOrder } = usePlaceOrder({
     onError: (error: Error) => {
       if (!error.message) {
@@ -29,6 +33,11 @@ function Action() {
     0
   )
   const totalToPay = calcProductsTotalPrice(products)
+
+  const handlePlaceOrder = () => {
+    console.log({ cart: items, delivery: delivery.data })
+    placeOrder({ cart: items, delivery: delivery.data })
+  }
 
   return (
     <div className="flex flex-col gap-4 p-3 border rounded-lg border-gray">
@@ -57,7 +66,7 @@ function Action() {
 
       <button
         className="relative px-6 py-2 font-medium text-white rounded-full bg-primary-500 text-smm"
-        onClick={() => placeOrder({ cart: items })}
+        onClick={handlePlaceOrder}
         disabled={isLoading || isPlacingOrder}
       >
         <div

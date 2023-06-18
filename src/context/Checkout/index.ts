@@ -7,9 +7,9 @@ export enum PaymentMethods {
 }
 
 type CheckoutCtx = {
-  delevery: {
-    data: Checkout
-    procedCheckout: (checkout: Checkout) => void
+  delivery: {
+    data: DeliveryData
+    procedCheckout: (deliveryData: DeliveryData) => void
     isValid: boolean
   }
   paymentMethod: {
@@ -20,13 +20,13 @@ type CheckoutCtx = {
 }
 
 const CheckoutContext = createContext<CheckoutCtx>({
-  delevery: {
+  delivery: {
     data: {
       name: '',
       phone: '',
       email: '',
       shippingAddress: '',
-      customerNote: '',
+      note: '',
     },
     procedCheckout: () => null,
     isValid: false,

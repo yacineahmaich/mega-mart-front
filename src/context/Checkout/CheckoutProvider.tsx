@@ -9,14 +9,14 @@ const CheckoutProvider: FC<Props> = ({ children }) => {
   // DELEVERY
   const [deleveryInformationIsValid, setDeleveryInformationIsValid] =
     useState(false)
-  const [deleveryData, setDeleveryData] = useState<Checkout>({
+  const [deleveryData, setDeleveryData] = useState<DeliveryData>({
     name: '',
     phone: '',
     email: '',
     shippingAddress: '',
-    customerNote: '',
+    note: '',
   })
-  const procedCheckout = (checkout: Checkout) => {
+  const procedCheckout = (checkout: DeliveryData) => {
     setDeleveryData(checkout)
     setDeleveryInformationIsValid(true)
   }
@@ -33,7 +33,7 @@ const CheckoutProvider: FC<Props> = ({ children }) => {
   return (
     <CheckoutContext.Provider
       value={{
-        delevery: {
+        delivery: {
           data: deleveryData,
           procedCheckout,
           isValid: deleveryInformationIsValid,

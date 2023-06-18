@@ -12,7 +12,7 @@ import { useProductsByIds } from '../../../features/client/products/useProductsB
 
 function Preveiw() {
   const {
-    delevery: { data },
+    delivery: { data },
   } = useCheckout()
   const { items, calcProductsTotalPrice } = useCart()
   const { data: products, isLoading } = useProductsByIds({

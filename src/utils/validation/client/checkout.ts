@@ -6,7 +6,7 @@ export const checkoutSchema = Yup.object({
   phone: Yup.mixed().required(),
   email: Yup.string().email().required(),
   shippingAddress: Yup.string().required().label('Shipping Address'),
-  customerNote: Yup.string().required('Please leave a note here'),
+  note: Yup.string().required('Please leave a note here'),
 })
 
 export const paymentMethodSchema = Yup.object({

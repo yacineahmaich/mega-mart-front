@@ -3,7 +3,6 @@ import api from '../../../utils/api/admin'
 import { useNavigate } from 'react-router-dom'
 
 type Varaibales = {
-  start: string
   end: string
   percentage: number
   product: number

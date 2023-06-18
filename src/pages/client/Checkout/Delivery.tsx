@@ -6,11 +6,11 @@ import FieldGroup from '../../../components/client/ui/FieldGroup'
 import Button from '../../../components/client/ui/Button'
 import { useCheckout } from '../../../context/Checkout'
 
-const Delevery = () => {
+const Delivery = () => {
   const navigate = useNavigate()
   const { data: user } = useGetUser()
   const {
-    delevery: { procedCheckout, data },
+    delivery: { procedCheckout, data },
   } = useCheckout()
 
   const initialValues = {
@@ -18,7 +18,7 @@ const Delevery = () => {
     phone: data?.phone,
     email: user?.email,
     shippingAddress: data?.shippingAddress,
-    customerNote: data?.customerNote,
+    note: data?.note,
   }
 
   const onSubmit = (values: typeof initialValues) => {
@@ -71,7 +71,7 @@ const Delevery = () => {
                   rows: 5,
                 }}
                 label="Note"
-                name="customerNote"
+                name="note"
                 placeholder="Your Note"
               />
             </div>
@@ -88,4 +88,4 @@ const Delevery = () => {
   )
 }
 
-export default Delevery
+export default Delivery

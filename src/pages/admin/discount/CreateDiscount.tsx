@@ -30,7 +30,6 @@ const CreateDiscount = () => {
   })
 
   const initialValues = {
-    start: '',
     end: '',
     percentage: 0,
   }
@@ -59,15 +58,6 @@ const CreateDiscount = () => {
         >
           <Form>
             <div className="grid grid-cols-2 gap-8">
-              <FieldGroup
-                input={{
-                  type: 'datetime-local',
-                }}
-                label="Start"
-                name="start"
-                placeholder="Discount start date here..."
-              />
-
               <FieldGroup
                 input={{
                   type: 'datetime-local',

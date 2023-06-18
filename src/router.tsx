@@ -42,9 +42,10 @@ import EditDiscount from './pages/admin/discount/EditDiscount'
 import EditOffer from './pages/admin/offer/EditOffer'
 import CheckoutLayout from './pages/client/Checkout/CheckoutLayout'
 import PlaceOrder from './pages/client/Checkout/PlaceOrder'
-import Delevery from './pages/client/Checkout/Delevery'
+import Delivery from './pages/client/Checkout/Delivery'
 import PaymentMethod from './pages/client/Checkout/PaymentMethod'
 import VerifyPayment from './pages/client/VerifyPayment'
+import Order from './pages/client/Profile/Order'
 
 const router = createBrowserRouter([
   {
@@ -58,7 +59,7 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Delevery />,
+            element: <Delivery />,
           },
           {
             path: 'payment-method',
@@ -128,6 +129,10 @@ const router = createBrowserRouter([
                   {
                     path: 'my-orders',
                     element: <MyOrders />,
+                  },
+                  {
+                    path: 'my-orders/:id',
+                    element: <Order />,
                   },
                   {
                     path: 'edit-profile',

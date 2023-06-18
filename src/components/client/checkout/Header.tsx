@@ -5,7 +5,7 @@ import { useCheckout } from '../../../context/Checkout'
 
 const Header = () => {
   const location = useLocation()
-  const { delevery, paymentMethod } = useCheckout()
+  const { delivery, paymentMethod } = useCheckout()
 
   const activeStep = location.pathname.split('/')?.at(-1)
 
@@ -14,11 +14,11 @@ const Header = () => {
       <div className="flex items-center gap-6 text-white">
         <div
           className={clsx('flex flex-col items-center justify-center', {
-            'opacity-50': !delevery.isValid && activeStep !== 'checkout',
+            'opacity-50': !delivery.isValid && activeStep !== 'checkout',
             'opacity-100': activeStep === '' || activeStep === 'checkout',
           })}
         >
-          {delevery.isValid ? (
+          {delivery.isValid ? (
             <span>
               <CheckCircleIcon className="w-5 h-5" />
             </span>

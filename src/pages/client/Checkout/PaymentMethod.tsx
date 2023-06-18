@@ -9,7 +9,7 @@ function PaymentMethod() {
   const navigate = useNavigate()
   // check if previous step isValid
   const {
-    delevery: { isValid: isDeleveryValid },
+    delivery: { isValid: isDeleveryValid },
     paymentMethod: { selectMethod, method },
   } = useCheckout()
   if (!isDeleveryValid) return <Navigate to="/checkout" />

@@ -1,7 +1,7 @@
-interface Checkout {
+interface DeliveryData {
   name: string
-  phone: string
   email: string
+  phone: string
   shippingAddress: string
-  customerNote: string
+  note: string
 }

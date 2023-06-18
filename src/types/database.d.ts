@@ -88,5 +88,8 @@ interface Order {
   status: 'paid' | 'unpaid'
   totalPrice: number
   customer: User
-  items: Item
+  items: Item[]
+  delivery: DeliveryData
+  delivered: boolean
+  date: string
 }

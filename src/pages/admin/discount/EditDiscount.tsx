@@ -30,7 +30,6 @@ const EditDiscount = () => {
   })
 
   const initialValues = {
-    start: discount?.start,
     end: discount?.end,
     percentage: discount?.percentage,
   }
