@@ -43,6 +43,8 @@ import EditOffer from './pages/admin/offer/EditOffer'
 import CheckoutLayout from './pages/client/Checkout/CheckoutLayout'
 import PlaceOrder from './pages/client/Checkout/PlaceOrder'
 import Delevery from './pages/client/Checkout/Delevery'
+import PaymentMethod from './pages/client/Checkout/PaymentMethod'
+import VerifyCheckout from './pages/client/VerifyCheckout'
 
 const router = createBrowserRouter([
   {
@@ -57,6 +59,10 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <Delevery />,
+          },
+          {
+            path: 'payment-method',
+            element: <PaymentMethod />,
           },
           {
             path: 'place-order',
@@ -88,6 +94,10 @@ const router = createBrowserRouter([
           {
             path: 'cart',
             element: <Cart />,
+          },
+          {
+            path: 'cart/checkout/:session',
+            element: <VerifyCheckout />,
           },
           {
             path: 'account',

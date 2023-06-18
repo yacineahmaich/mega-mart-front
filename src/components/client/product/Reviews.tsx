@@ -21,10 +21,10 @@ const Reviews = () => {
       <div className="flex flex-col gap-10 sm:flex-row">
         <div className="space-y-2">
           <span className="block text-6xl font-bold sm:text-center text-dark-700">
-            {product.avgRating.toFixed(1)}
+            {product.avgRating}
           </span>
           <StarRating
-            rating={product.avgRating}
+            rating={+product.avgRating}
             starDimension="20"
             starSpacing="1"
             starEmptyColor="#e5e5e5"

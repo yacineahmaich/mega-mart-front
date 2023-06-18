@@ -75,3 +75,18 @@ interface Discount {
   price: number
   product?: Product
 }
+
+interface Item {
+  id: number
+  quantity: number
+  price: number
+  product: Product
+}
+
+interface Order {
+  id: number
+  status: 'paid' | 'unpaid'
+  totalPrice: number
+  customer: User
+  items: Item
+}

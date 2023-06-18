@@ -1,11 +1,12 @@
 import { useState, FC } from 'react'
-import CheckoutContext from '.'
+import CheckoutContext, { PaymentMethods } from '.'
 
 type Props = {
   children: React.ReactNode
 }
 
 const CheckoutProvider: FC<Props> = ({ children }) => {
+  // DELEVERY
   const [deleveryInformationIsValid, setDeleveryInformationIsValid] =
     useState(false)
   const [deleveryData, setDeleveryData] = useState<Checkout>({
@@ -15,10 +16,18 @@ const CheckoutProvider: FC<Props> = ({ children }) => {
     shippingAddress: '',
     customerNote: '',
   })
-
   const procedCheckout = (checkout: Checkout) => {
     setDeleveryData(checkout)
     setDeleveryInformationIsValid(true)
+  }
+
+  // PAYMENT METHOD
+  const [paymentMethodIsValid, setPaymentMethodIsValid] = useState(false)
+  const [paymentMethod, setPaymentMethod] = useState(null)
+
+  const selectMethod = (method: PaymentMethods) => {
+    setPaymentMethod(method)
+    setPaymentMethodIsValid(true)
   }
 
   return (
@@ -29,8 +38,11 @@ const CheckoutProvider: FC<Props> = ({ children }) => {
           procedCheckout,
           isValid: deleveryInformationIsValid,
         },
-        placeOrder: { isValid: false },
-        complete: { isValid: false },
+        paymentMethod: {
+          method: paymentMethod,
+          selectMethod,
+          isValid: paymentMethodIsValid,
+        },
       }}
     >
       {children}

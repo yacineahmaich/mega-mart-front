@@ -8,6 +8,8 @@ type Props = {
   button?: object
   onClick?: () => void
   isLoading?: boolean
+  disabled?: boolean
+  variant?: 'small' | 'medium' | 'large'
 }
 
 const Button: FC<Props> = ({
@@ -16,20 +18,25 @@ const Button: FC<Props> = ({
   button,
   onClick,
   isLoading = false,
+  variant = 'large',
+  disabled = false,
 }) => {
   return (
     <button
       {...button}
       type="submit"
       className={clsx(
-        'relative py-4 text-lg w-full text-white rounded bg-gradient-to-tr bg-primary-600  hover:bg-primary-500 transition-colors  focus:ring-2 focus:ring-primary-400 focus:ring-offset-1',
+        'relative  w-full text-white rounded bg-gradient-to-tr bg-primary-600  hover:bg-primary-500 disabled:hover:bg-primary-600 transition-colors disabled:cursor-not-allowed  focus:ring-2 focus:ring-primary-400 focus:ring-offset-1',
         {
           'bg-opacity-90': isLoading,
+          'p-4 text-lg': variant === 'large',
+          'p-2.5': variant === 'medium',
+          'py-2 text-sm': variant === 'small',
         },
         className
       )}
       onClick={onClick}
-      disabled={isLoading}
+      disabled={isLoading || disabled}
     >
       <span className="absolute inset-0 flex items-center justify-center">
         <img

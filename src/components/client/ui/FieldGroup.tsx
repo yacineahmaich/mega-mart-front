@@ -1,4 +1,5 @@
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+import clsx from 'clsx'
 import { ErrorMessage, Field } from 'formik'
 import { FC } from 'react'
 
@@ -9,6 +10,7 @@ type Props = {
   placeholder?: string
   children?: React.ReactNode
   disabled?: boolean
+  variant?: 'small' | 'medium' | 'large'
 }
 
 const FieldGroup: FC<Props> = ({
@@ -18,11 +20,14 @@ const FieldGroup: FC<Props> = ({
   placeholder,
   children,
   disabled,
+  variant = 'large',
 }) => {
   return (
     <div className="relative mb-7">
       <label
-        className="block mb-2 font-bold text-md w-fit text-dark-500"
+        className={clsx('block mb-2 font-bold w-fit text-dark-500', {
+          'text-sm': variant === 'small',
+        })}
         htmlFor={name}
       >
         {label}
@@ -31,7 +36,14 @@ const FieldGroup: FC<Props> = ({
         {...input}
         id={name}
         name={name}
-        className="block w-full py-5 rounded-md focus:ring-2 focus:ring-primary-500 border-slate-400 focus:border-transparent form-input"
+        className={clsx(
+          'block w-full  rounded-md focus:ring-2 focus:ring-primary-500 border-slate-400 focus:border-transparent form-input',
+          {
+            'py-5': variant === 'large',
+            'py-3': variant === 'medium',
+            'py-2': variant === 'small',
+          }
+        )}
         placeholder={placeholder}
         autoComplete="on"
         disabled={disabled}

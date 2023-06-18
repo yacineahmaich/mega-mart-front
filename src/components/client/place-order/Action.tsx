@@ -1,17 +1,33 @@
 import { useCart } from '../../../context/Cart'
+import { usePlaceOrder } from '../../../features/client/checkout/usePlaceOrder'
 import { useProductsByIds } from '../../../features/client/products/useProductsByIds'
+import loader from '../../../assets/icons/loader.svg'
+import clsx from 'clsx'
+import { toast } from 'react-hot-toast'
 
 function Action() {
   const { items, calcProductsTotalPrice } = useCart()
   const { data: products, isLoading } = useProductsByIds({
     productIds: [...Object.keys(items)],
   })
+  const { mutate: placeOrder, isLoading: isPlacingOrder } = usePlaceOrder({
+    onError: (error: Error) => {
+      if (!error.message) {
+        toast.error('Something went wrong! Please try again later.')
+      } else {
+        toast.error(error.message)
+      }
+    },
+    onSettled({ session_url }) {
+      // redirect user to stripe checkout form
+      window.location.href = session_url
+    },
+  })
 
   const totalProducts = products?.reduce(
     (total, product) => total + items[product.id]?.quantity,
     0
   )
-
   const totalToPay = calcProductsTotalPrice(products)
 
   return (
@@ -40,10 +56,29 @@ function Action() {
       </div>
 
       <button
-        className="px-6 py-1.5 rounded-full bg-primary-500 text-white text-smm font-medium"
-        disabled={isLoading}
+        className="relative px-6 py-2 font-medium text-white rounded-full bg-primary-500 text-smm"
+        onClick={() => placeOrder({ cart: items })}
+        disabled={isLoading || isPlacingOrder}
       >
-        Place Order
+        <div
+          className={clsx('absolute inset-0 flex items-center justify-center', {
+            visible: isPlacingOrder,
+            invisible: !isPlacingOrder,
+          })}
+        >
+          <img
+            src={loader}
+            alt="loader"
+            className="w-4 h-4 animate-spin absol"
+          />
+        </div>
+        <span
+          className={clsx({
+            invisible: isPlacingOrder,
+          })}
+        >
+          Place Order
+        </span>
       </button>
     </div>
   )

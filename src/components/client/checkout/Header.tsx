@@ -5,7 +5,7 @@ import { useCheckout } from '../../../context/Checkout'
 
 const Header = () => {
   const location = useLocation()
-  const { delevery, placeOrder, complete } = useCheckout()
+  const { delevery, paymentMethod } = useCheckout()
 
   const activeStep = location.pathname.split('/')?.at(-1)
 
@@ -14,12 +14,14 @@ const Header = () => {
       <div className="flex items-center gap-6 text-white">
         <div
           className={clsx('flex flex-col items-center justify-center', {
+            'opacity-50': !delevery.isValid && activeStep !== 'checkout',
             'opacity-100': activeStep === '' || activeStep === 'checkout',
-            'w-6 h-6': activeStep !== 'checkout' && activeStep !== '',
           })}
         >
           {delevery.isValid ? (
-            <CheckCircleIcon className="w-5 h-5" />
+            <span>
+              <CheckCircleIcon className="w-5 h-5" />
+            </span>
           ) : (
             <BoltIcon
               className={clsx('w-5 h-5', {
@@ -38,43 +40,45 @@ const Header = () => {
         <span>---------</span>
         <div
           className={clsx('flex flex-col items-center justify-center', {
-            'opacity-100': activeStep === 'place-order',
-            'opacity-50': activeStep !== 'place-order',
+            'opacity-50':
+              !paymentMethod.isValid && activeStep !== 'payment-method',
+            'opacity-100':
+              paymentMethod.isValid || activeStep === 'payment-method',
           })}
         >
-          {placeOrder.isValid ? (
-            <CheckCircleIcon className="w-5 h-5" />
+          {paymentMethod.isValid ? (
+            <span>
+              <CheckCircleIcon className="w-5 h-5" />
+            </span>
           ) : (
             <BoltIcon
               className={clsx('w-5 h-5', {
-                'w-6 h-6': activeStep === 'place-order',
+                'w-6 h-6': activeStep === 'payment-method',
               })}
             />
           )}
           <span
-            className={clsx({ 'font-medium': activeStep === 'place-order' })}
+            className={clsx({ 'font-medium': activeStep === 'payment-method' })}
           >
-            Place order
+            Payment method
           </span>
         </div>
         <span>---------</span>
         <div
           className={clsx('flex flex-col items-center justify-center', {
-            'opacity-100': activeStep === 'complete',
-            'opacity-50': activeStep !== 'complete',
+            'opacity-100': activeStep === 'place-order',
+            'opacity-50': activeStep !== 'place-order',
           })}
         >
-          {complete.isValid ? (
-            <CheckCircleIcon className="w-5 h-5" />
-          ) : (
-            <BoltIcon
-              className={clsx('w-5 h-5', {
-                'w-6 h-6': activeStep === 'complete',
-              })}
-            />
-          )}
-          <span className={clsx({ 'font-medium': activeStep === 'complete' })}>
-            complete
+          <BoltIcon
+            className={clsx('w-5 h-5', {
+              'w-6 h-6': activeStep === 'place-order',
+            })}
+          />
+          <span
+            className={clsx({ 'font-medium': activeStep === 'place-order' })}
+          >
+            Place order
           </span>
         </div>
       </div>

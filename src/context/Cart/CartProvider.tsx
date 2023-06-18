@@ -80,6 +80,10 @@ const CartProvider: FC<Props> = ({ children }) => {
     }, 0)
   }
 
+  const clear = () => {
+    setItems({})
+  }
+
   // Sync Cart With LocalStorage
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(items))
@@ -95,6 +99,7 @@ const CartProvider: FC<Props> = ({ children }) => {
         increaseQty,
         decreaseQty,
         calcProductsTotalPrice,
+        clear
       }}
     >
       {children}

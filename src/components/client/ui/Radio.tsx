@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { Field } from 'formik'
 import { FC } from 'react'
 
@@ -6,12 +7,13 @@ type Props = {
   name: string
   value: number | string
   input?: object
+  disabled?: boolean
 }
 
-const Radio: FC<Props> = ({ label, name, value, input }) => {
+const Radio: FC<Props> = ({ label, name, value, input, disabled = false }) => {
   return (
     <label
-      className="flex items-center gap-3 cursor-pointer"
+      className={'flex items-center gap-3 cursor-pointer'}
       htmlFor={label.toLocaleLowerCase()}
     >
       <Field
@@ -20,9 +22,21 @@ const Radio: FC<Props> = ({ label, name, value, input }) => {
         name={name}
         id={label.toLocaleLowerCase()}
         value={value}
-        className="form-radio text-primary-500 focus:outline-primary-500"
+        className={clsx(
+          'form-radio checked:bg-primary-500 checked:hover:bg-primary-500 checked:focus:bg-primary-500 focus:outline-primary-500',
+          {
+            'border-gray': disabled,
+          }
+        )}
+        disabled={disabled}
       />
-      <span className="font-medium text-dark-500">{label}</span>
+      <span
+        className={clsx('font-medium text-dark-500', {
+          'text-gray': disabled,
+        })}
+      >
+        {label}
+      </span>
     </label>
   )
 }

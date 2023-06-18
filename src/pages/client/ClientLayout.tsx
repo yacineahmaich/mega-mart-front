@@ -9,7 +9,7 @@ const ClientLayout = () => {
     <>
       <Header />
       <Navigation />
-      <main>
+      <main className="min-h-screen">
         <Outlet />
       </main>
       <Subscribe />

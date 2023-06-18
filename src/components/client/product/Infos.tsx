@@ -15,7 +15,7 @@ const Infos = () => {
       <div className="flex items-center gap-3 mb-6">
         <div className="flex">
           <StarRating
-            rating={product.avgRating}
+            rating={+product.avgRating}
             starDimension="20"
             starSpacing="1"
             starEmptyColor="#e5e5e5"
