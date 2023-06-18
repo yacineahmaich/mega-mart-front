@@ -46,6 +46,7 @@ import Delivery from './pages/client/Checkout/Delivery'
 import PaymentMethod from './pages/client/Checkout/PaymentMethod'
 import VerifyPayment from './pages/client/VerifyPayment'
 import Order from './pages/client/Profile/Order'
+import OrderLayout from './pages/admin/order/OrderLayout'
 
 const router = createBrowserRouter([
   {
@@ -240,7 +241,13 @@ const router = createBrowserRouter([
           },
           {
             path: 'orders',
-            element: <Orders />,
+            element: <OrderLayout />,
+            children: [
+              {
+                index: true,
+                element: <Orders />,
+              },
+            ],
           },
           {
             path: 'offers',

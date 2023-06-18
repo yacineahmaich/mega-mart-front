@@ -28,6 +28,7 @@ function MyOrdersTable() {
         <thead className="text-xs uppercase bg-light text-primary-600">
           <tr>
             <th className="px-4 py-2">#</th>
+            <th className="px-4 py-2">date</th>
             <th className="px-4 py-2">price</th>
             <th className="px-4 py-2">status</th>
             <th className="px-4 py-2">items</th>
@@ -36,14 +37,15 @@ function MyOrdersTable() {
         <tbody>
           {orders.map(order => (
             <tr key={order.id}>
-              <td className="px-4 py-2">
+              <th className="px-4 py-2">
                 <Link
                   to={order.id.toString()}
                   className="font-medium underline text-dark-500"
                 >
                   {order.id}
                 </Link>
-              </td>
+              </th>
+              <td className="px-4 py-2">{order.date}</td>
               <td className="px-4 py-2">${order.totalPrice}</td>
               <td className="px-4 py-2 capitalize">
                 <span
