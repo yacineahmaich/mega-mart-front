@@ -20,13 +20,11 @@ const Pagination: FC<Props> = ({ data, theme = 'primary-600' }) => {
     <div className="flex items-center justify-between px-4 py-2">
       <span className="text-sm font-normal text-dark-600 ">
         Showing&nbsp;
-        <span className="font-semibold text-gray-900">
+        <span className="font-semibold">
           {data.meta.from}-{data.meta.to}&nbsp;
         </span>
         of&nbsp;
-        <span className="font-semibold text-gray-900">
-          {data.meta.total}&nbsp;
-        </span>
+        <span className="font-semibold">{data.meta.total}&nbsp;</span>
       </span>
       <Paginex
         data={data}

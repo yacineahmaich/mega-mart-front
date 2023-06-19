@@ -5,6 +5,7 @@ import loader from '../../../assets/icons/loader.svg'
 import clsx from 'clsx'
 import { toast } from 'react-hot-toast'
 import { useCheckout } from '../../../context/Checkout'
+import Button from '../ui/Button'
 
 function Action() {
   const { items, calcProductsTotalPrice } = useCart()
@@ -64,31 +65,14 @@ function Action() {
         </div>
       </div>
 
-      <button
-        className="relative px-6 py-2 font-medium text-white rounded-full bg-primary-500 text-smm"
+      <Button
         onClick={handlePlaceOrder}
-        disabled={isLoading || isPlacingOrder}
+        variant="medium"
+        className="rounded-full"
+        isLoading={isPlacingOrder}
       >
-        <div
-          className={clsx('absolute inset-0 flex items-center justify-center', {
-            visible: isPlacingOrder,
-            invisible: !isPlacingOrder,
-          })}
-        >
-          <img
-            src={loader}
-            alt="loader"
-            className="w-4 h-4 animate-spin absol"
-          />
-        </div>
-        <span
-          className={clsx({
-            invisible: isPlacingOrder,
-          })}
-        >
-          Place Order
-        </span>
-      </button>
+        Place Order
+      </Button>
     </div>
   )
 }

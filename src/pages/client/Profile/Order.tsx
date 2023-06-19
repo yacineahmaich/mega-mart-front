@@ -30,15 +30,6 @@ function Order() {
               Order <span className="text-sm">({order.id})</span>
             </span>
           </h3>
-
-          {/* {order.status === 'unpaid' && (
-            <a
-              href={order.session}
-              className="px-8 py-0.5 text-white rounded-full bg-gradient-to-tr from-primary-400 to-primary-500 transition-colors"
-            >
-              pay now
-            </a>
-          )} */}
         </div>
 
         <div className="grid grid-cols-5 p-6 font-medium border divide-x text-primary-500">
