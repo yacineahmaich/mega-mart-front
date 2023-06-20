@@ -1,32 +1,37 @@
+import {
+  UseInfiniteQueryOptions,
+  useInfiniteQuery,
+} from '@tanstack/react-query'
 import api from '../../../utils/api/client'
-import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 
-// type Data = {
-//   reviews: Review[]
-//   meta: {
-//     current_page: number
-//     per_page: number
-//     last_page: number
-//     from: number
-//     to: number
-//     total: number
-//   }
-// }
+type Data = {
+  reviews: Review[]
+  meta: {
+    current_page: number
+    per_page: number
+    last_page: number
+  }
+}
 
-const getProductReviews = async (id: number, limit: number) => {
-  const response = await api.get(`/products/${id}/reviews?limit=${limit}`)
-  return response.data.reviews
+const getProductReviews = async (productId: number, pageParam: number) => {
+  const response = await api.get(
+    `/products/${productId}/reviews?page=${pageParam}`
+  )
+
+  return response.data
 }
 
 export const useProductReviews = (
-  id: number,
-  limit: number,
-  options?: UseQueryOptions<Review[]>
+  productId: number,
+  options?: UseInfiniteQueryOptions<Data>
 ) => {
-  return useQuery<Review[]>({
-    queryKey: ['products', id, 'reviews'],
-    queryFn: () => getProductReviews(id, limit),
-    keepPreviousData: true,
+  return useInfiniteQuery<Data>({
+    queryKey: ['products', productId, 'reviews'],
+    queryFn: ({ pageParam = 1 }) => getProductReviews(productId, pageParam),
+    getNextPageParam: ({ meta }) => {
+      const { current_page: currentPage, last_page: lastPage } = meta
+      return currentPage < lastPage ? currentPage + 1 : undefined
+    },
     ...options,
   })
 }
