@@ -3,7 +3,7 @@ import { FC } from 'react'
 type Props = {
   children?: React.ReactNode
   label: string
-  value: string | null
+  value: string | number
   icon: React.ForwardRefExoticComponent<
     Omit<React.SVGProps<SVGSVGElement>, 'ref'>
   >

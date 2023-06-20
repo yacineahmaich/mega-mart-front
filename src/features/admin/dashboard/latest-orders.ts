@@ -3,14 +3,17 @@ import api from '../../../utils/api/admin'
 
 const getLatestOrders = async () => {
   const response = await api.get('/latest-orders')
-
-  return response.data
+  return response.data.orders
 }
 
-export const useStoreStats = (options?: UseQueryOptions<Order[]>) => {
+export const query = () => ({
+  queryKey: ['admin', 'latest-orders'],
+  queryFn: getLatestOrders,
+})
+
+export const useLatestOrders = (options?: UseQueryOptions<Order[]>) => {
   return useQuery<Order[]>({
-    queryKey: ['admin', 'latest-orders'],
-    queryFn: getLatestOrders,
+    ...query(),
     ...options,
   })
 }

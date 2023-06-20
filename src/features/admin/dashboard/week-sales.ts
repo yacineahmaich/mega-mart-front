@@ -1,22 +1,25 @@
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import api from '../../../utils/api/admin'
 
-type SaleData = {
+type Data = {
   day: string
   current: number
   prev: number
-}
+}[]
 
 const getWeekSales = async () => {
   const response = await api.get('/week-sales')
-
   return response.data
 }
 
-export const useStoreStats = (options?: UseQueryOptions<SaleData[]>) => {
-  return useQuery<SaleData[]>({
-    queryKey: ['admin', 'week-sales'],
-    queryFn: getWeekSales,
+export const query = () => ({
+  queryKey: ['admin', 'week-sales'],
+  queryFn: getWeekSales,
+})
+
+export const useWeekSales = (options?: UseQueryOptions<Data>) => {
+  return useQuery<Data>({
+    ...query(),
     ...options,
   })
 }

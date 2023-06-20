@@ -48,6 +48,9 @@ import VerifyPayment from './pages/client/VerifyPayment'
 import Order from './pages/client/Profile/Order'
 import OrderLayout from './pages/admin/order/OrderLayout'
 
+import queryClient from './query-client'
+import dashboardLoader from './features/admin/dashboard/loader'
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -157,6 +160,7 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <Dashboard />,
+            loader: dashboardLoader(queryClient),
           },
           {
             path: 'products',

@@ -1,7 +1,7 @@
 import CustomersChart from '../../components/admin/dashboard/CustomersChart'
 import Heading from '../../components/admin/dashboard/Heading'
 import LatestOrders from '../../components/admin/dashboard/LatestOrders'
-import SalesChart from '../../components/admin/dashboard/SalesChart'
+import WeekSalesChart from '../../components/admin/dashboard/WeekSalesChart'
 import SalesContributionChart from '../../components/admin/dashboard/SalesContributionChart'
 import Stats from '../../components/admin/dashboard/Stats'
 
@@ -12,7 +12,7 @@ const Dashboard = () => {
       <Stats />
       <div className="grid grid-cols-5 gap-6 my-10">
         <div className="col-span-3">
-          <SalesChart />
+          <WeekSalesChart />
         </div>
         <div className="col-span-2">
           <SalesContributionChart />

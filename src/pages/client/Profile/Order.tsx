@@ -39,7 +39,7 @@ function Order() {
           </div>
           <div className="text-center">
             <CurrencyDollarIcon className="inline w-6 h-6 mb-4" />
-            <p>{order.totalPrice}</p>
+            <p>${order.totalPrice}</p>
           </div>
           <div className="text-center">
             <CalendarDaysIcon className="inline w-6 h-6 mb-4" />

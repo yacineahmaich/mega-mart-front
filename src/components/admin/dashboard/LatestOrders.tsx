@@ -1,12 +1,16 @@
 import { FC } from 'react'
 import BlockLayout from './BlockLayout'
 import Badge from '../ui/Badge'
+import { useLatestOrders } from '../../../features/admin/dashboard/latest-orders'
+import { Link } from 'react-router-dom'
 type Props = {
   children?: React.ReactNode
 }
 const LatestOrders: FC<Props> = () => {
+  const { data: orders } = useLatestOrders()
+
   return (
-    <BlockLayout title="Latest Orders">
+    <BlockLayout title="Latest Orders" className="h-auto">
       <div className="h-full p-3">
         <table className="w-full overflow-hidden text-left shadow-lg">
           <thead className="bg-[#8884d8] text-white uppercase text-sm">
@@ -19,17 +23,24 @@ const LatestOrders: FC<Props> = () => {
             </tr>
           </thead>
           <tbody className="text-xs bg-white text-dark-500">
-            {Array.from({ length: 6 }, (_, idx) => (
-              <tr className="hover:bg-[#8884d8b7] hover:text-white transition-colors">
+            {orders.map(order => (
+              <tr
+                key={order.id}
+                className="hover:bg-[#8884d8b7] hover:text-white transition-colors"
+              >
                 <th className="p-3 underline text-dark-500">
-                  kzs56jzs5gj5jzs99jsz
+                  <Link to={`/orders/${order.id}`}>{order.id}</Link>
                 </th>
-                <td className="p-3">yacine xd</td>
-                <td className="p-3">$223</td>
+                <td className="p-3">{order.customer.name}</td>
+                <td className="p-3">${order.totalPrice}</td>
                 <td className="p-3">
-                  <Badge variant="success">Paid</Badge>
+                  {order.status === 'paid' ? (
+                    <Badge variant="success">Paid</Badge>
+                  ) : (
+                    <Badge variant="danger">Unaid</Badge>
+                  )}
                 </td>
-                <td className="p-3">2023-09-14</td>
+                <td className="p-3">{order.date}</td>
               </tr>
             ))}
           </tbody>

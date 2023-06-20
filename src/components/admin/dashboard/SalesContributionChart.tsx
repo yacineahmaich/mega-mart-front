@@ -2,6 +2,7 @@ import { FC, useState } from 'react'
 import BlockLayout from './BlockLayout'
 
 import { ResponsiveContainer, PieChart, Pie, Sector } from 'recharts'
+import { useSalesContribution } from '../../../features/admin/dashboard/sales-contribution'
 
 type Props = {
   children?: React.ReactNode
@@ -43,7 +44,13 @@ const renderActiveShape = props => {
 
   return (
     <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
+      <text
+        x={cx}
+        y={cy}
+        dy={8}
+        textAnchor="middle"
+        className="font-bold capitalize fill-dark-500"
+      >
         {payload.name}
       </text>
       <Sector
@@ -74,16 +81,17 @@ const renderActiveShape = props => {
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
         textAnchor={textAnchor}
-        fill="#333"
-      >{`PV ${value}`}</text>
+        // fill="#333"
+        className="font-medium fill-dark-500"
+      >{`$${value}`}</text>
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 6}
         y={ey}
         dy={18}
         textAnchor={textAnchor}
-        fill="#999"
+        className="fill-primary-400"
       >
-        {`(Rate ${(percent * 100).toFixed(2)}%)`}
+        {`${(percent * 100).toFixed(2)}%`}
       </text>
     </g>
   )
@@ -91,9 +99,7 @@ const renderActiveShape = props => {
 const SalesContributionChart: FC<Props> = () => {
   const [activeIndex, setActiveIndex] = useState(1)
 
-  const onPieEnter = (_, index) => {
-    setActiveIndex(index)
-  }
+  const { data } = useSalesContribution()
 
   return (
     <BlockLayout title="sales distrubtion">
@@ -103,12 +109,12 @@ const SalesContributionChart: FC<Props> = () => {
             activeIndex={activeIndex}
             activeShape={renderActiveShape}
             data={data}
-            innerRadius={60}
-            outerRadius={80}
+            innerRadius={70}
+            outerRadius={90}
             paddingAngle={2}
             fill="#8884d8"
-            dataKey="value"
-            onMouseEnter={onPieEnter}
+            dataKey="sales"
+            onMouseEnter={(_, i) => setActiveIndex(i)}
             width={'100%'}
             height={'100%'}
           />
