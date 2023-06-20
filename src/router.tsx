@@ -52,6 +52,7 @@ import queryClient from './query-client'
 import dashboardLoader from './features/admin/dashboard/loader'
 import homeLoader from './features/client/home/loader'
 import mCategoryLoader from './features/client/main-category/loader'
+import categoryLoader from './features/client/category/loader'
 import ErrorPage from './pages/client/ErrorPage'
 
 const router = createBrowserRouter([
@@ -97,6 +98,7 @@ const router = createBrowserRouter([
           {
             path: 'mc/:mcslug/category/:slug',
             element: <Category />,
+            loader: categoryLoader(queryClient),
           },
           {
             path: 'products/:slug',

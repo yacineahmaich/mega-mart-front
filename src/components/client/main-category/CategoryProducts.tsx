@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import ProductCardSkeleton from '../ui/ProductCardSekeleton'
 import ProductCard from '../ui/ProductCard'
-import { useCategoryProducts } from '../../../features/client/products/useCategoryProducts'
+import { useCategoryProducts } from '../../../features/client/products/category-products'
 
 type Props = {
   category: Category

@@ -4,7 +4,7 @@ import { useParams, useSearchParams } from 'react-router-dom'
 import ProductCard from '../ui/ProductCard'
 import Pagination from './Pagination'
 import queryString from 'query-string'
-import { useCategoryProducts } from '../../../features/client/products/useCategoryProducts'
+import { useCategoryProducts } from '../../../features/client/products/category-products'
 
 const ListProducts: FC = () => {
   const { slug } = useParams()

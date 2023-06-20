@@ -16,12 +16,13 @@ const getCategoryProducts = async (slug: string, searchParams: string) => {
   return response.data
 }
 
-export const useCategoryProducts = (
-  slug: string,
-  params: object,
-  options?: UseQueryOptions<Data>
-) => {
-  return useQuery<Data>({
+export const query = (slug: string) => {
+  const searchParams = new URL(location.href).search
+  const params = queryString.parse(searchParams.toString(), {
+    arrayFormat: 'comma',
+  })
+
+  return {
     queryKey: ['categories', slug, 'products', params],
     queryFn: () =>
       getCategoryProducts(
@@ -32,6 +33,15 @@ export const useCategoryProducts = (
         })
       ),
     keepPreviousData: true,
+  }
+}
+
+export const useCategoryProducts = (
+  slug: string,
+  options?: UseQueryOptions<Data>
+) => {
+  return useQuery<Data>({
+    ...query(slug),
     ...options,
   })
 }

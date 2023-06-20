@@ -3,7 +3,6 @@ import ProductCardSkeleton from '../ui/ProductCardSekeleton'
 import ProductCard from '../ui/ProductCard'
 import { Link } from 'react-router-dom'
 import { useMainCategoryProducts } from '../../../features/client/products/useMainCategoryProducts'
-import Spinner from '../ui/Spinner'
 
 type Props = {
   category: MainCategory
@@ -43,9 +42,6 @@ const CategoryProducts: FC<Props> = ({ category }) => {
         )}
         {isFetchingNextPage && (
           <>
-            <div className="col-span-full">
-              <Spinner className="fill-gray" />
-            </div>
             {Array.from({ length: 12 }, (_, i) => i).map(i => (
               <ProductCardSkeleton key={i} />
             ))}
