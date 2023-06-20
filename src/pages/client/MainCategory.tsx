@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { useMCategory } from '../../features/client/main-category/useMCategory'
+import { useMCategory } from '../../features/client/main-category/m-category'
 import Cover from '../../components/client/main-category/Cover'
 import ExploreCategories from '../../components/client/main-category/ExploreCategories'
 import ProductsSection from '../../components/client/main-category/ProductsSection'

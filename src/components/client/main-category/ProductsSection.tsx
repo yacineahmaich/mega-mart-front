@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { useMCategory } from '../../../features/client/main-category/useMCategory'
+import { useMCategory } from '../../../features/client/main-category/m-category'
 import CategoryProducts from './CategoryProducts'
 
 const ProductsSection = () => {

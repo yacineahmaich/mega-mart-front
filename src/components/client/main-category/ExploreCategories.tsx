@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
-import { useMCategory } from '../../../features/client/main-category/useMCategory'
+import { useMCategory } from '../../../features/client/main-category/m-category'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 const ExploreCategories = () => {

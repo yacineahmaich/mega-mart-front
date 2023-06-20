@@ -51,6 +51,8 @@ import OrderLayout from './pages/admin/order/OrderLayout'
 import queryClient from './query-client'
 import dashboardLoader from './features/admin/dashboard/loader'
 import homeLoader from './features/client/home/loader'
+import mCategoryLoader from './features/client/main-category/loader'
+import ErrorPage from './pages/client/ErrorPage'
 
 const router = createBrowserRouter([
   {
@@ -80,6 +82,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <ClientLayout />,
+        errorElement: <ErrorPage />,
         children: [
           {
             index: true,
@@ -89,6 +92,7 @@ const router = createBrowserRouter([
           {
             path: 'mc/:slug',
             element: <MainCategory />,
+            loader: mCategoryLoader(queryClient),
           },
           {
             path: 'mc/:mcslug/category/:slug',
