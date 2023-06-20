@@ -53,7 +53,7 @@ const Signup = () => {
               placeholder="******"
               disabled={isLoading}
             />
-            <Button className="mt-2" isLoading={isLoading}>
+            <Button className="w-full mt-2" isLoading={isLoading}>
               Signup
             </Button>
           </Form>

@@ -26,7 +26,7 @@ const Button: FC<Props> = ({
       {...button}
       type="submit"
       className={clsx(
-        'relative  w-full text-white rounded bg-gradient-to-tr bg-primary-600  hover:bg-primary-500 disabled:hover:bg-primary-600 transition-colors disabled:cursor-not-allowed  focus:ring-2 focus:ring-primary-400 focus:ring-offset-1',
+        'relative px-3 text-white rounded bg-gradient-to-tr bg-primary-600  hover:bg-primary-500 disabled:hover:bg-primary-600 transition-colors disabled:cursor-not-allowed  focus:ring-2 focus:ring-primary-400 focus:ring-offset-1',
         {
           'bg-opacity-90': isLoading,
           'p-4 text-lg': variant === 'large',

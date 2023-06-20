@@ -48,7 +48,7 @@ const Login = () => {
               placeholder="Your Password"
               disabled={isLoading}
             />
-            <Button className="mt-2" isLoading={isLoading}>
+            <Button className="w-full mt-2" isLoading={isLoading}>
               Login
             </Button>
           </Form>

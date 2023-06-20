@@ -4,6 +4,7 @@ import { useProduct } from '../../../features/client/products/product'
 import { useProductReviews } from '../../../features/client/products/useProductReviews'
 import ReviewsSkeleton from './ReviewsSkeleton'
 import Button from '../ui/Button'
+import CreateReview from './CreateReview'
 
 const Reviews = () => {
   const { slug } = useParams()
@@ -14,7 +15,7 @@ const Reviews = () => {
 
   return (
     <div>
-      <h4 className="mb-10 font-medium">Product reviews</h4>
+      <h4 className="mb-4 font-medium ">Product reviews</h4>
 
       <div className="flex flex-col gap-10 sm:flex-row">
         <div className="space-y-2">
@@ -33,6 +34,8 @@ const Reviews = () => {
           </p>
         </div>
         <div className="flex-1">
+          <CreateReview />
+
           <div className="space-y-8">
             {isLoading ? (
               Array.from({ length: 10 }, (_, idx) => (
@@ -80,10 +83,10 @@ const Reviews = () => {
             )}
           </div>
           {hasNextPage && !isLoading && (
-            <div className="mt-10">
+            <div className="mt-10 text-center">
               <Button
                 variant="small"
-                className="max-w-xs rounded-full"
+                className="w-1/2 rounded-full"
                 onClick={() => fetchNextPage()}
                 isLoading={isFetchingNextPage}
               >
