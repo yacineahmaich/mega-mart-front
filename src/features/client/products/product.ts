@@ -6,14 +6,16 @@ const getProduct = async (slug: string) => {
   return response.data
 }
 
+export const query = (slug: string, options?: UseQueryOptions<Product>) => ({
+  queryKey: ['product', slug],
+  queryFn: () => getProduct(slug),
+  keepPreviousData: true,
+  ...options,
+})
+
 export const useProduct = (
   slug: string,
   options?: UseQueryOptions<Product>
 ) => {
-  return useQuery<Product>({
-    queryKey: ['product', slug],
-    queryFn: () => getProduct(slug),
-    keepPreviousData: true,
-    ...options,
-  })
+  return useQuery<Product>(query(slug, options))
 }

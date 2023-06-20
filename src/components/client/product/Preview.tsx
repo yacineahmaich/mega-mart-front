@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import clsx from 'clsx'
-import { useProduct } from '../../../features/client/products/useProduct'
+import { useProduct } from '../../../features/client/products/product'
 import { useParams } from 'react-router-dom'
 
 const Preview = () => {

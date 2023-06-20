@@ -1,6 +1,6 @@
 import StarRating from 'react-star-ratings'
 import { useParams } from 'react-router-dom'
-import { useProduct } from '../../../features/client/products/useProduct'
+import { useProduct } from '../../../features/client/products/product'
 import { useProductReviews } from '../../../features/client/products/useProductReviews'
 import { ArrowPathIcon, PlayCircleIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'

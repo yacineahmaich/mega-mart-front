@@ -53,6 +53,7 @@ import dashboardLoader from './features/admin/dashboard/loader'
 import homeLoader from './features/client/home/loader'
 import mCategoryLoader from './features/client/main-category/loader'
 import categoryLoader from './features/client/category/loader'
+import productLoader from './features/client/product/loader'
 import ErrorPage from './pages/client/ErrorPage'
 
 const router = createBrowserRouter([
@@ -103,6 +104,7 @@ const router = createBrowserRouter([
           {
             path: 'products/:slug',
             element: <ProductDetails />,
+            loader: productLoader(queryClient),
           },
           {
             path: 'cart',

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/solid'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useProduct } from '../../../features/client/products/useProduct'
+import { useProduct } from '../../../features/client/products/product'
 import { useCart } from '../../../context/Cart'
 
 const CheckoutTip = () => {
