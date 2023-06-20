@@ -50,6 +50,7 @@ import OrderLayout from './pages/admin/order/OrderLayout'
 
 import queryClient from './query-client'
 import dashboardLoader from './features/admin/dashboard/loader'
+import homeLoader from './features/client/home/loader'
 
 const router = createBrowserRouter([
   {
@@ -83,6 +84,7 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <Home />,
+            loader: homeLoader(queryClient),
           },
           {
             path: 'mc/:slug',

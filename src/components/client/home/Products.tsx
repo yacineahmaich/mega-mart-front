@@ -1,11 +1,9 @@
-import { useMcategories } from '../../../features/client/main-category/useMcategories'
+import { useMcategories } from '../../../features/client/main-category/m-categories'
 import CategoryProducts from './CategoryProducts'
 import SubCategories from './SubCategories'
 
-const ProductsSection = () => {
+const Products = () => {
   const { data: mainCategories } = useMcategories()
-
-  console.log(mainCategories)
 
   return (
     <main>
@@ -19,4 +17,4 @@ const ProductsSection = () => {
   )
 }
 
-export default ProductsSection
+export default Products

@@ -5,7 +5,7 @@ import 'swiper/css'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
 import { useRef } from 'react'
 import { SwiperSlide } from 'swiper/react'
-import { useOffers } from '../../../features/client/home/useOffers'
+import { useOffers } from '../../../features/client/home/offers'
 
 const OffersSlider = () => {
   const prevRef = useRef()

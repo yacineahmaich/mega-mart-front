@@ -1,56 +1,13 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper'
 
-const categories = [
-  {
-    title: 'cat 1',
-    image: 'https://www.marjanemall.ma/media/Logos/festdesmarque/ens-f.png',
-  },
-  {
-    title: 'cat 2',
-    image: 'https://www.marjanemall.ma/media/Banners-home-page/smart.jpg',
-  },
-  {
-    title: 'cat 3',
-    image: 'https://www.marjanemall.ma/media/Banners-home-page/info-game.jpg',
-  },
-  {
-    title: 'cat 4',
-    image: 'https://www.marjanemall.ma/media/Banners-home-page/son-tv.jpg',
-  },
-  {
-    title: 'cat 5',
-    image: 'https://www.marjanemall.ma/media/Banners-home-page/mode.jpg',
-  },
-  {
-    title: 'cat 6',
-    image: 'https://www.marjanemall.ma/media/Banners-home-page/sport.jpg',
-  },
-  {
-    title: 'cat 7',
-    image: 'https://www.marjanemall.ma/media/Banners-home-page/bebe.jpg',
-  },
-  {
-    title: 'cat 8',
-    image: 'https://www.marjanemall.ma/media/Banners-home-page/smart.jpg',
-  },
-  {
-    title: 'cat 9',
-    image: 'https://www.marjanemall.ma/media/Banners-home-page/info-game.jpg',
-  },
-  {
-    title: 'cat 10',
-    image: 'https://www.marjanemall.ma/media/Banners-home-page/son-tv.jpg',
-  },
-]
-
 import 'swiper/css'
 import {
   ArrowLongLeftIcon,
   ArrowLongRightIcon,
 } from '@heroicons/react/24/solid'
 import { useRef } from 'react'
-import { useMcategories } from '../../../features/client/main-category/useMcategories'
+import { useMcategories } from '../../../features/client/main-category/m-categories'
 import { Link } from 'react-router-dom'
 
 const MainCategoriesSlider = () => {

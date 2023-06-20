@@ -8,7 +8,7 @@ import Error from '../Error'
 import { useUpdateCategory } from '../../../features/admin/categories/mutations/useUpdateCategory'
 import ErrorMsg from '../ErrorMsg'
 import FormErrors from '../../../components/common/FormErrors'
-import { useMcategories } from '../../../features/client/main-category/useMcategories'
+import { useMcategories } from '../../../features/client/main-category/m-categories'
 import ImageInput from '../../../components/admin/ui/ImageInput'
 import FieldGroup from '../../../components/admin/ui/FieldGroup'
 
