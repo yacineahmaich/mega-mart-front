@@ -21,7 +21,7 @@ function CheckoutSummary() {
         </div>
       ) : (
         products.map(product => (
-          <div className="flex justify-between">
+          <div key={product.id} className="flex justify-between">
             <div className="flex items-center gap-2">
               <h2 className="text-sm font-medium text-dark-500">
                 {product.name}

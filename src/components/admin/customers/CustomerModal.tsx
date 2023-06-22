@@ -7,7 +7,6 @@ import {
   ShoppingCartIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
-import { Link } from 'react-router-dom'
 import clsx from 'clsx'
 
 type Props = {
@@ -24,7 +23,8 @@ const CustomerModal: FC<Props> = ({ isOpen, onClose, customer }) => {
       ?.length ?? 0
 
   const spentedAmount = customer.orders.reduce(
-    (total, order) => total + order.totalPrice,
+    (total, order) =>
+      order.status === 'paid' ? total + order.totalPrice : total,
     0
   )
 

@@ -1,6 +1,6 @@
 import { BoltIcon, CheckCircleIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useCheckout } from '../../../context/Checkout'
 
 const Header = () => {
@@ -10,7 +10,13 @@ const Header = () => {
   const activeStep = location.pathname.split('/')?.at(-1)
 
   return (
-    <header className="flex justify-center w-full p-8 bg-primary-500">
+    <header className="relative flex justify-center w-full p-8 bg-primary-500">
+      <Link
+        to="/"
+        className="absolute px-6 py-2 -translate-y-1/2 bg-white rounded left-5 top-1/2 text-primary-800"
+      >
+        Cancel
+      </Link>
       <div className="flex items-center gap-6 text-white">
         <div
           className={clsx('flex flex-col items-center justify-center', {

@@ -8,6 +8,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { useGetUser } from '../../../features/auth/useGetUser'
 import { useLogout } from '../../../features/auth/useLogout'
 import { ArrowPathIcon, Squares2X2Icon } from '@heroicons/react/24/outline'
+import UserAvatar from './UserAvatar'
 
 const SideNav = () => {
   const { data: user } = useGetUser()
@@ -16,21 +17,7 @@ const SideNav = () => {
   return (
     <div className="flex flex-col items-center gap-6 border border-gray bg-warning-400">
       <div className="px-10 py-4 space-y-4">
-        <div className="overflow-hidden rounded-full w-36 h-36">
-          {user.avatar ? (
-            <img
-              src={user.avatar.url}
-              alt={user.avatar.name}
-              className="object-cover w-full h-full"
-            />
-          ) : (
-            <div className="flex items-center justify-center w-full h-full text-white bg-primary-600">
-              <span className="text-6xl font-bold uppercase">
-                {user.name[0]}
-              </span>
-            </div>
-          )}
-        </div>
+        <UserAvatar user={user} />
         <div className="space-y-1 text-center">
           <h2 className="text-xl font-bold text-dark-800">{user.name}</h2>
           <p className="text-sm font-medium text-dark-500">{user.email}</p>

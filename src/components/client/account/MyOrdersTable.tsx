@@ -3,7 +3,7 @@ import { useMyOrders } from '../../../features/client/account/useMyOrders'
 import clsx from 'clsx'
 import Spinner from '../ui/Spinner'
 import moment from 'moment'
-import Badge from '../../admin/ui/Badge'
+import Message from '../ui/Message'
 
 function MyOrdersTable() {
   const { data: orders, isLoading } = useMyOrders()
@@ -13,14 +13,10 @@ function MyOrdersTable() {
   if (orders.length === 0)
     return (
       <div>
-        <p className="text-lg text-dark-500">
-          It look like you don't have any order yet !
-        </p>
-        <button className="mt-2">
-          <Link to="/cart" className="font-medium underline text-primary-500">
-            <span>Order now</span>
-          </Link>
-        </button>
+        <Message
+          message="It look like you don't have any order yet !"
+          className="max-w-sm"
+        />
       </div>
     )
 

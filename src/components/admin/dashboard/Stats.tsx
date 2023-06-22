@@ -6,6 +6,7 @@ import {
 } from '@heroicons/react/24/outline'
 import Stat from './Stat'
 import { useStoreStats } from '../../../features/admin/dashboard/store-stats'
+import { formatNumber } from '../../../utils/helpers'
 
 const Stats = () => {
   const { data: stats } = useStoreStats()
@@ -15,7 +16,7 @@ const Stats = () => {
       <div className="grid grid-cols-4 gap-6">
         <Stat
           label="sales"
-          value={`$${stats.sales}`}
+          value={`$${formatNumber(stats.sales)}`}
           iconClass="text-green-600 bg-green-100"
           icon={BanknotesIcon}
         />

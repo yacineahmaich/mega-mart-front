@@ -36,8 +36,7 @@ export const useLogin = (
       queryClient.setQueryData(['user'], data.user)
       localStorage.setItem('ACCESS_TOKEN', data.token)
 
-      // navigate admin users to dashboard
-      data.user.isAdmin && navigate('/dashboard/products')
+      navigate('/account/profile')
     },
     ...options,
   })

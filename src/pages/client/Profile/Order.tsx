@@ -5,6 +5,7 @@ import {
   BanknotesIcon,
   CalendarDaysIcon,
   ClipboardDocumentListIcon,
+  CreditCardIcon,
   CurrencyDollarIcon,
   MapIcon,
   ShoppingCartIcon,
@@ -30,6 +31,16 @@ function Order() {
               Order <span className="text-sm">({order.id})</span>
             </span>
           </h3>
+
+          {order.status === 'unpaid' && (
+            <a
+              href={order.checkoutUrl}
+              className="px-5 py-1.5 text-white divide-x rounded cursor-pointer bg-primary-500"
+            >
+              <CreditCardIcon className="inline w-5 h-5 mr-2" />
+              <span className="pl-2">Pay now</span>
+            </a>
+          )}
         </div>
 
         <div className="grid grid-cols-2 p-6 text-sm font-medium border divide-x sm:rid-cols-3 gap-y-3 md:grid-cols-5 text-primary-500 ">
@@ -76,7 +87,10 @@ function Order() {
           const product = item.product
 
           return (
-            <article className="flex p-2 border rounded border-gray">
+            <article
+              key={item.id}
+              className="flex p-2 border rounded border-gray"
+            >
               <div>
                 <img
                   src={product.images[0].url}
@@ -86,7 +100,7 @@ function Order() {
               </div>
               <div className="flex flex-col py-2 pl-4">
                 <Link to={`/products/${product.slug}`}>
-                  <h3 className="text-sm font-medium text-dark-700">
+                  <h3 className="text-sm font-medium underline text-primary-600">
                     {product.name}
                   </h3>
                 </Link>

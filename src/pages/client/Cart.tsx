@@ -3,6 +3,7 @@ import spinner from '../../assets/icons/spinner.png'
 import { useCart } from '../../context/Cart'
 import Item from '../../components/client/cart/Item'
 import { useProductsByIds } from '../../features/client/products/useProductsByIds'
+import Message from '../../components/client/ui/Message'
 
 const Cart = () => {
   const { items, calcProductsTotalPrice } = useCart()
@@ -30,11 +31,7 @@ const Cart = () => {
           />
         </div>
       ) : products?.length === 0 ? (
-        <div className="max-w-full p-2 bg-warning-400 w-96">
-          <p className="text-sm font-semibold text-danger-500">
-            You cart is empty right now!
-          </p>
-        </div>
+        <Message message="You cart is empty right now!" className="max-w-sm" />
       ) : (
         <main className="relative flex flex-col h-full gap-12 md:flex-row">
           <div

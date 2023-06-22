@@ -95,5 +95,5 @@ interface Order {
   deliveredAt?: string
   date: string
   paidAt: string
-  // session: string
+  checkoutUrl: string
 }

@@ -5,6 +5,7 @@ import MiniCartFooter from './MiniCartFooter'
 import MinicartItems from './MinicartItems'
 import { useCart } from '../../../context/Cart'
 import { useProductsByIds } from '../../../features/client/products/useProductsByIds'
+import Message from '../ui/Message'
 
 type Props = {
   isOpen: boolean
@@ -34,11 +35,7 @@ const Cart: FC<Props> = ({ isOpen, onClose }) => {
       ) : (
         <>
           {products?.length === 0 ? (
-            <div className="p-2 bg-warning-400">
-              <p className="text-sm font-semibold text-danger-500">
-                You cart is empty right now!
-              </p>
-            </div>
+            <Message message="You cart is empty right now!" />
           ) : (
             <>
               <div className="relative px-5 py-3 overflow-x-hidden overflow-y-auto">
