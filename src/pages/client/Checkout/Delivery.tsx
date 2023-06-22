@@ -78,7 +78,7 @@ const Delivery = () => {
           </div>
 
           <div className="flex justify-end">
-            <Button variant="medium" className="max-w-xs">
+            <Button variant="medium" className="block w-full">
               Proced
             </Button>
           </div>

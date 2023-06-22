@@ -1,5 +1,5 @@
 import spinner from '../../../assets/icons/spinner.svg'
-import { Link, ScrollRestoration, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 import { Formik, Form, FormikValues } from 'formik'
 import { editProductSchema } from '../../../utils/validation/admin/product'
@@ -272,7 +272,6 @@ const EditProduct = () => {
           )}
         </Formik>
       </section>
-      <ScrollRestoration />
     </div>
   )
 }

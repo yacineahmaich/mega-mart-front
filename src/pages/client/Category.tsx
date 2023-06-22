@@ -12,27 +12,21 @@ const HomeCategory: FC = () => {
 
   const { data } = useCategoryProducts(slug)
 
+  const category = data?.products?.at(0)?.category?.name
+
   return (
     <div className="min-h-screen p-3 md:p-6">
-      {data.products.length === 0 ? (
-        <div>
-          <p>No products to show</p>
-        </div>
-      ) : (
-        <>
-          <p className="text-sm font-semibold sm:text-lg text-dark-700">
-            <ChevronDoubleRightIcon className="inline w-4 mr-1 align-middle" />
-            Explore our {data.products.at(0).category.name}
-            products
-          </p>
+      <p className="text-sm font-semibold sm:text-lg text-dark-700">
+        <ChevronDoubleRightIcon className="inline w-4 mr-1 align-middle" />
+        Explore our {category}
+        products
+      </p>
 
-          <section className="grid grid-cols-1 gap-y-3 md:gap-4 md:grid-cols-[250px_auto]">
-            <Sort />
-            <Filter />
-            <ListProducts />
-          </section>
-        </>
-      )}
+      <section className="grid grid-cols-1 gap-y-3 md:gap-4 md:grid-cols-[250px_auto]">
+        <Sort />
+        <Filter />
+        <ListProducts />
+      </section>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import { FC, useState, ChangeEvent, useEffect } from 'react'
 import DisclosureItem from '../../ui/DisclosureItem'
 import { useParams, useSearchParams } from 'react-router-dom'
-import { useMCategory } from '../../../../features/client/main-category/useMCategory'
+import { useMCategory } from '../../../../features/client/main-category/m-category'
 
 const CategoryFilter: FC = () => {
   const { slug } = useParams()
@@ -45,7 +45,7 @@ const CategoryFilter: FC = () => {
   return (
     <DisclosureItem title="Category">
       <ul className="space-y-2">
-        {data.categories?.map(cat => (
+        {data?.categories?.map(cat => (
           <li key={cat.id}>
             <label htmlFor={cat.name} className="space-x-3 cursor-pointer">
               <input

@@ -37,7 +37,7 @@ const OffersSlider = () => {
       <div className="absolute bottom-0 left-0 z-20 w-full h-20 bg-gradient-to-t from-white to-transparent"></div>
 
       <div>
-        {offers.map(offer => (
+        {offers?.map(offer => (
           <SwiperSlide key={offer.id}>
             <img
               src={offer.backdrop.url}

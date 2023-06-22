@@ -57,7 +57,7 @@ const MainCategoriesSlider = () => {
       wrapperClass="relative"
     >
       <div>
-        {categories.map(category => (
+        {categories?.map(category => (
           <SwiperSlide
             key={category.id}
             className="relative overflow-hidden border rounded-lg bg-white/20 border-gray"

@@ -37,7 +37,7 @@ export const useLogin = (
       localStorage.setItem('ACCESS_TOKEN', data.token)
 
       // navigate admin users to dashboard
-      data.user.isAdmin && navigate('/dashboard')
+      data.user.isAdmin && navigate('/dashboard/products')
     },
     ...options,
   })

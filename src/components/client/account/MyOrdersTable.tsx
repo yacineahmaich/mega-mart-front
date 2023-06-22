@@ -3,6 +3,7 @@ import { useMyOrders } from '../../../features/client/account/useMyOrders'
 import clsx from 'clsx'
 import Spinner from '../ui/Spinner'
 import moment from 'moment'
+import Badge from '../../admin/ui/Badge'
 
 function MyOrdersTable() {
   const { data: orders, isLoading } = useMyOrders()
@@ -42,7 +43,7 @@ function MyOrdersTable() {
               <th className="px-4 py-2">
                 <Link
                   to={order.id.toString()}
-                  className="font-medium underline text-dark-500"
+                  className="font-medium underline line-clamp-1 text-dark-500"
                 >
                   {order.id}
                 </Link>
@@ -51,10 +52,13 @@ function MyOrdersTable() {
               <td className="px-4 py-2">${order.totalPrice}</td>
               <td className="px-4 py-2 capitalize">
                 <span
-                  className={clsx('px-4 text-sm text-white rounded-full', {
-                    'bg-green-400': order.status === 'paid',
-                    'bg-danger-400': order.status === 'unpaid',
-                  })}
+                  className={clsx(
+                    'px-4 text-xs md:text-sm text-white rounded-full',
+                    {
+                      'bg-green-400': order.status === 'paid',
+                      'bg-danger-400': order.status === 'unpaid',
+                    }
+                  )}
                 >
                   {order.status}
                 </span>

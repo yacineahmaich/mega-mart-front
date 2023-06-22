@@ -1,3 +1,4 @@
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { FC } from 'react'
 
 type Props = {
@@ -12,9 +13,10 @@ const Error: FC<Props> = ({ retry, message }) => {
 
   return (
     <div className="mx-auto text-center">
-      <p className="mb-2 text-xl font-semibold text-dark-500">
-        <span className="font-bold text-danger-900">Oops !</span> Somthing Went
-        Wrong ! 😢
+      <p className="mb-2 text-xl font-semibold text-danger-900">
+        <ExclamationTriangleIcon className="inline w-6 mr-1" />
+        <span className="font-bold">Oops !</span>
+        <span className="ml-2 text-dark-500">Somthing Went Wrong !</span>
       </p>
       <p className="mb-3 text-dark-800">
         {message ? message : 'please check your connection . And try again'}

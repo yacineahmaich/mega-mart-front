@@ -1,4 +1,3 @@
-import { ScrollRestoration } from 'react-router-dom'
 import spinner from '../../assets/icons/spinner.png'
 import Checkout from '../../components/client/product/Checkout'
 import GeneralInfos from '../../components/client/product/GeneralInfos'
@@ -37,7 +36,6 @@ const ProductDetails = () => {
           </section>
         </>
       )}
-      <ScrollRestoration />
     </div>
   )
 }

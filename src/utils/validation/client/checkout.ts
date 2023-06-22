@@ -6,7 +6,9 @@ const phoneRegExp =
 
 export const checkoutSchema = Yup.object({
   name: Yup.string().required(),
-  phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid'),
+  phone: Yup.string()
+    .matches(phoneRegExp, 'Phone number is not valid')
+    .required(),
   email: Yup.string().email().required(),
   shippingAddress: Yup.string().required().label('Shipping Address'),
   note: Yup.string().required('Please leave a note here'),

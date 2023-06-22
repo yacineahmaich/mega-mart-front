@@ -1,5 +1,5 @@
 import { Formik, Form } from 'formik'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import FieldGroup from '../ui/FieldGroup'
 import { createReviewSchema } from '../../../utils/validation/client/review'
 import Button from '../ui/Button'
@@ -8,11 +8,16 @@ import ErrorMsg from '../../../pages/admin/ErrorMsg'
 import { useCreateReview } from '../../../features/client/products/useCreateReview'
 import { useParams } from 'react-router-dom'
 import { useProduct } from '../../../features/client/products/product'
+import { useGetUser } from '../../../features/auth/useGetUser'
+import AuthModal from '../ui/AuthModal'
 
 type Props = {
   children?: React.ReactNode
 }
 const CreateReview: FC<Props> = () => {
+  const { data: user } = useGetUser()
+  const [requireAuth, setRequireAuth] = useState(false)
+
   const { slug } = useParams()
   const { data: product } = useProduct(slug)
 
@@ -33,7 +38,14 @@ const CreateReview: FC<Props> = () => {
   }
 
   return (
-    <div className="mb-5">
+    <div className="relative mb-5">
+      <AuthModal isOpen={requireAuth} onClose={() => setRequireAuth(false)} />
+      {!user && (
+        <div
+          className="absolute inset-0 z-10"
+          onClick={() => setRequireAuth(true)}
+        ></div>
+      )}
       <Formik
         initialValues={initialValues}
         validationSchema={createReviewSchema}
@@ -62,7 +74,7 @@ const CreateReview: FC<Props> = () => {
             />
             <Button
               variant="medium"
-              className="block ml-auto -mt-4 px-14 w-fit"
+              className="block px-20 ml-auto -mt-4"
               isLoading={isLoading}
             >
               Submit

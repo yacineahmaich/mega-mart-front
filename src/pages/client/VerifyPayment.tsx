@@ -89,20 +89,19 @@ function VerifyPayment() {
         </svg>
       </span>
       <p className="font-medium text-center text-dark-600">
-        Congratulation You Order
+        <span>Congratulation You Order Paid succeflly.</span>
         <Link
           to={`/account/profile/my-orders/${order.id}`}
           className="mx-1 underline text-primary-600"
         >
           #{order.id}
         </Link>
-        Paid succeflly.
       </p>
 
-      <div className="flex gap-2">
+      <div className="flex gap-2 mt-4">
         <Button
           variant="small"
-          className="mt-4"
+          className="flex-1"
           onClick={() =>
             navigate('/account/profile/my-orders', { replace: true })
           }
@@ -111,7 +110,7 @@ function VerifyPayment() {
         </Button>
         <Button
           variant="small"
-          className="mt-4"
+          className="flex-1"
           onClick={() => navigate('/', { replace: true })}
         >
           Continue Shopping

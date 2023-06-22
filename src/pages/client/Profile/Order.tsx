@@ -32,7 +32,7 @@ function Order() {
           </h3>
         </div>
 
-        <div className="grid grid-cols-5 p-6 font-medium border divide-x text-primary-500">
+        <div className="grid grid-cols-2 p-6 text-sm font-medium border divide-x sm:rid-cols-3 gap-y-3 md:grid-cols-5 text-primary-500 ">
           <div className="text-center">
             <MapIcon className="inline w-6 h-6 mb-4" />
             <p>{order.delivery.shippingAddress}</p>
@@ -71,7 +71,7 @@ function Order() {
         </h3>
       </div>
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid gap-6 md:grid-cols-2">
         {order.items.map(item => {
           const product = item.product
 

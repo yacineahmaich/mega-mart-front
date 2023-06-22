@@ -61,6 +61,7 @@ function PaymentMethod() {
                   type: 'submit',
                 }}
                 disabled={!formik.values.method}
+                className="w-full"
               >
                 Proced
               </Button>
