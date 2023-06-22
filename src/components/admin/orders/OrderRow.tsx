@@ -3,6 +3,7 @@ import { CheckIcon } from '@heroicons/react/24/outline'
 import Actions from '../ui/Actions'
 import { useToggleDelivered } from '../../../features/admin/orders/useToggleDelivered'
 import loader from '../../../assets/icons/loader.svg'
+import Badge from '../ui/Badge'
 
 type Props = {
   order: Order
@@ -26,16 +27,16 @@ const OrderRow: FC<Props> = ({ order }) => {
       <td className="px-6 py-3">{order.totalPrice}</td>
       <td className="px-6 py-3">
         {order.status === 'paid' ? (
-          <p className="font-medium text-green-400">Paid</p>
+          <Badge variant="success">Paid</Badge>
         ) : (
-          <p className="font-medium text-danger-400">Unpaid</p>
+          <Badge variant="danger">Unaid</Badge>
         )}
       </td>
       <td className="px-6 py-3">
         {order.delivered ? (
-          <p className="font-medium text-green-400">Delivered</p>
+          <Badge variant="success">Delivered</Badge>
         ) : (
-          <p className="font-medium text-danger-400">Not Delivered</p>
+          <Badge variant="danger">Not Delivered</Badge>
         )}
       </td>
 

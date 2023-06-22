@@ -1,5 +1,4 @@
-import { PlusCircleIcon } from '@heroicons/react/24/solid'
-import { Link, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 
 import Loader from '../Loader'
 import Error from '../Error'

@@ -8,8 +8,8 @@ const DefaultLayout = () => {
     <div>
       {isLoading || isError ? null : (
         <>
-          <Outlet />
           <ScrollRestoration />
+          <Outlet />
         </>
       )}
     </div>

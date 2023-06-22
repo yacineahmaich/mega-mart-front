@@ -9,7 +9,7 @@ const Badge: FC<Props> = ({ children, className, variant = 'regular' }) => {
   return (
     <span
       className={clsx(
-        'px-6 py-0.5 font-medium rounded-full text-sm',
+        'px-6 py-0.5 font-medium rounded-full text-sm whitespace-nowrap',
         {
           'bg-green-100 text-green-500': variant === 'success',
           'bg-red-100 text-red-500': variant === 'danger',

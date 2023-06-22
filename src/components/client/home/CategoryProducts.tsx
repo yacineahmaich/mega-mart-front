@@ -51,7 +51,7 @@ const CategoryProducts: FC<Props> = ({ category }) => {
       {hasNextPage && !isFetchingNextPage && (
         <div className="flex justify-center w-full mt-10">
           <button
-            className="px-10 py-2 border md:px-20 group border-primary-500 text-primary-500"
+            className="px-10 py-2 border rounded-full md:px-20 group border-primary-500 text-primary-500"
             onClick={() => fetchNextPage()}
             disabled={isFetchingNextPage}
           >

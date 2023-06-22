@@ -5,10 +5,11 @@ import { useGetUser } from '../../features/auth/useGetUser'
 
 const AdminLayout = () => {
   const { data: user } = useGetUser()
+
   if (!user?.isAdmin) return <Navigate to="/" />
 
   return (
-    <div className="w-full h-screen pl-admin-sidebar">
+    <div className="w-full pl-admin-sidebar">
       <SideBar />
       <Navbar />
       <main className="w-full min-h-screen p-6 bg-light">
