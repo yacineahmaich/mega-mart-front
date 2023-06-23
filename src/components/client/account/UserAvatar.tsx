@@ -28,7 +28,7 @@ const UserAvatar: FC<Props> = ({ user }) => {
           }
         )}
       >
-        {isLoading && <Spinner className="fill-light" />}
+        {isLoading && <Spinner className="fill-gray" />}
         {!isLoading && (
           <>
             <label

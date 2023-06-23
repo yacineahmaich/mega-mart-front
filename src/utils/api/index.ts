@@ -1,10 +1,9 @@
 import axios, { AxiosError } from 'axios'
+import { API_BASE_URL } from '../config'
 
 export function createHttpClient(prefix: string = null) {
   const api = axios.create({
-    baseURL: `${import.meta.env.VITE_APP_API_BASEURL}${
-      prefix ? '/' + prefix : ''
-    }`,
+    baseURL: `${API_BASE_URL}${prefix ? '/' + prefix : ''}`,
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',

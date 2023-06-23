@@ -31,7 +31,7 @@ export const useUploadAvatar = (
     mutationFn: uploadAvatar,
     retry: false,
     onSuccess: () => {
-      queryClient.invalidateQueries(['user'])
+      queryClient.fetchQuery(['user'])
     },
     ...options,
   })
