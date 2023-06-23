@@ -33,13 +33,15 @@ function Order() {
           </h3>
 
           {order.status === 'unpaid' && (
-            <a
-              href={order.checkoutUrl}
-              className="px-5 py-1.5 text-white divide-x rounded cursor-pointer bg-primary-500"
-            >
-              <CreditCardIcon className="inline w-5 h-5 mr-2" />
-              <span className="pl-2">Pay now</span>
-            </a>
+            <form action={order.checkoutUrl} method="GET" target="_blank">
+              <button
+                // href={order.checkoutUrl}
+                className="px-5 py-1.5 text-white divide-x rounded cursor-pointer bg-primary-500"
+              >
+                <CreditCardIcon className="inline w-5 h-5 mr-2" />
+                <span className="pl-2">Pay now</span>
+              </button>
+            </form>
           )}
         </div>
 

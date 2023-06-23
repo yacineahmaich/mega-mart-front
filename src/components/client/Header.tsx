@@ -16,7 +16,7 @@ const Header: FC = () => {
       <section className="w-full px-3 md:px-6 bg-primary-900">
         <div className="flex justify-between py-2 text-sm font-medium text-light">
           <a href="tel:+212667313710">+212667313710</a>
-          <a href="mailto:jersy.shoop@gmail.com">jersy.shoop@gmail.com</a>
+          <a href="mailto:jersy.shoop@gmail.com">megamart.shoop@gmail.com</a>
         </div>
       </section>
 
@@ -25,8 +25,8 @@ const Header: FC = () => {
           <div>
             <Link to="/">
               <h1 className="text-xl font-bold text-white">
-                Jersy Hub
-                <span className="sr-only">Jersy Hub</span>
+                Mega Mart
+                <span className="sr-only">Mega Mart</span>
               </h1>
             </Link>
           </div>

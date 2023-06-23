@@ -21,7 +21,7 @@ function MyOrdersTable() {
     )
 
   return (
-    <section>
+    <section className="overflow-x-scroll">
       <table className="w-full mt-4 text-left border border-gray">
         <thead className="text-xs uppercase bg-light text-primary-600">
           <tr>
@@ -33,7 +33,7 @@ function MyOrdersTable() {
             <th className="px-4 py-2">items</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="text-sm md:text-base">
           {orders.map(order => (
             <tr key={order.id}>
               <th className="px-4 py-2">
@@ -49,7 +49,7 @@ function MyOrdersTable() {
               <td className="px-4 py-2 capitalize">
                 <span
                   className={clsx(
-                    'px-4 text-xs md:text-sm text-white rounded-full',
+                    'px-4 text-xs md:text-sm whitespace-nowrap text-white rounded-full',
                     {
                       'bg-green-400': order.status === 'paid',
                       'bg-danger-400': order.status === 'unpaid',
@@ -61,10 +61,13 @@ function MyOrdersTable() {
               </td>
               <td className="px-4 py-2">
                 <span
-                  className={clsx('px-4 text-sm text-white rounded-full', {
-                    'bg-green-400': order.delivered,
-                    'bg-danger-400': !order.delivered,
-                  })}
+                  className={clsx(
+                    'px-4 text-sm whitespace-nowrap text-white rounded-full',
+                    {
+                      'bg-green-400': order.delivered,
+                      'bg-danger-400': !order.delivered,
+                    }
+                  )}
                 >
                   {order.delivered
                     ? `Delivered ${moment(order.deliveredAt).fromNow()}`

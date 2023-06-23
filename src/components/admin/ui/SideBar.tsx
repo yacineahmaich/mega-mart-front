@@ -59,7 +59,7 @@ const SideBar = () => {
     <div className="fixed top-0 left-0 z-10 flex flex-col h-screen border-r shadow w-admin-sidebar border-gray">
       <div className="py-6 text-center border-b border-gray">
         <Link to="/">
-          <h1 className="text-lg font-bold text-primary-400">Jersy - Hub</h1>
+          <h1 className="text-lg font-bold text-primary-400">Mega - Mart</h1>
         </Link>
       </div>
       <aside className="flex-1 w-full px-4 overflow-y-auto">

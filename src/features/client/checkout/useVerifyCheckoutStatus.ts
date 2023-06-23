@@ -2,7 +2,7 @@ import api from '../../../utils/api/client'
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 
 const verifyPaiment = async (session: string) => {
-  const response = await api.get('/checkout/verify-paiment', {
+  const response = await api.get('/checkout/success', {
     params: {
       session,
     },

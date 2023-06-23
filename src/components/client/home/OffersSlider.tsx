@@ -6,6 +6,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
 import { useRef } from 'react'
 import { SwiperSlide } from 'swiper/react'
 import { useOffers } from '../../../features/client/home/offers'
+import { Link } from 'react-router-dom'
 
 const OffersSlider = () => {
   const prevRef = useRef()
@@ -39,11 +40,13 @@ const OffersSlider = () => {
       <div>
         {offers?.map(offer => (
           <SwiperSlide key={offer.id}>
-            <img
-              src={offer.backdrop.url}
-              alt={offer.backdrop.name}
-              className="object-cover w-full h-full"
-            />
+            <Link to={`/products/${offer.product.slug}`}>
+              <img
+                src={offer.backdrop.url}
+                alt={offer.backdrop.name}
+                className="object-cover w-full h-full"
+              />
+            </Link>
           </SwiperSlide>
         ))}
       </div>
