@@ -12,7 +12,7 @@ const Error: FC<Props> = ({ retry, message }) => {
   }
 
   return (
-    <div className="mx-auto text-center">
+    <div className="mx-auto my-6 text-center">
       <p className="mb-2 text-xl font-semibold text-danger-900">
         <ExclamationTriangleIcon className="inline w-6 mr-1" />
         <span className="font-bold">Oops !</span>

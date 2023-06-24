@@ -4,20 +4,21 @@ import clsx from 'clsx'
 import Spinner from '../ui/Spinner'
 import moment from 'moment'
 import Message from '../ui/Message'
+import Error from '../ui/Error'
 
 function MyOrdersTable() {
-  const { data: orders, isLoading } = useMyOrders()
+  const { data: orders, isLoading, isError } = useMyOrders()
 
   if (isLoading) return <Spinner />
 
+  if (isError) return <Error message="Failed to load orders" />
+
   if (orders.length === 0)
     return (
-      <div>
-        <Message
-          message="It look like you don't have any order yet !"
-          className="max-w-sm"
-        />
-      </div>
+      <Message
+        message="It look like you don't have any order yet !"
+        className="max-w-sm"
+      />
     )
 
   return (

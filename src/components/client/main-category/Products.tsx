@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useMCategory } from '../../../features/client/main-category/m-category'
 import CategoryProducts from './CategoryProducts'
 
-const ProductsSection = () => {
+const Products = () => {
   const { slug } = useParams()
   const { data: mainCategory } = useMCategory(slug)
 
@@ -17,4 +17,4 @@ const ProductsSection = () => {
   )
 }
 
-export default ProductsSection
+export default Products

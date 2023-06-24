@@ -27,6 +27,7 @@ const Checkout = () => {
 
   const handleUpdateCart = () => {
     changeQuantity(product.id, quantity)
+    navigate('/cart')
   }
 
   const handleAddToCart = () => {

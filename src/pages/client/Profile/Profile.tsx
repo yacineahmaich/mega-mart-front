@@ -5,8 +5,6 @@ import Error from '../../../components/client/ui/Error'
 const Profile = () => {
   const { data: profile, isLoading, isError, refetch } = useProfile()
 
-  if (isError) return <Error retry={refetch} />
-
   return (
     <div className="space-y-8">
       <h3 className="text-2xl font-bold">
@@ -14,7 +12,9 @@ const Profile = () => {
         <span className="align-middle">Profile</span>
       </h3>
 
-      {isLoading ? (
+      {isError ? (
+        <Error retry={refetch} message="Failed to load profile data" />
+      ) : isLoading ? (
         <Spinner />
       ) : (
         <div className="flex border divide-x divide-gray border-gray">

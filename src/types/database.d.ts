@@ -9,7 +9,6 @@ interface Product {
   category: Category
   images: Image[]
   totalReviews: number
-  // reviews: Review[]
   discount?: Discount
   offer?: Offer
 }
@@ -20,7 +19,7 @@ interface Category {
   slug: string
   description: string
   totalProducts: number
-  products?: Product[] // Specific to Category
+  products?: Product[]
   image: Image
   parentCategory: MainCategory
 }

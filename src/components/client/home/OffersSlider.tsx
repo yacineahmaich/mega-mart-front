@@ -1,5 +1,5 @@
 import { Swiper } from 'swiper/react'
-import { Navigation } from 'swiper'
+import { Navigation, Autoplay } from 'swiper'
 
 import 'swiper/css'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
@@ -17,11 +17,15 @@ const OffersSlider = () => {
   return (
     <Swiper
       slidesPerView={1}
-      modules={[Navigation]}
+      modules={[Navigation, Autoplay]}
       loop
       navigation={{
         prevEl: prevRef.current ? prevRef.current : undefined,
         nextEl: nextRef.current ? nextRef.current : undefined,
+      }}
+      autoplay={{
+        delay: 3000,
+        disableOnInteraction: true,
       }}
       onInit={swiper => {
         // eslint-disable-next-line
@@ -52,11 +56,17 @@ const OffersSlider = () => {
       </div>
 
       <div className="absolute inset-0 z-10 items-center justify-between hidden w-full h-full p-3 pointer-events-none group-hover:flex">
-        <button ref={prevRef} className="p-2 rounded-full pointer-events-auto">
-          <ChevronLeftIcon className="w-8 h-8 text-light drop-shadow-lg" />
+        <button
+          ref={prevRef}
+          className="p-2 rounded-full shadow pointer-events-auto bg-white/20"
+        >
+          <ChevronLeftIcon className="w-6 h-6 text-white -translate-x-px drop-shadow-lg" />
         </button>
-        <button ref={nextRef} className="p-2 rounded-full pointer-events-auto">
-          <ChevronRightIcon className="w-8 h-8 text-light drop-shadow-lg" />
+        <button
+          ref={nextRef}
+          className="p-2 rounded-full shadow pointer-events-auto bg-white/40"
+        >
+          <ChevronRightIcon className="w-6 h-6 text-white translate-x-px drop-shadow-lg" />
         </button>
       </div>
     </Swiper>

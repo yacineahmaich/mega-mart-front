@@ -1,5 +1,5 @@
 import { useMcategories } from '../../../features/client/main-category/m-categories'
-import CategoryProducts from './CategoryProducts'
+import MainCategoryProducts from './MainCategoryProducts'
 import SubCategories from './SubCategories'
 
 const Products = () => {
@@ -9,7 +9,7 @@ const Products = () => {
     <main>
       {mainCategories.map(category => (
         <div className="p-2 space-y-10 md:p-6" key={category.id}>
-          <CategoryProducts category={category} />
+          <MainCategoryProducts category={category} />
           <SubCategories category={category} />
         </div>
       ))}

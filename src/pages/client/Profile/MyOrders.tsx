@@ -5,13 +5,15 @@ import MyOrdersTable from '../../../components/client/account/MyOrdersTable'
 const MyOrders = () => {
   const { data: orders } = useMyOrders()
 
+  const totalOrders = orders?.length ?? 0
+
   return (
     <div>
       <h3 className="mb-5 text-2xl font-bold">
         <ShoppingCartIcon className="inline w-6 h-6 mr-2" />
         <span className="align-middle">My Orders</span>
         <span className="ml-1 text-sm text-dark-500">
-          (<span>{orders?.length ?? 0}</span>)
+          (<span>{totalOrders}</span>)
         </span>
       </h3>
 

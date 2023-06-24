@@ -39,7 +39,7 @@ const Item: FC<Props> = ({ product }) => {
           </p>
           <div className="space-x-2">
             <button
-              className="w-24 py-1 text-sm font-medium transition-colors border rounded-full border-primary-600 text-dark-700 active:ring-2 active:ring-primary-500 active:ring-offset-1 hover:bg-primary-600 hover:text-white"
+              className="w-24 py-1 text-sm font-medium transition-colors border rounded-full border-primary-600 text-dark-700 active:ring-2 active:ring-primary-500 active:ring-offset-1"
               onClick={() => setIsConfirmOpen(false)}
             >
               Cancel
@@ -106,7 +106,7 @@ const Item: FC<Props> = ({ product }) => {
 
       <div className="flex flex-col items-end justify-between ml-auto">
         <button onClick={() => setIsConfirmOpen(true)}>
-          <TrashIcon className="w-6 h-6 text-danger-300 hover:text-danger-500" />
+          <TrashIcon className="w-5 h-5 text-danger-100 hover:text-danger-300" />
         </button>
 
         <div className="flex items-center gap-1 text-primary-800">

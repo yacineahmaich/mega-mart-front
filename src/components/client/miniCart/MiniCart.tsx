@@ -6,6 +6,7 @@ import MinicartItems from './MinicartItems'
 import { useCart } from '../../../context/Cart'
 import { useProductsByIds } from '../../../features/client/products/useProductsByIds'
 import Message from '../ui/Message'
+import Spinner from '../ui/Spinner'
 
 type Props = {
   isOpen: boolean
@@ -22,19 +23,15 @@ const Cart: FC<Props> = ({ isOpen, onClose }) => {
     productIds: [...Object.keys(items)],
   })
 
+  const totalProducts = products?.length ?? 0
+
   return (
     <Sheet title="Cart" isOpen={isOpen} onClose={onClose}>
       {isLoading ? (
-        <div>
-          <img
-            src={spinner}
-            alt="spinner"
-            className="w-4 h-4 mx-auto animate-spin"
-          />
-        </div>
+        <Spinner className="mt-8" />
       ) : (
         <>
-          {products?.length === 0 ? (
+          {totalProducts === 0 ? (
             <Message message="You cart is empty right now!" />
           ) : (
             <>

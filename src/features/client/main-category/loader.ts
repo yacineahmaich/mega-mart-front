@@ -4,7 +4,7 @@ import { query as mCategoryQuery } from './m-category'
 const loader =
   (queryClient: QueryClient) =>
   async ({ params }) => {
-    return Promise.all([
+    return Promise.allSettled([
       queryClient.ensureQueryData(mCategoryQuery(params.slug)),
     ])
   }

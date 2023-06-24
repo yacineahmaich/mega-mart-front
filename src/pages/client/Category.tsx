@@ -9,17 +9,17 @@ import { useCategoryProducts } from '../../features/client/products/category-pro
 
 const HomeCategory: FC = () => {
   const { slug } = useParams()
-
   const { data } = useCategoryProducts(slug)
 
   const category = data?.products?.at(0)?.category?.name
 
   return (
     <div className="min-h-screen p-3 md:p-6">
-      <p className="text-sm font-semibold sm:text-lg text-dark-700">
+      <p className="text-sm sm:text-lg text-dark-500">
         <ChevronDoubleRightIcon className="inline w-4 mr-1 align-middle" />
-        Explore our {category}
-        products
+        <span>
+          Explore <strong>{category}</strong>
+        </span>
       </p>
 
       <section className="grid grid-cols-1 gap-y-3 md:gap-4 md:grid-cols-[250px_auto]">

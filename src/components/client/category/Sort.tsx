@@ -1,28 +1,17 @@
 import { ChangeEvent, FC } from 'react'
-import FilterModalButton from './FilterModalButton'
+import {
+  CATEGORY_PRODUCTS_PER_PAGE_OPTIONS,
+  CATEGORY_PRODUCTS_SORT_OPTIONS,
+} from '../../../utils/contants'
 import { useSearchParams } from 'react-router-dom'
-
-const sortOptions = [
-  { label: 'Sort By', value: '' },
-  { label: 'Product Name', value: 'name' },
-  { label: 'Price Desc', value: 'price-desc' },
-  { label: 'Price Asc', value: 'price-asc' },
-  { label: 'Newest', value: 'newest' },
-  { label: 'Oldest', value: 'oldest' },
-]
-const productsPerPageOptions = [
-  { label: '10 article per page', value: '' },
-  { label: '15 article per page', value: '15' },
-  { label: '20 article per page', value: '20' },
-]
 
 const Sort: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams()
 
-  const currentSortOption = sortOptions.find(
+  const currentSortOption = CATEGORY_PRODUCTS_SORT_OPTIONS.find(
     op => op.value === searchParams.get('sort')
   )
-  const productPerPage = productsPerPageOptions.find(
+  const productPerPage = CATEGORY_PRODUCTS_PER_PAGE_OPTIONS.find(
     op => op.value === searchParams.get('limit')
   )
 
@@ -60,20 +49,19 @@ const Sort: FC = () => {
         onChange={handleProdutPerPageChange}
         defaultValue={productPerPage?.value ?? 10}
       >
-        {productsPerPageOptions.map((op, idx) => (
+        {CATEGORY_PRODUCTS_PER_PAGE_OPTIONS.map((op, idx) => (
           <option key={idx} value={op.value}>
             {op.label}
           </option>
         ))}
       </select>
-      <FilterModalButton />
 
       <select
         className="flex items-center justify-between w-auto py-2 m-0 text-xs text-white border rounded-full md:py-3 md:rounded-lg focus:ring-0 focus:border-dark-500 form-select border-gray bg-primary-600 md:bg-light md:w-52 md:text-dark-600"
         onChange={handleFilterChange}
         defaultValue={currentSortOption?.value ?? null}
       >
-        {sortOptions.map((op, idx) => (
+        {CATEGORY_PRODUCTS_SORT_OPTIONS.map((op, idx) => (
           <option key={idx} value={op.value}>
             {op.label}
           </option>

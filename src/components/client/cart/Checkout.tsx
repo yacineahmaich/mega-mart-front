@@ -1,9 +1,15 @@
 import { FC, useState } from 'react'
-import { BookOpenIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
+import {
+  ArrowLongRightIcon,
+  ArrowRightIcon,
+  BookOpenIcon,
+  ShieldCheckIcon,
+} from '@heroicons/react/24/outline'
 import { HandThumbUpIcon, TruckIcon } from '@heroicons/react/24/solid'
 import { useNavigate } from 'react-router-dom'
 import AuthModal from '../ui/AuthModal'
 import { useGetUser } from '../../../features/auth/useGetUser'
+import Button from '../ui/Button'
 
 type Props = {
   totalProducts: number
@@ -24,7 +30,7 @@ const Checkout: FC<Props> = ({ totalProducts, totalAmount }) => {
   }
 
   return (
-    <div className="flex flex-col w-full gap-6 ml-auto md:w-1/3 right-6">
+    <div className="flex flex-col order-1 w-full gap-6 ml-auto md:order-2 md:w-1/3 right-6">
       <article className="p-3 bg-white border divide-y rounded-lg divide-gray border-gray">
         <div className="flex items-center justify-between py-3 text-dark-700">
           <span className="font-medium text-dark-600">Total products</span>
@@ -37,12 +43,13 @@ const Checkout: FC<Props> = ({ totalProducts, totalAmount }) => {
           <span>${totalAmount}</span>
         </div>
       </article>
-      <button
-        className="py-3 font-semibold text-center text-white rounded-full hover:bg-primary-700 bg-primary-600"
+      <Button
+        variant="medium"
+        className="rounded-full"
         onClick={handleCheckout}
       >
-        Checkout
-      </button>
+        <span>Checkout</span>
+      </Button>
 
       <AuthModal
         isOpen={isAuthModalOpen}

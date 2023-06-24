@@ -25,7 +25,7 @@ const ExploreCategories = () => {
       wrapperClass="p-3 md:p-6"
     >
       {mainCategory.categories.map(category => (
-        <SwiperSlide key={category.id}>
+        <SwiperSlide key={category.id} className="group">
           <Link to={`/mc/${mainCategory.slug}/category/${category.slug}`}>
             <article
               className="relative mx-auto overflow-hidden rounded-full w-44 h-44 md:w-48 md:h-48 bg-light"
@@ -34,7 +34,7 @@ const ExploreCategories = () => {
               <img
                 src={category.image.url}
                 alt={category.image.name}
-                className="object-cover w-full h-full"
+                className="object-cover w-full h-full transition-transform duration-200 group-hover:-rotate-3 group-hover:scale-105"
               />
             </article>
             <h3 className="mt-3 text-sm font-medium text-center text-dark-600">

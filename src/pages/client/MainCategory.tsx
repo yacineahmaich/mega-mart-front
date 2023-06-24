@@ -2,21 +2,22 @@ import { useParams } from 'react-router-dom'
 import { useMCategory } from '../../features/client/main-category/m-category'
 import Cover from '../../components/client/main-category/Cover'
 import ExploreCategories from '../../components/client/main-category/ExploreCategories'
-import ProductsSection from '../../components/client/main-category/ProductsSection'
+import Products from '../../components/client/main-category/Products'
+import Error from '../../components/client/ui/Error'
 
 const MainCategory = () => {
   const { slug } = useParams()
-  const { isLoading } = useMCategory(slug)
+  const { isError } = useMCategory(slug)
 
-  if (isLoading) return <div></div>
+  if (isError) return <Error message="Failed to load data" />
 
   return (
     <div>
       <Cover />
-      <main className="mx-3 -mt-20 md:mx-6">
+      <div className="mx-3 -mt-20 md:mx-6">
         <ExploreCategories />
-        <ProductsSection />
-      </main>
+        <Products />
+      </div>
     </div>
   )
 }

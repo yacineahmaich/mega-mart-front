@@ -4,7 +4,7 @@ import { query as categoryProductsQuery } from '../products/category-products'
 const loader =
   (queryClient: QueryClient) =>
   async ({ params }) => {
-    return Promise.all([
+    return Promise.allSettled([
       queryClient.ensureQueryData(categoryProductsQuery(params.slug)),
     ])
   }
