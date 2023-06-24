@@ -67,9 +67,7 @@ const MainCategoryProducts: FC<Props> = ({ category }) => {
             onClick={() => fetchNextPage()}
             disabled={isFetchingNextPage}
           >
-            <span className="mr-2 group-disabled:no-underline group-hover:underline">
-              Load more {isFetchingNextPage && '...'}
-            </span>
+            <span>Load more {isFetchingNextPage && '...'}</span>
           </button>
         </div>
       )}
