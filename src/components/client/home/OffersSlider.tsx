@@ -5,14 +5,16 @@ import 'swiper/css'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
 import { useRef } from 'react'
 import { SwiperSlide } from 'swiper/react'
-import { useOffers } from '../../../features/client/home/offers'
 import { Link } from 'react-router-dom'
+import { useFeed } from '../../../features/client/home/feed'
 
 const OffersSlider = () => {
   const prevRef = useRef()
   const nextRef = useRef()
 
-  const { data: offers } = useOffers()
+  const {
+    data: { offers },
+  } = useFeed()
 
   return (
     <Swiper

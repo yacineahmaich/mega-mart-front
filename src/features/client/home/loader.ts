@@ -1,13 +1,9 @@
 import { QueryClient } from '@tanstack/react-query'
 
-import { query as offersQuery } from './offers'
-import { query as mCategoriesQuery } from '../main-category/m-categories'
+import { query as feedQuery } from './feed'
 
 const loader = (queryClient: QueryClient) => async () => {
-  return Promise.allSettled([
-    queryClient.ensureQueryData(offersQuery()),
-    queryClient.ensureQueryData(mCategoriesQuery()),
-  ])
+  return Promise.allSettled([queryClient.ensureQueryData(feedQuery())])
 }
 
 export default loader

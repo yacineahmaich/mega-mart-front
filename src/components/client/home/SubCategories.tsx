@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 type Props = {
-  category: MainCategory
+  categories: Category[]
 }
 
-const SubCategories: FC<Props> = ({ category }) => {
+const SubCategories: FC<Props> = ({ categories }) => {
   return (
     <Swiper
       slidesPerView={4}
@@ -24,7 +24,7 @@ const SubCategories: FC<Props> = ({ category }) => {
       }}
       className="select-none"
     >
-      {category.categories.map(category => (
+      {categories.map(category => (
         <SwiperSlide key={category.id}>
           <Link
             to={`/mc/${category.parentCategory.slug}/category/${category.slug}`}

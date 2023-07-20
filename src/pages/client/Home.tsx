@@ -2,10 +2,10 @@ import MainCategoriesSlider from '../../components/client/home/MainCategoriesSli
 import OffersSlider from '../../components/client/home/OffersSlider'
 import Products from '../../components/client/home/Products'
 import Error from '../../components/client/ui/Error'
-import { useMcategories } from '../../features/client/main-category/m-categories'
+import { useFeed } from '../../features/client/home/feed'
 
 const Home = () => {
-  const { isError, refetch } = useMcategories()
+  const { isError, refetch } = useFeed()
 
   if (isError)
     return <Error message="Failed to load records!" retry={refetch} />
