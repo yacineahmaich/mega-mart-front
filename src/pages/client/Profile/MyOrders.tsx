@@ -1,10 +1,20 @@
 import { ShoppingCartIcon } from '@heroicons/react/24/solid'
 import { useMyOrders } from '../../../features/client/account/useMyOrders'
 import MyOrdersTable from '../../../components/client/account/MyOrdersTable'
+import { useCart } from '../../../context/Cart'
+import { useSearchParams } from 'react-router-dom'
 
 const MyOrders = () => {
-  const { data: orders } = useMyOrders()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const { clear } = useCart()
 
+  // clear client cart when canceling payment
+  if (searchParams.get('cancel')) {
+    clear()
+    setSearchParams('')
+  }
+
+  const { data: orders } = useMyOrders()
   const totalOrders = orders?.length ?? 0
 
   return (
