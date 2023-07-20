@@ -12,7 +12,7 @@ function PaymentMethod() {
     delivery: { isValid: isDeleveryValid },
     paymentMethod: { selectMethod, method },
   } = useCheckout()
-  if (!isDeleveryValid) return <Navigate to="/checkout" />
+  // if (!isDeleveryValid) return <Navigate to="/checkout" />
 
   const initialValues = {
     method,
@@ -25,7 +25,7 @@ function PaymentMethod() {
 
   return (
     <section>
-      <div className="max-w-sm p-6 mx-auto mt-5 border rounded-lg shadow-lg border-gray">
+      <div className="max-w-sm p-6 mx-auto border rounded-lg border-gray">
         <Formik
           initialValues={initialValues}
           onSubmit={onSubmit}
@@ -33,11 +33,6 @@ function PaymentMethod() {
         >
           {formik => (
             <Form className="space-y-6">
-              <div className="relative">
-                <label className={'block mb-2 font-bold w-fit text-dark-500'}>
-                  Select Payment Method
-                </label>
-              </div>
               <Radio
                 label="Debit Card"
                 name="method"

@@ -40,10 +40,7 @@ import Discounts from './pages/admin/discount/Discounts'
 import CreateDiscount from './pages/admin/discount/CreateDiscount'
 import EditDiscount from './pages/admin/discount/EditDiscount'
 import EditOffer from './pages/admin/offer/EditOffer'
-import CheckoutLayout from './pages/client/Checkout/CheckoutLayout'
-import PlaceOrder from './pages/client/Checkout/PlaceOrder'
-import Delivery from './pages/client/Checkout/Delivery'
-import PaymentMethod from './pages/client/Checkout/PaymentMethod'
+import Checkout from './pages/client/Checkout'
 import VerifyPayment from './pages/client/VerifyPayment'
 import Order from './pages/client/Profile/Order'
 import OrderLayout from './pages/admin/order/OrderLayout'
@@ -61,25 +58,6 @@ const router = createBrowserRouter([
     path: '/',
     element: <DefaultLayout />,
     children: [
-      // Checkout
-      {
-        path: 'checkout',
-        element: <CheckoutLayout />,
-        children: [
-          {
-            index: true,
-            element: <Delivery />,
-          },
-          {
-            path: 'payment-method',
-            element: <PaymentMethod />,
-          },
-          {
-            path: 'place-order',
-            element: <PlaceOrder />,
-          },
-        ],
-      },
       // Client - Routes
       {
         path: '/',
@@ -161,6 +139,11 @@ const router = createBrowserRouter([
             element: <NotFound backUrl="/" backText="Back Home" />,
           },
         ],
+      },
+      // Checkout
+      {
+        path: 'checkout',
+        element: <Checkout />,
       },
       // Admin - Routes
       {

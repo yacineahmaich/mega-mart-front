@@ -10,10 +10,10 @@ const PlaceOrder = () => {
   } = useCheckout()
 
   // check if previous step isValid
-  if (!isValid) return <Navigate to="/checkout/payment-method" />
+  // if (!isValid) return <Navigate to="/checkout/payment-method" />
   return (
-    <section className="relativep-3 md:p-6">
-      <div className="grid grid-cols-2 gap-8 ">
+    <section className="relative p-3 lg:p-6">
+      <div className="grid md:gap-8 md:grid-cols-2 ">
         <div>
           <CheckoutSummary />
         </div>

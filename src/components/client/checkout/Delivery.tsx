@@ -27,14 +27,14 @@ const Delivery = () => {
   }
 
   return (
-    <section className="relative max-w-3xl p-3 mx-auto my-5 border rounded-lg shadow-lg md:p-6 border-gray">
+    <section className="relative max-w-xl p-3 mx-auto border rounded-lg border-gray">
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
         validationSchema={checkoutSchema}
       >
         <Form>
-          <div className="grid p-2 bg-white border-gray gap-x-6 md:grid-cols-2">
+          <div className="grid-cols-1 p-2 bg-white border-gray">
             <FieldGroup
               variant="small"
               label="Name"
