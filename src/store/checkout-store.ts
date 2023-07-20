@@ -16,9 +16,9 @@ export type DeliveryData = {
 }
 
 type CheckoutState = {
-  deliverey: DeliveryData
+  deliverey: DeliveryData | null
   procedDeliverey: (data: DeliveryData) => void
-  paymentMethod: PaymentMethods
+  paymentMethod: PaymentMethods | null
   procedPaymentMethod: (method: PaymentMethods) => void
   steps: {
     active: number
@@ -36,13 +36,14 @@ const useCheckoutStore = create<CheckoutState>()(
       active: 0,
       changeActiveStep: step =>
         set(state => {
-          if (step === 0) {
-            return { steps: { ...state.steps, active: step } }
-          } else if (step === 1 && state.deliverey) {
-            return { steps: { ...state.steps, active: step } }
-          } else if (step === 2 && state.paymentMethod) {
-            return { steps: { ...state.steps, active: step } }
+          if (step === 1 && !state.deliverey) {
+            return state
           }
+          if (step === 2 && !state.paymentMethod) {
+            return state
+          }
+
+          return { steps: { ...state.steps, active: step } }
         }),
     },
   }))
