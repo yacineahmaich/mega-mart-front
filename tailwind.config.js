@@ -7,7 +7,24 @@ export default {
         roboto: ['Roboto', 'sans-serif'],
       },
       screens: {
-        xs: '400',
+        xs: '460px',
+      },
+      width: {
+        minicart: '450px',
+        swiper: '414px',
+        'swiper-min': '300px',
+        'admin-sidebar': '220px',
+      },
+      height: {
+        header: '6rem',
+        minicart: '450px',
+        swiper: '414px',
+        'swiper-min': '300px',
+        'admin-navbar': '80px',
+      },
+      padding: {
+        'admin-sidebar': '220px',
+        'admin-navbar': '80px',
       },
       colors: {
         primary: {
@@ -59,10 +76,18 @@ export default {
           800: '#191919',
           700: '#333238',
           600: '#4C4C4C',
+          500: '#737278',
         },
-        gray: '#737278',
+        gray: '#e5e5e5',
+        // light: '#f5f5f5f5',
+        light: '#f9fafb',
       },
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [
+    require('@tailwindcss/forms')({
+      strategy: 'class',
+    }),
+    require('tailwindcss-animate'),
+  ],
 }

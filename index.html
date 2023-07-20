@@ -8,14 +8,60 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;600;700;900&display=swap"
       rel="stylesheet"
     />
     <!-- END GOOGLE FONTS -->
-    <title>Jersy Hub | Be game day ready with our football t-shirts</title>
+    <title>Mega Mart | Be game day ready with our football t-shirts</title>
+    <style>
+      body {
+        overflow: hidden;
+      }
+      .loader__wrapper {
+        font-family: Roboto;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+        z-index: 999999999;
+        background: white;
+      }
+      .loader__title {
+        font-size: 36px;
+        line-height: 40px !important;
+        font-weight: 600;
+      }
+      .loader__hightlight {
+        color: #13858f;
+      }
+      .loader__wait {
+        font-size: 14px;
+        line-height: 20px;
+        font-style: italic;
+        font-weight: 500;
+        color: #737278;
+      }
+    </style>
   </head>
   <body class="antialiased font-roboto">
+    <!-- page loader -->
+    <div id="loader">
+      <div class="loader__wrapper">
+        <h1 class="loader__title">
+          Welcome to
+          <span class="loader__hightlight">Mega Mart</span>
+        </h1>
+        <p class="loader__wait">wait loading to complete ...</p>
+        <img src="/src/assets/icons/loader.gif" alt="loader" />
+      </div>
+    </div>
     <div id="root"></div>
+    <div id="dialog"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
