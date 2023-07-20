@@ -19,7 +19,14 @@ const Stepper: FC<Props> = ({ activeStep, changeActiveStep }) => {
           steps={steps}
           activeStep={activeStep}
           circleTop={0}
-          defaultTitleColor={'#FFF'}
+          defaultTitleColor="#FFF"
+          activeColor="#1bbccb"
+          completeColor="#1bbccb"
+          defaultColor="#FFF"
+          activeTitleColor="#FFF"
+          completeTitleColor="#26d2e2"
+          circleFontColor="#17a0ad"
+          completeBarColor="#1bbccb"
         />
       </div>
     </header>
