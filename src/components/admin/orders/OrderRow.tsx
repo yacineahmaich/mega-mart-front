@@ -2,8 +2,7 @@ import { FC } from 'react'
 import { CheckIcon } from '@heroicons/react/24/outline'
 import Actions from '../ui/Actions'
 import { useToggleDelivered } from '../../../features/admin/orders/useToggleDelivered'
-import loader from '../../../assets/icons/loader.svg'
-import Badge from '../ui/Badge'
+import Badge from '../../common/Badge'
 
 type Props = {
   order: Order

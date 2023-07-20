@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import BlockLayout from './BlockLayout'
-import Badge from '../ui/Badge'
+import Badge from '../../common/Badge'
 import { useLatestOrders } from '../../../features/admin/dashboard/latest-orders'
 import { Link } from 'react-router-dom'
 type Props = {

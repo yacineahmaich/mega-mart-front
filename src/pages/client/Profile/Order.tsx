@@ -36,7 +36,7 @@ function Order() {
             <form action={order.checkoutUrl} method="GET" target="_blank">
               <button
                 // href={order.checkoutUrl}
-                className="px-5 py-1.5 text-white divide-x rounded cursor-pointer bg-primary-500"
+                className="px-5 py-1.5 text-white divide-x rounded cursor-pointer bg-primary-500 hover:bg-primary-600 transition-colors"
               >
                 <CreditCardIcon className="inline w-5 h-5 mr-2" />
                 <span className="pl-2">Pay now</span>
@@ -106,8 +106,8 @@ function Order() {
                     {product.name}
                   </h3>
                 </Link>
-                <div className="p-1 mt-auto text-xs font-bold border text-dark-500 w-fit">
-                  <span>X</span>
+                <div className="p-1 mt-auto text-xs font-bold border border-gray text-dark-500 w-fit">
+                  &times;
                   <span>{item.quantity}</span>
                 </div>
               </div>
