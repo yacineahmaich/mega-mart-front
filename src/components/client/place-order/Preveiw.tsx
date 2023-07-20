@@ -7,13 +7,11 @@ import {
   UserCircleIcon,
 } from '@heroicons/react/24/outline'
 import { useCart } from '../../../context/Cart'
-import { useCheckout } from '../../../context/Checkout'
 import { useProductsByIds } from '../../../features/client/products/useProductsByIds'
+import useCheckoutStore from '../../../store/checkout-store'
 
 function Preveiw() {
-  const {
-    delivery: { data },
-  } = useCheckout()
+  const { deliverey } = useCheckoutStore()
   const { items, calcProductsTotalPrice } = useCart()
   const { data: products, isLoading } = useProductsByIds({
     productIds: [...Object.keys(items)],
@@ -29,19 +27,19 @@ function Preveiw() {
       <div className="grid grid-cols-2 gap-4 text-sm">
         <div>
           <UserCircleIcon className="w-6 h-6 mb-2" />
-          <span>{data.name}</span>
+          <span>{deliverey?.name}</span>
         </div>
         <div>
           <AtSymbolIcon className="w-6 h-6 mb-2" />
-          <span>{data.email}</span>
+          <span>{deliverey?.email}</span>
         </div>
         <div>
           <PhoneIcon className="w-6 h-6 mb-2" />
-          <span>{data.phone}</span>
+          <span>{deliverey?.phone}</span>
         </div>
         <div>
           <MapPinIcon className="w-6 h-6 mb-2" />
-          <span>{data.shippingAddress}</span>
+          <span>{deliverey?.shippingAddress}</span>
         </div>
         <div className="flex flex-col">
           <CreditCardIcon className="w-6 h-6 mb-2" />

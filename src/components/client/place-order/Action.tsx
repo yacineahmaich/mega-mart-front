@@ -1,11 +1,9 @@
 import { useCart } from '../../../context/Cart'
 import { usePlaceOrder } from '../../../features/client/checkout/usePlaceOrder'
 import { useProductsByIds } from '../../../features/client/products/useProductsByIds'
-import loader from '../../../assets/icons/loader.svg'
-import clsx from 'clsx'
 import { toast } from 'react-hot-toast'
-import { useCheckout } from '../../../context/Checkout'
 import Button from '../ui/Button'
+import useCheckoutStore from '../../../store/checkout-store'
 
 function Action() {
   const { items, calcProductsTotalPrice } = useCart()
@@ -13,7 +11,7 @@ function Action() {
     productIds: [...Object.keys(items)],
   })
 
-  const { delivery } = useCheckout()
+  const { deliverey } = useCheckoutStore()
 
   const { mutate: placeOrder, isLoading: isPlacingOrder } = usePlaceOrder({
     onError: (error: Error) => {
@@ -36,8 +34,8 @@ function Action() {
   const totalToPay = calcProductsTotalPrice(products)
 
   const handlePlaceOrder = () => {
-    console.log({ cart: items, delivery: delivery.data })
-    placeOrder({ cart: items, delivery: delivery.data })
+    console.log({ cart: items, delivery: deliverey })
+    placeOrder({ cart: items, delivery: deliverey })
   }
 
   return (

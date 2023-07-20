@@ -1,26 +1,23 @@
-import { Navigate, useNavigate } from 'react-router-dom'
-import { PaymentMethods, useCheckout } from '../../../context/Checkout'
 import { Formik, Form } from 'formik'
 import Radio from '../../../components/client/ui/Radio'
 import Button from '../../../components/client/ui/Button'
 import { paymentMethodSchema } from '../../../utils/validation/client/checkout'
+import useCheckoutStore, { PaymentMethods } from '../../../store/checkout-store'
 
 function PaymentMethod() {
-  const navigate = useNavigate()
-  // check if previous step isValid
   const {
-    delivery: { isValid: isDeleveryValid },
-    paymentMethod: { selectMethod, method },
-  } = useCheckout()
-  // if (!isDeleveryValid) return <Navigate to="/checkout" />
+    paymentMethod,
+    procedPaymentMethod,
+    steps: { changeActiveStep },
+  } = useCheckoutStore()
 
   const initialValues = {
-    method,
+    method: paymentMethod,
   }
 
   const onSubmit = (values: typeof initialValues) => {
-    selectMethod(values.method as PaymentMethods)
-    navigate('/checkout/place-order')
+    procedPaymentMethod(values.method)
+    changeActiveStep(2)
   }
 
   return (

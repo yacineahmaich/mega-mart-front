@@ -1,29 +1,30 @@
-import { useNavigate } from 'react-router-dom'
 import { useGetUser } from '../../../features/auth/useGetUser'
 import { Formik, Form } from 'formik'
 import { checkoutSchema } from '../../../utils/validation/client/checkout'
 import FieldGroup from '../../../components/client/ui/FieldGroup'
 import Button from '../../../components/client/ui/Button'
-import { useCheckout } from '../../../context/Checkout'
+import useCheckoutStore from '../../../store/checkout-store'
 
 const Delivery = () => {
-  const navigate = useNavigate()
   const { data: user } = useGetUser()
+
   const {
-    delivery: { procedCheckout, data },
-  } = useCheckout()
+    procedDeliverey,
+    deliverey,
+    steps: { changeActiveStep },
+  } = useCheckoutStore()
 
   const initialValues = {
     name: user?.name,
-    phone: data?.phone,
+    phone: deliverey?.phone,
     email: user?.email,
-    shippingAddress: data?.shippingAddress,
-    note: data?.note,
+    shippingAddress: deliverey?.shippingAddress,
+    note: deliverey?.note,
   }
 
   const onSubmit = (values: typeof initialValues) => {
-    procedCheckout(values)
-    navigate('payment-method')
+    procedDeliverey(values)
+    changeActiveStep(1)
   }
 
   return (
