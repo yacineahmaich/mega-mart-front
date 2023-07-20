@@ -1,5 +1,5 @@
 import { FC, useMemo } from 'react'
-import spinner from '../../../assets/icons/spinner.png'
+import spinner from '../../../assets/icons/loader.gif'
 import { useCart } from '../../../context/Cart'
 import { useProductsByIds } from '../../../features/client/products/useProductsByIds'
 import Item from './Item'
@@ -35,11 +35,7 @@ const Products: FC<Props> = () => {
       </div>
       {isFetching && (
         <div className="absolute top-0 left-0 z-10 w-full h-full bg-white/60">
-          <img
-            src={spinner}
-            alt="spinner"
-            className="w-12 h-12 mx-auto mt-12 md:mt-16 lg:mt-24 animate-spin"
-          />
+          <img src={spinner} alt="spinner" className="mx-auto mt-4" />
         </div>
       )}
       {sortedProducts?.map(product => (
