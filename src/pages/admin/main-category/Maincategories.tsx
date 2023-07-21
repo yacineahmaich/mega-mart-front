@@ -1,7 +1,7 @@
 import { PlusCircleIcon } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom'
 import MainCategoriesTable from '../../../components/admin/main-categories/MainCategoriesTable'
-import { useMainCategories } from '../../../features/admin/main-categories/queries/useMainCategories'
+import { useMainCategories } from '../../../features/admin/main-categories/useMainCategories'
 import Loader from '../Loader'
 import Error from '../Error'
 

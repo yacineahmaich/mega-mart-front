@@ -7,8 +7,8 @@ import Loader from '../Loader'
 import Error from '../Error'
 import ImageInput from '../../../components/admin/ui/ImageInput'
 import FieldGroup from '../../../components/admin/ui/FieldGroup'
-import { useMainCategory } from '../../../features/admin/main-categories/queries/useMainCategory'
-import { useUpdateMainCategory } from '../../../features/admin/main-categories/mutations/useUpdateMainCategory'
+import { useMainCategory } from '../../../features/admin/main-categories/useMainCategory'
+import { useUpdateMainCategory } from '../../../features/admin/main-categories/useUpdateMainCategory'
 import { editMainCategorySchema } from '../../../utils/validation/admin/main-category'
 
 function EditMainCategory() {

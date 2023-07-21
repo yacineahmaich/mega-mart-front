@@ -1,8 +1,4 @@
-import {
-  UseMutationOptions,
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import api from '../../../utils/api/admin'
 import { useNavigate } from 'react-router-dom'
 
@@ -14,7 +10,10 @@ type Varaibales = {
   offerId: number
 }
 
-const updateOffer = async ({ offerData, offerId }: Varaibales) => {
+const updateOffer = async ({
+  offerData,
+  offerId,
+}: Varaibales): Promise<Offer> => {
   const response = await api.post(`/offers/${offerId}`, offerData, {
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -27,19 +26,15 @@ const updateOffer = async ({ offerData, offerId }: Varaibales) => {
   return response.data
 }
 
-export const useUpdateOffer = (
-  options: UseMutationOptions<Offer, unknown, Varaibales>
-) => {
+export const useUpdateOffer = () => {
   const navigate = useNavigate()
   const queryClient = useQueryClient()
 
-  return useMutation<Offer, unknown, Varaibales>({
+  return useMutation({
     mutationFn: updateOffer,
-    retry: false,
-    onSuccess(_, { offerId }) {
-      queryClient.invalidateQueries(['admin', 'offers', offerId.toString()])
+    onSuccess() {
+      queryClient.invalidateQueries(['admin', 'offers'])
       navigate('/dashboard/offers')
     },
-    ...options,
   })
 }

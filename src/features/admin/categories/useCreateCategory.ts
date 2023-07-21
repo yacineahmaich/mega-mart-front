@@ -1,5 +1,5 @@
-import api from '../../../../utils/api/admin'
-import { UseMutationOptions, useMutation } from '@tanstack/react-query'
+import api from '../../../utils/api/admin'
+import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 
 type Variables = {
@@ -9,7 +9,7 @@ type Variables = {
   image: File | null
 }
 
-const createCategory = async (categoryData: Variables) => {
+const createCategory = async (categoryData: Variables): Promise<Product> => {
   const response = await api.post('/categories', categoryData, {
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -19,12 +19,10 @@ const createCategory = async (categoryData: Variables) => {
   return response.data
 }
 
-export const useCreateCategory = (
-  options?: UseMutationOptions<Product, Error, Variables>
-) => {
+export const useCreateCategory = () => {
   const navigate = useNavigate()
 
-  return useMutation<Product, Error, Variables>({
+  return useMutation({
     mutationFn: createCategory,
     onSuccess() {
       navigate('/dashboard/categories')
@@ -32,6 +30,5 @@ export const useCreateCategory = (
     onError() {
       window.scrollTo({ top: 0 })
     },
-    ...options,
   })
 }

@@ -1,5 +1,5 @@
 import CustomersTable from '../../../components/admin/customers/CustomersTable'
-import { useCustomers } from '../../../features/admin/customers/queries/useCustomers'
+import { useCustomers } from '../../../features/admin/customers/useCustomers'
 import Loader from '../Loader'
 import Error from '../Error'
 

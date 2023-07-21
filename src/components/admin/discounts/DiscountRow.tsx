@@ -1,6 +1,5 @@
 import { FC, useState } from 'react'
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline'
-import { useQueryClient } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 import Actions from '../ui/Actions'
 import ConfirmDelete from '../ui/ConfirmDelete'
@@ -11,17 +10,18 @@ type Props = {
 }
 
 const DiscountRow: FC<Props> = ({ discount }) => {
-  const queryClient = useQueryClient()
   const [isConfirmOpen, setIsConfirmOpen] = useState(false)
-  const { mutate: deleteProduct, isLoading: isDeleting } = useDeleteDiscount({
-    onSuccess: () => {
-      queryClient.invalidateQueries(['admin', 'discounts'])
-      setIsConfirmOpen(false)
-    },
-  })
+  const { mutate: deleteProduct, isLoading: isDeleting } = useDeleteDiscount()
 
   const handleDelete = () => {
-    deleteProduct({ discountId: discount.id })
+    deleteProduct(
+      { discountId: discount.id },
+      {
+        onSuccess: () => {
+          setIsConfirmOpen(false)
+        },
+      }
+    )
   }
 
   return (

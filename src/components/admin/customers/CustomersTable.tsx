@@ -1,4 +1,4 @@
-import { useCustomers } from '../../../features/admin/customers/queries/useCustomers'
+import { useCustomers } from '../../../features/admin/customers/useCustomers'
 import CustomerRow from './CustomerRow'
 import Pagination from '../ui/Pagination'
 

@@ -9,7 +9,7 @@ import ImageInput from '../../../components/admin/ui/ImageInput'
 import FieldGroup from '../../../components/admin/ui/FieldGroup'
 import { createOfferSchema } from '../../../utils/validation/admin/offer'
 import { useCreateOffer } from '../../../features/admin/offers/useCreateOffer'
-import { useProduct } from '../../../features/admin/products/queries/useProduct'
+import { useProduct } from '../../../features/client/products/product'
 
 const CreateOffer = () => {
   const { productId } = useParams()
@@ -25,11 +25,7 @@ const CreateOffer = () => {
     isLoading: isCreatingOffer,
     isError,
     error,
-  } = useCreateOffer({
-    onError() {
-      window.scrollTo({ top: 0 })
-    },
-  })
+  } = useCreateOffer()
 
   const initialValues = {
     start: '',

@@ -1,4 +1,4 @@
-import { useProducts } from '../../../features/admin/products/queries/useProducts'
+import { useProducts } from '../../../features/admin/products/useProducts'
 import ProductRow from './ProductRow'
 import Pagination from '../ui/Pagination'
 

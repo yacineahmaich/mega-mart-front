@@ -1,9 +1,5 @@
-import api from '../../../../utils/api/admin'
-import {
-  UseMutationOptions,
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query'
+import api from '../../../utils/api/admin'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 
 type Variables = {
@@ -18,7 +14,7 @@ type Variables = {
   }
 }
 
-const updateProduct = async (productData: Variables) => {
+const updateProduct = async (productData: Variables): Promise<Product> => {
   const response = await api.post(
     `/products/${productData.id}`,
     productData.product,
@@ -36,18 +32,15 @@ const updateProduct = async (productData: Variables) => {
   return response.data
 }
 
-export const useUpdateProduct = (
-  options?: UseMutationOptions<Product, Error, Variables>
-) => {
+export const useUpdateProduct = () => {
   const navigate = useNavigate()
   const queryClient = useQueryClient()
 
-  return useMutation<Product, Error, Variables>({
+  return useMutation({
     mutationFn: updateProduct,
-    onSuccess(_, { id }) {
-      queryClient.invalidateQueries(['admin', 'products', id.toString()])
+    onSuccess() {
+      queryClient.invalidateQueries(['admin', 'products'])
       navigate('/dashboard/products')
     },
-    ...options,
   })
 }

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Loader from '../Loader'
 import Error from '../Error'
 import ProductsTable from '../../../components/admin/products/ProductsTable'
-import { useProducts } from '../../../features/admin/products/queries/useProducts'
+import { useProducts } from '../../../features/admin/products/useProducts'
 
 const Products = () => {
   const { isLoading, isError } = useProducts()

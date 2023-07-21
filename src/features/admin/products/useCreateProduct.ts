@@ -1,5 +1,5 @@
-import api from '../../../../utils/api/admin'
-import { UseMutationOptions, useMutation } from '@tanstack/react-query'
+import api from '../../../utils/api/admin'
+import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 
 type Variables = {
@@ -11,7 +11,7 @@ type Variables = {
   images: File[]
 }
 
-const createProduct = async (productData: Variables) => {
+const createProduct = async (productData: Variables): Promise<Product> => {
   const response = await api.post('/products', productData, {
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -21,16 +21,16 @@ const createProduct = async (productData: Variables) => {
   return response.data
 }
 
-export const useCreateProduct = (
-  options?: UseMutationOptions<Product, Error, Variables>
-) => {
+export const useCreateProduct = () => {
   const navigate = useNavigate()
 
-  return useMutation<Product, Error, Variables>({
+  return useMutation({
     mutationFn: createProduct,
     onSuccess() {
       navigate('/dashboard/products')
     },
-    ...options,
+    onError() {
+      window.scrollTo({ top: 0 })
+    },
   })
 }

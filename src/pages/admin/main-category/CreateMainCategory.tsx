@@ -7,7 +7,7 @@ import FieldGroup from '../../../components/admin/ui/FieldGroup'
 import spinner from '../../../assets/icons/spinner.svg'
 import Error from '../Error'
 import { createMainCategorySchema } from '../../../utils/validation/admin/main-category'
-import { useCreateMainCategory } from '../../../features/admin/main-categories/mutations/useCreateMainCategory'
+import { useCreateMainCategory } from '../../../features/admin/main-categories/useCreateMainCategory'
 
 function CreateMainCategory() {
   const {

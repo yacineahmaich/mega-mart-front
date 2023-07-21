@@ -18,10 +18,10 @@ import FieldGroup from '../../../components/admin/ui/FieldGroup'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { editProductSchema } from '../../../utils/validation/admin/product'
-import { useProduct } from '../../../features/admin/products/queries/useProduct'
-import { useCategories } from '../../../features/admin/categories/queries/useCategories'
-import { useUpdateProduct } from '../../../features/admin/products/mutations/useUpdateProduct'
-import { useDeleteProductImage } from '../../../features/admin/products/mutations/useDeleteProductImage'
+import { useProduct } from '../../../features/admin/products/useProduct'
+import { useCategories } from '../../../features/admin/categories/useCategories'
+import { useUpdateProduct } from '../../../features/admin/products/useUpdateProduct'
+import { useDeleteProductImage } from '../../../features/admin/products/useDeleteProductImage'
 
 const EditProduct = () => {
   const { id } = useParams()
@@ -44,11 +44,7 @@ const EditProduct = () => {
     isLoading,
     isError,
     error,
-  } = useUpdateProduct({
-    onError() {
-      window.scrollTo({ top: 0 })
-    },
-  })
+  } = useUpdateProduct()
 
   const initialValues = {
     name: product?.name ?? '',
@@ -64,7 +60,14 @@ const EditProduct = () => {
       ...values,
       images: Object.values(Object.fromEntries(values.images)),
     }
-    updateProduct({ product: productData, id: product.id })
+    updateProduct(
+      { product: productData, id: product.id },
+      {
+        onError() {
+          window.scrollTo({ top: 0 })
+        },
+      }
+    )
   }
 
   if (isCategoriesLoading || isProductLoading) return <Loader />

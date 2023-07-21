@@ -1,4 +1,4 @@
-import { UseQueryOptions, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import api from '../../../utils/api/admin'
 
 type Data = {
@@ -6,7 +6,7 @@ type Data = {
   sales: number
 }[]
 
-const getSalesContribution = async () => {
+const getSalesContribution = async (): Promise<Data> => {
   const response = await api.get('/sales-contribution')
   return response.data
 }
@@ -16,9 +16,8 @@ export const query = () => ({
   queryFn: getSalesContribution,
 })
 
-export const useSalesContribution = (options?: UseQueryOptions<Data>) => {
-  return useQuery<Data>({
+export const useSalesContribution = () => {
+  return useQuery({
     ...query(),
-    ...options,
   })
 }

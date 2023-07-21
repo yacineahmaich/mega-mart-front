@@ -5,8 +5,7 @@ import {
   PencilIcon,
   TrashIcon,
 } from '@heroicons/react/24/outline'
-import { useDeleteProduct } from '../../../features/admin/products/mutations/useDeleteProduct'
-import { useQueryClient } from '@tanstack/react-query'
+import { useDeleteProduct } from '../../../features/admin/products/useDeleteProduct'
 import { Link } from 'react-router-dom'
 import Actions from '../ui/Actions'
 import ConfirmDelete from '../ui/ConfirmDelete'
@@ -16,18 +15,19 @@ type Props = {
 }
 
 const ProductRow: FC<Props> = ({ product }) => {
-  const queryClient = useQueryClient()
   const [isConfirmOpen, setIsConfirmOpen] = useState(false)
 
-  const { mutate: deleteProduct, isLoading: isDeleting } = useDeleteProduct({
-    onSuccess: () => {
-      queryClient.invalidateQueries(['admin', 'products'])
-      setIsConfirmOpen(false)
-    },
-  })
+  const { mutate: deleteProduct, isLoading: isDeleting } = useDeleteProduct()
 
   const handleDelete = () => {
-    deleteProduct({ productId: product.id })
+    deleteProduct(
+      { productId: product.id },
+      {
+        onSuccess: () => {
+          setIsConfirmOpen(false)
+        },
+      }
+    )
   }
 
   const finalPrice = product.discount ? product.discount.price : product.price

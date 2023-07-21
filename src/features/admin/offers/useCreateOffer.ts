@@ -1,5 +1,5 @@
 import api from '../../../utils/api/admin'
-import { UseMutationOptions, useMutation } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 
 type Variables = {
@@ -8,7 +8,7 @@ type Variables = {
   product: number
 }
 
-const createOffer = async (data: Variables) => {
+const createOffer = async (data: Variables): Promise<Offer> => {
   const response = await api.post('/offers', data, {
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -18,16 +18,16 @@ const createOffer = async (data: Variables) => {
   return response.data
 }
 
-export const useCreateOffer = (
-  options?: UseMutationOptions<Offer, Error, Variables>
-) => {
+export const useCreateOffer = () => {
   const navigate = useNavigate()
 
-  return useMutation<Offer, Error, Variables>({
+  return useMutation({
     mutationFn: createOffer,
     onSuccess() {
       navigate('/dashboard/offers')
     },
-    ...options,
+    onError() {
+      window.scrollTo({ top: 0 })
+    },
   })
 }

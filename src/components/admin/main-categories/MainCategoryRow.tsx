@@ -1,8 +1,7 @@
 import { useState, FC } from 'react'
 import { Link } from 'react-router-dom'
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline'
-import { useQueryClient } from '@tanstack/react-query'
-import { useDeleteMainCategory } from '../../../features/admin/main-categories/mutations/useDeleteMainCategory'
+import { useDeleteMainCategory } from '../../../features/admin/main-categories/useDeleteMainCategory'
 import Actions from '../ui/Actions'
 import ConfirmDelete from '../ui/ConfirmDelete'
 
@@ -11,18 +10,19 @@ type Props = {
 }
 
 const MainCategoryRow: FC<Props> = ({ mainCategory }) => {
-  const queryClient = useQueryClient()
   const [isConfirmOpen, setIsConfirmOpen] = useState(false)
   const { mutate: deleteCategory, isLoading: isDeleting } =
-    useDeleteMainCategory({
-      onSuccess: () => {
-        queryClient.invalidateQueries(['admin', 'main-categories'])
-        setIsConfirmOpen(false)
-      },
-    })
+    useDeleteMainCategory()
 
   const handleDelete = () => {
-    deleteCategory({ mainCategoryId: mainCategory.id })
+    deleteCategory(
+      { mainCategoryId: mainCategory.id },
+      {
+        onSuccess: () => {
+          setIsConfirmOpen(false)
+        },
+      }
+    )
   }
 
   return (

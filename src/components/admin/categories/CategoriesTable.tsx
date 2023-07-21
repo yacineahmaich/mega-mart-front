@@ -1,6 +1,6 @@
 import CategoryRow from './CategoryRow'
 import Pagination from '../ui/Pagination'
-import { useCategories } from '../../../features/admin/categories/queries/useCategories'
+import { useCategories } from '../../../features/admin/categories/useCategories'
 
 const CategoriesTable = () => {
   const { data } = useCategories()

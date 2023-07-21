@@ -1,9 +1,5 @@
-import api from '../../../../utils/api/admin'
-import {
-  UseMutationOptions,
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query'
+import api from '../../../utils/api/admin'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 
 type Variables = {
@@ -15,7 +11,9 @@ type Variables = {
   }
 }
 
-const updateMainCategory = async (categoryData: Variables) => {
+const updateMainCategory = async (
+  categoryData: Variables
+): Promise<MainCategory> => {
   const response = await api.post(
     `/main-categories/${categoryData.id}`,
     categoryData.mainCategory,
@@ -32,23 +30,20 @@ const updateMainCategory = async (categoryData: Variables) => {
   return response.data
 }
 
-export const useUpdateMainCategory = (
-  options?: UseMutationOptions<MainCategory, Error, Variables>
-) => {
+export const useUpdateMainCategory = () => {
   const navigate = useNavigate()
   const queryClient = useQueryClient()
 
-  return useMutation<MainCategory, Error, Variables>({
+  return useMutation({
     mutationFn: updateMainCategory,
-    onSuccess(_, { id }) {
+    onSuccess() {
       queryClient.invalidateQueries({
-        queryKey: ['admin', 'main-categories', id],
+        queryKey: ['admin', 'main-categories'],
       })
       navigate('/dashboard/main-categories')
     },
     onError() {
       window.scrollTo({ top: 0 })
     },
-    ...options,
   })
 }

@@ -5,8 +5,8 @@ import { v4 as uuid } from 'uuid'
 import { Link } from 'react-router-dom'
 import { Formik, Form, FormikValues } from 'formik'
 import { createProductSchema } from '../../../utils/validation/admin/product'
-import { useCreateProduct } from '../../../features/admin/products/mutations/useCreateProduct'
-import { useCategories } from '../../../features/admin/categories/queries/useCategories'
+import { useCreateProduct } from '../../../features/admin/products/useCreateProduct'
+import { useCategories } from '../../../features/admin/categories/useCategories'
 import Loader from '../Loader'
 import Error from '../Error'
 import ErrorMsg from '../ErrorMsg'
@@ -28,11 +28,7 @@ const CreateProduct = () => {
     isLoading: isCreatingProduct,
     isError,
     error,
-  } = useCreateProduct({
-    onError() {
-      window.scrollTo({ top: 0 })
-    },
-  })
+  } = useCreateProduct()
 
   const initialValues = {
     name: '',
@@ -151,7 +147,7 @@ const CreateProduct = () => {
                     </div>
                     <div className="flex flex-wrap gap-3">
                       {images.map((imageId, idx) => (
-                        <div className="relative">
+                        <div key={imageId} className="relative">
                           <ImageInput
                             id={imageId}
                             key={imageId}

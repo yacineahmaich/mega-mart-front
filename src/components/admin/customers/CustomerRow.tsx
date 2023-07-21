@@ -1,7 +1,6 @@
 import { FC, useState } from 'react'
 import { EyeIcon, TrashIcon } from '@heroicons/react/24/outline'
-import { useQueryClient } from '@tanstack/react-query'
-import { useDeleteCustomer } from '../../../features/admin/customers/mutations/useDeleteCustomer'
+import { useDeleteCustomer } from '../../../features/admin/customers/useDeleteCustomer'
 import CustomerModal from './CustomerModal'
 import Actions from '../ui/Actions'
 import ConfirmDelete from '../ui/ConfirmDelete'
@@ -11,19 +10,20 @@ type Props = {
 }
 
 const CustomerRow: FC<Props> = ({ customer }) => {
-  const queryClient = useQueryClient()
   const [isShowDetails, setIsShowDetails] = useState(false)
 
   const [isConfirmOpen, setIsConfirmOpen] = useState(false)
-  const { mutate: deleteCustomer, isLoading: isDeleting } = useDeleteCustomer({
-    onSuccess: () => {
-      queryClient.invalidateQueries(['admin', 'customers'])
-      setIsConfirmOpen(false)
-    },
-  })
+  const { mutate: deleteCustomer, isLoading: isDeleting } = useDeleteCustomer()
 
   const handleDelete = () => {
-    deleteCustomer({ customerId: customer.id })
+    deleteCustomer(
+      { customerId: customer.id },
+      {
+        onSuccess: () => {
+          setIsConfirmOpen(false)
+        },
+      }
+    )
   }
 
   return (

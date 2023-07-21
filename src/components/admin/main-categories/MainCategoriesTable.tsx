@@ -1,6 +1,6 @@
 import MainCategoryRow from './MainCategoryRow'
 import Pagination from '../ui/Pagination'
-import { useMainCategories } from '../../../features/admin/main-categories/queries/useMainCategories'
+import { useMainCategories } from '../../../features/admin/main-categories/useMainCategories'
 
 const MainCategoriesTable = () => {
   const { data } = useMainCategories()

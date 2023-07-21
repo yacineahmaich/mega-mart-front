@@ -8,7 +8,7 @@ import ImageInput from '../../../components/admin/ui/ImageInput'
 import FieldGroup from '../../../components/admin/ui/FieldGroup'
 import ErrorMsg from '../ErrorMsg'
 import { createCategorySchema } from '../../../utils/validation/admin/category'
-import { useCreateCategory } from '../../../features/admin/categories/mutations/useCreateCategory'
+import { useCreateCategory } from '../../../features/admin/categories/useCreateCategory'
 import { useMcategories } from '../../../features/client/main-category/m-categories'
 
 const CreateCategory = () => {

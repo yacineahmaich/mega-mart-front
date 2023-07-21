@@ -25,11 +25,7 @@ const EditOffer = () => {
     isLoading: isUpdatingOffer,
     isError,
     error,
-  } = useUpdateOffer({
-    onError() {
-      window.scrollTo({ top: 0 })
-    },
-  })
+  } = useUpdateOffer()
 
   const initialValues = {
     start: offer?.start,
@@ -37,10 +33,17 @@ const EditOffer = () => {
     backdrop: null,
   }
   const handleSubmit = (values: FormikValues & typeof initialValues) => {
-    updateOffer({
-      offerData: values,
-      offerId: offer.id,
-    })
+    updateOffer(
+      {
+        offerData: values,
+        offerId: offer.id,
+      },
+      {
+        onError() {
+          window.scrollTo({ top: 0 })
+        },
+      }
+    )
   }
 
   if (isOfferLoading) return <Loader />

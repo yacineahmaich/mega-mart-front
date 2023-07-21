@@ -1,4 +1,4 @@
-import { UseMutationOptions, useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import api from '../../../utils/api/admin'
 
 type Variables = {
@@ -11,12 +11,13 @@ const deleteOffer = async ({ offerId }: Variables) => {
   return response.data
 }
 
-export const useDeleteOffer = (
-  options?: UseMutationOptions<unknown, unknown, Variables>
-) => {
-  return useMutation<unknown, unknown, Variables>({
+export const useDeleteOffer = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation({
     mutationFn: deleteOffer,
-    retry: false,
-    ...options,
+    onSuccess: () => {
+      queryClient.invalidateQueries(['admin', 'offers'])
+    },
   })
 }

@@ -1,8 +1,7 @@
 import { useState, FC } from 'react'
 import { Link } from 'react-router-dom'
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline'
-import { useQueryClient } from '@tanstack/react-query'
-import { useDeleteCategory } from '../../../features/admin/categories/mutations/useDeleteCategory'
+import { useDeleteCategory } from '../../../features/admin/categories/useDeleteCategory'
 import Actions from '../ui/Actions'
 import ConfirmDelete from '../ui/ConfirmDelete'
 
@@ -11,17 +10,18 @@ type Props = {
 }
 
 const CategoryRow: FC<Props> = ({ category }) => {
-  const queryClient = useQueryClient()
   const [isConfirmOpen, setIsConfirmOpen] = useState(false)
-  const { mutate: deleteCategory, isLoading: isDeleting } = useDeleteCategory({
-    onSuccess: () => {
-      queryClient.invalidateQueries(['admin', 'categories'])
-      setIsConfirmOpen(false)
-    },
-  })
+  const { mutate: deleteCategory, isLoading: isDeleting } = useDeleteCategory()
 
   const handleDelete = () => {
-    deleteCategory({ categoryId: category.id })
+    deleteCategory(
+      { categoryId: category.id },
+      {
+        onSuccess: () => {
+          setIsConfirmOpen(false)
+        },
+      }
+    )
   }
 
   return (

@@ -8,15 +8,6 @@ type Props = {
   children?: React.ReactNode
 }
 
-const data = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group A', value: 400 },
-  { name: 'Group D', value: 200 },
-  { name: 'Group B', value: 300 },
-]
-
 const renderActiveShape = props => {
   const RADIAN = Math.PI / 180
   const {

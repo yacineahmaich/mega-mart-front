@@ -6,7 +6,7 @@ import Error from '../Error'
 import FormErrors from '../../../components/common/FormErrors'
 import FieldGroup from '../../../components/admin/ui/FieldGroup'
 import { createDiscountSchema } from '../../../utils/validation/admin/discount'
-import { useProduct } from '../../../features/admin/products/queries/useProduct'
+import { useProduct } from '../../../features/client/products/product'
 import { useApplyDiscount } from '../../../features/admin/discounts/useApplyDiscount'
 
 const CreateDiscount = () => {
@@ -23,11 +23,7 @@ const CreateDiscount = () => {
     isLoading: isCreatingDiscount,
     isError,
     error,
-  } = useApplyDiscount({
-    onError() {
-      window.scrollTo({ top: 0 })
-    },
-  })
+  } = useApplyDiscount()
 
   const initialValues = {
     end: '',

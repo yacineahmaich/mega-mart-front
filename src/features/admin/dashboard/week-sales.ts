@@ -1,4 +1,4 @@
-import { UseQueryOptions, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import api from '../../../utils/api/admin'
 
 type Data = {
@@ -7,7 +7,7 @@ type Data = {
   prev: number
 }[]
 
-const getWeekSales = async () => {
+const getWeekSales = async (): Promise<Data> => {
   const response = await api.get('/week-sales')
   return response.data
 }
@@ -17,9 +17,8 @@ export const query = () => ({
   queryFn: getWeekSales,
 })
 
-export const useWeekSales = (options?: UseQueryOptions<Data>) => {
-  return useQuery<Data>({
+export const useWeekSales = () => {
+  return useQuery({
     ...query(),
-    ...options,
   })
 }

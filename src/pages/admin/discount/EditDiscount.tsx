@@ -23,11 +23,7 @@ const EditDiscount = () => {
     isLoading: isUpdatingDiscount,
     isError,
     error,
-  } = useUpdateDiscount({
-    onError() {
-      window.scrollTo({ top: 0 })
-    },
-  })
+  } = useUpdateDiscount()
 
   const initialValues = {
     end: discount?.end,

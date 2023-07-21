@@ -1,8 +1,4 @@
-import {
-  UseMutationOptions,
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import api from '../../../utils/api/admin'
 import { useNavigate } from 'react-router-dom'
 
@@ -14,29 +10,27 @@ type Varaibales = {
   discountId: number
 }
 
-const updateDiscount = async ({ discountData, discountId }: Varaibales) => {
+const updateDiscount = async ({
+  discountData,
+  discountId,
+}: Varaibales): Promise<Discount> => {
   const response = await api.put(`/discounts/${discountId}`, discountData)
 
   return response.data
 }
 
-export const useUpdateDiscount = (
-  options: UseMutationOptions<Discount, unknown, Varaibales>
-) => {
+export const useUpdateDiscount = () => {
   const navigate = useNavigate()
   const queryClient = useQueryClient()
 
-  return useMutation<Discount, unknown, Varaibales>({
+  return useMutation({
     mutationFn: updateDiscount,
-    retry: false,
-    onSuccess(_, { discountId }) {
-      queryClient.invalidateQueries([
-        'admin',
-        'discounts',
-        discountId.toString(),
-      ])
+    onSuccess() {
+      queryClient.invalidateQueries(['admin', 'discounts'])
       navigate('/dashboard/discounts')
     },
-    ...options,
+    onError() {
+      window.scrollTo({ top: 0 })
+    },
   })
 }

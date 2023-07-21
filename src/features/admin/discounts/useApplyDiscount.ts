@@ -1,4 +1,4 @@
-import { UseMutationOptions, useMutation } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import api from '../../../utils/api/admin'
 import { useNavigate } from 'react-router-dom'
 
@@ -8,23 +8,22 @@ type Varaibales = {
   product: number
 }
 
-const applyDiscount = async (data: Varaibales) => {
+const applyDiscount = async (data: Varaibales): Promise<Discount> => {
   const response = await api.post('/apply-discount', data)
 
   return response.data
 }
 
-export const useApplyDiscount = (
-  options: UseMutationOptions<Discount, unknown, Varaibales>
-) => {
+export const useApplyDiscount = () => {
   const navigate = useNavigate()
 
-  return useMutation<Discount, unknown, Varaibales>({
+  return useMutation({
     mutationFn: applyDiscount,
-    retry: false,
     onSuccess() {
       navigate('/dashboard/discounts')
     },
-    ...options,
+    onError() {
+      window.scrollTo({ top: 0 })
+    },
   })
 }

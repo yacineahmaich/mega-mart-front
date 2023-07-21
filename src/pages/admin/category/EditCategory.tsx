@@ -7,9 +7,9 @@ import ErrorMsg from '../ErrorMsg'
 import FormErrors from '../../../components/common/FormErrors'
 import ImageInput from '../../../components/admin/ui/ImageInput'
 import FieldGroup from '../../../components/admin/ui/FieldGroup'
-import { useUpdateCategory } from '../../../features/admin/categories/mutations/useUpdateCategory'
+import { useUpdateCategory } from '../../../features/admin/categories/useUpdateCategory'
 import { editCategorySchema } from '../../../utils/validation/admin/category'
-import { useCategory } from '../../../features/admin/categories/queries/useCategory'
+import { useCategory } from '../../../features/admin/categories/useCategory'
 import { useMcategories } from '../../../features/client/main-category/m-categories'
 
 const EditProduct = () => {

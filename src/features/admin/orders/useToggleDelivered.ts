@@ -1,8 +1,4 @@
-import {
-  UseMutationOptions,
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import api from '../../../utils/api/admin'
 
 type Variables = {
@@ -15,16 +11,13 @@ const toggleDeliveredStatus = async (data: Variables) => {
   return response.data
 }
 
-export const useToggleDelivered = (
-  options?: UseMutationOptions<boolean, unknown, Variables>
-) => {
+export const useToggleDelivered = () => {
   const queryClient = useQueryClient()
 
-  return useMutation<boolean, unknown, Variables>({
+  return useMutation({
     mutationFn: toggleDeliveredStatus,
     onSuccess: () => {
       queryClient.invalidateQueries(['admin', 'orders'])
     },
-    ...options,
   })
 }
