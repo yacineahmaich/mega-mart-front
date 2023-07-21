@@ -14,14 +14,7 @@ const OfferRow: FC<Props> = ({ offer }) => {
   const { mutate: deleteProduct, isLoading: isDeleting } = useDeleteOffer()
 
   const handleDelete = () => {
-    deleteProduct(
-      { offerId: offer.id },
-      {
-        onSuccess: () => {
-          setIsConfirmOpen(false)
-        },
-      }
-    )
+    deleteProduct({ offerId: offer.id })
   }
 
   return (

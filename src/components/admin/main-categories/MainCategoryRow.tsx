@@ -15,14 +15,7 @@ const MainCategoryRow: FC<Props> = ({ mainCategory }) => {
     useDeleteMainCategory()
 
   const handleDelete = () => {
-    deleteCategory(
-      { mainCategoryId: mainCategory.id },
-      {
-        onSuccess: () => {
-          setIsConfirmOpen(false)
-        },
-      }
-    )
+    deleteCategory({ mainCategoryId: mainCategory.id })
   }
 
   return (

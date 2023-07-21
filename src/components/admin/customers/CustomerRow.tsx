@@ -16,14 +16,7 @@ const CustomerRow: FC<Props> = ({ customer }) => {
   const { mutate: deleteCustomer, isLoading: isDeleting } = useDeleteCustomer()
 
   const handleDelete = () => {
-    deleteCustomer(
-      { customerId: customer.id },
-      {
-        onSuccess: () => {
-          setIsConfirmOpen(false)
-        },
-      }
-    )
+    deleteCustomer({ customerId: customer.id })
   }
 
   return (

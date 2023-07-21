@@ -1,6 +1,7 @@
 import OfferRow from './OfferRow'
 import Pagination from '../ui/Pagination'
 import { useOffers } from '../../../features/admin/offers/useOffers'
+import Empty from '../ui/Empty'
 
 const OffersTable = () => {
   const { data } = useOffers()
@@ -29,6 +30,8 @@ const OffersTable = () => {
             </tr>
           </thead>
           <tbody className="relative">
+            {data.offers.length === 0 && <Empty resource="offers" />}
+
             {data.offers.map(offer => (
               <OfferRow key={offer.id} offer={offer} />
             ))}

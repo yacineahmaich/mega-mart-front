@@ -1,6 +1,7 @@
 import { useProducts } from '../../../features/admin/products/useProducts'
 import ProductRow from './ProductRow'
 import Pagination from '../ui/Pagination'
+import Empty from '../ui/Empty'
 
 const ProductsTable = () => {
   const { data } = useProducts()
@@ -35,6 +36,7 @@ const ProductsTable = () => {
             </tr>
           </thead>
           <tbody>
+            {data.products.length === 0 && <Empty resource="products" />}
             {data.products.map(product => (
               <ProductRow key={product.id} product={product} />
             ))}

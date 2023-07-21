@@ -14,14 +14,7 @@ const CategoryRow: FC<Props> = ({ category }) => {
   const { mutate: deleteCategory, isLoading: isDeleting } = useDeleteCategory()
 
   const handleDelete = () => {
-    deleteCategory(
-      { categoryId: category.id },
-      {
-        onSuccess: () => {
-          setIsConfirmOpen(false)
-        },
-      }
-    )
+    deleteCategory({ categoryId: category.id })
   }
 
   return (

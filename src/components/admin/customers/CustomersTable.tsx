@@ -1,6 +1,7 @@
 import { useCustomers } from '../../../features/admin/customers/useCustomers'
 import CustomerRow from './CustomerRow'
 import Pagination from '../ui/Pagination'
+import Empty from '../ui/Empty'
 
 const CustomersTable = () => {
   const { data } = useCustomers()
@@ -26,6 +27,7 @@ const CustomersTable = () => {
             </tr>
           </thead>
           <tbody className="relative">
+            {data.customers.length === 0 && <Empty resource="customers" />}
             {data.customers.map(customer => (
               <CustomerRow key={customer.id} customer={customer} />
             ))}

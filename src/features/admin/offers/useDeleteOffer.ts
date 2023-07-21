@@ -16,8 +16,6 @@ export const useDeleteOffer = () => {
 
   return useMutation({
     mutationFn: deleteOffer,
-    onSuccess: () => {
-      queryClient.invalidateQueries(['admin', 'offers'])
-    },
+    onSuccess: async () => queryClient.invalidateQueries(['admin', 'offers']),
   })
 }

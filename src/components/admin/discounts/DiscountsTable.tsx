@@ -1,6 +1,7 @@
 import DiscountRow from './DiscountRow'
 import Pagination from '../ui/Pagination'
 import { useDiscounts } from '../../../features/admin/discounts/useDiscounts'
+import Empty from '../ui/Empty'
 
 const DiscountsTable = () => {
   const { data } = useDiscounts()
@@ -32,6 +33,7 @@ const DiscountsTable = () => {
             </tr>
           </thead>
           <tbody className="relative">
+            {data.discounts.length === 0 && <Empty resource="discounts" />}
             {data.discounts.map(discount => (
               <DiscountRow key={discount.id} discount={discount} />
             ))}

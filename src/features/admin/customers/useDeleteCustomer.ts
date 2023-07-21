@@ -14,8 +14,7 @@ export const useDeleteCustomer = () => {
 
   return useMutation({
     mutationFn: deleteCustomer,
-    onSuccess: () => {
-      queryClient.invalidateQueries(['admin', 'customers'])
-    },
+    onSuccess: async () =>
+      queryClient.invalidateQueries(['admin', 'customers']),
   })
 }

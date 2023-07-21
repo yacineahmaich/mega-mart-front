@@ -16,8 +16,7 @@ export const useDeleteMainCategory = () => {
 
   return useMutation({
     mutationFn: deleteMainCategory,
-    onSuccess: () => {
-      queryClient.invalidateQueries(['admin', 'main-categories'])
-    },
+    onSuccess: async () =>
+      queryClient.invalidateQueries(['admin', 'main-categories']),
   })
 }

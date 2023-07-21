@@ -1,6 +1,7 @@
 import MainCategoryRow from './MainCategoryRow'
 import Pagination from '../ui/Pagination'
 import { useMainCategories } from '../../../features/admin/main-categories/useMainCategories'
+import Empty from '../ui/Empty'
 
 const MainCategoriesTable = () => {
   const { data } = useMainCategories()
@@ -26,6 +27,9 @@ const MainCategoriesTable = () => {
             </tr>
           </thead>
           <tbody className="relative">
+            {data.mainCategories.length === 0 && (
+              <Empty resource="main categories" />
+            )}
             {data.mainCategories.map(mainCategory => (
               <MainCategoryRow
                 key={mainCategory.id}

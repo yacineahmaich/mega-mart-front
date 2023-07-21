@@ -1,6 +1,7 @@
 import CategoryRow from './CategoryRow'
 import Pagination from '../ui/Pagination'
 import { useCategories } from '../../../features/admin/categories/useCategories'
+import Empty from '../ui/Empty'
 
 const CategoriesTable = () => {
   const { data } = useCategories()
@@ -29,6 +30,7 @@ const CategoriesTable = () => {
             </tr>
           </thead>
           <tbody className="relative">
+            {data.categories.length === 0 && <Empty resource="categories" />}
             {data.categories.map(category => (
               <CategoryRow key={category.id} category={category} />
             ))}

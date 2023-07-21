@@ -1,6 +1,7 @@
 import OrderRow from './OrderRow'
 import Pagination from '../ui/Pagination'
 import { useOrders } from '../../../features/admin/orders/useOrders'
+import Empty from '../ui/Empty'
 
 const OrdersTable = () => {
   const { data } = useOrders()
@@ -35,6 +36,7 @@ const OrdersTable = () => {
             </tr>
           </thead>
           <tbody>
+            {data.orders.length === 0 && <Empty resource="orders" />}
             {data.orders.map(order => (
               <OrderRow key={order.id} order={order} />
             ))}

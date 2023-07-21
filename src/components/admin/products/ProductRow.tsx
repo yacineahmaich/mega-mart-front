@@ -20,14 +20,7 @@ const ProductRow: FC<Props> = ({ product }) => {
   const { mutate: deleteProduct, isLoading: isDeleting } = useDeleteProduct()
 
   const handleDelete = () => {
-    deleteProduct(
-      { productId: product.id },
-      {
-        onSuccess: () => {
-          setIsConfirmOpen(false)
-        },
-      }
-    )
+    deleteProduct({ productId: product.id })
   }
 
   const finalPrice = product.discount ? product.discount.price : product.price
