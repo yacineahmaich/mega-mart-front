@@ -42,7 +42,7 @@ const EditProfile = () => {
         >
           <fieldset disabled={isLoading}>
             <Form>
-              <div className="grid grid-cols-2 gap-8 mt-8">
+              <div className="grid-cols-2 mt-8 gap-x-8 md:grid">
                 <FieldGroup name="name" label="Name" placeholder="Your Name" />
                 <FieldGroup
                   name="email"
