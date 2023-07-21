@@ -1,13 +1,13 @@
 import { useParams } from 'react-router-dom'
-import { useMCategory } from '../../features/client/main-category/m-category'
 import Cover from '../../components/client/main-category/Cover'
 import ExploreCategories from '../../components/client/main-category/ExploreCategories'
 import Products from '../../components/client/main-category/Products'
 import Error from '../../components/client/ui/Error'
+import { useMainCategoryFeed } from '../../features/client/main-category/feed'
 
 const MainCategory = () => {
   const { slug } = useParams()
-  const { isError } = useMCategory(slug)
+  const { isError } = useMainCategoryFeed(slug)
 
   if (isError) return <Error message="Failed to load data" />
 

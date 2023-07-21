@@ -1,10 +1,13 @@
 import { Link, useParams } from 'react-router-dom'
-import { useMCategory } from '../../../features/client/main-category/m-category'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { useMainCategoryFeed } from '../../../features/client/main-category/feed'
 
 const ExploreCategories = () => {
   const { slug } = useParams()
-  const { data: mainCategory } = useMCategory(slug)
+
+  const {
+    data: { mainCategory },
+  } = useMainCategoryFeed(slug)
 
   return (
     <Swiper
