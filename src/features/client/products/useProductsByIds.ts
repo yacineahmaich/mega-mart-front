@@ -1,17 +1,14 @@
 import api from '../../../utils/api/client'
-import { UseQueryOptions, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import queryString from 'query-string'
 
-const getProductsByIds = async (idsParam: string) => {
+const getProductsByIds = async (idsParam: string): Promise<Product[]> => {
   const response = await api.get(`/products?${idsParam}`)
   return response.data.products
 }
 
-export const useProductsByIds = (
-  ids: object,
-  options?: UseQueryOptions<Product[]>
-) => {
-  return useQuery<Product[]>({
+export const useProductsByIds = (ids: object) => {
+  return useQuery({
     queryKey: ['products', { ids }],
     queryFn: () =>
       getProductsByIds(
@@ -21,6 +18,5 @@ export const useProductsByIds = (
         })
       ),
     keepPreviousData: true,
-    ...options,
   })
 }

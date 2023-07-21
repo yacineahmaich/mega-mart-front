@@ -1,9 +1,5 @@
 import api from '../../../utils/api/client'
-import {
-  UseMutationOptions,
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 type Variables = {
   review: {
@@ -13,7 +9,7 @@ type Variables = {
   productId: number
 }
 
-const createReview = async (data: Variables) => {
+const createReview = async (data: Variables): Promise<Review> => {
   const response = await api.post(
     `/products/${data.productId}/reviews`,
     data.review
@@ -22,16 +18,13 @@ const createReview = async (data: Variables) => {
   return response.data
 }
 
-export const useCreateReview = (
-  options?: UseMutationOptions<Review, Error, Variables>
-) => {
+export const useCreateReview = () => {
   const queryClient = useQueryClient()
 
-  return useMutation<Review, Error, Variables>({
+  return useMutation({
     mutationFn: createReview,
     onSuccess(_, { productId }) {
       queryClient.invalidateQueries(['products', productId, 'reviews'])
     },
-    ...options,
   })
 }

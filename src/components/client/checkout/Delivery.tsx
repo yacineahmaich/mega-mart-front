@@ -15,11 +15,11 @@ const Delivery = () => {
   } = useCheckoutStore()
 
   const initialValues = {
-    name: user?.name,
-    phone: deliverey?.phone,
-    email: user?.email,
-    shippingAddress: deliverey?.shippingAddress,
-    note: deliverey?.note,
+    name: user?.name ?? '',
+    phone: deliverey?.phone ?? '',
+    email: user?.email ?? '',
+    shippingAddress: deliverey?.shippingAddress ?? '',
+    note: deliverey?.note ?? '',
   }
 
   const onSubmit = (values: typeof initialValues) => {

@@ -1,9 +1,5 @@
 import api from '../../../utils/api/client'
-import {
-  UseMutationOptions,
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 type Variables = {
   avatar: File
@@ -22,17 +18,14 @@ const uploadAvatar = async (data: Variables) => {
   return response.data
 }
 
-export const useUploadAvatar = (
-  options?: UseMutationOptions<unknown, unknown, Variables>
-) => {
+export const useUploadAvatar = () => {
   const queryClient = useQueryClient()
 
-  return useMutation<unknown, unknown, Variables>({
+  return useMutation({
     mutationFn: uploadAvatar,
     retry: false,
     onSuccess: () => {
       queryClient.refetchQueries(['user'])
     },
-    ...options,
   })
 }

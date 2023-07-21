@@ -1,7 +1,7 @@
-import { UseQueryOptions, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import api from '../../../utils/api/client'
 
-const getMCategories = async () => {
+const getMCategories = async (): Promise<MainCategory[]> => {
   const response = await api.get('/m-categories')
   return response.data.mainCategories
 }
@@ -12,9 +12,8 @@ export const query = () => ({
   staleTime: Infinity,
 })
 
-export const useMcategories = (options?: UseQueryOptions<MainCategory[]>) => {
-  return useQuery<MainCategory[]>({
+export const useMcategories = () => {
+  return useQuery({
     ...query(),
-    ...options,
   })
 }

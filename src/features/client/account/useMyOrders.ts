@@ -1,19 +1,18 @@
-import { UseQueryOptions, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import api from '../../../utils/api/client'
 import { useGetUser } from '../../auth/useGetUser'
 
-const getMyOrders = async (user: number) => {
+const getMyOrders = async (user: number): Promise<Order[]> => {
   const response = await api.get(`/users/${user}/orders`)
 
   return response.data.orders
 }
 
-export const useMyOrders = (options?: UseQueryOptions<Order[]>) => {
+export const useMyOrders = () => {
   const { data: user } = useGetUser()
 
-  return useQuery<Order[]>({
+  return useQuery({
     queryKey: ['users', user.id, 'orders'],
     queryFn: () => getMyOrders(user.id),
-    ...options,
   })
 }

@@ -1,4 +1,3 @@
-import spinner from '../../assets/icons/spinner.png'
 import Checkout from '../../components/client/product/Checkout'
 import GeneralInfos from '../../components/client/product/GeneralInfos'
 import Infos from '../../components/client/product/Infos'

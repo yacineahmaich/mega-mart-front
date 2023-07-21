@@ -2,7 +2,6 @@ import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
 import { useGetUser } from '../../features/auth/useGetUser'
 import { useVerifyCheckoutStatus } from '../../features/client/checkout/useVerifyCheckoutStatus'
 import loader from '../../assets/icons/loader.svg'
-import { useCart } from '../../context/Cart'
 import Button from '../../components/client/ui/Button'
 import Error from '../../components/client/ui/Error'
 
@@ -10,16 +9,13 @@ function VerifyPayment() {
   const navigate = useNavigate()
   const { session } = useParams()
   const { data: user } = useGetUser()
-  const { clear } = useCart()
 
   const {
     data: order,
     isLoading,
     isError,
     refetch: retry,
-  } = useVerifyCheckoutStatus(session, {
-    onSuccess: clear,
-  })
+  } = useVerifyCheckoutStatus(session)
 
   if (!user) return <Navigate to=".." replace />
 

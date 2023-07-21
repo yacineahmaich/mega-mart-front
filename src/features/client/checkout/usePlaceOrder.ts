@@ -1,6 +1,6 @@
 import { DeliveryData } from '../../../store/checkout-store'
 import api from '../../../utils/api/client'
-import { UseMutationOptions, useMutation } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 
 type Variables = {
   cart: object
@@ -11,17 +11,14 @@ type Data = {
   session_url: string
 }
 
-const placeOrder = async (data: Variables) => {
+const placeOrder = async (data: Variables): Promise<Data> => {
   const response = await api.post('/checkout/place-order', data)
 
   return response.data
 }
 
-export const usePlaceOrder = (
-  options?: UseMutationOptions<Data, unknown, Variables>
-) => {
-  return useMutation<Data, unknown, Variables>({
+export const usePlaceOrder = () => {
+  return useMutation({
     mutationFn: placeOrder,
-    ...options,
   })
 }

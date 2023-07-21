@@ -1,7 +1,8 @@
+import { useCart } from '../../../context/Cart'
 import api from '../../../utils/api/client'
-import { UseQueryOptions, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 
-const verifyPaiment = async (session: string) => {
+const verifyPaiment = async (session: string): Promise<Order> => {
   const response = await api.get('/checkout/success', {
     params: {
       session,
@@ -11,13 +12,12 @@ const verifyPaiment = async (session: string) => {
   return response.data
 }
 
-export const useVerifyCheckoutStatus = (
-  session: string,
-  options?: UseQueryOptions<Order>
-) => {
-  return useQuery<Order>({
+export const useVerifyCheckoutStatus = (session: string) => {
+  const { clear } = useCart()
+
+  return useQuery({
     queryKey: ['checkout', { session }],
     queryFn: () => verifyPaiment(session),
-    ...options,
+    onSuccess: clear,
   })
 }

@@ -1,5 +1,5 @@
 import api from '../../../utils/api/client'
-import { useQuery, UseQueryOptions } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 
 type Data = {
   name: string
@@ -10,16 +10,15 @@ type Data = {
   joinAt: string
 }
 
-const getProfile = async () => {
+const getProfile = async (): Promise<Data> => {
   const response = await api.get('/profile')
 
   return response.data
 }
 
-export const useProfile = (options?: UseQueryOptions<Data>) => {
-  return useQuery<Data>({
+export const useProfile = () => {
+  return useQuery({
     queryKey: ['profile'],
     queryFn: getProfile,
-    ...options,
   })
 }

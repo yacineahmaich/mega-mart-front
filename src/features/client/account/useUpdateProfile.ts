@@ -1,8 +1,4 @@
-import {
-  UseMutationOptions,
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import api from '../../../utils/api/client'
 
 type UpdateProfileData = {
@@ -18,17 +14,14 @@ const updateProfile = async (data: UpdateProfileData) => {
   return response.data
 }
 
-export const useUpdateProfile = (
-  options?: UseMutationOptions<User, unknown, UpdateProfileData>
-) => {
+export const useUpdateProfile = () => {
   const queryClient = useQueryClient()
 
-  return useMutation<User, unknown, UpdateProfileData>({
+  return useMutation({
     mutationFn: updateProfile,
     retry: false,
     onSuccess: user => {
       queryClient.setQueryData(['user'], user)
     },
-    ...options,
   })
 }

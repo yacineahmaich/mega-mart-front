@@ -1,9 +1,5 @@
 import api from '../../../utils/api/client'
-import {
-  UseQueryOptions,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import queryString from 'query-string'
 
 type Data = {
@@ -15,7 +11,10 @@ type Data = {
   }
 }
 
-const getCategoryProducts = async (slug: string, searchParams: string) => {
+const getCategoryProducts = async (
+  slug: string,
+  searchParams: string
+): Promise<Data> => {
   const response = await api.get(`/categories/${slug}/products?${searchParams}`)
   return response.data
 }
@@ -42,19 +41,15 @@ export const query = (slug: string, p?: object) => {
   }
 }
 
-export const useCategoryProducts = (
-  slug: string,
-  options?: UseQueryOptions<Data>
-) => {
+export const useCategoryProducts = (slug: string) => {
   const queryClient = useQueryClient()
   const searchParams = new URL(location.href).search
   const params = queryString.parse(searchParams.toString(), {
     arrayFormat: 'comma',
   })
 
-  return useQuery<Data>({
+  return useQuery({
     ...query(slug, params),
-    ...options,
     onSuccess(data) {
       // PREFETCH NEXT PAGE
       if (data.meta.current_page < data.meta.last_page) {

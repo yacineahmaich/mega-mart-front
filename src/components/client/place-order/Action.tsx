@@ -13,19 +13,7 @@ function Action() {
 
   const { deliverey } = useCheckoutStore()
 
-  const { mutate: placeOrder, isLoading: isPlacingOrder } = usePlaceOrder({
-    onError: (error: Error) => {
-      if (!error.message) {
-        toast.error('Something went wrong! Please try again later.')
-      } else {
-        toast.error(error.message)
-      }
-    },
-    onSettled({ session_url }) {
-      // redirect user to stripe checkout form
-      window.location.href = session_url
-    },
-  })
+  const { mutate: placeOrder, isLoading: isPlacingOrder } = usePlaceOrder()
 
   const totalProducts = products?.reduce(
     (total, product) => total + items[product.id]?.quantity,
@@ -34,8 +22,22 @@ function Action() {
   const totalToPay = calcProductsTotalPrice(products)
 
   const handlePlaceOrder = () => {
-    console.log({ cart: items, delivery: deliverey })
-    placeOrder({ cart: items, delivery: deliverey })
+    placeOrder(
+      { cart: items, delivery: deliverey },
+      {
+        onError: (error: Error) => {
+          if (!error.message) {
+            toast.error('Something went wrong! Please try again later.')
+          } else {
+            toast.error(error.message)
+          }
+        },
+        onSuccess({ session_url }) {
+          // redirect user to stripe checkout form
+          window.location.href = session_url
+        },
+      }
+    )
   }
 
   return (
