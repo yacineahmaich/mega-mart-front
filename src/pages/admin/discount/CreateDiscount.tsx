@@ -6,7 +6,7 @@ import Error from '../Error'
 import FormErrors from '../../../components/common/FormErrors'
 import FieldGroup from '../../../components/admin/ui/FieldGroup'
 import { createDiscountSchema } from '../../../utils/validation/admin/discount'
-import { useProduct } from '../../../features/client/products/product'
+import { useProduct } from '../../../features/admin/products/useProduct'
 import { useApplyDiscount } from '../../../features/admin/discounts/useApplyDiscount'
 
 const CreateDiscount = () => {
