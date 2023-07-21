@@ -1,13 +1,13 @@
+import { Link } from 'react-router-dom'
 import { Form, Formik, FormikValues } from 'formik'
 import ErrorMsg from '../ErrorMsg'
-import { Link } from 'react-router-dom'
+import FormErrors from '../../../components/common/FormErrors'
+import ImageInput from '../../../components/admin/ui/ImageInput'
+import FieldGroup from '../../../components/admin/ui/FieldGroup'
 import spinner from '../../../assets/icons/spinner.svg'
 import Error from '../Error'
 import { createMainCategorySchema } from '../../../utils/validation/admin/main-category'
 import { useCreateMainCategory } from '../../../features/admin/main-categories/mutations/useCreateMainCategory'
-import FormErrors from '../../../components/common/FormErrors'
-import ImageInput from '../../../components/admin/ui/ImageInput'
-import FieldGroup from '../../../components/admin/ui/FieldGroup'
 
 function CreateMainCategory() {
   const {
@@ -15,7 +15,7 @@ function CreateMainCategory() {
     isLoading,
     isError,
     error,
-  } = useCreateMainCategory({})
+  } = useCreateMainCategory()
 
   const initialValues = {
     name: '',

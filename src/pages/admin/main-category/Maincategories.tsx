@@ -1,14 +1,12 @@
 import { PlusCircleIcon } from '@heroicons/react/24/solid'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import MainCategoriesTable from '../../../components/admin/main-categories/MainCategoriesTable'
 import { useMainCategories } from '../../../features/admin/main-categories/queries/useMainCategories'
 import Loader from '../Loader'
 import Error from '../Error'
 
 const Maincategories = () => {
-  const [searchParams] = useSearchParams()
-  const page = searchParams.get('page') ?? '1'
-  const { isLoading, isError } = useMainCategories(page)
+  const { isLoading, isError } = useMainCategories()
 
   if (isLoading) return <Loader />
   if (isError) return <Error />

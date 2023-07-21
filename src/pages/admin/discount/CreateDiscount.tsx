@@ -1,11 +1,11 @@
 import spinner from '../../../assets/icons/spinner.svg'
 import { Link, useParams } from 'react-router-dom'
 import { Formik, Form, FormikValues } from 'formik'
-import { createDiscountSchema } from '../../../utils/validation/admin/discount'
 import Loader from '../Loader'
 import Error from '../Error'
 import FormErrors from '../../../components/common/FormErrors'
 import FieldGroup from '../../../components/admin/ui/FieldGroup'
+import { createDiscountSchema } from '../../../utils/validation/admin/discount'
 import { useProduct } from '../../../features/admin/products/queries/useProduct'
 import { useApplyDiscount } from '../../../features/admin/discounts/useApplyDiscount'
 
@@ -33,6 +33,7 @@ const CreateDiscount = () => {
     end: '',
     percentage: 0,
   }
+
   const handleSubmit = (values: FormikValues & typeof initialValues) => {
     createDiscount({
       ...values,

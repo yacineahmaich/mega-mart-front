@@ -4,10 +4,8 @@ import Statistics from '../../../components/admin/orders/OrdersStatistics'
 const OrderLayout = () => {
   return (
     <div>
-      <main>
-        <Statistics />
-        <Outlet />
-      </main>
+      <Statistics />
+      <Outlet />
     </div>
   )
 }

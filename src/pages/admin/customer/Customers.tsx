@@ -1,13 +1,10 @@
-import { useSearchParams } from 'react-router-dom'
 import CustomersTable from '../../../components/admin/customers/CustomersTable'
 import { useCustomers } from '../../../features/admin/customers/queries/useCustomers'
 import Loader from '../Loader'
 import Error from '../Error'
 
 const Customers = () => {
-  const [searchParams] = useSearchParams()
-  const page = searchParams.get('page') ?? '1'
-  const { isLoading, isError } = useCustomers(page)
+  const { isLoading, isError } = useCustomers()
 
   if (isLoading) return <Loader />
   if (isError) return <Error />

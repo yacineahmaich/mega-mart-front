@@ -1,28 +1,27 @@
+import { FC, useState } from 'react'
 import spinner from '../../../assets/icons/spinner.svg'
 import { Link, useParams } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 import { Formik, Form, FormikValues } from 'formik'
-import { editProductSchema } from '../../../utils/validation/admin/product'
-
-import { useProduct } from '../../../features/admin/products/queries/useProduct'
-import { useCategories } from '../../../features/admin/categories/queries/useCategories'
-import { useUpdateProduct } from '../../../features/admin/products/mutations/useUpdateProduct'
-
-import Loader from '../Loader'
-import Error from '../Error'
-import { XMarkIcon } from '@heroicons/react/24/solid'
-import { useDeleteProductImage } from '../../../features/admin/products/mutations/useDeleteProductImage'
-import { FC, useState } from 'react'
 import {
   ArrowPathIcon,
   ArrowTopRightOnSquareIcon,
   ExclamationTriangleIcon,
 } from '@heroicons/react/24/outline'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { XMarkIcon } from '@heroicons/react/24/solid'
+import Loader from '../Loader'
+import Error from '../Error'
 import ErrorMsg from '../ErrorMsg'
 import FormErrors from '../../../components/common/FormErrors'
 import ImageInput from '../../../components/admin/ui/ImageInput'
 import FieldGroup from '../../../components/admin/ui/FieldGroup'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
+import { editProductSchema } from '../../../utils/validation/admin/product'
+import { useProduct } from '../../../features/admin/products/queries/useProduct'
+import { useCategories } from '../../../features/admin/categories/queries/useCategories'
+import { useUpdateProduct } from '../../../features/admin/products/mutations/useUpdateProduct'
+import { useDeleteProductImage } from '../../../features/admin/products/mutations/useDeleteProductImage'
 
 const EditProduct = () => {
   const { id } = useParams()

@@ -1,13 +1,9 @@
-import { useSearchParams } from 'react-router-dom'
 import { useProducts } from '../../../features/admin/products/queries/useProducts'
 import ProductRow from './ProductRow'
 import Pagination from '../ui/Pagination'
 
 const ProductsTable = () => {
-  const [searchParams] = useSearchParams()
-  const page = searchParams.get('page') ?? '1'
-
-  const { data } = useProducts(page, { enabled: false })
+  const { data } = useProducts()
 
   return (
     <section className="pb-40 overflow-x-auto">

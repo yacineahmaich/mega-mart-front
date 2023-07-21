@@ -1,12 +1,9 @@
-import { useSearchParams } from 'react-router-dom'
 import { useCustomers } from '../../../features/admin/customers/queries/useCustomers'
 import CustomerRow from './CustomerRow'
 import Pagination from '../ui/Pagination'
 
 const CustomersTable = () => {
-  const [searchParams] = useSearchParams()
-  const page = searchParams.get('page') ?? '1'
-  const { data } = useCustomers(page, { enabled: false })
+  const { data } = useCustomers()
 
   return (
     <section className="pb-40 overflow-x-auto">

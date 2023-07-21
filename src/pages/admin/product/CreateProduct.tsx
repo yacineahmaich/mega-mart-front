@@ -16,11 +16,13 @@ import FieldGroup from '../../../components/admin/ui/FieldGroup'
 
 const CreateProduct = () => {
   const [images, setImages] = useState<string[]>([uuid()])
+
   const {
     data,
     isLoading: isCategoriesLoading,
     isError: isCategoriesError,
   } = useCategories()
+
   const {
     mutate: createProduct,
     isLoading: isCreatingProduct,
@@ -221,10 +223,6 @@ const CreateProduct = () => {
           <p>
             <span className="mr-3 font-bold">Supported image types:</span>
             jpeg,jpg,png
-          </p>
-          <p>
-            <span className="mr-3 font-bold">Supported image dimensions:</span>
-            600 / 800 - 600 / 800
           </p>
         </div>
       </section>

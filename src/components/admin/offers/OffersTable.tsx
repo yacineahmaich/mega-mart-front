@@ -1,13 +1,9 @@
-import { useSearchParams } from 'react-router-dom'
 import OfferRow from './OfferRow'
 import Pagination from '../ui/Pagination'
 import { useOffers } from '../../../features/admin/offers/useOffers'
 
 const OffersTable = () => {
-  const [searchParams] = useSearchParams()
-  const page = searchParams.get('page') ?? '1'
-
-  const { data } = useOffers(page, { enabled: false })
+  const { data } = useOffers()
 
   return (
     <section className="pb-40 overflow-x-auto">

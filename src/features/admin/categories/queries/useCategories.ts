@@ -1,9 +1,6 @@
+import { useSearchParams } from 'react-router-dom'
 import api from '../../../../utils/api/admin'
-import {
-  UseQueryOptions,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 type Data = {
   categories: Category[]
@@ -17,18 +14,17 @@ type Data = {
   }
 }
 
-const getCategories = async (page = '1') => {
+const getCategories = async (page = '1'): Promise<Data> => {
   const response = await api.get(`/categories?page=${page}`)
   return response.data
 }
 
-export const useCategories = (
-  page?: string,
-  options?: UseQueryOptions<Data>
-) => {
+export const useCategories = () => {
   const queryClient = useQueryClient()
+  const [searchParams] = useSearchParams()
+  const page = searchParams.get('page') ?? '1'
 
-  return useQuery<Data>({
+  return useQuery({
     queryKey: ['admin', 'categories', { page }],
     queryFn: () => getCategories(page),
     keepPreviousData: true,
@@ -50,6 +46,5 @@ export const useCategories = (
         })
       }
     },
-    ...options,
   })
 }

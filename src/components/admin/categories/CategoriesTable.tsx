@@ -1,15 +1,9 @@
-import { useSearchParams } from 'react-router-dom'
-import { useCategories } from '../../../features/admin/categories/queries/useCategories'
 import CategoryRow from './CategoryRow'
 import Pagination from '../ui/Pagination'
+import { useCategories } from '../../../features/admin/categories/queries/useCategories'
 
 const CategoriesTable = () => {
-  const [searchParams] = useSearchParams()
-  const page = searchParams.get('page') ?? '1'
-
-  const { data } = useCategories(page, {
-    enabled: false,
-  })
+  const { data } = useCategories()
 
   return (
     <section className="pb-40 overflow-x-auto">

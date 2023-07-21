@@ -4,10 +4,8 @@ import Statistcis from '../../../components/admin/customers/CustomersStatistics'
 const CustomerLayout = () => {
   return (
     <div>
-      <main>
-        <Statistcis />
-        <Outlet />
-      </main>
+      <Statistcis />
+      <Outlet />
     </div>
   )
 }

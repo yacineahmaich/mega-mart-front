@@ -1,13 +1,9 @@
-import { useSearchParams } from 'react-router-dom'
 import DiscountRow from './DiscountRow'
 import Pagination from '../ui/Pagination'
 import { useDiscounts } from '../../../features/admin/discounts/useDiscounts'
 
 const DiscountsTable = () => {
-  const [searchParams] = useSearchParams()
-  const page = searchParams.get('page') ?? '1'
-
-  const { data } = useDiscounts(page, { enabled: false })
+  const { data } = useDiscounts()
 
   return (
     <section className="pb-40 overflow-x-auto">

@@ -1,11 +1,11 @@
 import spinner from '../../../assets/icons/spinner.svg'
 import { Link, useParams } from 'react-router-dom'
 import { Formik, Form, FormikValues } from 'formik'
-import { editDiscountSchema } from '../../../utils/validation/admin/discount'
 import Loader from '../Loader'
 import Error from '../Error'
 import FormErrors from '../../../components/common/FormErrors'
 import FieldGroup from '../../../components/admin/ui/FieldGroup'
+import { editDiscountSchema } from '../../../utils/validation/admin/discount'
 import { useDiscount } from '../../../features/admin/discounts/useDiscount'
 import { useUpdateDiscount } from '../../../features/admin/discounts/useUpdateDiscount'
 

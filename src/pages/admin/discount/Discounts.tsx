@@ -1,14 +1,10 @@
-import { useSearchParams } from 'react-router-dom'
 import Loader from '../Loader'
 import Error from '../Error'
 import { useDiscounts } from '../../../features/admin/discounts/useDiscounts'
 import DiscountsTable from '../../../components/admin/discounts/DiscountsTable'
 
 function Discounts() {
-  const [searchParams] = useSearchParams()
-  const page = searchParams.get('page') ?? '1'
-
-  const { isLoading, isError } = useDiscounts(page)
+  const { isLoading, isError } = useDiscounts()
 
   if (isLoading) return <Loader />
   if (isError) return <Error />

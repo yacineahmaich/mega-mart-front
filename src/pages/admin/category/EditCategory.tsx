@@ -1,16 +1,16 @@
 import { Link, useParams } from 'react-router-dom'
 import { Formik, Form, FormikValues } from 'formik'
-import { editCategorySchema } from '../../../utils/validation/admin/category'
-import { useCategory } from '../../../features/admin/categories/queries/useCategory'
 import spinner from '../../../assets/icons/spinner.svg'
 import Loader from '../Loader'
 import Error from '../Error'
-import { useUpdateCategory } from '../../../features/admin/categories/mutations/useUpdateCategory'
 import ErrorMsg from '../ErrorMsg'
 import FormErrors from '../../../components/common/FormErrors'
-import { useMcategories } from '../../../features/client/main-category/m-categories'
 import ImageInput from '../../../components/admin/ui/ImageInput'
 import FieldGroup from '../../../components/admin/ui/FieldGroup'
+import { useUpdateCategory } from '../../../features/admin/categories/mutations/useUpdateCategory'
+import { editCategorySchema } from '../../../utils/validation/admin/category'
+import { useCategory } from '../../../features/admin/categories/queries/useCategory'
+import { useMcategories } from '../../../features/client/main-category/m-categories'
 
 const EditProduct = () => {
   const { id } = useParams()

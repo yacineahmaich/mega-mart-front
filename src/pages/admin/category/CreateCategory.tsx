@@ -1,15 +1,15 @@
+import spinner from '../../../assets/icons/spinner.svg'
 import { Link } from 'react-router-dom'
 import { Formik, Form, FormikValues } from 'formik'
-import { createCategorySchema } from '../../../utils/validation/admin/category'
-import { useCreateCategory } from '../../../features/admin/categories/mutations/useCreateCategory'
-import spinner from '../../../assets/icons/spinner.svg'
-import ErrorMsg from '../ErrorMsg'
-import { useMcategories } from '../../../features/client/main-category/m-categories'
 import Loader from '../Loader'
 import Error from '../Error'
 import FormErrors from '../../../components/common/FormErrors'
 import ImageInput from '../../../components/admin/ui/ImageInput'
 import FieldGroup from '../../../components/admin/ui/FieldGroup'
+import ErrorMsg from '../ErrorMsg'
+import { createCategorySchema } from '../../../utils/validation/admin/category'
+import { useCreateCategory } from '../../../features/admin/categories/mutations/useCreateCategory'
+import { useMcategories } from '../../../features/client/main-category/m-categories'
 
 const CreateCategory = () => {
   const {

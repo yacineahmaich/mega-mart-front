@@ -4,10 +4,8 @@ import Statistcis from '../../../components/admin/main-categories/MainCategories
 const MainCategoryLayout = () => {
   return (
     <div>
-      <main>
-        <Statistcis />
-        <Outlet />
-      </main>
+      <Statistcis />
+      <Outlet />
     </div>
   )
 }

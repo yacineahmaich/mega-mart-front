@@ -1,9 +1,6 @@
+import { useSearchParams } from 'react-router-dom'
 import api from '../../../../utils/api/admin'
-import {
-  UseQueryOptions,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 type Data = {
   products: Product[]
@@ -17,15 +14,17 @@ type Data = {
   }
 }
 
-const getProducts = async (page: string) => {
+const getProducts = async (page: string): Promise<Data> => {
   const response = await api.get(`/products?page=${page}`)
   return response.data
 }
 
-export const useProducts = (page?: string, options?: UseQueryOptions<Data>) => {
+export const useProducts = () => {
   const queryClient = useQueryClient()
+  const [searchParams] = useSearchParams()
+  const page = searchParams.get('page') ?? '1'
 
-  return useQuery<Data>({
+  return useQuery({
     queryKey: ['admin', 'products', { page }],
     queryFn: () => getProducts(page),
     keepPreviousData: true,
@@ -47,6 +46,5 @@ export const useProducts = (page?: string, options?: UseQueryOptions<Data>) => {
         })
       }
     },
-    ...options,
   })
 }
