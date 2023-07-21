@@ -58,7 +58,7 @@ const Checkout = () => {
   const price = product.discount ? product.discount.price : product.price
 
   return (
-    <div ref={checkoutRef} className="fixed w-52 lg:w-64 right-6">
+    <div ref={checkoutRef} className="fixed z-10 w-52 lg:w-64 right-6">
       <article className="hidden w-full p-4 bg-white border divide-y rounded-lg md:block divide-gray border-gray">
         <header className="pb-3 space-y-3 lg:pb-6">
           <div className="flex items-center justify-center gap-1 text-primary-600">

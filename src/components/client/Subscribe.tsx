@@ -3,7 +3,7 @@ import { FC } from 'react'
 const Subscribe: FC = () => {
   return (
     <section
-      className="relative w-full h-64 mt-10 bg-center bg-cover border-b border-b-light after:absolute after:inset-0 after:w-full after:h-full after:bg-black/40"
+      className="relative z-50 w-full h-64 mt-10 bg-center bg-cover border-b border-b-light after:absolute after:inset-0 after:w-full after:h-full after:bg-black/40"
       style={{
         backgroundImage:
           'url("https://png.pngtree.com/thumb_back/fh260/background/20230217/pngtree-abstract-background-for-extreme-sports-team-jersey-image_1610640.jpg")',

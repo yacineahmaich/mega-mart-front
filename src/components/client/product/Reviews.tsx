@@ -93,14 +93,14 @@ const Reviews = () => {
                   ))
                 )}
                 {hasNextPage && !isLoading && (
-                  <div className="mt-10 text-center">
+                  <div className="mt-10">
                     <Button
                       variant="small"
-                      className="w-1/2 rounded-full"
+                      className="px-8 rounded-full"
                       onClick={() => fetchNextPage()}
                       isLoading={isFetchingNextPage}
                     >
-                      Load more
+                      &lt; Load more &gt;
                     </Button>
                   </div>
                 )}
