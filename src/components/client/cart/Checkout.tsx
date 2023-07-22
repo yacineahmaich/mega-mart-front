@@ -1,15 +1,10 @@
-import { FC, useState } from 'react'
-import {
-  ArrowLongRightIcon,
-  ArrowRightIcon,
-  BookOpenIcon,
-  ShieldCheckIcon,
-} from '@heroicons/react/24/outline'
+import { FC } from 'react'
+import { BookOpenIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
 import { HandThumbUpIcon, TruckIcon } from '@heroicons/react/24/solid'
 import { useNavigate } from 'react-router-dom'
-import AuthModal from '../ui/AuthModal'
 import { useGetUser } from '../../../features/auth/useGetUser'
 import Button from '../ui/Button'
+import useRequireAuthModalState from '../../../store/requireAuth'
 
 type Props = {
   totalProducts: number
@@ -18,14 +13,15 @@ type Props = {
 
 const Checkout: FC<Props> = ({ totalProducts, totalAmount }) => {
   const navigate = useNavigate()
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+  const { open: openRequireAuthModal } = useRequireAuthModalState()
+
   const { data: user } = useGetUser()
 
   const handleCheckout = () => {
     if (user) {
       navigate('/checkout')
     } else {
-      setIsAuthModalOpen(true)
+      openRequireAuthModal()
     }
   }
 
@@ -50,11 +46,6 @@ const Checkout: FC<Props> = ({ totalProducts, totalAmount }) => {
       >
         <span>Checkout</span>
       </Button>
-
-      <AuthModal
-        isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-      />
 
       <article className="px-8 py-4 rounded-lg bg-primary-800">
         <ul className="space-y-4 font-medium">

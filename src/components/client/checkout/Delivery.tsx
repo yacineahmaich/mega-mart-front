@@ -3,7 +3,7 @@ import { Formik, Form } from 'formik'
 import { checkoutSchema } from '../../../utils/validation/client/checkout'
 import FieldGroup from '../../../components/client/ui/FieldGroup'
 import Button from '../../../components/client/ui/Button'
-import useCheckoutStore from '../../../store/checkout-store'
+import useCheckoutStore from '../../../store/checkout'
 
 const Delivery = () => {
   const { data: user } = useGetUser()

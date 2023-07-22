@@ -1,5 +1,5 @@
+import { FC } from 'react'
 import { Formik, Form } from 'formik'
-import { FC, useState } from 'react'
 import FieldGroup from '../ui/FieldGroup'
 import { createReviewSchema } from '../../../utils/validation/client/review'
 import Button from '../ui/Button'
@@ -9,14 +9,15 @@ import { useCreateReview } from '../../../features/client/products/useCreateRevi
 import { useParams } from 'react-router-dom'
 import { useProduct } from '../../../features/client/products/product'
 import { useGetUser } from '../../../features/auth/useGetUser'
-import AuthModal from '../ui/AuthModal'
+import useRequireAuthModalState from '../../../store/requireAuth'
 
 type Props = {
   children?: React.ReactNode
 }
 const CreateReview: FC<Props> = () => {
   const { data: user } = useGetUser()
-  const [requireAuth, setRequireAuth] = useState(false)
+
+  const { open: openRequireAuthModal } = useRequireAuthModalState()
 
   const { slug } = useParams()
   const { data: product } = useProduct(slug)
@@ -39,11 +40,10 @@ const CreateReview: FC<Props> = () => {
 
   return (
     <div className="relative mb-5">
-      <AuthModal isOpen={requireAuth} onClose={() => setRequireAuth(false)} />
       {!user && (
         <div
           className="absolute inset-0 z-10"
-          onClick={() => setRequireAuth(true)}
+          onClick={() => openRequireAuthModal()}
         ></div>
       )}
       <Formik

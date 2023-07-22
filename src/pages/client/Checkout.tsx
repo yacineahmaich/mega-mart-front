@@ -5,7 +5,7 @@ import Delivery from '../../components/client/checkout/Delivery'
 import PaymentMethod from '../../components/client/checkout/PaymentMethod'
 import PlaceOrder from '../../components/client/checkout/PlaceOrder'
 import Stepper from '../../components/client/checkout/Stepper'
-import useCheckoutStore from '../../store/checkout-store'
+import useCheckoutStore from '../../store/checkout'
 
 const CheckoutLayout = () => {
   const { items } = useCart()

@@ -1,4 +1,4 @@
-import { DeliveryData } from '../../../store/checkout-store'
+import { DeliveryData } from '../../../store/checkout'
 import api from '../../../utils/api/client'
 import { useMutation } from '@tanstack/react-query'
 

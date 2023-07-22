@@ -8,7 +8,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { useCart } from '../../../context/Cart'
 import { useProductsByIds } from '../../../features/client/products/useProductsByIds'
-import useCheckoutStore from '../../../store/checkout-store'
+import useCheckoutStore from '../../../store/checkout'
 
 function Preveiw() {
   const { deliverey } = useCheckoutStore()

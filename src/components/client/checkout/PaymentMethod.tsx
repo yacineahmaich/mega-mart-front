@@ -2,7 +2,7 @@ import { Formik, Form } from 'formik'
 import Radio from '../../../components/client/ui/Radio'
 import Button from '../../../components/client/ui/Button'
 import { paymentMethodSchema } from '../../../utils/validation/client/checkout'
-import useCheckoutStore, { PaymentMethods } from '../../../store/checkout-store'
+import useCheckoutStore, { PaymentMethods } from '../../../store/checkout'
 
 function PaymentMethod() {
   const {
