@@ -24,8 +24,6 @@ export const useUploadAvatar = () => {
   return useMutation({
     mutationFn: uploadAvatar,
     retry: false,
-    onSuccess: () => {
-      queryClient.refetchQueries(['user'])
-    },
+    onSuccess: async () => queryClient.refetchQueries(['user']),
   })
 }

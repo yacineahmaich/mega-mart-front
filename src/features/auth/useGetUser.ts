@@ -1,4 +1,4 @@
-import { UseQueryOptions, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import api from '../../utils/api/client'
 
 const TOKEN = localStorage.getItem('ACCESS_TOKEN')
@@ -10,17 +10,15 @@ const getProfile = async (): Promise<User> => {
   return response.data
 }
 
-export const useGetUser = (options?: UseQueryOptions<User>) => {
-  return useQuery<User>({
+export const useGetUser = () => {
+  return useQuery({
     queryKey: ['user'],
     queryFn: () => getProfile(),
-    enabled: false,
     staleTime: Infinity,
     onSuccess: () => {
       // hide page loader
       document.querySelector('#loader')?.remove()
       document.body.style.overflow = 'auto'
     },
-    ...options,
   })
 }

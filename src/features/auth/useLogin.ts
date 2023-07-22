@@ -16,15 +16,13 @@ type loginCredentials = {
   password: string
 }
 
-const login = async (credentials: loginCredentials) => {
+const login = async (credentials: loginCredentials): Promise<Data> => {
   const response = await api.post('/login', credentials)
 
   return response.data
 }
 
-export const useLogin = (
-  options?: UseMutationOptions<Data, Error, loginCredentials>
-) => {
+export const useLogin = () => {
   const navigate = useNavigate()
   const queryClient = useQueryClient()
 
@@ -37,6 +35,5 @@ export const useLogin = (
 
       navigate('/account/profile')
     },
-    ...options,
   })
 }

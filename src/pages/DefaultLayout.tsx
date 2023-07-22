@@ -2,7 +2,7 @@ import { Outlet, ScrollRestoration } from 'react-router-dom'
 import { useGetUser } from '../features/auth/useGetUser'
 
 const DefaultLayout = () => {
-  const { isLoading, isError } = useGetUser({ enabled: true })
+  const { isLoading, isError } = useGetUser()
 
   return (
     <div>

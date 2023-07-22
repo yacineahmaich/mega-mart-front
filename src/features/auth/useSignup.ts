@@ -17,15 +17,13 @@ type SignupCredentials = {
   passwordConfirmation: string
 }
 
-const signup = async (credentials: SignupCredentials) => {
+const signup = async (credentials: SignupCredentials): Promise<Data> => {
   const response = await api.post('/signup', credentials)
 
   return response.data
 }
 
-export const useSignup = (
-  options?: UseMutationOptions<Data, Error, SignupCredentials>
-) => {
+export const useSignup = () => {
   const queryClient = useQueryClient()
 
   return useMutation<Data, Error, SignupCredentials>({
@@ -35,6 +33,5 @@ export const useSignup = (
       queryClient.setQueryData(['user'], data.user),
         localStorage.setItem('ACCESS_TOKEN', data.token)
     },
-    ...options,
   })
 }
