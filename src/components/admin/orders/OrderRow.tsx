@@ -1,8 +1,9 @@
 import { FC } from 'react'
-import { CheckIcon } from '@heroicons/react/24/outline'
+import { EyeIcon } from '@heroicons/react/24/outline'
 import Actions from '../ui/Actions'
 import { useToggleDelivered } from '../../../features/admin/orders/useToggleDelivered'
 import Badge from '../../common/Badge'
+import { Link } from 'react-router-dom'
 
 type Props = {
   order: Order
@@ -28,14 +29,14 @@ const OrderRow: FC<Props> = ({ order }) => {
         {order.status === 'paid' ? (
           <Badge variant="success">Paid</Badge>
         ) : (
-          <Badge variant="danger">Unaid</Badge>
+          <Badge variant="danger">Unpaid</Badge>
         )}
       </td>
       <td className="px-6 py-3">
         {order.delivered ? (
-          <Badge variant="success">Delivered</Badge>
+          <Badge variant="success">delivered</Badge>
         ) : (
-          <Badge variant="danger">Not Delivered</Badge>
+          <Badge variant="danger">not yet</Badge>
         )}
       </td>
 
@@ -46,7 +47,7 @@ const OrderRow: FC<Props> = ({ order }) => {
             onClick={handleToggleDelivered}
             disabled={isLoading}
           >
-            {isLoading ? (
+            {/* {isLoading ? (
               <svg
                 fill="currentColor"
                 width="800px"
@@ -64,7 +65,14 @@ const OrderRow: FC<Props> = ({ order }) => {
             )}
             <span className="text-sm">
               {order.delivered ? 'Mark as Not Delivered' : 'Mark as Delivered'}
-            </span>
+            </span> */}
+            <Link
+              to={`${order.id}`}
+              className="px-6 py-2.5 text-left hover:bg-light whitespace-nowrap"
+            >
+              <EyeIcon className="inline w-4 h-4 mr-4" />
+              <span className="text-sm">See details</span>
+            </Link>
           </button>
         </Actions>
       </td>

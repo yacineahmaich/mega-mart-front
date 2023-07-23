@@ -29,7 +29,7 @@ const LatestOrders: FC<Props> = () => {
                 className="hover:bg-[#8884d8b7] hover:text-white transition-colors"
               >
                 <th className="p-3 underline text-dark-500">
-                  <Link to={`/orders/${order.id}`}>{order.id}</Link>
+                  <Link to={`/dashboard/orders/${order.id}`}>{order.id}</Link>
                 </th>
                 <td className="p-3">{order.customer.name}</td>
                 <td className="p-3">${order.totalPrice}</td>

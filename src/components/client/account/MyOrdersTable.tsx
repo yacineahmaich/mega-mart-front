@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { useMyOrders } from '../../../features/client/account/useMyOrders'
-import clsx from 'clsx'
 import Spinner from '../ui/Spinner'
 import moment from 'moment'
 import Message from '../ui/Message'
@@ -56,7 +55,7 @@ function MyOrdersTable() {
               <td className="px-4 py-2">
                 <Badge variant={order.delivered ? 'success' : 'danger'}>
                   {order.delivered
-                    ? `Delivered ${moment(order.deliveredAt).fromNow()}`
+                    ? `${moment(order.deliveredAt).fromNow()}`
                     : 'No'}
                 </Badge>
               </td>

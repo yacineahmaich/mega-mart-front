@@ -52,6 +52,7 @@ import mCategoryLoader from './features/client/main-category/loader'
 import categoryLoader from './features/client/category/loader'
 import productLoader from './features/client/product/loader'
 import ErrorPage from './pages/client/ErrorPage'
+import OrderDetail from './pages/admin/order/OrderDetail'
 
 const router = createBrowserRouter([
   {
@@ -243,6 +244,10 @@ const router = createBrowserRouter([
               {
                 index: true,
                 element: <Orders />,
+              },
+              {
+                path: ':id',
+                element: <OrderDetail />,
               },
             ],
           },
