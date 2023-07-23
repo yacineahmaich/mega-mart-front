@@ -7,6 +7,7 @@ import Button from '../ui/Button'
 import CreateReview from './CreateReview'
 import Message from '../ui/Message'
 import Error from '../ui/Error'
+import { getAvatarUrlFromName } from '../../../utils/helpers'
 
 const Reviews = () => {
   const { slug } = useParams()
@@ -61,7 +62,10 @@ const Reviews = () => {
                         <div className="overflow-hidden rounded-full w-11 h-11 bg-gray">
                           {review.author.avatar ? (
                             <img
-                              src={review.author.avatar.url}
+                              src={
+                                review.author.avatar.url ??
+                                getAvatarUrlFromName(review.author.name)
+                              }
                               alt={review.author.name}
                             />
                           ) : (

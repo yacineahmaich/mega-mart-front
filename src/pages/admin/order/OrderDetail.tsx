@@ -42,7 +42,7 @@ const OrderDetail = () => {
           {order.delivered ? (
             <div className="flex items-center gap-1 text-green-500">
               <TruckIcon className=" w-7 h-7" />
-              Delivered {moment(order.deliveredAt).fromNow()}
+              Delivered at {order.deliveredAt}
             </div>
           ) : null}
         </header>
@@ -110,7 +110,7 @@ const OrderDetail = () => {
                     />
                     <span>{item.product.name}</span>
                   </th>
-                  <th>{item.price}</th>
+                  <th>${item.price}</th>
                   <th>{item.quantity}</th>
                   <th>${item.quantity * item.price}</th>
                 </tr>

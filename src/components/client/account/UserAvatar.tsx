@@ -3,6 +3,7 @@ import { useUploadAvatar } from '../../../features/client/account/useUploadAvata
 import { PencilIcon } from '@heroicons/react/24/outline'
 import Spinner from '../ui/Spinner'
 import clsx from 'clsx'
+import { getAvatarUrlFromName } from '../../../utils/helpers'
 type Props = {
   user: User
 }
@@ -48,7 +49,7 @@ const UserAvatar: FC<Props> = ({ user }) => {
       </div>
       {user.avatar ? (
         <img
-          src={user.avatar.url}
+          src={user.avatar.url ?? getAvatarUrlFromName(user.name)}
           alt={user.avatar.name}
           className="object-cover w-full h-full"
         />

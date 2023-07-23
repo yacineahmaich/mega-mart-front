@@ -3,6 +3,7 @@ import BlockLayout from './BlockLayout'
 import Badge from '../../common/Badge'
 import { useLatestOrders } from '../../../features/admin/dashboard/latest-orders'
 import { Link } from 'react-router-dom'
+import { getAvatarUrlFromName } from '../../../utils/helpers'
 type Props = {
   children?: React.ReactNode
 }
@@ -31,7 +32,17 @@ const LatestOrders: FC<Props> = () => {
                 <th className="p-3 underline text-dark-500">
                   <Link to={`/dashboard/orders/${order.id}`}>{order.id}</Link>
                 </th>
-                <td className="p-3">{order.customer.name}</td>
+                <td className="flex items-center gap-2 p-3">
+                  <img
+                    src={
+                      order.customer?.avatar?.url ??
+                      getAvatarUrlFromName(order.customer.name)
+                    }
+                    alt={order.customer?.avatar?.name}
+                    className="w-8 h-8 rounded-full shadow-xl"
+                  />
+                  <span>{order.customer.name}</span>
+                </td>
                 <td className="p-3">${order.totalPrice}</td>
                 <td className="p-3">
                   {order.status === 'paid' ? (

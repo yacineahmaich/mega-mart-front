@@ -19,13 +19,13 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="grid grid-cols-5 gap-6">
-        <div className="col-span-2">
+        {/* <div className="col-span-2">
           <CustomersChart />
-        </div>
-        <div className="col-span-3">
-          <LatestOrders />
-        </div>
+        </div> */}
+        {/* <div className="col-span-3">
+        </div> */}
       </div>
+      <LatestOrders />
     </>
   )
 }
