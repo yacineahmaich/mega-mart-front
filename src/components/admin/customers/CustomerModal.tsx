@@ -8,6 +8,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
+import { getAvatarUrlFromName } from '../../../utils/helpers'
 
 type Props = {
   isOpen: boolean
@@ -69,7 +70,10 @@ const CustomerModal: FC<Props> = ({ isOpen, onClose, customer }) => {
                     <div className="flex gap-3">
                       <div className="w-16 h-16 overflow-hidden rounded-full shadow-md bg-light">
                         <img
-                          src={customer.avatar?.url}
+                          src={
+                            customer.avatar?.url ??
+                            getAvatarUrlFromName(customer.name)
+                          }
                           alt={customer.avatar?.name}
                           className="w-full h-full transition-transform duration-300 objec-cover hover:scale-110 hover:rotate-1"
                         />

@@ -10,8 +10,10 @@ import {
   RectangleStackIcon,
   GiftIcon,
   BanknotesIcon,
+  ArrowPathIcon,
 } from '@heroicons/react/24/outline'
 import { NavLink, Link } from 'react-router-dom'
+import { useLogout } from '../../../features/auth/useLogout'
 
 const manageStoreNavigation = [
   {
@@ -55,6 +57,8 @@ const othersNavigation = [
 ]
 
 const SideBar = () => {
+  const { mutate: logout, isLoading: isLoggingOut } = useLogout()
+
   return (
     <div className="fixed top-0 left-0 z-10 flex flex-col h-screen border-r shadow w-admin-sidebar border-gray">
       <div className="py-6 text-center border-b border-gray">
@@ -145,7 +149,7 @@ const SideBar = () => {
               <NavLink
                 to="profile"
                 className={({ isActive }) =>
-                  `relative flex items-stretch gap-3 pl-3 text-primary-800 hover:text-primary-400 transition-colors ${
+                  `relative flex  cursor-default items-stretch gap-3 pl-3 text-primary-800  ${
                     isActive
                       ? 'after:absolute after:h-full after:left-0 after:top-1/2 after:-translate-y-1/2 after:w-2 after:rounded-r after:bg-red-500'
                       : ''
@@ -160,7 +164,7 @@ const SideBar = () => {
               <NavLink
                 to="profile"
                 className={({ isActive }) =>
-                  `relative flex items-stretch gap-3 pl-3 text-primary-800 hover:text-primary-400 transition-colors ${
+                  `relative flex  cursor-default items-stretch gap-3 pl-3 text-primary-800  ${
                     isActive
                       ? 'after:absolute after:h-full after:left-0 after:top-1/2 after:-translate-y-1/2 after:w-2 after:rounded-r after:bg-red-500'
                       : ''
@@ -173,8 +177,15 @@ const SideBar = () => {
             </li>
           </ul>
 
-          <button className="justify-center flex items-center gap-1 px-3 py-1.5 font-medium text-white rounded bg-danger-300 hover:bg-danger-500 tranistion-colors">
-            <ArrowLeftOnRectangleIcon className="w-5 h-5" />
+          <button
+            className="justify-center flex items-center gap-1 px-3 py-1.5 font-medium text-white rounded bg-danger-300 hover:bg-danger-500 tranistion-colors"
+            onClick={() => logout()}
+          >
+            {isLoggingOut ? (
+              <ArrowPathIcon className="w-5 h-5 animate-spin" />
+            ) : (
+              <ArrowLeftOnRectangleIcon className="w-5 h-5" />
+            )}
             <span className="text-sm">Logout</span>
           </button>
         </div>
