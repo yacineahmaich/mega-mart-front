@@ -4,7 +4,7 @@ import {
   useMutation,
   useQueryClient,
 } from '@tanstack/react-query'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 type Data = {
   token: string
@@ -24,16 +24,19 @@ const login = async (credentials: loginCredentials): Promise<Data> => {
 
 export const useLogin = () => {
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
   const queryClient = useQueryClient()
 
   return useMutation<Data, Error, loginCredentials>({
     mutationFn: login,
     retry: false,
     onSuccess: data => {
+      const redirect = searchParams.get('redirect')
+
       queryClient.setQueryData(['user'], data.user)
       localStorage.setItem('ACCESS_TOKEN', data.token)
 
-      navigate('/account/profile')
+      navigate(redirect ?? '/account/profile')
     },
   })
 }

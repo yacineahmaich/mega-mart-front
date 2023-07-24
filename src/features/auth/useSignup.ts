@@ -1,3 +1,4 @@
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import api from '../../utils/api/client'
 import {
   UseMutationOptions,
@@ -24,14 +25,20 @@ const signup = async (credentials: SignupCredentials): Promise<Data> => {
 }
 
 export const useSignup = () => {
+  const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
   const queryClient = useQueryClient()
 
   return useMutation<Data, Error, SignupCredentials>({
     mutationFn: signup,
     retry: false,
     onSuccess: data => {
-      queryClient.setQueryData(['user'], data.user),
-        localStorage.setItem('ACCESS_TOKEN', data.token)
+      const redirect = searchParams.get('redirect')
+
+      queryClient.setQueryData(['user'], data.user)
+      localStorage.setItem('ACCESS_TOKEN', data.token)
+
+      navigate(redirect ?? '/account/profile')
     },
   })
 }

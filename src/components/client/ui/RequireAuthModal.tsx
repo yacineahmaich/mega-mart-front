@@ -2,11 +2,12 @@ import { Fragment } from 'react'
 import { createPortal } from 'react-dom'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import useRequireAuthModalState from '../../../store/requireAuth'
 
 const RequireAuthModal = () => {
   const { isOpen, close } = useRequireAuthModalState()
+  const { pathname: redirect } = useLocation()
 
   return createPortal(
     <Transition appear show={isOpen} as={Fragment}>
@@ -49,14 +50,14 @@ const RequireAuthModal = () => {
                   </p>
                   <div className="flex items-center gap-3">
                     <Link
-                      to="/account/login"
+                      to={`/account/login?redirect=${redirect}`}
                       className="w-full text-center py-1.5 font-semibold text-white rounded-full bg-primary-500"
                       onClick={close}
                     >
                       Login
                     </Link>
                     <Link
-                      to="/account/signup"
+                      to={`/account/signup?redirect=${redirect}`}
                       className="w-full text-center py-1.5 font-semibold border rounded-full text-primary-500 border-primary-500"
                       onClick={close}
                     >
