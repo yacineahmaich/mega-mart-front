@@ -1,19 +1,18 @@
 import Checkout from '../../components/client/cart/Checkout'
-import { useCart } from '../../context/Cart'
 import { useProductsByIds } from '../../features/client/products/useProductsByIds'
 import Message from '../../components/client/ui/Message'
 import Spinner from '../../components/client/ui/Spinner'
 import Products from '../../components/client/cart/Products'
+import useCartState from '../../store/cart'
 
 const Cart = () => {
-  const { items, calcProductsTotalPrice } = useCart()
+  const { items, getItemsTotalPrice } = useCartState()
 
   const { data: products, isLoading } = useProductsByIds({
-    productIds: [...Object.keys(items)],
+    productIds: items.map(i => i.id),
   })
 
-  const totalAmount = calcProductsTotalPrice(products ?? [])
-
+  const totalAmount = getItemsTotalPrice(products ?? [])
   const totalProducts = products?.length ?? 0
 
   return (

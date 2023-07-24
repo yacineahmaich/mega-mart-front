@@ -6,18 +6,18 @@ import {
   PhoneIcon,
   UserCircleIcon,
 } from '@heroicons/react/24/outline'
-import { useCart } from '../../../context/Cart'
 import { useProductsByIds } from '../../../features/client/products/useProductsByIds'
 import useCheckoutStore from '../../../store/checkout'
+import useCartState from '../../../store/cart'
 
 function Preveiw() {
   const { deliverey } = useCheckoutStore()
-  const { items, calcProductsTotalPrice } = useCart()
+  const { items, getItemsTotalPrice } = useCartState()
   const { data: products, isLoading } = useProductsByIds({
-    productIds: [...Object.keys(items)],
+    productIds: items.map(i => i.id),
   })
 
-  const totalToPay = calcProductsTotalPrice(products)
+  const totalToPay = getItemsTotalPrice(products)
 
   return (
     <div className="p-6 font-medium border rounded-lg text-primary-600 border-gray">

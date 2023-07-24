@@ -3,7 +3,7 @@ import Header from '../../components/client/Header'
 import { BoltIcon, HomeIcon } from '@heroicons/react/24/outline'
 
 function ErrorPage() {
-  const error: any = useRouteError()
+  const error = useRouteError()
 
   const reload = () => window.location.reload()
 
@@ -16,7 +16,7 @@ function ErrorPage() {
             Unexpected Error Occur !
           </h1>
           <p className="text-xl text-danger-900">
-            {error?.message ??
+            {error?.['message'] ??
               "We're sorry, but an error has occurred while processing your request. Please try again later."}
           </p>
 

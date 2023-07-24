@@ -1,14 +1,11 @@
-import { FC, useMemo } from 'react'
 import spinner from '../../../assets/icons/loader.gif'
-import { useCart } from '../../../context/Cart'
 import { useProductsByIds } from '../../../features/client/products/useProductsByIds'
 import Item from './Item'
 import Error from '../ui/Error'
-type Props = {
-  children?: React.ReactNode
-}
-const Products: FC<Props> = () => {
-  const { items } = useCart()
+import useCartState from '../../../store/cart'
+
+const Products = () => {
+  const { items } = useCartState()
 
   const {
     data: products,
@@ -16,10 +13,8 @@ const Products: FC<Props> = () => {
     isError,
     refetch,
   } = useProductsByIds({
-    productIds: [...Object.keys(items)],
+    productIds: items.map(i => i.id),
   })
-
-  const sortedProducts = useMemo(() => products?.slice().reverse(), [products])
 
   if (isError)
     return <Error message="Failed to load products!" retry={refetch} />
@@ -38,7 +33,7 @@ const Products: FC<Props> = () => {
           <img src={spinner} alt="spinner" className="mx-auto mt-4" />
         </div>
       )}
-      {sortedProducts?.map(product => (
+      {products?.map(product => (
         <Item key={product.id} product={product} />
       ))}
     </div>

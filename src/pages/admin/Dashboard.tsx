@@ -1,4 +1,3 @@
-import CustomersChart from '../../components/admin/dashboard/CustomersChart'
 import Heading from '../../components/admin/dashboard/Heading'
 import LatestOrders from '../../components/admin/dashboard/LatestOrders'
 import WeekSalesChart from '../../components/admin/dashboard/WeekSalesChart'

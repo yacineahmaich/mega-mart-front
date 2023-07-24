@@ -1,8 +1,8 @@
 import { FC, useState } from 'react'
 import { ShoppingCartIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
-import { useCart } from '../../../context/Cart'
 import clsx from 'clsx'
+import useCartState from '../../../store/cart'
 
 type Props = {
   product: Product
@@ -10,7 +10,9 @@ type Props = {
 
 const ProductCard: FC<Props> = ({ product }) => {
   const [showcase, setShowcase] = useState(false)
-  const { addToCart, items } = useCart()
+  const { addItem, getItem } = useCartState()
+
+  const itemInCart = getItem(product.id)
 
   return (
     <article className="flex flex-col overflow-hidden bg-white border shadow-sm rounded-xl border-gray">
@@ -67,7 +69,7 @@ const ProductCard: FC<Props> = ({ product }) => {
             )}
           </div>
           <div>
-            {items[product.id] ? (
+            {itemInCart ? (
               <span>
                 <svg
                   viewBox="0 0 133 133"
@@ -117,7 +119,7 @@ const ProductCard: FC<Props> = ({ product }) => {
             ) : (
               <button
                 className="flex items-center justify-center w-10 h-10 text-white transition-colors rounded-full bg-primary-500 hover:bg-primary-600 active:ring active:ring-primary-500 active:ring-offset-1 active:scale-90"
-                onClick={() => addToCart(product.id)}
+                onClick={() => addItem({ id: product.id })}
               >
                 <ShoppingCartIcon className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>

@@ -1,5 +1,4 @@
 import { FC, useState } from 'react'
-import { useCart } from '../../../context/Cart'
 import moment from 'moment'
 import {
   ExclamationTriangleIcon,
@@ -7,6 +6,7 @@ import {
   PlusSmallIcon,
   TrashIcon,
 } from '@heroicons/react/24/outline'
+import useCartState from '../../../store/cart'
 
 type Props = {
   product: Product
@@ -14,10 +14,12 @@ type Props = {
 }
 
 const MinicartItem: FC<Props> = ({ product, goToProduct }) => {
-  const { items, removeFromCart, increaseQty, decreaseQty } = useCart()
+  const { items, removeItem, getItem, increaseQty, decreaseQty } =
+    useCartState()
+
   const [isConfirmOpen, setIsConfirmOpen] = useState(false)
 
-  const itemInCart = items[product.id]
+  const itemInCart = getItem(product.id)
 
   const handleIncreaseQty = () => {
     if (itemInCart?.quantity === product.quantity) return
@@ -29,7 +31,7 @@ const MinicartItem: FC<Props> = ({ product, goToProduct }) => {
   }
 
   const handleRemoveFromCart = () => {
-    removeFromCart(product.id)
+    removeItem(product.id)
     setIsConfirmOpen(false)
   }
 

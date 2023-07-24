@@ -1,11 +1,7 @@
 import { Fragment, FC } from 'react'
 import spinner from '../../../assets/icons/spinner.svg'
 import { Dialog, Transition } from '@headlessui/react'
-import {
-  ExclamationCircleIcon,
-  ExclamationTriangleIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline'
+import { ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 type Props = {
   onClose: () => void
@@ -68,11 +64,11 @@ const ConfirmDelete: FC<Props> = ({
                     permanently? This action cannot be undone.
                   </p>
 
-                  <ul className="text-danger-300 text-sm font-medium">
+                  <ul className="text-sm font-medium text-danger-300">
                     {notes &&
                       notes.map((note, idx) => (
                         <li key={idx} className="first:mt-4">
-                          <ExclamationTriangleIcon className="w-4 h-4 inline mr-1" />
+                          <ExclamationTriangleIcon className="inline w-4 h-4 mr-1" />
                           <span>{note}</span>
                         </li>
                       ))}

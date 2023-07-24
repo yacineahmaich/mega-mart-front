@@ -1,14 +1,14 @@
-import { useCart } from '../../../context/Cart'
 import { usePlaceOrder } from '../../../features/client/checkout/usePlaceOrder'
 import { useProductsByIds } from '../../../features/client/products/useProductsByIds'
 import { toast } from 'react-hot-toast'
 import Button from '../ui/Button'
 import useCheckoutStore from '../../../store/checkout'
+import useCartState from '../../../store/cart'
 
 function Action() {
-  const { items, calcProductsTotalPrice } = useCart()
+  const { items, getItemsTotalPrice, getItem } = useCartState()
   const { data: products, isLoading } = useProductsByIds({
-    productIds: [...Object.keys(items)],
+    productIds: items.map(i => i.id),
   })
 
   const { deliverey } = useCheckoutStore()
@@ -16,10 +16,10 @@ function Action() {
   const { mutate: placeOrder, isLoading: isPlacingOrder } = usePlaceOrder()
 
   const totalProducts = products?.reduce(
-    (total, product) => total + items[product.id]?.quantity,
+    (total, product) => total + getItem(product.id)?.quantity,
     0
   )
-  const totalToPay = calcProductsTotalPrice(products)
+  const totalToPay = getItemsTotalPrice(products ?? [])
 
   const handlePlaceOrder = () => {
     placeOrder(

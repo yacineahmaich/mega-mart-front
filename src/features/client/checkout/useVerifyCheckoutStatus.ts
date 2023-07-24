@@ -1,4 +1,4 @@
-import { useCart } from '../../../context/Cart'
+import useCartState from '../../../store/cart'
 import api from '../../../utils/api/client'
 import { useQuery } from '@tanstack/react-query'
 
@@ -13,7 +13,7 @@ const verifyPaiment = async (session: string): Promise<Order> => {
 }
 
 export const useVerifyCheckoutStatus = (session: string) => {
-  const { clear } = useCart()
+  const { clear } = useCartState()
 
   return useQuery({
     queryKey: ['checkout', { session }],

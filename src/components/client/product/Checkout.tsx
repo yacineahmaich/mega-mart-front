@@ -2,13 +2,14 @@ import { useEffect, useRef, useState } from 'react'
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/solid'
 import { useProduct } from '../../../features/client/products/product'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useCart } from '../../../context/Cart'
+import useCartState from '../../../store/cart'
 
 const Checkout = () => {
   const navigate = useNavigate()
   const { slug } = useParams()
   const { data: product } = useProduct(slug)
-  const { items, changeQuantity, addToCart } = useCart()
+
+  const { items, updateQty, addItem } = useCartState()
   const productInCart = items[product.id]
   const [quantity, setQuantity] = useState<number>(productInCart?.quantity ?? 1)
 
@@ -26,12 +27,12 @@ const Checkout = () => {
   }
 
   const handleUpdateCart = () => {
-    changeQuantity(product.id, quantity)
+    updateQty(product.id, quantity)
     navigate('/cart')
   }
 
   const handleAddToCart = () => {
-    addToCart(product.id, quantity)
+    addItem({ id: product.id, quantity })
     navigate('/cart')
   }
 

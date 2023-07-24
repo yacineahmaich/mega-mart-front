@@ -1,15 +1,14 @@
 import { Navigate } from 'react-router'
-import { useGetUser } from '../../features/auth/useGetUser'
-import { useCart } from '../../context/Cart'
 import Delivery from '../../components/client/checkout/Delivery'
 import PaymentMethod from '../../components/client/checkout/PaymentMethod'
 import PlaceOrder from '../../components/client/checkout/PlaceOrder'
 import Stepper from '../../components/client/checkout/Stepper'
+import { useGetUser } from '../../features/auth/useGetUser'
+import useCartState from '../../store/cart'
 import useCheckoutStore from '../../store/checkout'
 
 const CheckoutLayout = () => {
-  const { items } = useCart()
-
+  const { items } = useCartState()
   const { steps } = useCheckoutStore()
 
   const { data: user } = useGetUser()

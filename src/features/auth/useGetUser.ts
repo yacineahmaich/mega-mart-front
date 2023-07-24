@@ -4,11 +4,10 @@ import api from '../../utils/api/client'
 const TOKEN = localStorage.getItem('ACCESS_TOKEN')
 
 const getUser = async (): Promise<User> => {
-  console.log(TOKEN)
   if (!TOKEN) return null
 
   const response = await api.get('/me')
-  console.log(response.data)
+
   return response.data
 }
 

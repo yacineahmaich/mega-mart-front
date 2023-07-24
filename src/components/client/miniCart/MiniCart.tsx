@@ -3,10 +3,10 @@ import spinner from '../../../assets/icons/loader.gif'
 import Sheet from '../ui/Sheet'
 import MiniCartFooter from './MiniCartFooter'
 import MinicartItems from './MinicartItems'
-import { useCart } from '../../../context/Cart'
 import { useProductsByIds } from '../../../features/client/products/useProductsByIds'
 import Message from '../ui/Message'
 import Spinner from '../ui/Spinner'
+import useCartState from '../../../store/cart'
 
 type Props = {
   isOpen: boolean
@@ -14,13 +14,14 @@ type Props = {
 }
 
 const Cart: FC<Props> = ({ isOpen, onClose }) => {
-  const { items } = useCart()
+  const { items } = useCartState()
+
   const {
     data: products,
     isLoading,
     isFetching,
   } = useProductsByIds({
-    productIds: [...Object.keys(items)],
+    productIds: items.map(i => i.id),
   })
 
   const totalProducts = products?.length ?? 0
@@ -38,11 +39,6 @@ const Cart: FC<Props> = ({ isOpen, onClose }) => {
               <div className="relative px-5 py-3 overflow-x-hidden overflow-y-auto">
                 {isFetching && (
                   <div className="fixed top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-white/60">
-                    {/* <img
-                      src={spinner}
-                      alt="spinner"
-                      className="w-12 h-12 animate-spin"
-                    /> */}
                     <img src={spinner} alt="spinner" className="mx-auto mt-4" />
                   </div>
                 )}

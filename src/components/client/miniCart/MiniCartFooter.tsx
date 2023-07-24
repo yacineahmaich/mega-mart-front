@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useCart } from '../../../context/Cart'
+import useCartState from '../../../store/cart'
 
 type Props = {
   products: Product[]
@@ -9,8 +9,8 @@ type Props = {
 
 const MiniCartFooter: FC<Props> = ({ products, onClose }) => {
   const navigate = useNavigate()
-  const { calcProductsTotalPrice } = useCart()
-  const totalAmount = calcProductsTotalPrice(products)
+  const { getItemsTotalPrice } = useCartState()
+  const totalAmount = getItemsTotalPrice(products)
 
   const goToCart = () => {
     navigate('/cart')
