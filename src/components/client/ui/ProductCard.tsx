@@ -1,21 +1,33 @@
 import { FC, useState } from 'react'
-import { ShoppingCartIcon } from '@heroicons/react/24/outline'
+import { ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 import clsx from 'clsx'
 import useCartState from '../../../store/cart'
+import useFavoriteState from '../../../store/favorite'
 
 type Props = {
   product: Product
+  favorite?: boolean
 }
 
-const ProductCard: FC<Props> = ({ product }) => {
+const ProductCard: FC<Props> = ({ product, favorite }) => {
   const [showcase, setShowcase] = useState(false)
   const { addItem, getItem } = useCartState()
+  const { unsaveItem } = useFavoriteState()
 
   const itemInCart = getItem(product.id)
 
   return (
-    <article className="flex flex-col overflow-hidden bg-white border shadow-sm rounded-xl border-gray">
+    <article className="relative flex flex-col bg-white border shadow-sm rounded-xl border-gray">
+      {/* Remove from favorite button */}
+      {favorite && (
+        <button
+          className="absolute top-0 right-0 z-10 p-2 translate-x-1/2 -translate-y-1/2 bg-white rounded-full shadow-lg"
+          onClick={() => unsaveItem(product.id)}
+        >
+          <XMarkIcon className="w-4 h-4" />
+        </button>
+      )}
       <div className="relative group bg-light h-52">
         <Link to={`/products/${product.slug}`}>
           <img
