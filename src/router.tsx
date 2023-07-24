@@ -53,6 +53,7 @@ import categoryLoader from './features/client/category/loader'
 import productLoader from './features/client/product/loader'
 import ErrorPage from './pages/client/ErrorPage'
 import OrderDetail from './pages/admin/order/OrderDetail'
+import Favorite from './pages/client/Favorite'
 
 const router = createBrowserRouter([
   {
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
           {
             path: 'cart',
             element: <Cart />,
+          },
+          {
+            path: 'favorite',
+            element: <Favorite />,
           },
           {
             path: 'cart/checkout/:session',

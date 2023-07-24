@@ -7,7 +7,7 @@ import {
 import MiniCartButton from './miniCart/MiniCartButton'
 import { Link } from 'react-router-dom'
 import { useGetUser } from '../../features/auth/useGetUser'
-import useSavedState from '../../store/saved'
+import useSavedState from '../../store/favorite'
 
 const Header: FC = () => {
   const { data: user } = useGetUser()
@@ -45,14 +45,16 @@ const Header: FC = () => {
 
           <div className="flex items-center order-2 space-x-6 lg:order-3">
             <Link
-              to="/saved"
+              to="/favorite"
               className="relative flex flex-col items-center space-y-0.5 text-sm font-medium text-white transition-colors cursor-pointer hover:text-slate-200"
             >
               <HeartIcon className="w-6 h-6 sm:h-8 sm:w-8" />
               <span className="hidden sm:block">Favorite</span>
-              <span className="absolute top-0 right-0 flex items-center justify-center w-5 h-5 text-xs font-bold rounded-full text-dark-600 bg-warning-500 translate-x-1/3 -translate-y-1/3">
-                {items.length}
-              </span>
+              {items?.length > 0 && (
+                <span className="absolute top-0 right-0 flex items-center justify-center w-5 h-5 text-xs font-bold rounded-full text-dark-600 bg-warning-500 translate-x-1/3 -translate-y-1/3">
+                  {items.length}
+                </span>
+              )}
             </Link>
 
             {user ? (

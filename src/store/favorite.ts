@@ -1,19 +1,19 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-type SavedItem = {
+type FavoriteItem = {
   id: number
   at: Date
 }
 
-type SavedState = {
-  items: SavedItem[]
+type FavoriteState = {
+  items: FavoriteItem[]
   saveItem: (id: number) => void
   unsaveItem: (id: number) => void
-  getItem: (id: number) => SavedItem | null
+  getItem: (id: number) => FavoriteItem | null
 }
 
-const useSavedState = create<SavedState>()(
+const useFavoriteState = create<FavoriteState>()(
   persist(
     (set, get) => ({
       items: [],
@@ -30,9 +30,9 @@ const useSavedState = create<SavedState>()(
       getItem: id => get().items.find(i => i.id === id),
     }),
     {
-      name: 'saved',
+      name: 'favorite',
     }
   )
 )
 
-export default useSavedState
+export default useFavoriteState

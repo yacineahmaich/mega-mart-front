@@ -4,14 +4,14 @@ import { useProduct } from '../../../features/client/products/product'
 import { useNavigate, useParams } from 'react-router-dom'
 import useCartState from '../../../store/cart'
 import { HeartIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import useSavedState from '../../../store/saved'
+import useFavoriteState from '../../../store/favorite'
 
 const Checkout = () => {
   const navigate = useNavigate()
   const { slug } = useParams()
   const { data: product } = useProduct(slug)
 
-  const { getItem, saveItem, unsaveItem } = useSavedState()
+  const { getItem, saveItem, unsaveItem } = useFavoriteState()
 
   const { items, updateQty, addItem } = useCartState()
   const productInCart = items[product.id]
