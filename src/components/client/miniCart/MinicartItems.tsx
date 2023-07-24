@@ -10,8 +10,8 @@ type Props = {
 const MinicartItems: FC<Props> = ({ products, onClose }) => {
   const navigate = useNavigate()
   const goToProduct = (slug: string) => {
-    navigate(`/products/${slug}`)
     onClose()
+    navigate(`/products/${slug}`)
   }
 
   return (
