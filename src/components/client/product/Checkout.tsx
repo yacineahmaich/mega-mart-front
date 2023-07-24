@@ -3,11 +3,15 @@ import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/solid'
 import { useProduct } from '../../../features/client/products/product'
 import { useNavigate, useParams } from 'react-router-dom'
 import useCartState from '../../../store/cart'
+import { HeartIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import useSavedState from '../../../store/saved'
 
 const Checkout = () => {
   const navigate = useNavigate()
   const { slug } = useParams()
   const { data: product } = useProduct(slug)
+
+  const { getItem, saveItem, unsaveItem } = useSavedState()
 
   const { items, updateQty, addItem } = useCartState()
   const productInCart = items[product.id]
@@ -115,8 +119,25 @@ const Checkout = () => {
               Add To Cart
             </button>
           )}
-          <button className="px-8 py-2 text-sm font-medium transition-colors border rounded-full hover:text-white border-primary-700 hover:bg-primary-700 text-primary-700 active:ring active:ring-primary-600 ring-offset-1">
-            Buy Now
+          <button
+            className="flex items-center justify-center gap-2 px-8 py-2 text-sm font-medium transition-colors border rounded-full border-primary-700 text-primary-700 active:ring active:ring-primary-600 ring-offset-1"
+            onClick={() =>
+              getItem(product.id)
+                ? unsaveItem(product.id)
+                : saveItem(product.id)
+            }
+          >
+            {getItem(product.id) ? (
+              <>
+                <XMarkIcon className="w-5 h-5" />
+                <span>Unsave</span>
+              </>
+            ) : (
+              <>
+                <HeartIcon className="w-5 h-5" />
+                <span>Save for later</span>
+              </>
+            )}
           </button>
         </div>
       </article>
