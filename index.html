@@ -46,6 +46,9 @@
         font-weight: 500;
         color: #737278;
       }
+      .loader__icon {
+        height: 20px;
+      }
     </style>
   </head>
   <body class="antialiased font-roboto">
@@ -57,7 +60,14 @@
           <span class="loader__hightlight">Mega Mart</span>
         </h1>
         <p class="loader__wait">wait loading to complete ...</p>
-        <img src="/src/assets/icons/loader.gif" alt="loader" />
+        <img
+          src="/src/assets/icons/loader.gif"
+          alt="loader"
+          class="loader__icon"
+        />
+      </div>
+      <div class="loader__error">
+        <p>Something went wrong</p>
       </div>
     </div>
     <div id="root"></div>

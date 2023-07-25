@@ -18,8 +18,8 @@ const Header: FC = () => {
     <>
       <section className="w-full px-3 md:px-6 bg-primary-900">
         <div className="flex justify-between py-2 text-sm font-medium text-light">
-          <a href="tel:+212667313710">+212667313710</a>
-          <a href="mailto:jersy.shoop@gmail.com">megamart.shoop@gmail.com</a>
+          <a href="tel:+212767313710">+212767313710</a>
+          <a href="mailto:yacineahmaich@gmail.com">megamart.shoop@gmail.com</a>
         </div>
       </section>
 

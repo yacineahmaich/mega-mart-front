@@ -42,7 +42,7 @@ function Order() {
           </h3>
 
           {order.status === 'unpaid' && (
-            <form action={order.checkoutUrl} method="GET" target="_blank">
+            <form action={order.checkoutUrl} method="GET">
               <button
                 // href={order.checkoutUrl}
                 className="px-5 py-1.5 text-white divide-x rounded cursor-pointer bg-primary-500 hover:bg-primary-600 transition-colors"

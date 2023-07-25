@@ -16,7 +16,7 @@ export const useToggleDelivered = () => {
 
   return useMutation({
     mutationFn: toggleDeliveredStatus,
-    onSuccess: async (_, { order }) =>
+    onSuccess: (_, { order }) =>
       queryClient.invalidateQueries(['admin', 'orders', order]),
   })
 }

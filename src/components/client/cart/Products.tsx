@@ -30,7 +30,7 @@ const Products = () => {
       </div>
       {isFetching && (
         <div className="absolute top-0 left-0 z-10 w-full h-full bg-white/60">
-          <img src={spinner} alt="spinner" className="mx-auto mt-4" />
+          <img src={spinner} alt="spinner" className="mx-auto mt-32" />
         </div>
       )}
       {products?.map(product => (
