@@ -7,6 +7,7 @@ import {
   ClipboardDocumentListIcon,
   CreditCardIcon,
   CurrencyDollarIcon,
+  ExclamationTriangleIcon,
   MapIcon,
   ShoppingCartIcon,
   TruckIcon,
@@ -24,6 +25,14 @@ function Order() {
   return (
     <div>
       <div className="mb-10">
+        {order.status === 'unpaid' && (
+          <div className="flex items-center justify-end gap-3 p-1 mb-3 ml-auto text-sm font-medium border rounded-lg w-fit border-danger-500 text-danger-500">
+            <ExclamationTriangleIcon className="w-5 h-5" />
+            <span>
+              Unpaid orders will be automatically deleted after 24 hours!
+            </span>
+          </div>
+        )}
         <div className="flex items-center justify-between mb-5">
           <h3 className="text-xl font-bold text-dark-500">
             <ShoppingCartIcon className="inline w-6 h-6 mr-2" />
