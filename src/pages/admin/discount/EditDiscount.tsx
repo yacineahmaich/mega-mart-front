@@ -57,15 +57,6 @@ const EditDiscount = () => {
               <FieldGroup
                 input={{
                   type: 'datetime-local',
-                  disabled: true,
-                }}
-                label="Start"
-                name="start"
-              />
-
-              <FieldGroup
-                input={{
-                  type: 'datetime-local',
                 }}
                 label="End"
                 name="end"

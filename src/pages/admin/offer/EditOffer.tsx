@@ -28,7 +28,6 @@ const EditOffer = () => {
   } = useUpdateOffer()
 
   const initialValues = {
-    start: offer?.start,
     end: offer?.end,
     backdrop: null,
   }
@@ -65,15 +64,6 @@ const EditOffer = () => {
           {formik => (
             <Form>
               <div className="grid grid-cols-2 gap-8">
-                <FieldGroup
-                  input={{
-                    type: 'datetime-local',
-                    disabled: true,
-                  }}
-                  label="Start"
-                  name="start"
-                />
-
                 <FieldGroup
                   input={{
                     type: 'datetime-local',

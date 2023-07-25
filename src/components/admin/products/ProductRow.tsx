@@ -56,7 +56,7 @@ const ProductRow: FC<Props> = ({ product }) => {
 
           {product.offer ? (
             <Link
-              to={`/dashboard/offers/${product.id}/edit`}
+              to={`/dashboard/offers/${product.offer.id}/edit`}
               className="px-6 py-2.5 text-left hover:bg-light whitespace-nowrap"
             >
               <GiftIcon className="inline w-4 h-4 mr-4" />

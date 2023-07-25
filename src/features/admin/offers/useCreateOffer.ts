@@ -3,7 +3,6 @@ import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 
 type Variables = {
-  start: string
   end: string
   product: number
 }

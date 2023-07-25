@@ -28,7 +28,6 @@ const CreateOffer = () => {
   } = useCreateOffer()
 
   const initialValues = {
-    start: '',
     end: '',
     backdrop: null,
   }
@@ -58,15 +57,6 @@ const CreateOffer = () => {
           {formik => (
             <Form>
               <div className="grid grid-cols-2 gap-8">
-                <FieldGroup
-                  input={{
-                    type: 'datetime-local',
-                  }}
-                  label="Start"
-                  name="start"
-                  placeholder="Offer start date here..."
-                />
-
                 <FieldGroup
                   input={{
                     type: 'datetime-local',
