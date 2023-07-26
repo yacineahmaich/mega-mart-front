@@ -1,13 +1,10 @@
 import { FC } from 'react'
-import {
-  HeartIcon,
-  UserCircleIcon,
-  MagnifyingGlassIcon,
-} from '@heroicons/react/24/outline'
+import { HeartIcon, UserCircleIcon } from '@heroicons/react/24/outline'
 import MiniCartButton from './miniCart/MiniCartButton'
 import { Link } from 'react-router-dom'
 import { useGetUser } from '../../features/auth/useGetUser'
 import useSavedState from '../../store/favorite'
+import Search from './Search'
 
 const Header: FC = () => {
   const { data: user } = useGetUser()
@@ -34,14 +31,7 @@ const Header: FC = () => {
             </Link>
           </div>
 
-          <form className="relative z-0 order-3 w-full mt-4 lg:mt-0 lg:w-1/2 lg:order-2">
-            <input
-              type="text"
-              placeholder="Search your Jersy within thousands ..."
-              className="w-full px-6 py-2 transition-all rounded-lg outline-none peer focus:ring-0 placeholder:font-medium placeholder:text-dark-600 placeholder:text-sm"
-            />
-            <MagnifyingGlassIcon className="absolute z-50 w-6 h-6 transition-all -translate-y-1/2 right-3 top-1/2 text-dark-500" />
-          </form>
+          <Search />
 
           <div className="flex items-center order-2 space-x-6 lg:order-3">
             <Link

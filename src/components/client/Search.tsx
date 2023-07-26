@@ -1,0 +1,104 @@
+import { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { StarIcon } from '@heroicons/react/24/solid'
+import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import spinner from '../../assets/icons/loader.gif'
+import clsx from 'clsx'
+import { useSearchProducts } from '../../features/client/products/useSearchProduct'
+
+function Search() {
+  const [query, setQuery] = useState('')
+  const [debouncedQuery, setDebouncedQuery] = useState('')
+  const { pathname } = useLocation()
+
+  // Debounce query
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setDebouncedQuery(query)
+    }, 1000)
+    return () => clearTimeout(timeout)
+  }, [query])
+
+  // reset search when navigating between pages
+  useEffect(() => {
+    setQuery('')
+    setDebouncedQuery('')
+  }, [pathname])
+
+  const { data: products, isLoading } = useSearchProducts(debouncedQuery)
+
+  return (
+    <div className="relative order-3 w-full mt-4 lg:mt-0 lg:w-1/2 lg:order-2">
+      <form className="relative z-20">
+        <input
+          type="text"
+          placeholder="Search your Jersy within thousands ..."
+          className={clsx(
+            'w-full px-6 py-2 transition-all rounded-lg outline-none peer focus:ring-0 placeholder:font-medium placeholder:text-dark-600 placeholder:text-sm',
+            {
+              'border-b border-gray': true,
+            }
+          )}
+          value={query}
+          onChange={e => setQuery(e.target.value)}
+        />
+        <div className="absolute z-50 flex items-center gap-2 -translate-y-1/2 right-3 top-1/2 text-dark-500">
+          {isLoading && (
+            <img src={spinner} alt="spinner" className="w-6 grayscale" />
+          )}
+          {query ? (
+            <button onClick={() => setQuery('')}>
+              <XMarkIcon className="w-6 h-6" />
+            </button>
+          ) : (
+            <MagnifyingGlassIcon className="w-6 h-6" />
+          )}
+        </div>
+      </form>
+
+      {query && (
+        <div className="absolute inset-x-0 z-10 pt-2 -mt-2 duration-300 bg-white rounded-b-lg shadow-lg animate-in slide-in-from-top-1">
+          <ul className="max-h-[450px] overflow-y-scroll divide-y divide-gray">
+            {products?.map(product => (
+              <li className="flex gap-4 px-6 py-2">
+                <Link
+                  to={`/products/${product.slug}`}
+                  className="w-20 h-20 bg-gray"
+                >
+                  <img
+                    src={product.images[0].url}
+                    alt={product.images[0].name}
+                    className="w-20 h-20 bg-cover"
+                  />
+                </Link>
+                <div className="flex w-full gap-6 py-2">
+                  <div className="flex flex-col justify-between">
+                    <Link to={`/products/${product.slug}`}>
+                      <span className="text-sm font-medium line-clamp-1 text-dark-500 hover:underline hover:text-primary-400">
+                        {product.name}
+                      </span>
+                    </Link>
+                    <span className="text-sm font-bold text-primary-900">
+                      $
+                      {product.discount
+                        ? product.discount.price
+                        : product.price}
+                    </span>
+                  </div>
+                  <div className="ml-auto">
+                    <div className="flex items-center gap-2 text-sm font-bold">
+                      <StarIcon className="w-4 h-4 text-yellow-300" />
+                      <span className="text-gray">{product.avgRating}</span>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default Search

@@ -18,11 +18,11 @@ const ProductCard: FC<Props> = ({ product, favorite }) => {
   const itemInCart = getItem(product.id)
 
   return (
-    <article className="relative flex flex-col bg-white border shadow-sm rounded-xl border-gray">
+    <article className="relative flex flex-col overflow-hidden bg-white border shadow-sm rounded-xl border-gray">
       {/* Remove from favorite button */}
       {favorite && (
         <button
-          className="absolute top-0 right-0 z-10 p-2 translate-x-1/2 -translate-y-1/2 bg-white rounded-full shadow-lg"
+          className="absolute top-0 right-0 z-10 p-2 bg-white rounded-full shadow-lg active:scale-95"
           onClick={() => unsaveItem(product.id)}
         >
           <XMarkIcon className="w-4 h-4" />
@@ -47,9 +47,7 @@ const ProductCard: FC<Props> = ({ product, favorite }) => {
                 key={img.id}
                 src={img.url}
                 alt={img.url}
-                className={clsx(
-                  'absolute inset-0 object-cover w-full h-full duration-500 hidden animate-in group-hover:block fade-in-0 fill-mode-backwards'
-                )}
+                className="absolute inset-0 hidden object-cover w-full h-full duration-500 animate-in group-hover:block fade-in-0 fill-mode-backwards"
                 style={{
                   animationDelay: idx === 0 ? '0ms' : 800 * idx + 'ms',
                 }}
