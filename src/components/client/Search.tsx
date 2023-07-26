@@ -85,12 +85,26 @@ function Search() {
                         {product.name}
                       </span>
                     </Link>
-                    <span className="text-sm font-bold text-primary-900">
-                      $
-                      {product.discount
-                        ? product.discount.price
-                        : product.price}
-                    </span>
+                    {product.discount ? (
+                      <div className="relative space-x-2 w-fit">
+                        <span className="text-xs font-medium text-dark-500">
+                          $<s>{product.price}</s>
+                        </span>
+                        <span className="text-sm font-bold text-primary-900">
+                          ${product.discount.price}
+                        </span>
+                        <span className="left-full bottom-0 ml-1 absolute px-3 py-0.5 text-xs rounded bg-pink-600 self-end font-medium text-light pointer-events-none">
+                          -{product.discount.percentage}%
+                        </span>
+                      </div>
+                    ) : (
+                      <span className="text-sm font-bold text-primary-900">
+                        $
+                        {product.discount
+                          ? product.discount.price
+                          : product.price}
+                      </span>
+                    )}
                   </div>
                   <div className="ml-auto">
                     <div className="flex items-center gap-2 text-sm font-bold">
