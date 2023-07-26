@@ -15,7 +15,7 @@ type CartState = {
   getItem: (id: number) => CartItem | null
   increaseQty: (id: number) => void
   decreaseQty: (id: number) => void
-  updateQty: (id: number, quantity: number) => void
+  updateQty: (item: { id: number; quantity: number }) => void
   getItemsTotalPrice: (products: Product[]) => number
   clear: () => void
 }
@@ -49,7 +49,7 @@ const useCartState = create<CartState>()(
             item.id === id ? { ...item, quantity: item.quantity - 1 } : item
           ),
         })),
-      updateQty: (id, quantity) =>
+      updateQty: ({ id, quantity }) =>
         set(state => ({
           ...state,
           items: state.items.map(item =>
