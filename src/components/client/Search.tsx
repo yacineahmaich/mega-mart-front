@@ -29,14 +29,21 @@ function Search() {
 
   return (
     <div className="relative order-3 w-full mt-4 lg:mt-0 lg:w-1/2 lg:order-2">
-      <form className="relative z-20">
+      {query && (
+        <div
+          className="fixed inset-0 bg-black/20 z-[99]"
+          onClick={() => setQuery('')}
+        ></div>
+      )}
+
+      <form className="relative z-[101]">
         <input
           type="text"
           placeholder="Search your Jersy within thousands ..."
           className={clsx(
             'w-full px-6 py-2 transition-all rounded-lg outline-none peer focus:ring-0 placeholder:font-medium placeholder:text-dark-600 placeholder:text-sm',
             {
-              'border-b border-gray': true,
+              'border-b border-gray': query,
             }
           )}
           value={query}
@@ -57,8 +64,8 @@ function Search() {
       </form>
 
       {query && (
-        <div className="absolute inset-x-0 z-10 pt-2 -mt-2 duration-300 bg-white rounded-b-lg shadow-lg animate-in slide-in-from-top-1">
-          <ul className="max-h-[450px] overflow-y-scroll divide-y divide-gray">
+        <div className="absolute inset-x-0 z-[100] pt-2 -mt-2 duration-300 bg-white rounded-b shadow-lg animate-in slide-in-from-top-1">
+          <ul className="divide-y divide-gray min-h-[4px]">
             {products?.map(product => (
               <li className="flex gap-4 px-6 py-2">
                 <Link

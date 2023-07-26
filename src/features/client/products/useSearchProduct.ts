@@ -1,7 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
 import api from '../../../utils/api/client'
 
-const searchProduct = async (query = ''): Promise<Product[]> => {
+const searchProduct = async (query: string): Promise<Product[]> => {
+  if (!query || query.length <= 1) return null
+
   const response = await api.get(`/search?q=${query}`)
 
   return response.data.products
