@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { StarIcon } from '@heroicons/react/24/solid'
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import spinner from '../../assets/icons/loader.gif'
@@ -26,6 +26,12 @@ function Search() {
   }, [pathname])
 
   const { data: products, isLoading } = useSearchProducts(debouncedQuery)
+
+  const navigate = useNavigate()
+  const goToProduct = (slug: string) => {
+    setQuery('')
+    navigate(`/products/${slug}`)
+  }
 
   return (
     <div className="relative order-3 w-full mt-4 lg:mt-0 lg:w-1/2 lg:order-2">
@@ -68,23 +74,26 @@ function Search() {
           <ul className="divide-y divide-gray min-h-[4px]">
             {products?.map(product => (
               <li className="flex gap-4 px-6 py-2">
-                <Link
-                  to={`/products/${product.slug}`}
-                  className="w-20 h-20 bg-gray"
+                <a
+                  onClick={() => goToProduct(product.slug)}
+                  className="w-20 h-20 cursor-pointer bg-gray"
                 >
                   <img
                     src={product.images[0].url}
                     alt={product.images[0].name}
                     className="w-20 h-20 bg-cover"
                   />
-                </Link>
+                </a>
                 <div className="flex w-full gap-6 py-2">
                   <div className="flex flex-col justify-between">
-                    <Link to={`/products/${product.slug}`}>
+                    <a
+                      onClick={() => goToProduct(product.slug)}
+                      className="cursor-pointer"
+                    >
                       <span className="text-sm font-medium line-clamp-1 text-dark-500 hover:underline hover:text-primary-400">
                         {product.name}
                       </span>
-                    </Link>
+                    </a>
                     {product.discount ? (
                       <div className="relative space-x-2 w-fit">
                         <span className="text-xs font-medium text-dark-500">

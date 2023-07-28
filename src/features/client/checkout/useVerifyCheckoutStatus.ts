@@ -2,7 +2,12 @@ import useCartState from '../../../store/cart'
 import api from '../../../utils/api/client'
 import { useQuery } from '@tanstack/react-query'
 
-const verifyPaiment = async (session: string): Promise<Order> => {
+type Data = {
+  processed: boolean
+  order: Order
+}
+
+const verifyPaiment = async (session: string): Promise<Data> => {
   const response = await api.get('/checkout/success', {
     params: {
       session,
@@ -18,6 +23,8 @@ export const useVerifyCheckoutStatus = (session: string) => {
   return useQuery({
     queryKey: ['checkout', { session }],
     queryFn: () => verifyPaiment(session),
+    refetchInterval: 5 * 1000,
+    retry: 5,
     onSuccess: clear,
   })
 }
