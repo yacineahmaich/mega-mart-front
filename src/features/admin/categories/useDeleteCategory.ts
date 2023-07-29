@@ -1,3 +1,4 @@
+import { toast } from 'react-hot-toast'
 import api from '../../../utils/api/admin'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
@@ -16,7 +17,12 @@ export const useDeleteCategory = () => {
 
   return useMutation({
     mutationFn: deleteCategory,
-    onSuccess: async () =>
-      queryClient.invalidateQueries(['admin', 'categories']),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries(['admin', 'categories'])
+      toast.success('Category deleted')
+    },
+    onError: () => {
+      toast.error('Could not delete Category')
+    }
   })
 }

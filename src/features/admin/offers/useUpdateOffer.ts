@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import api from '../../../utils/api/admin'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-hot-toast'
 
 type Varaibales = {
   offerData: {
@@ -35,6 +36,10 @@ export const useUpdateOffer = () => {
     onSuccess() {
       queryClient.invalidateQueries(['admin', 'offers'])
       navigate('/dashboard/offers')
+      toast.success('Offer updated successfully')
+    },
+    onError: () => {
+      toast.error('Could not update Offer')
     },
   })
 }

@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import api from '../../../utils/api/admin'
+import { toast } from 'react-hot-toast'
 
 type Variables = {
   offerId: number
@@ -16,6 +17,12 @@ export const useDeleteOffer = () => {
 
   return useMutation({
     mutationFn: deleteOffer,
-    onSuccess: async () => queryClient.invalidateQueries(['admin', 'offers']),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries(['admin', 'offers'])
+      toast.success('Offer deleted successfully')
+    },
+    onError: () => {
+      toast.error('Could not delete Offer')
+    },
   })
 }

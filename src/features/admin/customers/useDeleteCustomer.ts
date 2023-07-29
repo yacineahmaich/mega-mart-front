@@ -1,3 +1,4 @@
+import { toast } from 'react-hot-toast'
 import api from '../../../utils/api/admin'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
@@ -14,7 +15,12 @@ export const useDeleteCustomer = () => {
 
   return useMutation({
     mutationFn: deleteCustomer,
-    onSuccess: async () =>
-      queryClient.invalidateQueries(['admin', 'customers']),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries(['admin', 'customers'])
+      toast.success('Customer deleted successfully')
+    },
+    onError: () => {
+      toast.error('Could not delete Customer')
+    },
   })
 }

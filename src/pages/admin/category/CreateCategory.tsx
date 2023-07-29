@@ -9,14 +9,14 @@ import FieldGroup from '../../../components/admin/ui/FieldGroup'
 import ErrorMsg from '../ErrorMsg'
 import { createCategorySchema } from '../../../utils/validation/admin/category'
 import { useCreateCategory } from '../../../features/admin/categories/useCreateCategory'
-import { useMcategories } from '../../../features/client/main-category/m-categories'
+import { useAllMainCategories } from '../../../features/admin/main-categories/useAllMainCategories'
 
 const CreateCategory = () => {
   const {
     data: maincategories,
     isLoading: isMcategoriesLoading,
     isError: isMcategoriesError,
-  } = useMcategories()
+  } = useAllMainCategories()
 
   const {
     mutate: createCategory,

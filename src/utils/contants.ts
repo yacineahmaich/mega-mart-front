@@ -12,3 +12,5 @@ export const CATEGORY_PRODUCTS_PER_PAGE_OPTIONS = [
   { label: '15 article per page', value: '15' },
   { label: '20 article per page', value: '20' },
 ]
+
+export const PRODUCTS_ALERT_STOCK = 10

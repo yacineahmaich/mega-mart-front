@@ -1,5 +1,6 @@
 import api from '../../../utils/api/admin'
 import { useMutation } from '@tanstack/react-query'
+import { toast } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 type Variables = {
@@ -26,9 +27,11 @@ export const useCreateCategory = () => {
     mutationFn: createCategory,
     onSuccess() {
       navigate('/dashboard/categories')
+      toast.success('Category created')
     },
     onError() {
       window.scrollTo({ top: 0 })
+      toast.error('Could not create Category')
     },
   })
 }

@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import api from '../../../utils/api/admin'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-hot-toast'
 
 type Varaibales = {
   discountData: {
@@ -28,9 +29,11 @@ export const useUpdateDiscount = () => {
     onSuccess() {
       queryClient.invalidateQueries(['admin', 'discounts'])
       navigate('/dashboard/discounts')
+      toast.success('Discount updated successfully')
     },
     onError() {
       window.scrollTo({ top: 0 })
+      toast.error('Could not update Discount')
     },
   })
 }

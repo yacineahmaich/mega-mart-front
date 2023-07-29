@@ -1,5 +1,6 @@
 import api from '../../../utils/api/admin'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { toast } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 type Variables = {
@@ -40,9 +41,11 @@ export const useUpdateCategory = () => {
         queryKey: ['admin', 'categories'],
       })
       navigate('/dashboard/categories')
+      toast.success('Category updated successfully')
     },
     onError() {
       window.scrollTo({ top: 0 })
+      toast.error('Could not update Category')
     },
   })
 }

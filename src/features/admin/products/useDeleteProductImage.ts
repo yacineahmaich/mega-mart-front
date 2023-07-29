@@ -1,3 +1,4 @@
+import { toast } from 'react-hot-toast'
 import api from '../../../utils/api/admin'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
@@ -20,6 +21,10 @@ export const useDeleteProductImage = () => {
     retry: false,
     onSuccess: () => {
       queryClient.invalidateQueries(['admin', 'products'])
+      toast.success('Product Image deleted successfully')
+    },
+    onError: () => {
+      toast.error('Could not delete Product Image')
     },
   })
 }

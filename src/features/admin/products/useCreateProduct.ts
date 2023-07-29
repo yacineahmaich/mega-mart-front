@@ -1,5 +1,6 @@
 import api from '../../../utils/api/admin'
 import { useMutation } from '@tanstack/react-query'
+import { toast } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 type Variables = {
@@ -28,9 +29,11 @@ export const useCreateProduct = () => {
     mutationFn: createProduct,
     onSuccess() {
       navigate('/dashboard/products')
+      toast.success('Product created successfully')
     },
     onError() {
       window.scrollTo({ top: 0 })
+      toast.error('Could not create Product')
     },
   })
 }

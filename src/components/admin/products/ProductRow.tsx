@@ -9,6 +9,8 @@ import { useDeleteProduct } from '../../../features/admin/products/useDeleteProd
 import { Link } from 'react-router-dom'
 import Actions from '../ui/Actions'
 import ConfirmDelete from '../ui/ConfirmDelete'
+import clsx from 'clsx'
+import { PRODUCTS_ALERT_STOCK } from '../../../utils/contants'
 
 type Props = {
   product: Product
@@ -38,7 +40,13 @@ const ProductRow: FC<Props> = ({ product }) => {
         {product.name}
       </th>
       <td className="px-6 py-3">{product.category.name}</td>
-      <td className="px-6 py-3">{product.quantity}</td>
+      <td
+        className={clsx('px-6 py-3', {
+          'text-danger-600 font-bold': product.quantity <= PRODUCTS_ALERT_STOCK,
+        })}
+      >
+        {product.quantity}
+      </td>
       <td className="px-6 py-3">${finalPrice}</td>
       <td className="px-6 py-3">
         {product.discount ? `${product.discount.percentage}%` : <>&ndash;</>}

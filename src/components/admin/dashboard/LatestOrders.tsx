@@ -48,7 +48,7 @@ const LatestOrders: FC<Props> = () => {
                   {order.status === 'paid' ? (
                     <Badge variant="success">Paid</Badge>
                   ) : (
-                    <Badge variant="danger">Unaid</Badge>
+                    <Badge variant="danger">Unpaid</Badge>
                   )}
                 </td>
                 <td className="p-3">{order.date}</td>

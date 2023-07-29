@@ -10,12 +10,12 @@ import Spinner from '../ui/Spinner'
 const ListProducts: FC = () => {
   const { slug } = useParams()
 
-  const { data, isError, isLoading } = useCategoryProducts(slug)
+  const { data, isError, isLoading, refetch } = useCategoryProducts(slug)
 
   if (isError)
     return (
       <div className="mt-10">
-        <Error message="Failed to get products records" />
+        <Error message="Failed to get products records" retry={refetch} />
       </div>
     )
 

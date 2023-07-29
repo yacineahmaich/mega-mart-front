@@ -1,3 +1,4 @@
+import { toast } from 'react-hot-toast'
 import api from '../../../utils/api/admin'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
@@ -16,6 +17,12 @@ export const useDeleteProduct = () => {
 
   return useMutation({
     mutationFn: deleteProduct,
-    onSuccess: async () => queryClient.invalidateQueries(['admin', 'products']),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries(['admin', 'products'])
+      toast.success('Product deleted successfully')
+    },
+    onError: () => {
+      toast.error('Could not delete Product')
+    },
   })
 }

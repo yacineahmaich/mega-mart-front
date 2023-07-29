@@ -1,5 +1,6 @@
 import api from '../../../utils/api/admin'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { toast } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 type Variables = {
@@ -41,6 +42,10 @@ export const useUpdateProduct = () => {
     onSuccess() {
       queryClient.invalidateQueries(['admin', 'products'])
       navigate('/dashboard/products')
+      toast.success('Product updated successfully')
+    },
+    onError: () => {
+      toast.error('Could not update Product')
     },
   })
 }
