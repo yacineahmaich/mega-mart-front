@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query'
 import api from '../../../utils/api/client'
 
 type Data = {
-  offers: Offer[]
   feed: {
     mainCategory: MainCategory
     products: Product[]

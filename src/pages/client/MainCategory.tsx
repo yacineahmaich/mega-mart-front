@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom'
-import Cover from '../../components/client/main-category/Cover'
 import ExploreCategories from '../../components/client/main-category/ExploreCategories'
 import Products from '../../components/client/main-category/Products'
 import Error from '../../components/client/ui/Error'
 import { useMainCategoryFeed } from '../../features/client/main-category/feed'
+import OffersSlider from '../../components/client/home/OffersSlider'
 
 const MainCategory = () => {
   const { slug } = useParams()
@@ -13,7 +13,7 @@ const MainCategory = () => {
 
   return (
     <div>
-      <Cover />
+      <OffersSlider />
       <div className="mx-3 -mt-20 md:mx-6">
         <ExploreCategories />
         <Products />
