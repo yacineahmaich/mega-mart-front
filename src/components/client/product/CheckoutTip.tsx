@@ -9,7 +9,7 @@ const CheckoutTip = () => {
   const { slug } = useParams()
   const { data: product } = useProduct(slug)
   const { items, updateQty, addItem } = useCartState()
-  const productInCart = items[product?.id]
+  const productInCart = items.find(i => i.id === product?.id)
   const [quantity, setQuantity] = useState<number>(productInCart?.quantity ?? 1)
 
   const increaseQty = () => {
@@ -26,7 +26,7 @@ const CheckoutTip = () => {
   }
 
   const handleUpdateCart = () => {
-    updateQty(product.id, quantity)
+    updateQty({ id: product.id, quantity })
   }
 
   const handleAddToCart = () => {
