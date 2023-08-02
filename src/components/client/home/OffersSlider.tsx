@@ -37,7 +37,7 @@ const OffersSlider = () => {
         swiper.navigation.init()
         swiper.navigation.update()
       }}
-      className="relative h-96 md:h-[400px] group bg-light"
+      className="relative h-72 md:h-[400px] group bg-light"
     >
       <div className="absolute bottom-0 left-0 z-20 w-full h-20 bg-gradient-to-t from-white to-transparent"></div>
 
@@ -58,13 +58,13 @@ const OffersSlider = () => {
       <div className="absolute inset-0 z-10 items-center justify-between hidden w-full h-full p-3 pointer-events-none group-hover:flex">
         <button
           ref={prevRef}
-          className="p-2 rounded-full shadow pointer-events-auto bg-white/20"
+          className="p-2 rounded-full shadow pointer-events-auto bg-black/20"
         >
           <ChevronLeftIcon className="w-6 h-6 text-white -translate-x-px drop-shadow-lg" />
         </button>
         <button
           ref={nextRef}
-          className="p-2 rounded-full shadow pointer-events-auto bg-white/40"
+          className="p-2 rounded-full shadow pointer-events-auto bg-black/20"
         >
           <ChevronRightIcon className="w-6 h-6 text-white translate-x-px drop-shadow-lg" />
         </button>

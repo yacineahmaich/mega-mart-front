@@ -24,7 +24,7 @@ const MainCategoryProducts: FC<Props> = ({ feedItem }) => {
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 gap-2 mt-10 md:gap-8 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+      <div className="grid grid-cols-2 gap-6 mt-10 md:gap-8 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {products.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}

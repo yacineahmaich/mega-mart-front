@@ -53,7 +53,7 @@ const MainCategoriesSlider = () => {
           slidesOffsetBefore: 40,
         },
       }}
-      className="h-40 -mt-20 select-none"
+      className="h-32 -mt-20 select-none md:h-40"
       wrapperClass="relative"
     >
       <div>
@@ -63,7 +63,7 @@ const MainCategoriesSlider = () => {
             className="relative overflow-hidden border rounded-lg bg-white/20 border-gray"
           >
             <Link to={`/mc/${category.slug}`}>
-              <div className="absolute top-0 left-0 w-full p-2 bg-light/80">
+              <div className="absolute top-0 left-0 w-full p-2 bg-light/70">
                 <h4>{category.name}</h4>
               </div>
               <img

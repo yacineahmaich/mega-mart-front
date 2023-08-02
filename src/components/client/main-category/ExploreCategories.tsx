@@ -14,38 +14,43 @@ const ExploreCategories = () => {
       slidesPerView={5}
       spaceBetween={20}
       breakpoints={{
-        1024: {
+        1100: {
           slidesPerView: 5,
         },
-        767: {
-          slidesPerView: 3,
+        900: {
+          slidesPerView: 4,
         },
         400: {
+          slidesPerView: 3,
+        },
+        100: {
           slidesPerView: 2,
         },
       }}
-      className="bg-white select-none"
-      wrapperClass="p-3 md:p-6"
+      slidesOffsetBefore={30}
+      className="bg-white select-none "
+      wrapperClass="py-6"
     >
-      {mainCategory.categories.map(category => (
-        <SwiperSlide key={category.id} className="group">
-          <Link to={`/mc/${mainCategory.slug}/category/${category.slug}`}>
-            <article
-              className="relative overflow-hidden rounded-full w-44 h-44 md:w-48 md:h-48 bg-light"
-              title={category.name}
-            >
-              <img
-                src={category.image.url}
-                alt={category.image.name}
-                className="object-cover w-full h-full transition-transform duration-200 group-hover:-rotate-3 group-hover:scale-105"
-              />
-            </article>
-            <h3 className="mt-3 text-sm font-medium text-center text-dark-600">
-              {category.name}
-            </h3>
-          </Link>
-        </SwiperSlide>
-      ))}
+      <div>
+        {mainCategory.categories.map(category => (
+          <SwiperSlide key={category.id}>
+            <Link to={`/mc/${mainCategory.slug}/category/${category.slug}`}>
+              <article title={category.name}>
+                <div className="w-fit">
+                  <img
+                    src={category.image.url}
+                    alt={category.image.name}
+                    className="w-32 h-32 bg-cover rounded-full bg-light md:w-48 md:h-48 "
+                  />
+                  <h3 className="mt-3 text-xs font-bold text-center md:font-medium md:text-xs text-dark-600/80">
+                    {category.name}
+                  </h3>
+                </div>
+              </article>
+            </Link>
+          </SwiperSlide>
+        ))}
+      </div>
     </Swiper>
   )
 }
