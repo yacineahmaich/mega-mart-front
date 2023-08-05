@@ -27,6 +27,7 @@ const CheckoutTip = () => {
 
   const handleUpdateCart = () => {
     updateQty({ id: product.id, quantity })
+    navigate('/cart')
   }
 
   const handleAddToCart = () => {

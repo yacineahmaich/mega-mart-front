@@ -37,7 +37,8 @@ function Order() {
           <h3 className="text-xl font-bold text-dark-500">
             <ShoppingCartIcon className="inline w-6 h-6 mr-2" />
             <span className="align-middle">
-              Order <span className="text-sm">({order.id})</span>
+              Order{' '}
+              <span className="hidden text-sm sm:inline">({order.id})</span>
             </span>
           </h3>
 
@@ -54,7 +55,7 @@ function Order() {
           )}
         </div>
 
-        <div className="grid grid-cols-2 p-6 text-sm font-medium border divide-x sm:rid-cols-3 gap-y-3 md:grid-cols-5 text-primary-500 ">
+        <div className="grid grid-cols-2 p-3 text-sm font-medium border md:p-6 md:divide-x sm:rid-cols-3 gap-y-3 md:grid-cols-5 text-primary-500 ">
           <div className="text-center">
             <MapIcon className="inline w-6 h-6 mb-4" />
             <p>{order.delivery.shippingAddress}</p>
@@ -70,7 +71,9 @@ function Order() {
           <div className="text-center">
             <TruckIcon className="inline w-6 h-6 mb-4" />
             {order.delivered ? (
-              <p className="text-green-400">{order.deliveredAt}</p>
+              <p className="text-green-400">
+                {new Date(order.deliveredAt).toDateString()}
+              </p>
             ) : (
               <p className="text-danger-400">Not Delivered</p>
             )}
@@ -78,7 +81,9 @@ function Order() {
           <div className="text-center">
             <BanknotesIcon className="inline w-6 h-6 mb-4" />
             {order.status === 'paid' ? (
-              <p className="text-green-400">{order.paidAt}</p>
+              <p className="text-green-400">
+                {new Date(order.paidAt).toDateString()}
+              </p>
             ) : (
               <p className="text-danger-400">Unpaid</p>
             )}
