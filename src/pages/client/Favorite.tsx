@@ -3,10 +3,10 @@ import Message from '../../components/client/ui/Message'
 import ProductCard from '../../components/client/ui/ProductCard'
 import ProductCardSkeleton from '../../components/client/ui/ProductCardSekeleton'
 import { useProductsByIds } from '../../features/client/products/useProductsByIds'
-import useFavoriteState from '../../store/favorite'
+import useFavoriteStore from '../../store/favorite'
 
 function Favorite() {
-  const { items } = useFavoriteState()
+  const { items } = useFavoriteStore()
 
   const {
     data: products,

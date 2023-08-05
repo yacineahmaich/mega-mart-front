@@ -1,9 +1,9 @@
 import { useProductsByIds } from '../../../features/client/products/useProductsByIds'
-import useCartState from '../../../store/cart'
+import useCartStore from '../../../store/cart'
 import Spinner from '../ui/Spinner'
 
 function CheckoutSummary() {
-  const { items } = useCartState()
+  const { items } = useCartStore()
   const { data: products, isLoading } = useProductsByIds({
     productIds: items.map(i => i.id),
   })

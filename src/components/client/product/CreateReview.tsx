@@ -9,7 +9,7 @@ import { useCreateReview } from '../../../features/client/products/useCreateRevi
 import { useParams } from 'react-router-dom'
 import { useProduct } from '../../../features/client/products/product'
 import { useGetUser } from '../../../features/auth/useGetUser'
-import useRequireAuthModalState from '../../../store/requireAuth'
+import useRequireAuthModalStore from '../../../store/requireAuth'
 
 type Props = {
   children?: React.ReactNode
@@ -17,7 +17,7 @@ type Props = {
 const CreateReview: FC<Props> = () => {
   const { data: user } = useGetUser()
 
-  const { open: openRequireAuthModal } = useRequireAuthModalState()
+  const { open: openRequireAuthModal } = useRequireAuthModalStore()
 
   const { slug } = useParams()
   const { data: product } = useProduct(slug)

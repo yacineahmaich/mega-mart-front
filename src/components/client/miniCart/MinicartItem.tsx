@@ -6,7 +6,7 @@ import {
   PlusSmallIcon,
   TrashIcon,
 } from '@heroicons/react/24/outline'
-import useCartState from '../../../store/cart'
+import useCartStore from '../../../store/cart'
 
 type Props = {
   product: Product
@@ -15,7 +15,7 @@ type Props = {
 
 const MinicartItem: FC<Props> = ({ product, goToProduct }) => {
   const { items, removeItem, getItem, increaseQty, decreaseQty } =
-    useCartState()
+    useCartStore()
 
   const [isConfirmOpen, setIsConfirmOpen] = useState(false)
 

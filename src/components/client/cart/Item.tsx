@@ -3,14 +3,14 @@ import { ExclamationTriangleIcon, TrashIcon } from '@heroicons/react/24/outline'
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
-import useCartState from '../../../store/cart'
+import useCartStore from '../../../store/cart'
 
 type Props = {
   product: Product
 }
 
 const Item: FC<Props> = ({ product }) => {
-  const { items, increaseQty, decreaseQty, removeItem } = useCartState()
+  const { items, increaseQty, decreaseQty, removeItem } = useCartStore()
   const [isConfirmOpen, setIsConfirmOpen] = useState(false)
 
   const itemInCart = items.find(i => i.id === product.id)

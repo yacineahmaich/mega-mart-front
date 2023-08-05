@@ -3,10 +3,10 @@ import { useProductsByIds } from '../../../features/client/products/useProductsB
 import { toast } from 'react-hot-toast'
 import Button from '../ui/Button'
 import useCheckoutStore from '../../../store/checkout'
-import useCartState from '../../../store/cart'
+import useCartStore from '../../../store/cart'
 
 function Action() {
-  const { items, getItemsTotalPrice, getItem } = useCartState()
+  const { items, getItemsTotalPrice, getItem } = useCartStore()
   const { data: products, isLoading } = useProductsByIds({
     productIds: items.map(i => i.id),
   })

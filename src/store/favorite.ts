@@ -13,7 +13,7 @@ type FavoriteState = {
   getItem: (id: number) => FavoriteItem | null
 }
 
-const useFavoriteState = create<FavoriteState>()(
+const useFavoriteStore = create<FavoriteState>()(
   persist(
     (set, get) => ({
       items: [],
@@ -35,4 +35,4 @@ const useFavoriteState = create<FavoriteState>()(
   )
 )
 
-export default useFavoriteState
+export default useFavoriteStore

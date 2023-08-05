@@ -6,7 +6,7 @@ import MinicartItems from './MinicartItems'
 import { useProductsByIds } from '../../../features/client/products/useProductsByIds'
 import Message from '../ui/Message'
 import Spinner from '../ui/Spinner'
-import useCartState from '../../../store/cart'
+import useCartStore from '../../../store/cart'
 
 type Props = {
   isOpen: boolean
@@ -14,7 +14,7 @@ type Props = {
 }
 
 const Cart: FC<Props> = ({ isOpen, onClose }) => {
-  const { items } = useCartState()
+  const { items } = useCartStore()
 
   const {
     data: products,

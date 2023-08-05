@@ -4,7 +4,7 @@ import { HandThumbUpIcon, TruckIcon } from '@heroicons/react/24/solid'
 import { useNavigate } from 'react-router-dom'
 import { useGetUser } from '../../../features/auth/useGetUser'
 import Button from '../ui/Button'
-import useRequireAuthModalState from '../../../store/requireAuth'
+import useRequireAuthModalStore from '../../../store/requireAuth'
 
 type Props = {
   totalProducts: number
@@ -13,7 +13,7 @@ type Props = {
 
 const Checkout: FC<Props> = ({ totalProducts, totalAmount }) => {
   const navigate = useNavigate()
-  const { open: openRequireAuthModal } = useRequireAuthModalState()
+  const { open: openRequireAuthModal } = useRequireAuthModalStore()
 
   const { data: user } = useGetUser()
 

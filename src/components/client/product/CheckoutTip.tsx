@@ -2,13 +2,13 @@ import { useState } from 'react'
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/solid'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useProduct } from '../../../features/client/products/product'
-import useCartState from '../../../store/cart'
+import useCartStore from '../../../store/cart'
 
 const CheckoutTip = () => {
   const navigate = useNavigate()
   const { slug } = useParams()
   const { data: product } = useProduct(slug)
-  const { items, updateQty, addItem } = useCartState()
+  const { items, updateQty, addItem } = useCartStore()
   const productInCart = items.find(i => i.id === product?.id)
   const [quantity, setQuantity] = useState<number>(productInCart?.quantity ?? 1)
 

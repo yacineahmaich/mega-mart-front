@@ -20,7 +20,7 @@ type CartState = {
   clear: () => void
 }
 
-const useCartState = create<CartState>()(
+const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
       items: [],
@@ -76,4 +76,4 @@ const useCartState = create<CartState>()(
   )
 )
 
-export default useCartState
+export default useCartStore

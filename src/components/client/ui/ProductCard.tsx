@@ -2,8 +2,8 @@ import { FC, useState } from 'react'
 import { ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 import clsx from 'clsx'
-import useCartState from '../../../store/cart'
-import useFavoriteState from '../../../store/favorite'
+import useCartStore from '../../../store/cart'
+import useFavoriteStore from '../../../store/favorite'
 
 type Props = {
   product: Product
@@ -12,8 +12,8 @@ type Props = {
 
 const ProductCard: FC<Props> = ({ product, favorite }) => {
   const [showcase, setShowcase] = useState(false)
-  const { addItem, getItem } = useCartState()
-  const { unsaveItem } = useFavoriteState()
+  const { addItem, getItem } = useCartStore()
+  const { unsaveItem } = useFavoriteStore()
 
   const itemInCart = getItem(product.id)
 

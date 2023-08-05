@@ -3,10 +3,10 @@ import { useProductsByIds } from '../../features/client/products/useProductsById
 import Message from '../../components/client/ui/Message'
 import Spinner from '../../components/client/ui/Spinner'
 import Products from '../../components/client/cart/Products'
-import useCartState from '../../store/cart'
+import useCartStore from '../../store/cart'
 
 const Cart = () => {
-  const { items, getItemsTotalPrice } = useCartState()
+  const { items, getItemsTotalPrice } = useCartStore()
 
   const { data: products, isLoading } = useProductsByIds({
     productIds: items.map(i => i.id),

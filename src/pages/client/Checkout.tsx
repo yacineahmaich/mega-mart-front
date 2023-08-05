@@ -4,11 +4,11 @@ import PaymentMethod from '../../components/client/checkout/PaymentMethod'
 import PlaceOrder from '../../components/client/checkout/PlaceOrder'
 import Stepper from '../../components/client/checkout/Stepper'
 import { useGetUser } from '../../features/auth/useGetUser'
-import useCartState from '../../store/cart'
+import useCartStore from '../../store/cart'
 import useCheckoutStore from '../../store/checkout'
 
 const CheckoutLayout = () => {
-  const { items } = useCartState()
+  const { items } = useCartStore()
   const { steps } = useCheckoutStore()
 
   const { data: user } = useGetUser()

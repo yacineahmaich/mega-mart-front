@@ -3,10 +3,10 @@ import { createPortal } from 'react-dom'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link, useLocation } from 'react-router-dom'
-import useRequireAuthModalState from '../../../store/requireAuth'
+import useRequireAuthModalStore from '../../../store/requireAuth'
 
 const RequireAuthModal = () => {
-  const { isOpen, close } = useRequireAuthModalState()
+  const { isOpen, close } = useRequireAuthModalStore()
   const { pathname: redirect } = useLocation()
 
   return createPortal(

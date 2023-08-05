@@ -8,11 +8,11 @@ import {
 } from '@heroicons/react/24/outline'
 import { useProductsByIds } from '../../../features/client/products/useProductsByIds'
 import useCheckoutStore from '../../../store/checkout'
-import useCartState from '../../../store/cart'
+import useCartStore from '../../../store/cart'
 
 function Preveiw() {
   const { deliverey } = useCheckoutStore()
-  const { items, getItemsTotalPrice } = useCartState()
+  const { items, getItemsTotalPrice } = useCartStore()
   const { data: products, isLoading } = useProductsByIds({
     productIds: items.map(i => i.id),
   })

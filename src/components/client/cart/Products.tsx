@@ -2,10 +2,10 @@ import spinner from '../../../assets/icons/loader.gif'
 import { useProductsByIds } from '../../../features/client/products/useProductsByIds'
 import Item from './Item'
 import Error from '../ui/Error'
-import useCartState from '../../../store/cart'
+import useCartStore from '../../../store/cart'
 
 const Products = () => {
-  const { items } = useCartState()
+  const { items } = useCartStore()
 
   const {
     data: products,

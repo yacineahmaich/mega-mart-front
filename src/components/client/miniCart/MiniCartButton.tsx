@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { ShoppingBagIcon } from '@heroicons/react/24/solid'
 import MiniCart from './MiniCart'
-import useCartState from '../../../store/cart'
+import useCartStore from '../../../store/cart'
 
 const MiniCartButton = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const { items } = useCartState()
+  const { items } = useCartStore()
 
   const onOpen = () => setIsOpen(true)
   const onClose = () => setIsOpen(false)
