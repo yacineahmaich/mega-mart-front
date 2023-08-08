@@ -1,6 +1,6 @@
-# [Spacy](https://spacy-app.netlify.app/)
+# [Mega Mart](https://mega-mart-store.netlify.app/)
 
-Ecommerce website includes products from diffrent categories.
+Ecommerce website with payments processing and admin dashboard.
 
 ## ✨ Features (customer)
 
@@ -15,7 +15,7 @@ Ecommerce website includes products from diffrent categories.
 - Payments (stripe)
 - Search
 - Sort
-- Pagination
+- Pagination\
   ...
 
 ## ✨ Features (admin)
@@ -28,7 +28,7 @@ Ecommerce website includes products from diffrent categories.
 - Manage offers
 - Manage discounts
 - Manage customers
-- Manage orders
+- Manage orders\
   ...
 
 ## ⚡ Technologies Used
@@ -40,7 +40,7 @@ Ecommerce website includes products from diffrent categories.
 - Headless ui
 - Formik
 - Zustand
-- Recharts
+- Recharts\
   ...
 
 ## 🛩 Installation
