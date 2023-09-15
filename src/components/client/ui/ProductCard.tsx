@@ -11,7 +11,7 @@ type Props = {
 }
 
 const ProductCard: FC<Props> = ({ product, favorite }) => {
-  const [showcase, setShowcase] = useState(false)
+  // const [showcase, setShowcase] = useState(false)
   const { addItem, getItem } = useCartStore()
   const { unsaveItem } = useFavoriteStore()
 
@@ -39,9 +39,9 @@ const ProductCard: FC<Props> = ({ product, favorite }) => {
               ' duration-500 animate-out group-hover:fade-out-0':
                 product.images.length > 0,
             })}
-            onMouseEnter={() => setShowcase(true)}
+            // onMouseEnter={() => setShowcase(true)}
           />
-          {showcase &&
+          {/* {showcase &&
             product.images.slice(1).map((img, idx) => (
               <img
                 key={img.id}
@@ -52,7 +52,7 @@ const ProductCard: FC<Props> = ({ product, favorite }) => {
                   animationDelay: idx === 0 ? '0ms' : 800 * idx + 'ms',
                 }}
               />
-            ))}
+            ))} */}
         </Link>
       </div>
       <div className="flex flex-col justify-between flex-1 p-3 space-y-10">

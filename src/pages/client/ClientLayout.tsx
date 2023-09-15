@@ -14,7 +14,7 @@ const ClientLayout = () => {
       <main className="min-h-screen">
         <Outlet />
       </main>
-      <Subscribe />
+      {/* <Subscribe /> */}
       <Footer />
     </>
   )

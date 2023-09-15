@@ -14,7 +14,7 @@ const AdminLayout = () => {
       <ProductionAlert />
       <SideBar />
       <Navbar />
-      <main className="w-full min-h-screen p-6 bg-light">
+      <main className="w-full min-h-screen p-6 pt-1 bg-light">
         <Outlet />
       </main>
     </div>

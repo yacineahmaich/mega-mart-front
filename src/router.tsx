@@ -5,55 +5,51 @@ import AuthLayout from './pages/auth/AuthLayout'
 import Login from './pages/auth/Login'
 import Signup from './pages/auth/Signup'
 // Client
+import Cart from './pages/client/Cart'
 import ClientLayout from './pages/client/ClientLayout'
 import Home from './pages/client/Home'
 import ProductDetails from './pages/client/ProductDetails'
-import Cart from './pages/client/Cart'
 // Admin
+import NotFound from './pages/NotFound'
 import AdminLayout from './pages/admin/AdminLayout'
 import Dashboard from './pages/admin/Dashboard'
-import Products from './pages/admin/product/Products'
 import Categories from './pages/admin/category/Categories'
-import Customers from './pages/admin/customer/Customers'
-import Orders from './pages/admin/order/Orders'
-import CreateProduct from './pages/admin/product/CreateProduct'
-import ProductLayout from './pages/admin/product/ProductLayout'
-import EditProduct from './pages/admin/product/EditProduct'
-import CategoryLayout from './pages/admin/category/CategoryLayout'
 import CreateCategory from './pages/admin/category/CreateCategory'
 import EditCategory from './pages/admin/category/EditCategory'
-import CustomerLayout from './pages/admin/customer/CustomerLayout'
-import ProfileLayout from './pages/client/Profile/ProfileLayout'
-import Profile from './pages/client/Profile/Profile'
-import MyOrders from './pages/client/Profile/MyOrders'
-import EditProfile from './pages/client/Profile/EditProfile'
-import NotFound from './pages/NotFound'
-import Category from './pages/client/Category'
-import MainCategory from './pages/client/MainCategory'
-import Maincategories from './pages/admin/main-category/Maincategories'
-import MainCategoryLayout from './pages/admin/main-category/MainCategoryLayout'
+import Customers from './pages/admin/customer/Customers'
+import CreateDiscount from './pages/admin/discount/CreateDiscount'
+import Discounts from './pages/admin/discount/Discounts'
+import EditDiscount from './pages/admin/discount/EditDiscount'
 import CreateMainCategory from './pages/admin/main-category/CreateMainCategory'
 import EditMainCategory from './pages/admin/main-category/EditMainCategory'
-import Offers from './pages/admin/offer/Offers'
+import Maincategories from './pages/admin/main-category/Maincategories'
 import CreateOffer from './pages/admin/offer/CreateOffer'
-import Discounts from './pages/admin/discount/Discounts'
-import CreateDiscount from './pages/admin/discount/CreateDiscount'
-import EditDiscount from './pages/admin/discount/EditDiscount'
 import EditOffer from './pages/admin/offer/EditOffer'
+import Offers from './pages/admin/offer/Offers'
+import Orders from './pages/admin/order/Orders'
+import CreateProduct from './pages/admin/product/CreateProduct'
+import EditProduct from './pages/admin/product/EditProduct'
+import Products from './pages/admin/product/Products'
+import Category from './pages/client/Category'
 import Checkout from './pages/client/Checkout'
-import VerifyPayment from './pages/client/VerifyPayment'
+import MainCategory from './pages/client/MainCategory'
+import EditProfile from './pages/client/Profile/EditProfile'
+import MyOrders from './pages/client/Profile/MyOrders'
 import Order from './pages/client/Profile/Order'
-import OrderLayout from './pages/admin/order/OrderLayout'
+import Profile from './pages/client/Profile/Profile'
+import ProfileLayout from './pages/client/Profile/ProfileLayout'
+import VerifyPayment from './pages/client/VerifyPayment'
 
-import queryClient from './query-client'
 import dashboardLoader from './features/admin/dashboard/loader'
+import categoryLoader from './features/client/category/loader'
 import homeLoader from './features/client/home/loader'
 import mCategoryLoader from './features/client/main-category/loader'
-import categoryLoader from './features/client/category/loader'
 import productLoader from './features/client/product/loader'
-import ErrorPage from './pages/client/ErrorPage'
 import OrderDetail from './pages/admin/order/OrderDetail'
+import ErrorPage from './pages/client/ErrorPage'
 import Favorite from './pages/client/Favorite'
+import queryClient from './query-client'
+import ManageStoreLayout from './components/admin/ui/ManageStoreLayout'
 
 const router = createBrowserRouter([
   {
@@ -162,56 +158,81 @@ const router = createBrowserRouter([
             loader: dashboardLoader(queryClient),
           },
           {
-            path: 'products',
-            element: <ProductLayout />,
+            element: <ManageStoreLayout />,
             children: [
               {
-                index: true,
-                element: <Products />,
+                path: 'products',
+                children: [
+                  {
+                    index: true,
+                    element: <Products />,
+                  },
+                  {
+                    path: 'create',
+                    element: <CreateProduct />,
+                  },
+                  {
+                    path: ':id/edit',
+                    element: <EditProduct />,
+                  },
+                ],
               },
               {
-                path: 'create',
-                element: <CreateProduct />,
+                path: 'categories',
+                children: [
+                  {
+                    index: true,
+                    element: <Categories />,
+                  },
+                  {
+                    path: 'create',
+                    element: <CreateCategory />,
+                  },
+                  {
+                    path: ':id/edit',
+                    element: <EditCategory />,
+                  },
+                ],
               },
               {
-                path: ':id/edit',
-                element: <EditProduct />,
+                path: 'main-categories',
+                children: [
+                  {
+                    index: true,
+                    element: <Maincategories />,
+                  },
+                  {
+                    path: 'create',
+                    element: <CreateMainCategory />,
+                  },
+                  {
+                    path: ':id/edit',
+                    element: <EditMainCategory />,
+                  },
+                ],
               },
-            ],
-          },
-          {
-            path: 'categories',
-            element: <CategoryLayout />,
-            children: [
+
               {
-                index: true,
-                element: <Categories />,
-              },
-              {
-                path: 'create',
-                element: <CreateCategory />,
-              },
-              {
-                path: ':id/edit',
-                element: <EditCategory />,
-              },
-            ],
-          },
-          {
-            path: 'main-categories',
-            element: <MainCategoryLayout />,
-            children: [
-              {
-                index: true,
-                element: <Maincategories />,
+                path: 'customers',
+                children: [
+                  {
+                    index: true,
+                    element: <Customers />,
+                  },
+                ],
               },
               {
-                path: 'create',
-                element: <CreateMainCategory />,
-              },
-              {
-                path: ':id/edit',
-                element: <EditMainCategory />,
+                path: 'orders',
+                children: [
+                  {
+                    index: true,
+                    element: <Orders />,
+                  },
+                  {
+                    path: ':id',
+                    element: <OrderDetail />,
+                  },
+                ],
               },
             ],
           },
@@ -233,30 +254,6 @@ const router = createBrowserRouter([
             ],
           },
           {
-            path: 'customers',
-            element: <CustomerLayout />,
-            children: [
-              {
-                index: true,
-                element: <Customers />,
-              },
-            ],
-          },
-          {
-            path: 'orders',
-            element: <OrderLayout />,
-            children: [
-              {
-                index: true,
-                element: <Orders />,
-              },
-              {
-                path: ':id',
-                element: <OrderDetail />,
-              },
-            ],
-          },
-          {
             path: 'offers',
             children: [
               {
@@ -273,7 +270,6 @@ const router = createBrowserRouter([
               },
             ],
           },
-
           {
             path: '*',
             element: (
