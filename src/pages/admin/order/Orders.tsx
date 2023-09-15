@@ -6,7 +6,6 @@ import OrdersTable from '../../../components/admin/orders/OrdersTable'
 const Orders = () => {
   const { isLoading, isError } = useOrders()
 
-  if (isLoading) return <Loader />
   if (isError) return <Error />
 
   return (
@@ -15,7 +14,7 @@ const Orders = () => {
         <h2 className="text-lg font-bold text-dark-500">Manage Orders</h2>
       </div>
 
-      <OrdersTable />
+      {isLoading ? <Loader /> : <OrdersTable />}
     </div>
   )
 }

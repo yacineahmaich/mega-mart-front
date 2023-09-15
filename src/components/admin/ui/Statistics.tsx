@@ -7,9 +7,12 @@ import {
 import StatisticCard from './StatisticCard'
 import { useState } from 'react'
 import clsx from 'clsx'
+import { useSharedStats } from '../../../features/admin/dashboard/useSharedStats'
 
 function Statistics() {
   const [open, setOpen] = useState(true)
+
+  const { data } = useSharedStats()
 
   return (
     <>
@@ -29,19 +32,19 @@ function Statistics() {
         <div className="relative grid grid-cols-3 gap-6 px-10 bg-primary-500 py-14 mb-14">
           <StatisticCard
             label="Total Sales"
-            value={3020}
+            value={data?.totalSales ?? '***'}
             icon={CurrencyDollarIcon}
             iconWrapperClassName="bg-info-500 ring-info-500/20"
           />
           <StatisticCard
             label="Total Products"
-            value={3020}
+            value={data?.totalProducts ?? '***'}
             icon={RectangleGroupIcon}
             iconWrapperClassName="bg-red-500 ring-red-500/20"
           />
           <StatisticCard
-            label="Total Products"
-            value={3020}
+            label="Total Orders"
+            value={data?.totalOrders ?? '***'}
             icon={RectangleGroupIcon}
             iconWrapperClassName="bg-slate-500 ring-slate-500/20"
           />

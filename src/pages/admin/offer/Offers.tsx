@@ -6,7 +6,6 @@ import Error from '../Error'
 function Offers() {
   const { isLoading, isError } = useOffers()
 
-  if (isLoading) return <Loader />
   if (isError) return <Error />
 
   return (
@@ -15,7 +14,7 @@ function Offers() {
         <h2 className="text-lg font-bold text-dark-500">Manage Offers</h2>
       </div>
 
-      <OffersTable />
+      {isLoading ? <Loader /> : <OffersTable />}
     </div>
   )
 }

@@ -6,7 +6,6 @@ import Error from '../Error'
 const Customers = () => {
   const { isLoading, isError } = useCustomers()
 
-  if (isLoading) return <Loader />
   if (isError) return <Error />
 
   return (
@@ -15,7 +14,7 @@ const Customers = () => {
         <h2 className="text-lg font-bold text-dark-500">Manage Customers</h2>
       </div>
 
-      <CustomersTable />
+      {isLoading ? <Loader /> : <CustomersTable />}
     </div>
   )
 }

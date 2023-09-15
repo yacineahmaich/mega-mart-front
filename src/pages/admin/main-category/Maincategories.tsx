@@ -8,7 +8,6 @@ import Error from '../Error'
 const Maincategories = () => {
   const { isLoading, isError } = useMainCategories()
 
-  if (isLoading) return <Loader />
   if (isError) return <Error />
 
   return (
@@ -19,14 +18,14 @@ const Maincategories = () => {
         </h2>
 
         <Link to="create">
-          <span className="flex items-center gap-1 px-3 py-2 text-white rounded-lg bg-info-700 hover:bg-info-800">
+          <span className="flex items-center gap-1 px-3 py-2 text-white rounded-lg bg-primary-400 hover:bg-primary-600">
             <PlusCircleIcon className="w-5 h-5" />
             <span className="text-sm font-medium">Create main category</span>
           </span>
         </Link>
       </div>
 
-      <MainCategoriesTable />
+      {isLoading ? <Loader /> : <MainCategoriesTable />}
     </div>
   )
 }

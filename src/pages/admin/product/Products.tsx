@@ -9,7 +9,6 @@ import { useProducts } from '../../../features/admin/products/useProducts'
 const Products = () => {
   const { isLoading, isError } = useProducts()
 
-  if (isLoading) return <Loader />
   if (isError) return <Error />
 
   return (
@@ -25,7 +24,7 @@ const Products = () => {
         </Link>
       </div>
 
-      <ProductsTable />
+      {isLoading ? <Loader /> : <ProductsTable />}
     </div>
   )
 }

@@ -6,7 +6,6 @@ import DiscountsTable from '../../../components/admin/discounts/DiscountsTable'
 function Discounts() {
   const { isLoading, isError } = useDiscounts()
 
-  if (isLoading) return <Loader />
   if (isError) return <Error />
 
   return (
@@ -15,7 +14,7 @@ function Discounts() {
         <h2 className="text-lg font-bold text-dark-500">Manage Discounts</h2>
       </div>
 
-      <DiscountsTable />
+      {isLoading ? <Loader /> : <DiscountsTable />}
     </div>
   )
 }

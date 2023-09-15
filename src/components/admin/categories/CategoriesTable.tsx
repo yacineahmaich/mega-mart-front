@@ -10,7 +10,7 @@ const CategoriesTable = () => {
     <section className="pb-40 overflow-x-auto">
       <div className="border rounded-b-lg border-gray">
         <table className="w-full text-sm text-left border text-dark-600 border-light">
-          <thead className="text-xs text-white uppercase bg-orange-500">
+          <thead className="text-xs text-white uppercase bg-primary-500">
             <tr>
               <th scope="col" className="px-6 py-4">
                 #
