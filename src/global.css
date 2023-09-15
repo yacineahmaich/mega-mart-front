@@ -13,20 +13,6 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 
-/* ================== Scroll bar ================== */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: #bdbdbd;
-  border-radius: 100px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #b1b1b1;
-}
 
 /* Swiper */
 .swiper-pagination-bullet {

@@ -8,7 +8,7 @@ type Data = {
 }
 
 const verifyPaiment = async (session: string): Promise<Data> => {
-  const response = await api.get('/checkout/success', {
+  const response = await api.get('/checkout/status', {
     params: {
       session,
     },
