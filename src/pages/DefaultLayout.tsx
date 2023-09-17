@@ -8,7 +8,7 @@ const DefaultLayout = () => {
     <div>
       {isLoading || isError ? null : (
         <>
-          <ScrollRestoration />
+          <ScrollRestoration getKey={location => location.pathname} />
           <Outlet />
         </>
       )}
