@@ -2,7 +2,7 @@ import { Navigate, Outlet } from 'react-router-dom'
 import Navbar from '../../components/admin/ui/Navbar'
 import SideBar from '../../components/admin/ui/SideBar'
 import { useGetUser } from '../../features/auth/useGetUser'
-import ProductionAlert from '../../components/admin/ui/ProductionAlert'
+// import ProductionAlert from '../../components/admin/ui/ProductionAlert'
 
 const AdminLayout = () => {
   const { data: user } = useGetUser()
@@ -11,7 +11,7 @@ const AdminLayout = () => {
 
   return (
     <div className="w-full pl-admin-sidebar">
-      <ProductionAlert />
+      {/* <ProductionAlert /> */}
       <SideBar />
       <Navbar />
       <main className="w-full min-h-screen p-6 pt-1 bg-light">
