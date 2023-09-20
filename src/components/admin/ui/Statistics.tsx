@@ -32,7 +32,7 @@ function Statistics() {
         <div className="relative grid grid-cols-3 gap-6 px-10 bg-primary-500 py-14 mb-14">
           <StatisticCard
             label="Total Sales"
-            value={data?.totalSales ?? '***'}
+            value={`$${data?.totalSales}` ?? '***'}
             icon={CurrencyDollarIcon}
             iconWrapperClassName="bg-info-500 ring-info-500/20"
           />

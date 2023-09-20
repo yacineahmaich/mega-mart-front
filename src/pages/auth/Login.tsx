@@ -9,8 +9,8 @@ const Login = () => {
   const { mutate: login, isError, error, isLoading } = useLogin()
 
   const initialValues = {
-    email: '',
-    password: '',
+    email: 'demo@gmail.com',
+    password: 'demodemo@',
   }
 
   const handleSubmit = (values: typeof initialValues) => {
