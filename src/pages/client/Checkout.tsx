@@ -19,7 +19,11 @@ const CheckoutLayout = () => {
   if (!cartIsValid) return <Navigate to=".." />
 
   return (
-    <>
+    <div>
+      <div className='bg-warning-400 text-center py-2'>
+        <p className='italic text-zinc-500 font-semibold'>Test payments with Stripe test card 👇️</p>
+        <span className='font-medium text-primary-500'>4242 4242 4242 4242</span>
+      </div>
       <Stepper
         activeStep={steps.active}
         changeActiveStep={steps.changeActiveStep}
@@ -29,7 +33,7 @@ const CheckoutLayout = () => {
         {steps.active === 1 && <PaymentMethod />}
         {steps.active === 2 && <PlaceOrder />}
       </div>
-    </>
+    </div>
   )
 }
 

@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { HeartIcon, UserCircleIcon } from '@heroicons/react/24/outline'
+import { HeartIcon, Squares2X2Icon, UserCircleIcon } from '@heroicons/react/24/outline'
 import MiniCartButton from './miniCart/MiniCartButton'
 import { Link } from 'react-router-dom'
 import { useGetUser } from '../../features/auth/useGetUser'
@@ -61,6 +61,18 @@ const Header: FC = () => {
                 <div className="flex flex-col items-center space-y-0.5 text-sm font-medium text-white transition-colors cursor-pointer hover:text-slate-200">
                   <UserCircleIcon className="w-6 h-6 sm:h-8 sm:w-8" />
                   <span className="hidden sm:block">Account</span>
+                </div>
+              </Link>
+            )}
+
+            {user && user.isAdmin && (
+              <Link to="/dashboard">
+                <div className="flex flex-col items-center space-y-0.5 text-sm font-medium text-warning-500 transition-colors cursor-pointer hover:text-warning-900">
+                  {/* <UserCircleIcon className="w-6 h-6 sm:h-8 sm:w-8" /> */}
+                  <Squares2X2Icon className="w-6 h-6 sm:h-8 sm:w-8" />
+                  <span className="hidden mt-4 sm:block">
+                    Dashboard
+                  </span>
                 </div>
               </Link>
             )}
