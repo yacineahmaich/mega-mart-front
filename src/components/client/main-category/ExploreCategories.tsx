@@ -40,7 +40,7 @@ const ExploreCategories = () => {
                   <img
                     src={category.image.url}
                     alt={category.image.name}
-                    className="w-32 h-32 bg-cover rounded-full bg-light md:w-48 md:h-48 "
+                    className="w-32 h-32 bg-cover rounded-full ring-offset-2 ring-gray ring-1 bg-light md:w-48 md:h-48 "
                   />
                   <h3 className="mt-3 text-xs font-bold text-center md:font-medium md:text-xs text-dark-600/80">
                     {category.name}

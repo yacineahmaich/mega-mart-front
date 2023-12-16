@@ -53,7 +53,7 @@ const MainCategoriesSlider = () => {
           slidesOffsetBefore: 40,
         },
       }}
-      className="h-32 -mt-20 select-none md:h-40"
+      className="h-32 mt-10 select-none md:h-40"
       wrapperClass="relative"
     >
       <div>

@@ -14,7 +14,7 @@ const MainCategory = () => {
   return (
     <div>
       <OffersSlider />
-      <div className="mx-3 -mt-20 md:mx-6">
+      <div className="mx-3 -mt-10 md:mx-6">
         <ExploreCategories />
         <Products />
       </div>

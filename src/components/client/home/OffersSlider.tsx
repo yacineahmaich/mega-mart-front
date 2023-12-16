@@ -37,10 +37,8 @@ const OffersSlider = () => {
         swiper.navigation.init()
         swiper.navigation.update()
       }}
-      className="relative h-72 md:h-[400px] group bg-light"
+      className="relative h-72 md:h-[450px] group bg-light"
     >
-      <div className="absolute bottom-0 left-0 z-20 w-full h-20 bg-gradient-to-t from-white to-transparent"></div>
-
       <div>
         {offers?.map(offer => (
           <SwiperSlide key={offer.id}>
@@ -48,7 +46,7 @@ const OffersSlider = () => {
               <img
                 src={offer.backdrop.url}
                 alt={offer.backdrop.name}
-                className="object-cover w-full h-full"
+                className="object-cover w-full h-full bg-center"
               />
             </Link>
           </SwiperSlide>
