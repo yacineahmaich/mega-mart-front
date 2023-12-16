@@ -42,11 +42,11 @@ const Cart: FC<Props> = ({ isOpen, onClose }) => {
                     <img src={spinner} alt="spinner" className="mx-auto mt-4" />
                   </div>
                 )}
-                <MinicartItems products={products} onClose={onClose} />
+                <MinicartItems products={products || []} onClose={onClose} />
               </div>
             </>
           )}
-          <MiniCartFooter products={products} onClose={onClose} />
+          <MiniCartFooter products={products || []} onClose={onClose} />
         </>
       )}
     </Sheet>

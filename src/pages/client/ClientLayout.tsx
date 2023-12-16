@@ -10,7 +10,7 @@ const ClientLayout = () => {
     <>
       <RequireAuthModal />
       <Header />
-      <Navigation />
+      {/* <Navigation /> */}
       <main className="min-h-screen">
         <Outlet />
       </main>

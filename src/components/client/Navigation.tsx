@@ -1,21 +1,54 @@
-import { FC, useState } from 'react'
+import { FC, Fragment, useState } from 'react'
 import { useMcategories } from '../../features/client/main-category/m-categories'
 import {
   Bars3BottomLeftIcon,
   ChevronRightIcon,
+  HomeIcon,
 } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 import { Transition } from '@headlessui/react'
 import Spinner from './ui/Spinner'
 
-const Navigation: FC = () => {
+type Breadcrumb = {
+  icon: any
+  label: string
+  href?: string
+}[]
+
+const Navigation: FC<{ breadcrumb: Breadcrumb }> = ({ breadcrumb }) => {
   return (
     <nav
       className="relative flex items-center w-full px-3 py-1 text-sm font-medium border-b divide-x border-gray divide-gray"
       id="navigation"
     >
       <CategoriesDropdown />
+      <Beadcrumb breadcrumb={breadcrumb} />
     </nav>
+  )
+}
+const Beadcrumb: FC<{ breadcrumb: Breadcrumb }> = ({ breadcrumb = [] }) => {
+  return (
+    <div className="pl-3 space-x-2 text-dark-600">
+      <Link to="/" className="hover:text-black">
+        <HomeIcon className="inline-block w-5" /> Home
+      </Link>
+      {breadcrumb.length > 0 && <span>/</span>}
+      {breadcrumb.map(({ label, href, icon: Icon }, i) => (
+        <Fragment key={label}>
+          {href ? (
+            <Link to={href} className="hover:text-black">
+              <Icon className="inline-block w-5" /> {label}
+            </Link>
+          ) : (
+            <span>
+              <Icon className="inline-block w-5" /> {label}
+            </span>
+          )}
+
+          {i < breadcrumb.length - 1 && <span>/</span>}
+        </Fragment>
+      ))}
+    </div>
   )
 }
 
@@ -24,7 +57,7 @@ const CategoriesDropdown = () => {
   const [show, setShow] = useState(false)
 
   return (
-    <div onMouseLeave={() => setShow(false)}>
+    <div onMouseLeave={() => setShow(false)} className="pr-3">
       <a
         role="button"
         onMouseEnter={() => setShow(true)}
