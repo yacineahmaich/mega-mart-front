@@ -5,14 +5,17 @@ import 'swiper/css'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
 import { useRef } from 'react'
 import { SwiperSlide } from 'swiper/react'
-import { Link } from 'react-router-dom'
-import { useOffers } from '../../../features/client/offer/offer'
 
 const OffersSlider = () => {
   const prevRef = useRef()
   const nextRef = useRef()
 
-  const { data: offers } = useOffers()
+  const sliderImages = [
+    '/slide-1.jpg',
+    '/slide-1.jpg',
+    '/slide-1.jpg',
+    '/slide-1.jpg',
+  ]
 
   return (
     <Swiper
@@ -40,15 +43,13 @@ const OffersSlider = () => {
       className="relative h-72 md:h-[450px] group bg-light"
     >
       <div>
-        {offers?.map(offer => (
-          <SwiperSlide key={offer.id}>
-            <Link to={`/products/${offer.product.slug}`}>
-              <img
-                src={offer.backdrop.url}
-                alt={offer.backdrop.name}
-                className="object-cover w-full h-full bg-center"
-              />
-            </Link>
+        {sliderImages?.map((image, idx) => (
+          <SwiperSlide key={idx}>
+            <img
+              src={image}
+              alt="slider image"
+              className="object-cover w-full h-full"
+            />
           </SwiperSlide>
         ))}
       </div>

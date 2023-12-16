@@ -45,11 +45,6 @@ const manageStoreNavigation = [
 
 const othersNavigation = [
   {
-    label: 'Offers',
-    path: 'offers',
-    Icon: GiftIcon,
-  },
-  {
     label: 'Discounts',
     path: 'discounts',
     Icon: BanknotesIcon,

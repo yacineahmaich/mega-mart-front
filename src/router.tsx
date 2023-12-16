@@ -23,9 +23,6 @@ import EditDiscount from './pages/admin/discount/EditDiscount'
 import CreateMainCategory from './pages/admin/main-category/CreateMainCategory'
 import EditMainCategory from './pages/admin/main-category/EditMainCategory'
 import Maincategories from './pages/admin/main-category/Maincategories'
-import CreateOffer from './pages/admin/offer/CreateOffer'
-import EditOffer from './pages/admin/offer/EditOffer'
-import Offers from './pages/admin/offer/Offers'
 import Orders from './pages/admin/order/Orders'
 import CreateProduct from './pages/admin/product/CreateProduct'
 import EditProduct from './pages/admin/product/EditProduct'
@@ -250,23 +247,6 @@ const router = createBrowserRouter([
               {
                 path: ':id/edit',
                 element: <EditDiscount />,
-              },
-            ],
-          },
-          {
-            path: 'offers',
-            children: [
-              {
-                index: true,
-                element: <Offers />,
-              },
-              {
-                path: 'make/:productId',
-                element: <CreateOffer />,
-              },
-              {
-                path: ':id/edit',
-                element: <EditOffer />,
               },
             ],
           },

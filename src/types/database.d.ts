@@ -10,7 +10,6 @@ interface Product {
   images: Image[]
   totalReviews: number
   discount?: Discount
-  offer?: Offer
 }
 
 interface Category {
@@ -57,14 +56,6 @@ interface Image {
   id: number
   name: string
   url: string
-}
-
-interface Offer {
-  id: number
-  start: string
-  end: string
-  backdrop: Image
-  product: Product
 }
 
 interface Discount {
