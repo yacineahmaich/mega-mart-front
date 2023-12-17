@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
-import api from '../../../utils/api/client'
+import api from '../../../utils/api'
 
 type Data = {
   reviews: Review[]

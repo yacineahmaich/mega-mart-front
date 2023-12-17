@@ -1,5 +1,5 @@
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import api from '../../utils/api/client'
+import api from '../../utils/api'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 type Data = {

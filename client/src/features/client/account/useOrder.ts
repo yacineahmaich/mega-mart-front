@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import api from '../../../utils/api/client'
+import api from '../../../utils/api'
 
 const getOrder = async (order: string): Promise<Order> => {
   const response = await api.get(`/orders/${order}`)

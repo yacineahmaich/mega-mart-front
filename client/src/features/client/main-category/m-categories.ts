@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import api from '../../../utils/api/client'
+import api from '../../../utils/api'
 
 const getMCategories = async (): Promise<MainCategory[]> => {
   const response = await api.get('/m-categories')

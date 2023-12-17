@@ -1,5 +1,5 @@
 import { DeliveryData } from '../../../store/checkout'
-import api from '../../../utils/api/client'
+import api from '../../../utils/api'
 import { useMutation } from '@tanstack/react-query'
 
 type Variables = {
