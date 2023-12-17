@@ -18,7 +18,6 @@ const MainCategory = () => {
       <Navigation
         breadcrumb={[
           {
-            href: `/mc/${data?.mainCategory?.slug}`,
             label: data?.mainCategory?.name,
             icon: RectangleStackIcon,
           },

@@ -1,7 +1,6 @@
 import { FC, useState } from 'react'
 import {
   ArrowTrendingDownIcon,
-  GiftIcon,
   PencilIcon,
   TrashIcon,
 } from '@heroicons/react/24/outline'
@@ -61,24 +60,6 @@ const ProductRow: FC<Props> = ({ product }) => {
             <PencilIcon className="inline w-4 h-4 mr-4" />
             <span className="text-sm">Edit product</span>
           </Link>
-
-          {product.offer ? (
-            <Link
-              to={`/dashboard/offers/${product.offer.id}/edit`}
-              className="px-6 py-2.5 text-left hover:bg-light whitespace-nowrap"
-            >
-              <GiftIcon className="inline w-4 h-4 mr-4" />
-              <span className="text-sm">Edit offer</span>
-            </Link>
-          ) : (
-            <Link
-              to={`/dashboard/offers/make/${product.id}`}
-              className="px-6 py-2.5 text-left hover:bg-light whitespace-nowrap"
-            >
-              <GiftIcon className="inline w-4 h-4 mr-4" />
-              <span className="text-sm">Make offer</span>
-            </Link>
-          )}
 
           {product.discount ? (
             <Link
