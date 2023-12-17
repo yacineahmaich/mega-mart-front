@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\FeedController;
 use Illuminate\Support\Facades\Route;
 
 
