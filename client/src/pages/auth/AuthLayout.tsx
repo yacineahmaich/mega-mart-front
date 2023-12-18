@@ -1,7 +1,7 @@
 import { NavLink, Navigate, Outlet } from 'react-router-dom'
-import { useGetUser } from '../../features/auth/useGetUser'
 import backgroud from '../../assets/images/auth-bg.png'
 import clsx from 'clsx'
+import { useGetUser } from '../../services/auth/useGetUser'
 
 const AuthLayout = () => {
   const { data: user } = useGetUser()

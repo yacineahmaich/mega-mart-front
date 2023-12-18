@@ -3,11 +3,11 @@ import Delivery from '../../components/client/checkout/Delivery'
 import PaymentMethod from '../../components/client/checkout/PaymentMethod'
 import PlaceOrder from '../../components/client/checkout/PlaceOrder'
 import Stepper from '../../components/client/checkout/Stepper'
-import { useGetUser } from '../../features/auth/useGetUser'
 import useCartStore from '../../store/cart'
 import useCheckoutStore from '../../store/checkout'
+import { useGetUser } from '../../services/auth/useGetUser'
 
-const CheckoutLayout = () => {
+const Checkout = () => {
   const { items } = useCartStore()
   const { steps } = useCheckoutStore()
 
@@ -20,9 +20,13 @@ const CheckoutLayout = () => {
 
   return (
     <div>
-      <div className='bg-warning-400 text-center py-2'>
-        <p className='italic text-zinc-500 font-semibold'>Test payments with Stripe test card 👇️</p>
-        <span className='font-medium text-primary-500'>4242 4242 4242 4242</span>
+      <div className="py-2 text-center bg-warning-400">
+        <p className="italic font-semibold text-zinc-500">
+          Test payments with Stripe test card 👇️
+        </p>
+        <span className="font-medium text-primary-500">
+          4242 4242 4242 4242
+        </span>
       </div>
       <Stepper
         activeStep={steps.active}
@@ -37,4 +41,4 @@ const CheckoutLayout = () => {
   )
 }
 
-export default CheckoutLayout
+export default Checkout

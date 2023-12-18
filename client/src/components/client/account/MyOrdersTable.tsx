@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useMyOrders } from '../../../features/client/account/useMyOrders'
+import { useMyOrders } from '../../../services/account/useMyOrders'
 import Spinner from '../ui/Spinner'
 import moment from 'moment'
 import Message from '../ui/Message'

@@ -1,9 +1,9 @@
-import { useGetUser } from '../../../features/auth/useGetUser'
 import { Formik, Form } from 'formik'
 import { checkoutSchema } from '../../../utils/validation/client/checkout'
-import FieldGroup from '../../../components/client/ui/FieldGroup'
-import Button from '../../../components/client/ui/Button'
+import FieldGroup from '../ui/FieldGroup'
+import Button from '../ui/Button'
 import useCheckoutStore from '../../../store/checkout'
+import { useGetUser } from '../../../services/auth/useGetUser'
 
 const Delivery = () => {
   const { data: user } = useGetUser()

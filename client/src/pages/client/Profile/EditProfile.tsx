@@ -1,12 +1,12 @@
 import { PencilSquareIcon } from '@heroicons/react/24/solid'
-import { useUpdateProfile } from '../../../features/client/account/useUpdateProfile'
+import { useUpdateProfile } from '../../../services/account/useUpdateProfile'
 import { toast } from 'react-hot-toast'
 import { updateProfileSchema } from '../../../utils/validation/client/profile'
 import { Formik, Form } from 'formik'
 import { removeEmptyFields } from '../../../utils/helpers'
-import { useGetUser } from '../../../features/auth/useGetUser'
 import FieldGroup from '../../../components/client/ui/FieldGroup'
 import Button from '../../../components/client/ui/Button'
+import { useGetUser } from '../../../services/auth/useGetUser'
 
 const EditProfile = () => {
   const { data: user } = useGetUser()

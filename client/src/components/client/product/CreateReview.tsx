@@ -6,9 +6,9 @@ import Button from '../ui/Button'
 import StarRating from 'react-star-ratings'
 import { useCreateReview } from '../../../services/product/useCreateReview'
 import { useParams } from 'react-router-dom'
-import { useGetUser } from '../../../features/auth/useGetUser'
 import useRequireAuthModalStore from '../../../store/requireAuth'
 import { useProduct } from '../../../services/product/useProduct'
+import { useGetUser } from '../../../services/auth/useGetUser'
 
 type Props = {
   children?: React.ReactNode

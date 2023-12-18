@@ -1,5 +1,5 @@
 import { ChangeEvent, FC } from 'react'
-import { useUploadAvatar } from '../../../features/client/account/useUploadAvatar'
+import { useUploadAvatar } from '../../../services/account/useUploadAvatar'
 import { PencilIcon } from '@heroicons/react/24/outline'
 import Spinner from '../ui/Spinner'
 import clsx from 'clsx'

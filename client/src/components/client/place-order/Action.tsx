@@ -1,4 +1,4 @@
-import { usePlaceOrder } from '../../../features/client/checkout/usePlaceOrder'
+import { usePlaceOrder } from '../../../services/checkout/usePlaceOrder'
 import { useProductsByIds } from '../../../services/product/useProductsByIds'
 import { toast } from 'react-hot-toast'
 import Button from '../ui/Button'

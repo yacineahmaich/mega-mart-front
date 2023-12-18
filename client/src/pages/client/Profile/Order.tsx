@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
-import { useOrder } from '../../../features/client/account/useOrder'
+import { useOrder } from '../../../services/account/useOrder'
 import Spinner from '../../../components/client/ui/Spinner'
 import {
   BanknotesIcon,

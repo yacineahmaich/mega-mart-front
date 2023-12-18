@@ -1,4 +1,4 @@
-import api from '../../../utils/api'
+import api from '../../utils/api'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 type Variables = {

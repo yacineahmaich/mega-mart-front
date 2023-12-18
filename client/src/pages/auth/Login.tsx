@@ -1,9 +1,9 @@
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { Formik, Form } from 'formik'
 import { loginSchema } from '../../utils/validation/auth'
-import { useLogin } from '../../features/auth/useLogin'
 import FieldGroup from '../../components/client/ui/FieldGroup'
 import Button from '../../components/client/ui/Button'
+import { useLogin } from '../../services/auth/useLogin'
 
 const Login = () => {
   const { mutate: login, isError, error, isLoading } = useLogin()

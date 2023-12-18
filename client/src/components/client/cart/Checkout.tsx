@@ -2,9 +2,9 @@ import { FC } from 'react'
 import { BookOpenIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
 import { HandThumbUpIcon, TruckIcon } from '@heroicons/react/24/solid'
 import { useNavigate } from 'react-router-dom'
-import { useGetUser } from '../../../features/auth/useGetUser'
 import Button from '../ui/Button'
 import useRequireAuthModalStore from '../../../store/requireAuth'
+import { useGetUser } from '../../../services/auth/useGetUser'
 
 type Props = {
   totalProducts: number

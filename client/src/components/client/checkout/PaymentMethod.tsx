@@ -1,6 +1,6 @@
 import { Formik, Form } from 'formik'
-import Radio from '../../../components/client/ui/Radio'
-import Button from '../../../components/client/ui/Button'
+import Radio from '../ui/Radio'
+import Button from '../ui/Button'
 import { paymentMethodSchema } from '../../../utils/validation/client/checkout'
 import useCheckoutStore, { PaymentMethods } from '../../../store/checkout'
 

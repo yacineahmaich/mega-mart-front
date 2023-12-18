@@ -1,10 +1,10 @@
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
-import { useGetUser } from '../../features/auth/useGetUser'
-import { useVerifyCheckoutStatus } from '../../features/client/checkout/useVerifyCheckoutStatus'
+import { useVerifyCheckoutStatus } from '../../services/checkout/useVerifyCheckoutStatus'
 import loader from '../../assets/icons/loader.svg'
 import Button from '../../components/client/ui/Button'
 import Error from '../../components/client/ui/Error'
 import { Cog6ToothIcon } from '@heroicons/react/24/outline'
+import { useGetUser } from '../../services/auth/useGetUser'
 
 function VerifyPayment() {
   const navigate = useNavigate()

@@ -1,5 +1,5 @@
-import useCartStore from '../../../store/cart'
-import api from '../../../utils/api'
+import useCartStore from '../../store/cart'
+import api from '../../utils/api'
 import { useQuery } from '@tanstack/react-query'
 
 type Data = {

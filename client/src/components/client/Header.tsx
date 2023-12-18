@@ -6,9 +6,9 @@ import {
 } from '@heroicons/react/24/outline'
 import MiniCartButton from './miniCart/MiniCartButton'
 import { Link } from 'react-router-dom'
-import { useGetUser } from '../../features/auth/useGetUser'
 import useSavedState from '../../store/favorite'
 import Search from './Search'
+import { useGetUser } from '../../services/auth/useGetUser'
 
 const Header: FC = () => {
   const { data: user } = useGetUser()

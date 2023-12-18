@@ -1,6 +1,6 @@
-import CheckoutSummary from '../../../components/client/place-order/CheckoutSummary'
-import Action from '../../../components/client/place-order/Action'
-import Preveiw from '../../../components/client/place-order/Preveiw'
+import CheckoutSummary from '../place-order/CheckoutSummary'
+import Action from '../place-order/Action'
+import Preveiw from '../place-order/Preveiw'
 
 const PlaceOrder = () => {
   return (

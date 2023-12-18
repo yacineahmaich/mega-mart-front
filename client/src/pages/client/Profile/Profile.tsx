@@ -1,5 +1,5 @@
 import { UserIcon } from '@heroicons/react/24/solid'
-import { useProfile } from '../../../features/client/account/useGetProfile'
+import { useProfile } from '../../../services/account/useGetProfile'
 import Spinner from '../../../components/client/ui/Spinner'
 import Error from '../../../components/client/ui/Error'
 const Profile = () => {

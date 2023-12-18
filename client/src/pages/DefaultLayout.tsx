@@ -1,5 +1,5 @@
 import { Outlet, ScrollRestoration } from 'react-router-dom'
-import { useGetUser } from '../features/auth/useGetUser'
+import { useGetUser } from '../services/auth/useGetUser'
 
 const DefaultLayout = () => {
   const { isLoading, isError } = useGetUser()

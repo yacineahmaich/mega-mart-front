@@ -1,6 +1,6 @@
 import SideNav from '../../../components/client/account/SideNav'
 import { Navigate, Outlet } from 'react-router-dom'
-import { useGetUser } from '../../../features/auth/useGetUser'
+import { useGetUser } from '../../../services/auth/useGetUser'
 
 const ProfileLayout = () => {
   const { data: user } = useGetUser()

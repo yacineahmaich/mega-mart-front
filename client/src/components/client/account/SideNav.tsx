@@ -5,10 +5,10 @@ import {
   UserIcon,
 } from '@heroicons/react/24/solid'
 import { NavLink } from 'react-router-dom'
-import { useGetUser } from '../../../features/auth/useGetUser'
-import { useLogout } from '../../../features/auth/useLogout'
 import { ArrowPathIcon } from '@heroicons/react/24/outline'
 import UserAvatar from './UserAvatar'
+import { useLogout } from '../../../services/auth/useLogout'
+import { useGetUser } from '../../../services/auth/useGetUser'
 
 const SideNav = () => {
   const { data: user } = useGetUser()
