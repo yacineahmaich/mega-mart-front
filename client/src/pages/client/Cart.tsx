@@ -1,5 +1,5 @@
 import Checkout from '../../components/client/cart/Checkout'
-import { useProductsByIds } from '../../features/client/products/useProductsByIds'
+import { useProductsByIds } from '../../services/product/useProductsByIds'
 import Message from '../../components/client/ui/Message'
 import Spinner from '../../components/client/ui/Spinner'
 import Products from '../../components/client/cart/Products'

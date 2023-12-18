@@ -3,17 +3,16 @@ import GeneralInfos from '../../components/client/product/GeneralInfos'
 import Infos from '../../components/client/product/Infos'
 import Preview from '../../components/client/product/Preview'
 import CheckoutTip from '../../components/client/product/CheckoutTip'
-import { useProduct } from '../../features/client/products/product'
 import { useParams } from 'react-router-dom'
-import Error from '../../components/client/ui/Error'
 import Navigation from '../../components/client/Navigation'
 import { InboxIcon, RectangleGroupIcon } from '@heroicons/react/24/outline'
+import { useProduct } from '../../services/product/useProduct'
 
 const ProductDetails = () => {
   const { slug } = useParams()
-  const { isError, data } = useProduct(slug)
+  const { data: product } = useProduct(slug)
 
-  if (isError) return <Error message="Failed to get prouct data" />
+  if (!product) return <div className="min-h-screen"></div>
 
   return (
     <>
@@ -24,7 +23,7 @@ const ProductDetails = () => {
             icon: RectangleGroupIcon,
           },
           {
-            label: data?.name,
+            label: product?.name,
             icon: InboxIcon,
           },
         ]}
@@ -32,10 +31,10 @@ const ProductDetails = () => {
       <div className="min-h-screen p-3 space-y-12 sm:p-6">
         <section>
           <div className="relative grid md:grid-cols-[40%_60%] md:gap-2 lg:gap-4">
-            <Preview />
-            <Infos />
-            <Checkout />
-            <CheckoutTip />
+            <Preview product={product} />
+            <Infos product={product} />
+            <Checkout product={product} />
+            <CheckoutTip product={product} />
           </div>
         </section>
         <section>

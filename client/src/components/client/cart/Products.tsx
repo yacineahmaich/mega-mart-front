@@ -1,5 +1,5 @@
 import spinner from '../../../assets/icons/loader.gif'
-import { useProductsByIds } from '../../../features/client/products/useProductsByIds'
+import { useProductsByIds } from '../../../services/product/useProductsByIds'
 import Item from './Item'
 import Error from '../ui/Error'
 import useCartStore from '../../../store/cart'

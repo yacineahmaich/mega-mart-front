@@ -6,7 +6,7 @@ import {
   PhoneIcon,
   UserCircleIcon,
 } from '@heroicons/react/24/outline'
-import { useProductsByIds } from '../../../features/client/products/useProductsByIds'
+import { useProductsByIds } from '../../../services/product/useProductsByIds'
 import useCheckoutStore from '../../../store/checkout'
 import useCartStore from '../../../store/cart'
 

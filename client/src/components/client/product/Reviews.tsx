@@ -1,13 +1,13 @@
 import StarRating from 'react-star-ratings'
 import { useParams } from 'react-router-dom'
-import { useProduct } from '../../../features/client/products/product'
-import { useProductReviews } from '../../../features/client/products/useProductReviews'
+import { useProductReviews } from '../../../services/product/useProductReviews'
 import ReviewsSkeleton from './ReviewsSkeleton'
 import Button from '../ui/Button'
 import CreateReview from './CreateReview'
 import Message from '../ui/Message'
 import Error from '../ui/Error'
 import { getAvatarUrlFromName } from '../../../utils/helpers'
+import { useProduct } from '../../../services/product/useProduct'
 
 const Reviews = () => {
   const { slug } = useParams()

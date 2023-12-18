@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { Controller, Pagination } from 'swiper'
@@ -7,14 +7,10 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import clsx from 'clsx'
-import { useProduct } from '../../../features/client/products/product'
-import { useParams } from 'react-router-dom'
 
-const Preview = () => {
+const Preview: FC<{ product: Product }> = ({ product }) => {
   const [sideSwiper, setSideSwiper] = useState(null)
   const [productSwiper, setProductSwiper] = useState(null)
-  const { slug } = useParams()
-  const { data: product } = useProduct(slug)
 
   return (
     <div className="flex md:gap-2 lg:gap-4">

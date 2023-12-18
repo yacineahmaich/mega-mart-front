@@ -20,10 +20,8 @@ import Profile from './pages/client/Profile/Profile'
 import ProfileLayout from './pages/client/Profile/ProfileLayout'
 import VerifyPayment from './pages/client/VerifyPayment'
 
-import productLoader from './features/client/product/loader'
 import ErrorPage from './pages/client/ErrorPage'
 import Favorite from './pages/client/Favorite'
-import queryClient from './query-client'
 
 const router = createBrowserRouter([
   {
@@ -51,7 +49,6 @@ const router = createBrowserRouter([
           {
             path: 'products/:slug',
             element: <ProductDetails />,
-            loader: productLoader(queryClient),
           },
           {
             path: 'cart',

@@ -1,5 +1,5 @@
 import { usePlaceOrder } from '../../../features/client/checkout/usePlaceOrder'
-import { useProductsByIds } from '../../../features/client/products/useProductsByIds'
+import { useProductsByIds } from '../../../services/product/useProductsByIds'
 import { toast } from 'react-hot-toast'
 import Button from '../ui/Button'
 import useCheckoutStore from '../../../store/checkout'

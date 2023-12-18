@@ -4,11 +4,11 @@ import FieldGroup from '../ui/FieldGroup'
 import { createReviewSchema } from '../../../utils/validation/client/review'
 import Button from '../ui/Button'
 import StarRating from 'react-star-ratings'
-import { useCreateReview } from '../../../features/client/products/useCreateReview'
+import { useCreateReview } from '../../../services/product/useCreateReview'
 import { useParams } from 'react-router-dom'
-import { useProduct } from '../../../features/client/products/product'
 import { useGetUser } from '../../../features/auth/useGetUser'
 import useRequireAuthModalStore from '../../../store/requireAuth'
+import { useProduct } from '../../../services/product/useProduct'
 
 type Props = {
   children?: React.ReactNode

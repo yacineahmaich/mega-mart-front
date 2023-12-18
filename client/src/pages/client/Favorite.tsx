@@ -4,7 +4,7 @@ import Navigation from '../../components/client/Navigation'
 import Message from '../../components/client/ui/Message'
 import ProductCard from '../../components/client/ui/ProductCard'
 import ProductCardSkeleton from '../../components/client/ui/ProductCardSekeleton'
-import { useProductsByIds } from '../../features/client/products/useProductsByIds'
+import { useProductsByIds } from '../../services/product/useProductsByIds'
 import useFavoriteStore from '../../store/favorite'
 
 function Favorite() {

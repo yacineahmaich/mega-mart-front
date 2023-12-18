@@ -1,4 +1,4 @@
-import { useProductsByIds } from '../../../features/client/products/useProductsByIds'
+import { useProductsByIds } from '../../../services/product/useProductsByIds'
 import useCartStore from '../../../store/cart'
 import Spinner from '../ui/Spinner'
 

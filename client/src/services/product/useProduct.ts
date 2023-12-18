@@ -1,4 +1,4 @@
-import api from '../../../utils/api'
+import api from '../../utils/api'
 import { useQuery } from '@tanstack/react-query'
 
 const getProduct = async (slug: string): Promise<Product> => {
@@ -6,12 +6,10 @@ const getProduct = async (slug: string): Promise<Product> => {
   return response.data
 }
 
-export const query = (slug: string) => ({
-  queryKey: ['product', slug],
-  queryFn: () => getProduct(slug),
-  keepPreviousData: true,
-})
-
 export const useProduct = (slug: string) => {
-  return useQuery(query(slug))
+  return useQuery({
+    queryKey: ['products', slug],
+    queryFn: () => getProduct(slug),
+    keepPreviousData: true,
+  })
 }

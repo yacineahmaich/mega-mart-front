@@ -1,15 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/solid'
-import { useProduct } from '../../../features/client/products/product'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import useCartStore from '../../../store/cart'
 import { HeartIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import useFavoriteStore from '../../../store/favorite'
 
-const Checkout = () => {
+const Checkout: FC<{ product: Product }> = ({ product }) => {
   const navigate = useNavigate()
-  const { slug } = useParams()
-  const { data: product } = useProduct(slug)
 
   const { getItem, saveItem, unsaveItem } = useFavoriteStore()
 

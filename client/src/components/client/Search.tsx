@@ -4,7 +4,7 @@ import { StarIcon } from '@heroicons/react/24/solid'
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import spinner from '../../assets/icons/loader.gif'
 import clsx from 'clsx'
-import { useSearchProducts } from '../../features/client/products/useSearchProduct'
+import { useSearchProducts } from '../../services/product/useSearchProduct'
 
 function Search() {
   const [query, setQuery] = useState('')
