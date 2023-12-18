@@ -1,22 +1,15 @@
 import Navigation from '../../components/client/Navigation'
 import MainCategoriesSlider from '../../components/client/home/MainCategoriesSlider'
 import OffersSlider from '../../components/client/home/OffersSlider'
-import Products from '../../components/client/home/Products'
-import Error from '../../components/client/ui/Error'
-import { useFeed } from '../../features/client/home/feed'
+import Feed from '../../components/client/home/Feed'
 
 const Home = () => {
-  const { isError, refetch } = useFeed()
-
-  if (isError)
-    return <Error message="Failed to load records!" retry={refetch} />
-
   return (
     <>
-      <Navigation breadcrumb={[]} />
+      <Navigation />
       <OffersSlider />
       <MainCategoriesSlider />
-      <Products />
+      <Feed />
     </>
   )
 }

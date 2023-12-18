@@ -7,14 +7,16 @@ import {
   ArrowLongRightIcon,
 } from '@heroicons/react/24/solid'
 import { useRef } from 'react'
-import { useMcategories } from '../../../features/client/main-category/m-categories'
 import { Link } from 'react-router-dom'
+import { useMainCategories } from '../../../services/main-category/useMainCategories'
 
 const MainCategoriesSlider = () => {
   const prevRef = useRef()
   const nextRef = useRef()
 
-  const { data: categories } = useMcategories()
+  const { data } = useMainCategories()
+
+  if (!data) return
 
   return (
     <Swiper
@@ -57,18 +59,18 @@ const MainCategoriesSlider = () => {
       wrapperClass="relative"
     >
       <div>
-        {categories?.map(category => (
+        {data?.map(mc => (
           <SwiperSlide
-            key={category.id}
+            key={mc.id}
             className="relative overflow-hidden border rounded-lg bg-white/20 border-gray"
           >
-            <Link to={`/mc/${category.slug}`}>
+            <Link to={`/mc/${mc.slug}`}>
               <div className="absolute top-0 left-0 w-full p-2 bg-light/70">
-                <h4>{category.name}</h4>
+                <h4>{mc.name}</h4>
               </div>
               <img
-                src={category.image.url}
-                alt={category.image.name}
+                src={mc.image.url}
+                alt={mc.image.name}
                 className="object-cover w-full h-full"
               />
             </Link>

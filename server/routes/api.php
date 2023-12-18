@@ -1,13 +1,25 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\HomeFeedController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::prefix("v1")->group(function () {
     // auth routes
-    require __DIR__ . '/api/v1/auth.php';
+    Route::middleware(['auth:sanctum'])
+        ->group(function () {
+            Route::post('/signup', [AuthController::class, 'signup'])
+                ->withoutMiddleware('auth:sanctum');
+            Route::post('/login', [AuthController::class, 'login'])
+                ->withoutMiddleware('auth:sanctum');
+            Route::get('/me', [AuthController::class, 'me']);
+            Route::post('/logout', [AuthController::class, 'logout']);
+        });
 
-    // client routes
+
+    // HOME
+    Route::get('/home-feed', HomeFeedController::class);
 
     require __DIR__ . '/api/v1/client/feed.php';
     require __DIR__ . '/api/v1/client/main-categories.php';

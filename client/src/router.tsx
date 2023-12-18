@@ -21,7 +21,6 @@ import ProfileLayout from './pages/client/Profile/ProfileLayout'
 import VerifyPayment from './pages/client/VerifyPayment'
 
 import categoryLoader from './features/client/category/loader'
-import homeLoader from './features/client/home/loader'
 import mCategoryLoader from './features/client/main-category/loader'
 import productLoader from './features/client/product/loader'
 import ErrorPage from './pages/client/ErrorPage'
@@ -42,7 +41,6 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <Home />,
-            loader: homeLoader(queryClient),
           },
           {
             path: 'mc/:slug',

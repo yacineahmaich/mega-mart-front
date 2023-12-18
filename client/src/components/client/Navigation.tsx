@@ -1,5 +1,4 @@
 import { FC, Fragment, useState } from 'react'
-import { useMcategories } from '../../features/client/main-category/m-categories'
 import {
   Bars3BottomLeftIcon,
   ChevronRightIcon,
@@ -8,6 +7,7 @@ import {
 import { Link } from 'react-router-dom'
 import { Transition } from '@headlessui/react'
 import Spinner from './ui/Spinner'
+import { useMainCategories } from '../../services/main-category/useMainCategories'
 
 type Breadcrumb = {
   icon: any
@@ -15,7 +15,7 @@ type Breadcrumb = {
   href?: string
 }[]
 
-const Navigation: FC<{ breadcrumb: Breadcrumb }> = ({ breadcrumb }) => {
+const Navigation: FC<{ breadcrumb?: Breadcrumb }> = ({ breadcrumb = [] }) => {
   return (
     <nav
       className="relative flex items-center w-full px-3 py-1 text-sm font-medium border-b divide-x border-gray divide-gray"
@@ -53,7 +53,7 @@ const Beadcrumb: FC<{ breadcrumb: Breadcrumb }> = ({ breadcrumb = [] }) => {
 }
 
 const CategoriesDropdown = () => {
-  const { data, isLoading } = useMcategories()
+  const { data, isLoading } = useMainCategories()
   const [show, setShow] = useState(false)
 
   return (

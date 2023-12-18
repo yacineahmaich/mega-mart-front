@@ -1,14 +1,14 @@
 import { useQuery } from '@tanstack/react-query'
-import api from '../../../utils/api'
+import api from '../../utils/api'
 
-const getMCategories = async (): Promise<MainCategory[]> => {
+const getMainCategories = async (): Promise<MainCategory[]> => {
   const response = await api.get('/main-categories')
   return response.data.mainCategories
 }
 
-export const useMcategories = () => {
+export const useMainCategories = () => {
   return useQuery({
     queryKey: ['main-categories'],
-    queryFn: getMCategories,
+    queryFn: getMainCategories,
   })
 }
