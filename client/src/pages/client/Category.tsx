@@ -5,16 +5,19 @@ import { useParams } from 'react-router-dom'
 import Sort from '../../components/client/category/Sort'
 import Filter from '../../components/client/category/Filter'
 import ListProducts from '../../components/client/category/ListProducts'
-import { useCategoryProducts } from '../../features/client/products/category-products'
+
 import Navigation from '../../components/client/Navigation'
 import {
   RectangleStackIcon,
   Square3Stack3DIcon,
 } from '@heroicons/react/24/outline'
+import { useCategoryProducts } from '../../services/category/useCategoryProducts'
 
 const HomeCategory: FC = () => {
   const { slug } = useParams()
   const { data } = useCategoryProducts(slug)
+
+  if (!data) return <div className="min-h-screen"></div>
 
   const category = data?.products?.at(0)?.category?.name
 

@@ -4,8 +4,8 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import ProductCard from '../ui/ProductCard'
 import Pagination from './Pagination'
 import Error from '../ui/Error'
-import { useCategoryProducts } from '../../../features/client/products/category-products'
 import Spinner from '../ui/Spinner'
+import { useCategoryProducts } from '../../../services/category/useCategoryProducts'
 
 const ListProducts: FC = () => {
   const { slug } = useParams()

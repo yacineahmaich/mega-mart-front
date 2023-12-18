@@ -20,7 +20,6 @@ import Profile from './pages/client/Profile/Profile'
 import ProfileLayout from './pages/client/Profile/ProfileLayout'
 import VerifyPayment from './pages/client/VerifyPayment'
 
-import categoryLoader from './features/client/category/loader'
 import productLoader from './features/client/product/loader'
 import ErrorPage from './pages/client/ErrorPage'
 import Favorite from './pages/client/Favorite'
@@ -48,7 +47,6 @@ const router = createBrowserRouter([
           {
             path: 'mc/:mcslug/category/:slug',
             element: <Category />,
-            loader: categoryLoader(queryClient),
           },
           {
             path: 'products/:slug',

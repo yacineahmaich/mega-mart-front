@@ -1,4 +1,4 @@
-import api from '../../../utils/api'
+import api from '../../utils/api'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import queryString from 'query-string'
 
