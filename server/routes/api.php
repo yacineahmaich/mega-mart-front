@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\HomeFeedController;
+use App\Http\Controllers\Api\MainCategoryController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,6 +21,10 @@ Route::prefix("v1")->group(function () {
 
     // HOME
     Route::get('/home-feed', HomeFeedController::class);
+
+    Route::get('/main-categories/{mainCategory:slug}', [MainCategoryController::class, 'show']);
+
+    Route::get('/main-categories/{mainCategory:slug}/feed', [MainCategoryController::class, 'feed']);
 
     require __DIR__ . '/api/v1/client/feed.php';
     require __DIR__ . '/api/v1/client/main-categories.php';
