@@ -1,4 +1,4 @@
-import SideNav from '../../../components/client/account/SideNav'
+import SideNav from '../../../components/account/SideNav'
 import { Navigate, Outlet } from 'react-router-dom'
 import { useGetUser } from '../../../services/auth/useGetUser'
 

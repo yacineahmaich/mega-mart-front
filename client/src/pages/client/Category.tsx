@@ -2,11 +2,11 @@ import { FC } from 'react'
 import { ChevronDoubleRightIcon } from '@heroicons/react/24/solid'
 
 import { useParams } from 'react-router-dom'
-import Sort from '../../components/client/category/Sort'
-import Filter from '../../components/client/category/Filter'
-import ListProducts from '../../components/client/category/ListProducts'
+import Sort from '../../components/category/Sort'
+import Filter from '../../components/category/Filter'
+import ListProducts from '../../components/category/ListProducts'
 
-import Navigation from '../../components/client/Navigation'
+import Navigation from '../../components/Navigation'
 import {
   RectangleStackIcon,
   Square3Stack3DIcon,

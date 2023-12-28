@@ -1,10 +1,10 @@
-import Checkout from '../../components/client/cart/Checkout'
+import Checkout from '../../components/cart/Checkout'
 import { useProductsByIds } from '../../services/product/useProductsByIds'
-import Message from '../../components/client/ui/Message'
-import Spinner from '../../components/client/ui/Spinner'
-import Products from '../../components/client/cart/Products'
+import Message from '../../components/ui/Message'
+import Spinner from '../../components/ui/Spinner'
+import Products from '../../components/cart/Products'
 import useCartStore from '../../store/cart'
-import Navigation from '../../components/client/Navigation'
+import Navigation from '../../components/Navigation'
 import { ShoppingCartIcon } from '@heroicons/react/24/outline'
 
 const Cart = () => {

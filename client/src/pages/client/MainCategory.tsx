@@ -1,11 +1,11 @@
 import { Link, useParams } from 'react-router-dom'
-import Error from '../../components/client/ui/Error'
-import OffersSlider from '../../components/client/home/OffersSlider'
-import Navigation from '../../components/client/Navigation'
+import Error from '../../components/ui/Error'
+import OffersSlider from '../../components/home/OffersSlider'
+import Navigation from '../../components/Navigation'
 import { RectangleStackIcon } from '@heroicons/react/24/outline'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { useMainCategory } from '../../services/main-category/useMainCategory'
-import ProductCard from '../../components/client/ui/ProductCard'
+import ProductCard from '../../components/ui/ProductCard'
 import { useMainCategoryFeed } from '../../services/main-category/useMainCategoryFeed'
 
 const MainCategory = () => {

@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router'
-import Header from '../../components/client/Header'
-import Footer from '../../components/client/Footer'
-import Subscribe from '../../components/client/Subscribe'
-import RequireAuthModal from '../../components/client/ui/RequireAuthModal'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
+import Subscribe from '../../components/Subscribe'
+import RequireAuthModal from '../../components/ui/RequireAuthModal'
 
 const ClientLayout = () => {
   return (

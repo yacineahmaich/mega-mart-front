@@ -1,5 +1,5 @@
 import { Link, useRouteError } from 'react-router-dom'
-import Header from '../../components/client/Header'
+import Header from '../../components/Header'
 import { BoltIcon, HomeIcon } from '@heroicons/react/24/outline'
 
 function ErrorPage() {

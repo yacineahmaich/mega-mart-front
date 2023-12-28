@@ -1,9 +1,9 @@
 import { HeartIcon } from '@heroicons/react/24/outline'
 import spinner from '../../assets/icons/loader.gif'
-import Navigation from '../../components/client/Navigation'
-import Message from '../../components/client/ui/Message'
-import ProductCard from '../../components/client/ui/ProductCard'
-import ProductCardSkeleton from '../../components/client/ui/ProductCardSekeleton'
+import Navigation from '../../components/Navigation'
+import Message from '../../components/ui/Message'
+import ProductCard from '../../components/ui/ProductCard'
+import ProductCardSkeleton from '../../components/ui/ProductCardSekeleton'
 import { useProductsByIds } from '../../services/product/useProductsByIds'
 import useFavoriteStore from '../../store/favorite'
 

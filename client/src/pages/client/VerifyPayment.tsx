@@ -1,8 +1,8 @@
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
 import { useVerifyCheckoutStatus } from '../../services/checkout/useVerifyCheckoutStatus'
 import loader from '../../assets/icons/loader.svg'
-import Button from '../../components/client/ui/Button'
-import Error from '../../components/client/ui/Error'
+import Button from '../../components/ui/Button'
+import Error from '../../components/ui/Error'
 import { Cog6ToothIcon } from '@heroicons/react/24/outline'
 import { useGetUser } from '../../services/auth/useGetUser'
 

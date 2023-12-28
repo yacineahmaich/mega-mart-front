@@ -1,8 +1,8 @@
 import { Formik, Form } from 'formik'
 import { signupSchema } from '../../utils/validation/auth'
 import { isError } from '@tanstack/react-query'
-import FieldGroup from '../../components/client/ui/FieldGroup'
-import Button from '../../components/client/ui/Button'
+import FieldGroup from '../../components/ui/FieldGroup'
+import Button from '../../components/ui/Button'
 import FormErrors from '../../components/common/FormErrors'
 import { useSignup } from '../../services/auth/useSignup'
 

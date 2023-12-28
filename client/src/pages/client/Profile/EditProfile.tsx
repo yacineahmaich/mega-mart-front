@@ -4,8 +4,8 @@ import { toast } from 'react-hot-toast'
 import { updateProfileSchema } from '../../../utils/validation/client/profile'
 import { Formik, Form } from 'formik'
 import { removeEmptyFields } from '../../../utils/helpers'
-import FieldGroup from '../../../components/client/ui/FieldGroup'
-import Button from '../../../components/client/ui/Button'
+import FieldGroup from '../../../components/ui/FieldGroup'
+import Button from '../../../components/ui/Button'
 import { useGetUser } from '../../../services/auth/useGetUser'
 
 const EditProfile = () => {

@@ -1,7 +1,7 @@
-import Navigation from '../../components/client/Navigation'
-import MainCategoriesSlider from '../../components/client/home/MainCategoriesSlider'
-import OffersSlider from '../../components/client/home/OffersSlider'
-import Feed from '../../components/client/home/Feed'
+import Navigation from '../../components/Navigation'
+import MainCategoriesSlider from '../../components/home/MainCategoriesSlider'
+import OffersSlider from '../../components/home/OffersSlider'
+import Feed from '../../components/home/Feed'
 
 const Home = () => {
   return (

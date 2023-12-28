@@ -1,6 +1,6 @@
 import { ShoppingCartIcon } from '@heroicons/react/24/solid'
 import { useMyOrders } from '../../../services/account/useMyOrders'
-import MyOrdersTable from '../../../components/client/account/MyOrdersTable'
+import MyOrdersTable from '../../../components/account/MyOrdersTable'
 import { useSearchParams } from 'react-router-dom'
 import useCartStore from '../../../store/cart'
 
