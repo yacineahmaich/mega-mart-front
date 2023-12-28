@@ -29,7 +29,7 @@ const UserAvatar: FC<Props> = ({ user }) => {
           }
         )}
       >
-        {isLoading && <Spinner className="fill-gray" />}
+        {isLoading && <Spinner />}
         {!isLoading && (
           <>
             <label

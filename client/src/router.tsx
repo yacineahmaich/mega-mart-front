@@ -1,27 +1,29 @@
 import { createBrowserRouter } from 'react-router-dom'
+import { lazy } from 'react'
 import DefaultLayout from './pages/DefaultLayout'
 // Auth
 import AuthLayout from './pages/auth/AuthLayout'
-import Login from './pages/auth/Login'
-import Signup from './pages/auth/Signup'
+// import Login from './pages/auth/Login'
+const Login = lazy(() => import('./pages/auth/Login'))
+const Signup = lazy(() => import('./pages/auth/Signup'))
 // Client
-import Cart from './pages/Cart'
+const Cart = lazy(() => import('./pages/Cart'))
 import ClientLayout from './pages/ClientLayout'
-import Home from './pages/Home'
-import ProductDetails from './pages/ProductDetails'
-import NotFound from './pages/NotFound'
-import Category from './pages/Category'
-import Checkout from './pages/Checkout'
-import MainCategory from './pages/MainCategory'
-import EditProfile from './pages/Profile/EditProfile'
-import MyOrders from './pages/Profile/MyOrders'
-import Order from './pages/Profile/Order'
-import Profile from './pages/Profile/Profile'
-import ProfileLayout from './pages/Profile/ProfileLayout'
-import VerifyPayment from './pages/VerifyPayment'
+const Home = lazy(() => import('./pages/Home'))
+const ProductDetails = lazy(() => import('./pages/ProductDetails'))
+const NotFound = lazy(() => import('./pages/NotFound'))
+const Category = lazy(() => import('./pages/Category'))
+const Checkout = lazy(() => import('./pages/Checkout'))
+const MainCategory = lazy(() => import('./pages/MainCategory'))
+const EditProfile = lazy(() => import('./pages/Profile/EditProfile'))
+const MyOrders = lazy(() => import('./pages/Profile/MyOrders'))
+const Order = lazy(() => import('./pages/Profile/Order'))
+const Profile = lazy(() => import('./pages/Profile/Profile'))
+const ProfileLayout = lazy(() => import('./pages/Profile/ProfileLayout'))
+const VerifyPayment = lazy(() => import('./pages/VerifyPayment'))
 
-import ErrorPage from './pages/ErrorPage'
-import Favorite from './pages/Favorite'
+const ErrorPage = lazy(() => import('./pages/ErrorPage'))
+const Favorite = lazy(() => import('./pages/Favorite'))
 
 const router = createBrowserRouter([
   {

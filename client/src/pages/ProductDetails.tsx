@@ -7,12 +7,13 @@ import { useParams } from 'react-router-dom'
 import Navigation from '../components/Navigation'
 import { InboxIcon, RectangleGroupIcon } from '@heroicons/react/24/outline'
 import { useProduct } from '../services/product/useProduct'
+import Spinner from '../components/ui/Spinner'
 
 const ProductDetails = () => {
   const { slug } = useParams()
   const { data: product } = useProduct(slug)
 
-  if (!product) return <div className="min-h-screen"></div>
+  if (!product) return <Spinner />
 
   return (
     <>

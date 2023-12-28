@@ -14,10 +14,5 @@ export const useGetUser = () => {
     queryKey: ['user'],
     queryFn: () => getUser(),
     staleTime: Infinity,
-    onSuccess: () => {
-      // hide page loader
-      document.querySelector('#loader')?.remove()
-      document.body.style.overflow = 'auto'
-    },
   })
 }

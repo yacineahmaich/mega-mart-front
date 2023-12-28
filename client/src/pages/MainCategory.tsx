@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { useMainCategory } from '../services/main-category/useMainCategory'
 import ProductCard from '../components/ui/ProductCard'
 import { useMainCategoryFeed } from '../services/main-category/useMainCategoryFeed'
+import Spinner from '../components/ui/Spinner'
 
 const MainCategory = () => {
   const { slug } = useParams()
@@ -89,7 +90,7 @@ const Feed = () => {
   const { slug } = useParams()
   const { data } = useMainCategoryFeed(slug)
 
-  if (!data) return <div className="min-h-screen"></div>
+  if (!data) return <Spinner className="mt-10" />
 
   return (
     <main>

@@ -12,12 +12,13 @@ import {
   Square3Stack3DIcon,
 } from '@heroicons/react/24/outline'
 import { useCategoryProducts } from '../services/category/useCategoryProducts'
+import Spinner from '../components/ui/Spinner'
 
 const HomeCategory: FC = () => {
   const { slug } = useParams()
   const { data } = useCategoryProducts(slug)
 
-  if (!data) return <div className="min-h-screen"></div>
+  if (!data) return <Spinner />
 
   const category = data?.products?.at(0)?.category?.name
 

@@ -3,11 +3,12 @@ import { useHomeFeed } from '../../services/useHomeFeed'
 import ProductCard from '../ui/ProductCard'
 import { FC } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import Spinner from '../ui/Spinner'
 
 const Feed = () => {
   const { data } = useHomeFeed()
 
-  if (!data) return <div className="min-h-screen"></div>
+  if (!data) return <Spinner />
 
   return (
     <main>
