@@ -1,11 +1,11 @@
 import { Navigate } from 'react-router'
-import Delivery from '../../components/checkout/Delivery'
-import PaymentMethod from '../../components/checkout/PaymentMethod'
-import PlaceOrder from '../../components/checkout/PlaceOrder'
-import Stepper from '../../components/checkout/Stepper'
-import useCartStore from '../../store/cart'
-import useCheckoutStore from '../../store/checkout'
-import { useGetUser } from '../../services/auth/useGetUser'
+import Delivery from '../components/checkout/Delivery'
+import PaymentMethod from '../components/checkout/PaymentMethod'
+import PlaceOrder from '../components/checkout/PlaceOrder'
+import Stepper from '../components/checkout/Stepper'
+import useCartStore from '../store/cart'
+import useCheckoutStore from '../store/checkout'
+import { useGetUser } from '../services/auth/useGetUser'
 
 const Checkout = () => {
   const { items } = useCartStore()

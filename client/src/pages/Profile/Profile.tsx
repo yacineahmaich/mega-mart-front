@@ -1,7 +1,7 @@
 import { UserIcon } from '@heroicons/react/24/solid'
-import { useProfile } from '../../../services/account/useGetProfile'
-import Spinner from '../../../components/ui/Spinner'
-import Error from '../../../components/ui/Error'
+import { useProfile } from '../../services/account/useGetProfile'
+import Spinner from '../../components/ui/Spinner'
+import Error from '../../components/ui/Error'
 const Profile = () => {
   const { data: profile, isLoading, isError, refetch } = useProfile()
 

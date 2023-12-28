@@ -2,16 +2,16 @@ import { FC } from 'react'
 import { ChevronDoubleRightIcon } from '@heroicons/react/24/solid'
 
 import { useParams } from 'react-router-dom'
-import Sort from '../../components/category/Sort'
-import Filter from '../../components/category/Filter'
-import ListProducts from '../../components/category/ListProducts'
+import Sort from '../components/category/Sort'
+import Filter from '../components/category/Filter'
+import ListProducts from '../components/category/ListProducts'
 
-import Navigation from '../../components/Navigation'
+import Navigation from '../components/Navigation'
 import {
   RectangleStackIcon,
   Square3Stack3DIcon,
 } from '@heroicons/react/24/outline'
-import { useCategoryProducts } from '../../services/category/useCategoryProducts'
+import { useCategoryProducts } from '../services/category/useCategoryProducts'
 
 const HomeCategory: FC = () => {
   const { slug } = useParams()

@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
-import { useOrder } from '../../../services/account/useOrder'
-import Spinner from '../../../components/ui/Spinner'
+import { useOrder } from '../../services/account/useOrder'
+import Spinner from '../../components/ui/Spinner'
 import {
   BanknotesIcon,
   CalendarDaysIcon,
@@ -12,7 +12,7 @@ import {
   ShoppingCartIcon,
   TruckIcon,
 } from '@heroicons/react/24/outline'
-import Error from '../../../components/ui/Error'
+import Error from '../../components/ui/Error'
 
 function Order() {
   const { id } = useParams()

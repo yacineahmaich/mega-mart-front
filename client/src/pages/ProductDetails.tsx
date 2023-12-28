@@ -1,12 +1,12 @@
-import Checkout from '../../components/product/Checkout'
-import GeneralInfos from '../../components/product/GeneralInfos'
-import Infos from '../../components/product/Infos'
-import Preview from '../../components/product/Preview'
-import CheckoutTip from '../../components/product/CheckoutTip'
+import Checkout from '../components/product/Checkout'
+import GeneralInfos from '../components/product/GeneralInfos'
+import Infos from '../components/product/Infos'
+import Preview from '../components/product/Preview'
+import CheckoutTip from '../components/product/CheckoutTip'
 import { useParams } from 'react-router-dom'
-import Navigation from '../../components/Navigation'
+import Navigation from '../components/Navigation'
 import { InboxIcon, RectangleGroupIcon } from '@heroicons/react/24/outline'
-import { useProduct } from '../../services/product/useProduct'
+import { useProduct } from '../services/product/useProduct'
 
 const ProductDetails = () => {
   const { slug } = useParams()

@@ -1,11 +1,11 @@
 import { HeartIcon } from '@heroicons/react/24/outline'
-import spinner from '../../assets/icons/loader.gif'
-import Navigation from '../../components/Navigation'
-import Message from '../../components/ui/Message'
-import ProductCard from '../../components/ui/ProductCard'
-import ProductCardSkeleton from '../../components/ui/ProductCardSekeleton'
-import { useProductsByIds } from '../../services/product/useProductsByIds'
-import useFavoriteStore from '../../store/favorite'
+import spinner from '../assets/icons/loader.gif'
+import Navigation from '../components/Navigation'
+import Message from '../components/ui/Message'
+import ProductCard from '../components/ui/ProductCard'
+import ProductCardSkeleton from '../components/ui/ProductCardSekeleton'
+import { useProductsByIds } from '../services/product/useProductsByIds'
+import useFavoriteStore from '../store/favorite'
 
 function Favorite() {
   const { items } = useFavoriteStore()
